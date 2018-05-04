@@ -1,0 +1,120 @@
+<form>
+  <mat-form-field>
+    <input matInput placeholder="Codice Fiscale">
+  </mat-form-field>
+
+  <table cellspacing="0"><tr>
+    <td><mat-form-field >
+      <input matInput placeholder="Cognome">
+    </mat-form-field></td>
+    <td><mat-form-field >
+      <input matInput placeholder="Nome">
+    </mat-form-field></td>
+  </tr></table>
+
+    <mat-form-field>
+      <input matInput [matDatepicker]="pickerNascita" placeholder="Data di nascita">
+      <mat-datepicker-toggle matSuffix [for]="pickerNascita"></mat-datepicker-toggle>
+      <mat-datepicker #pickerNascita></mat-datepicker>
+    </mat-form-field>
+  
+    <table cellspacing="0"><tr>
+      <td><mat-form-field >
+        <input matInput placeholder="Email">
+      </mat-form-field></td>
+      <td><mat-form-field >
+        <input matInput placeholder="Ripeti email">
+      </mat-form-field></td>
+    </tr></table>
+
+    <mat-form-field >
+      <input type="tel" matInput placeholder="Recapito telefonico">
+    </mat-form-field>
+  
+    <table cellspacing="0"><tr>
+      <td><mat-form-field >
+        <mat-select placeholder="Sedi di servizio" [formControl]="sedeControl" multiple>
+          <mat-optgroup *ngFor="let group of sediGroups" [label]="group.name"
+                          [disabled]="group.disabled">
+          <mat-option *ngFor="let sede of group.sede" [value]="sede.value">
+               {{ sede.viewValue }}
+          </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field></td>
+      <td><mat-form-field>
+        <input matInput placeholder="Giorni di servizio al 31/12/2017" type="number" class="text-align: right;">
+      </mat-form-field></td>
+    </tr></table>
+      
+    <mat-form-field floatPlaceholder="always">
+        <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
+      <input matInput placeholder="Patenti" style="display: none" >
+      <mat-radio-group>
+        <mat-radio-button #showCivile [checked]="isChecked" (change)="onChange($event)" value="civile">civile</mat-radio-button>
+        <mat-radio-button #showVVF [checked]="isChecked" (change)="onChange($event)" value="VVF">VVF</mat-radio-button>
+      </mat-radio-group>
+    </mat-form-field>    
+
+    <table cellspacing="0" *ngIf="showCivile.checked"><tr>
+      <td><mat-form-field >
+           <input matInput placeholder="Categoria">
+          </mat-form-field></td>
+      <td><mat-form-field >
+            <input matInput placeholder="Numero">
+          </mat-form-field></td>
+      <td><mat-form-field >
+        <mat-select placeholder="Ente">
+           <mat-option value="prefettura">Prefettura</mat-option>
+           <mat-option value="motorizzazione">Motorizzazione</mat-option>
+         </mat-select>
+        </mat-form-field></td>
+      <td><mat-form-field>
+         <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio">
+           <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
+           <mat-datepicker #pickerRilascio></mat-datepicker>
+      </mat-form-field></td>
+      <td><mat-form-field>
+          <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza">
+            <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
+            <mat-datepicker #pickerScadenza></mat-datepicker>
+       </mat-form-field></td>
+    </tr>
+    <tr><mat-form-field>
+         <input matInput style="display: none" >
+         <mat-checkbox>privacy, accettazione</mat-checkbox>
+        </mat-form-field></tr>
+    </table>
+
+    <table cellspacing="0" *ngIf="showVVF.checked"><tr>
+        <td><mat-form-field >
+             <input matInput placeholder="Categoria">
+            </mat-form-field></td>
+        <td><mat-form-field >
+              <input matInput placeholder="Numero">
+            </mat-form-field></td>
+        <td><mat-form-field >
+            <input matInput placeholder="Ente" value="D.C. per la  Formazione" readonly>
+          </mat-form-field></td>
+        <td><mat-form-field>
+           <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio">
+             <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
+             <mat-datepicker #pickerRilascio></mat-datepicker>
+        </mat-form-field></td>
+        <td><mat-form-field>
+            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza">
+              <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
+              <mat-datepicker #pickerScadenza></mat-datepicker>
+         </mat-form-field></td>
+      </tr>
+      <tr><mat-form-field>
+          <input matInput style="display: none" >
+          <mat-checkbox >privacy, accettazione</mat-checkbox>
+          </mat-form-field></tr>
+      </table>
+
+      <!-- <div>
+        <button mat-button>Invia</button>
+      </div> -->
+</form>
+
