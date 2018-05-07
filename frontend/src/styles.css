@@ -1,3 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+    margin: 0px;
+    font-family: Titillium Web,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+}
+
+.content {
+    max-width: 650px;
+    margin: auto;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #127ae2;
+    overflow: hidden;
+    margin-bottom: 100px;
+    box-shadow: 5px 5px 5px lightgrey;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    border-bottom: solid white 3px;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    border-bottom: solid white 3px;
+}
