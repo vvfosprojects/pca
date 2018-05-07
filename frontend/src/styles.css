@@ -38,3 +38,8 @@ body {
 .topnav a.active {
     border-bottom: solid white 3px;
 }
+
+.light {
+    color: gray;
+    font-size: 80%;
+}
