@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Services.CfChecker.CheckResults
 {
-    public class AlreadyExistingCf : ICfCheckResult
+    internal class AlreadyExistingCf : ICfCheckResult
     {
         public string Code => "AlreadyExistingCf";
 

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Services.CfChecker.CheckResults
 {
-    public class PinIsInvalid : ICfCheckResult
+    internal class PinIsInvalid : ICfCheckResult
     {
         public string Code => "PinIsInvalid";
 

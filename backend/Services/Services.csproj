@@ -40,12 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CfChecker\CfCheckOutcome.cs" />
+    <Compile Include="CfChecker\CheckResults\CfCheckOutcome.cs" />
     <Compile Include="CfChecker\CfDataToBeChecked.cs" />
     <Compile Include="CfChecker\CheckResults\AlreadyExistingCf.cs" />
     <Compile Include="CfChecker\CheckResults\CfBirthDateMismatch.cs" />
     <Compile Include="CfChecker\CheckResults\CfFirstNameMismatch.cs" />
     <Compile Include="CfChecker\CheckResults\CfLastNameMismatch.cs" />
+    <Compile Include="CfChecker\ICfCheckOutcome.cs" />
     <Compile Include="CfChecker\CheckResults\PinIsInvalid.cs" />
     <Compile Include="CfChecker\ICfChecker.cs" />
     <Compile Include="CfChecker\ICfCheckResult.cs" />

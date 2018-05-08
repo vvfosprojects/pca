@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Services.CfChecker.CheckResults
 {
-    public class CfLastNameMismatch : ICfCheckResult
+    internal class CfLastNameMismatch : ICfCheckResult
     {
         public string Code => "CfLastNameMismatch";
 

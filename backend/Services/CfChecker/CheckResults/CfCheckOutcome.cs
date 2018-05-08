@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Services.CfChecker
+namespace Services.CfChecker.CheckResults
 {
-    public class CfCheckOutcome
+    internal class CfCheckOutcome : ICfCheckOutcome
     {
         public IEnumerable<ICfCheckResult> Results { get; set; }
         public bool CanSubmit { get; set; }

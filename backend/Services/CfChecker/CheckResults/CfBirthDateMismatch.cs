@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Services.CfChecker.CheckResults
 {
-    public class CfBirthDateMismatch : ICfCheckResult
+    internal class CfBirthDateMismatch : ICfCheckResult
     {
         public string Code => "CfBirthDateMismatch";
 
