@@ -16,6 +16,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatStepperModule } from '@angular/material/stepper';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { MatDividerModule } from '@angular/material/divider';
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

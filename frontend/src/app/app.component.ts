@@ -1,7 +1,16 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { ErrorStateMatcher} from '@angular/material/core';
 
+
+/** Error when invalid control is dirty, touched, or submitted. */
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-root',
@@ -12,7 +21,40 @@ export class AppComponent {
   title = 'app';
   isChecked = Boolean();
   isCheckedPrivacy = Boolean();
-  sedeControl = new FormControl();
+  //sedeControl = new FormControl();
+  anagFormGroup: FormGroup;
+  servFormGroup: FormGroup;
+  patFormGroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    this.anagFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.servFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.min(0)]
+    });
+    this.patFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
+  }
+ 
+  numberDaysFormControl = new FormControl('', [
+    Validators.required,
+    Validators.min(0)
+  ]);
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+
+  repeatEmailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
+  matcher = new MyErrorStateMatcher();
 
   sediGroups = [
     {

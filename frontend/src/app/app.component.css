@@ -1,0 +1,8 @@
+.patente-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.patente-container > * {
+  width: 100%;
+}
