@@ -1,170 +1,207 @@
-<form>
-  <mat-form-field>
-    <input matInput placeholder="Codice Fiscale">
-  </mat-form-field>
 
-  <table cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Cognome">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Nome">
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+<mat-horizontal-stepper [linear]="false" #stepper>
 
-  <mat-form-field>
-    <input matInput [matDatepicker]="pickerNascita" placeholder="Data di nascita">
-    <mat-datepicker-toggle matSuffix [for]="pickerNascita"></mat-datepicker-toggle>
-    <mat-datepicker #pickerNascita></mat-datepicker>
-  </mat-form-field>
+  <mat-step [stepControl]="anagFormGroup" >
+    <form [formGroup]="anagFormGroup">
+      <ng-template matStepLabel>Dati Anagrafici</ng-template>  
+        <mat-form-field>
+          <input matInput placeholder="Codice Fiscale" formControlName="firstCtrl" required>
+        </mat-form-field>
 
-  <table cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Email">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Ripeti email">
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Cognome" formControlName="firstCtrl" required>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field style="width:300px">
+                <input matInput placeholder="Nome" formControlName="firstCtrl" required>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Recapito telefonico">
-  </mat-form-field>
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerNascita" placeholder="Data di nascita" formControlName="firstCtrl" required>
+          <mat-datepicker-toggle matSuffix [for]="pickerNascita"></mat-datepicker-toggle>
+          <mat-datepicker #pickerNascita></mat-datepicker>
+        </mat-form-field>
 
-  <table cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field>
-          <mat-select placeholder="Sedi di servizio" [formControl]="sedeControl" multiple>
-            <mat-optgroup *ngFor="let group of sediGroups" [label]="group.name" [disabled]="group.disabled">
-              <mat-option *ngFor="let sede of group.sede" [value]="sede.value">
-                {{ sede.viewValue }}
-              </mat-option>
-            </mat-optgroup>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Giorni di servizio al 31/12/2017" type="number" class="text-align: right;">
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+        <div>
+          <mat-form-field style="width:350px">
+            <input matInput placeholder="Email" [formControl]="emailFormControl"
+            [errorStateMatcher]="matcher" required>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Inserire email valida
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-  <mat-form-field floatPlaceholder="always">
-    <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
-    <input matInput placeholder="Patenti" style="display: none">
-    <mat-radio-group>
-      <mat-radio-button #showCivile [checked]="isChecked" (change)="onChange($event)" value="civile">civile</mat-radio-button>
-      <mat-radio-button #showVVF [checked]="isChecked" (change)="onChange($event)" value="VVF">VVF</mat-radio-button>
-    </mat-radio-group>
-  </mat-form-field>
+        <div>
+          <mat-form-field style="width:350px">
+            <input matInput placeholder="Ripeti email" [formControl]="repeatEmailFormControl"
+            [errorStateMatcher]="matcher" required>
+            <mat-error *ngIf="repeatEmailFormControl.hasError('email') && !repeatEmailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+        </div>
 
-  <table cellspacing="0" *ngIf="showCivile.checked">
-    <tr>
-      <td>
         <mat-form-field>
-          <input matInput placeholder="Categoria">
+          <input type="tel" matInput placeholder="Recapito telefonico" formControlName="firstCtrl" required>
         </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Numero">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <mat-select placeholder="Ente">
-            <mat-option value="prefettura">Prefettura</mat-option>
-            <mat-option value="motorizzazione">Motorizzazione</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio">
-          <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
-          <mat-datepicker #pickerRilascio></mat-datepicker>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza">
-          <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
-          <mat-datepicker #pickerScadenza></mat-datepicker>
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
-      <mat-form-field>
-        <input matInput style="display: none">
-        <mat-checkbox>privacy, accettazione</mat-checkbox>
+
+      <div>
+      <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="servFormGroup" >
+    <form [formGroup]="servFormGroup">
+      <ng-template matStepLabel>Dati di servizio</ng-template>
+
+       <mat-form-field>
+        <mat-select placeholder="Sedi di servizio" multiple formControlName="secondCtrl" required>
+          <mat-optgroup *ngFor="let group of sediGroups" [label]="group.name" [disabled]="group.disabled">
+           <mat-option *ngFor="let sede of group.sede" [value]="sede.value">
+              {{ sede.viewValue }}
+           </mat-option>
+          </mat-optgroup>
+        </mat-select>
       </mat-form-field>
-    </tr>
-  </table>
-
-  <table cellspacing="0" *ngIf="showVVF.checked">
-    <tr>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Categoria">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Numero">
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput placeholder="Ente" value="D.C. per la  Formazione" readonly>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio">
-          <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
-          <mat-datepicker #pickerRilascio></mat-datepicker>
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field>
-          <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza">
-          <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
-          <mat-datepicker #pickerScadenza></mat-datepicker>
-        </mat-form-field>
-      </td>
-    </tr>
-    <tr>
       <mat-form-field>
-        <input matInput style="display: none">
-        <mat-checkbox>privacy, accettazione</mat-checkbox>
+          <input matInput placeholder="Giorni di servizio al 31/12/2017" type="number" class="text-align: right;" [formControl]="numberDaysFormControl"
+          [errorStateMatcher]="matcher" required>
+          <mat-error *ngIf="numberDaysFormControl.hasError('min') && !numberDaysFormControl.hasError('required')">
+            Inserire un numero maggiore di zero
+          </mat-error>
       </mat-form-field>
-    </tr>
-  </table>
   
+    <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="patFormGroup" >
+    <form [formGroup]="patFormGroup">
+      <ng-template matStepLabel>Dati patente</ng-template>
+
+      <mat-form-field floatPlaceholder="always">
+        <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
+        <input matInput placeholder="Patenti" style="display: none">
+        <mat-radio-group>
+          <mat-radio-button #showCivile [checked]="isChecked" (change)="onChange($event)" value="civile">civile</mat-radio-button>
+          <mat-radio-button #showVVF [checked]="isChecked" (change)="onChange($event)" value="VVF">VVF</mat-radio-button>
+        </mat-radio-group>
+      </mat-form-field>
+
+      <div *ngIf="showCivile.checked">
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput placeholder="Categoria" formControlName="thirdCtrl" required>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput placeholder="Numero" formControlName="thirdCtrl" required>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      
+        <table cellspacing="0" >
+          <tr>
+            <td>
+              <mat-form-field >
+                <mat-select placeholder="Ente" formControlName="thirdCtrl" required>
+                  <mat-option value="prefettura">Prefettura</mat-option>
+                  <mat-option value="motorizzazione">Motorizzazione</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="thirdCtrl" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerRilascio></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="thirdCtrl" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
+              <mat-datepicker #pickerScadenza></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="showVVF.checked" >
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput placeholder="Categoria" formControlName="thirdCtrl" required>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput placeholder="Numero" formControlName="thirdCtrl" required>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      
+        <table cellspacing="0">
+          <tr>
+            <td>
+              <mat-form-field>
+                <input matInput placeholder="Ente" value="D.C. per la  Formazione" readonly>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field>
+                <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="thirdCtrl" required>
+                <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerRilascio></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="thirdCtrl" required>
+              <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
+              <mat-datepicker #pickerScadenza></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      
+       
+
   <mat-divider></mat-divider>
   
   <div class="light">
     I dati raccolti saranno utilizzati esclusivamente per le finalità legate al presente concorso. Saranno conservati per il
     tempo strettamente necessario e successivamente cancellati. Non saranno in nessun caso divulgati a terzi.
-    <mat-checkbox>Autorizzo il trattamento dei dati esclusivamente per le finalità indicate di sopra (D.Lgs. 196/2003).</mat-checkbox>
+    <mat-checkbox formControlName="thirdCtrl" required>Autorizzo il trattamento dei dati esclusivamente per le finalità indicate di sopra (D.Lgs. 196/2003).</mat-checkbox>
   </div>
 
-  <!-- <div>
-        <button mat-button>Invia</button>
-      </div> -->
-</form>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+   </form>
+  </mat-step>
+
+</mat-horizontal-stepper>
