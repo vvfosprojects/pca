@@ -10,7 +10,7 @@ using Services.CfChecker.Impl.CheckResults;
 
 namespace CfChecker.Impl
 {
-    internal class CfChecker : ICfChecker
+    public class CfChecker : ICfChecker
     {
         public ICfCheckOutcome Check(CfDataToBeChecked data)
         {

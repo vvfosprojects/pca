@@ -1,0 +1,11 @@
+### Check fiscal code
+POST http://localhost:57156/api/CfCheck
+Content-Type: application/json
+
+{
+    "fiscalCode": "MRZMNL79E68H501Z",
+    "firstName": "Manuele",
+    "lastName": "Marzotti",
+    "birthDate": "1979-05-28T00:00:00.000Z",
+    "pin": "12345"
+}

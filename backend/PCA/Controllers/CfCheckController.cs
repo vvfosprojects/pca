@@ -10,9 +10,16 @@ namespace PCA.Controllers
 {
     public class CfCheckController : ApiController
     {
-        public ICfCheckOutcome Check(CfDataToBeChecked data)
+        private readonly ICfChecker cfChecker;
+
+        public CfCheckController(ICfChecker cfChecker)
         {
-            throw new NotImplementedException();
+            this.cfChecker = cfChecker ?? throw new ArgumentNullException(nameof(cfChecker));
+        }
+
+        public ICfCheckOutcome Post(CfDataToBeChecked data)
+        {
+            return this.cfChecker.Check(data);
         }
     }
 }
