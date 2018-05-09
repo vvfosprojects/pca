@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup} from '@angular/forms';
-import { FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { Component, NgModule } from '@angular/core';
+import { FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import { ErrorStateMatcher} from '@angular/material/core';
+import { CustomValidators, ConfirmValidParentMatcher, regExps, errorMessages } from './custom-validation'; 
+
+/* import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; */
+import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatInputModule, MatButtonModule} from '@angular/material';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -22,38 +27,56 @@ export class AppComponent {
   isChecked = Boolean();
   isCheckedPrivacy = Boolean();
   //sedeControl = new FormControl();
+  userRegistrationForm: FormGroup;
+  confirmValidParentMatcher = new ConfirmValidParentMatcher();
+
+	errors = errorMessages;
   anagFormGroup: FormGroup;
   servFormGroup: FormGroup;
   patFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
-
-  ngOnInit() {
-    this.anagFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.servFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.min(0)]
-    });
-    this.patFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
-    });
+  constructor(private formBuilder: FormBuilder) { 
+    this.createForm();
   }
+
+  createForm() {
+  this.userRegistrationForm = this.formBuilder.group({
+    anagGroup: this.formBuilder.group({
+      codFis: ['', [
+        Validators.required,
+        Validators.minLength(14),
+        Validators.maxLength(14)
+      ]],
+      nome: ['', [
+        Validators.required,
+        Validators.maxLength(40)
+      ]],
+      cognome: ['', [
+        Validators.required,
+        Validators.maxLength(40)
+      ]],
+      tel: ['', Validators.required],
+      nascita: ['', Validators.required]
+    }, { validator: CustomValidators.childrenEqual}),
+    emailGroup: this.formBuilder.group({
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      confirmEmail: ['', Validators.required]
+    }, { validator: CustomValidators.childrenEqual})
+  });
+}
+
+register(): void {
+  // API call to register your user
+}
  
   numberDaysFormControl = new FormControl('', [
-    Validators.required,
     Validators.min(0)
   ]);
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
-
-  repeatEmailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email
-  ]);
+  
   matcher = new MyErrorStateMatcher();
 
   sediGroups = [
