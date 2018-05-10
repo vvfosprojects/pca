@@ -2,12 +2,15 @@ import { Component, NgModule } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import { ErrorStateMatcher} from '@angular/material/core';
 import { CustomValidators, ConfirmValidParentMatcher, regExps, errorMessages } from './custom-validation'; 
+import { Injectable, Inject } from '@angular/core';
 
 /* import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'; */
-import {ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatInputModule, MatButtonModule} from '@angular/material';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { MatInputModule, MatButtonModule} from '@angular/material';
 
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { CfCheckService } from '../service/cf-check.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -16,6 +19,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
+
 
 @Component({
   selector: 'app-root',
@@ -35,10 +39,10 @@ export class AppComponent {
   servFormGroup: FormGroup;
   patFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private cfCheckService: CfCheckService) { 
     this.createForm();
   }
-
+     
   createForm() {
   this.userRegistrationForm = this.formBuilder.group({
     anagGroup: this.formBuilder.group({
@@ -68,10 +72,11 @@ export class AppComponent {
   });
 }
 
-register(): void {
-  // API call to register your user
-}
- 
+  register(): void {
+    // API call to register your user
+    this.cfCheckService.checkCf();
+  }
+    
   numberDaysFormControl = new FormControl('', [
     Validators.min(0)
   ]);
