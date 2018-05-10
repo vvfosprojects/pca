@@ -36,9 +36,9 @@ export class AppComponent {
 
 	errors = errorMessages;
   anagFormGroup: FormGroup;
-  servFormGroup: FormGroup;
+  /* servFormGroup: FormGroup;
   patFormGroup: FormGroup;
-
+ */
   constructor(private formBuilder: FormBuilder, private cfCheckService: CfCheckService) { 
     this.createForm();
   }
@@ -74,7 +74,7 @@ export class AppComponent {
 
   register(): void {
     // API call to register your user
-    this.cfCheckService.checkCf();
+    //this.cfCheckService.checkCf();
   }
     
   numberDaysFormControl = new FormControl('', [
