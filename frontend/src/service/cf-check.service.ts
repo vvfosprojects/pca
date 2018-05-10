@@ -15,7 +15,7 @@ export class CfCheckService {
   constructor(private http: Http) { }
 
   public checkCf(anagrafica: Anagrafica): Observable<Anagrafica> {
-    return this.http.post(API_URL, anagrafica)
+    return this.http.post(API_URL + '/CfCheck', anagrafica)
        .map(risposta => risposta['checkcf'] as Anagrafica)
        .catch(this.handleError);
   }
