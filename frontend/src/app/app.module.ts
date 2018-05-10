@@ -16,6 +16,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material';
+import { CfCheckService } from '../service/cf-check.service';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { MatRadioModule } from '@angular/material';
     MatRadioModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [ CfCheckService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
