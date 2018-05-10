@@ -1,5 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { CfCheckService } from '../service/cf-check.service';
+
+import { CfCheckService } from './cf-check.service';
 
 describe('CfCheckService', () => {
   beforeEach(() => {
