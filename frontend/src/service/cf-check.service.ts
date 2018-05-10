@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { environment} from '../environments/environment';
 import { Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -14,9 +14,9 @@ export class CfCheckService {
 
   constructor(private http: Http) { }
 
-  public checkCf(): Observable<Anagrafica> {
-    return this.http.get(API_URL)
-       .map(this.extractData)
+  public checkCf(anagrafica: Anagrafica): Observable<Anagrafica> {
+    return this.http.post(API_URL, anagrafica)
+       .map(risposta => risposta['checkcf'] as Anagrafica)
        .catch(this.handleError);
   }
 
