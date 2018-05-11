@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CfChecker\CfCheckOutcome.cs" />
     <Compile Include="CfChecker\CfDataToBeChecked.cs" />
     <Compile Include="CfChecker\ICfCheckOutcome.cs" />
     <Compile Include="CfChecker\ICfChecker.cs" />
