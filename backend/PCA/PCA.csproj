@@ -127,6 +127,10 @@
       <Project>{8ac5ac0c-7f1b-48bc-bd16-cc7e469e2d43}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Persistence.Fake\Persistence.Fake.csproj">
+      <Project>{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}</Project>
+      <Name>Persistence.Fake</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{cea8b9f1-fc88-465f-86d1-6b13ae2557af}</Project>
       <Name>Services</Name>

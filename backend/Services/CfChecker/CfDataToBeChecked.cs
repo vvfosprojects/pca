@@ -13,7 +13,7 @@ namespace Services.CfChecker
             FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
             LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
             BirthDate = birthDate;
-            Pin = pin ?? throw new ArgumentNullException(nameof(pin));
+            Pin = pin;
         }
 
         public string FiscalCode { get; }
