@@ -8,10 +8,22 @@ namespace DomainModel
 {
     public class Application
     {
+        private string pin;
+
         public string Id { get; set; }
 
         public string FiscalCode { get; set; }
-        public string Pin { get; set; }
+
+        public string GetPin()
+        {
+            return pin;
+        }
+
+        public void SetPin(string value)
+        {
+            pin = value.ToUpper();
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime BirthDate { get; set; }
