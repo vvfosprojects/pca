@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DomainModel.Services;
 using MongoDB.Driver;
 
 namespace Persistence.MongoDB.DbServices
 {
-    internal class IsThereAnActiveApplicationByFiscalCodeAndPin : ICanUpdateApplication
+    internal class IsThereAnActiveApplicationByFiscalCodeAndPin
     {
         private readonly DbContext dbContext;
 
@@ -24,11 +23,6 @@ namespace Persistence.MongoDB.DbServices
                 a.DeletionTime == null &&
                 a.GetPin() == pin.ToUpper())
                 .Any();
-        }
-
-        bool ICanUpdateApplication.CanUpdate(string fiscalCode, string pin)
-        {
-            return this.Check(fiscalCode, pin);
         }
     }
 }
