@@ -41,10 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Anomaly.cs" />
+    <Compile Include="ApplicationSubmissionResult.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IActiveApplicationExistsByFiscalCode.cs" />
     <Compile Include="Services\IActiveApplicationExistsByFiscalCodeAndPin.cs" />
+    <Compile Include="Services\IGetActiveApplicationsByFiscalCode.cs" />
+    <Compile Include="Services\IPinBuilder.cs" />
+    <Compile Include="Services\IStoreApplication.cs" />
+    <Compile Include="Services\ISubmitApplication.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
