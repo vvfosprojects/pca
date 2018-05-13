@@ -60,8 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContext.cs" />
-    <Compile Include="DbServices\IsThereAnActiveApplicationByFiscalCodeAndPin.cs" />
-    <Compile Include="DbServices\IsThereAtLeastOneActiveApplicationWithThisFiscalCode.cs" />
+    <Compile Include="DbServices\ActiveApplicationExistsByFiscalCodeAndPin.cs" />
+    <Compile Include="DbServices\ActiveApplicationExistsByFiscalCode.cs" />
     <Compile Include="DbServices\StoreApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
