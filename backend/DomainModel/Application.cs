@@ -23,5 +23,6 @@ namespace DomainModel
         public DateTime? DeletionTime { get; set; }
         public Anomaly[] Anomalies { get; set; }
         public bool ToBeSupervised { get; set; }
+        public string SourceIp { get; set; }
     }
 }
