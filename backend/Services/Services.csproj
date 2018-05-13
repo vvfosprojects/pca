@@ -45,6 +45,13 @@
     <Compile Include="CfChecker\ICfChecker.cs" />
     <Compile Include="CfChecker\ICfCheckResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Submission\ISubmitApplication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
+      <Project>{8AC5AC0C-7F1B-48BC-BD16-CC7E469E2D43}</Project>
+      <Name>DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
