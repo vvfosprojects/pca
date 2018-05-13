@@ -8,6 +8,8 @@ namespace DomainModel
 {
     public class Application
     {
+        public string Id { get; set; }
+
         public string FiscalCode { get; set; }
         public string Pin { get; set; }
         public string FirstName { get; set; }
