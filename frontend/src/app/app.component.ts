@@ -11,6 +11,7 @@ import { MatInputModule, MatButtonModule} from '@angular/material';
 
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { CfCheckService } from '../service/cf-check.service';
+import { Anagrafica } from './model/anagrafica.model';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -41,6 +42,15 @@ export class AppComponent {
  */
   constructor(private formBuilder: FormBuilder, private cfCheckService: CfCheckService) { 
     this.createForm();
+    
+    // this triggers the FiscalCode validation request to the server, and logs the response
+    // cfCheckService.cfCheck(new Anagrafica(
+    //   "SPSMCL73T16L259D",
+    //   "Marcello",
+    //   "Esposito",
+    //   new Date("1973-12-16"),
+    //   "12345"
+    // )).subscribe(response => console.log(response));
   }
      
   createForm() {

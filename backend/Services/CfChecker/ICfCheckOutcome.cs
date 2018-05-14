@@ -6,5 +6,6 @@ namespace Services.CfChecker
     {
         IEnumerable<ICfCheckResult> Results { get; }
         bool CanSubmit { get; }
+        bool ShouldTypePin { get; }
     }
 }

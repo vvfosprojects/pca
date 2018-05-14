@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bogus;
 using Bogus.Extensions.Italy;
+using DomainModel.Services;
 using Services.CfChecker;
 using Services.CfChecker.Impl.CheckResults;
 
@@ -12,6 +13,16 @@ namespace CfChecker.Impl
 {
     public class CfChecker : ICfChecker
     {
+        private readonly IActiveApplicationExistsByFiscalCode activeApplicationExistsByFiscalCode;
+        private readonly IActiveApplicationExistsByFiscalCodeAndPin activeApplicationExistsByFiscalCodeAndPin;
+
+        public CfChecker(IActiveApplicationExistsByFiscalCode activeApplicationExistsByFiscalCode,
+            IActiveApplicationExistsByFiscalCodeAndPin activeApplicationExistsByFiscalCodeAndPin)
+        {
+            this.activeApplicationExistsByFiscalCode = activeApplicationExistsByFiscalCode ?? throw new ArgumentNullException(nameof(activeApplicationExistsByFiscalCode));
+            this.activeApplicationExistsByFiscalCodeAndPin = activeApplicationExistsByFiscalCodeAndPin ?? throw new ArgumentNullException(nameof(activeApplicationExistsByFiscalCodeAndPin));
+        }
+
         public ICfCheckOutcome Check(CfDataToBeChecked data)
         {
             var result = new CfCheckOutcome();
@@ -43,6 +54,20 @@ namespace CfChecker.Impl
 
             if (!FiscalCodeChecker.Checker.IsFormallyValid(data.FiscalCode))
                 result.AddResult(new CfWrongChecksum());
+
+            if (string.IsNullOrWhiteSpace(data.Pin))
+            {
+                if (this.activeApplicationExistsByFiscalCode.Exists(data.FiscalCode))
+                    result.AddResult(new AlreadyExistingCf());
+            }
+            else
+            {
+                if (!this.activeApplicationExistsByFiscalCode.Exists(data.FiscalCode))
+                    result.AddResult(new UnexistingCf());
+                else
+                    if (!this.activeApplicationExistsByFiscalCodeAndPin.Exists(data.FiscalCode, data.Pin))
+                    result.AddResult(new PinIsInvalid());
+            }
 
             return result;
         }

@@ -1,41 +1,28 @@
-import { Injectable, Inject } from '@angular/core';
-import { environment} from '../environments/environment';
-import { Http, Response} from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 import { Anagrafica } from '../app/model/anagrafica.model';
+import { CfCheckOutcome } from '../app/model/cf-check-outcome.model';
+import { Observable } from 'rxjs/Observable';
 
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/catch'
+const BACKENDURL = environment.backendUrl;
 
-const API_URL = environment.backendUrl;
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
 
 @Injectable()
 export class CfCheckService {
+  private cfCheckUrl = '/cfCheck';
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
-  public checkCf(anagrafica: Anagrafica): Observable<Anagrafica> {
-    return this.http.post(API_URL, anagrafica)
-       .map(risposta => risposta['checkcf'] as Anagrafica)
-       .catch(this.handleError);
+  cfCheck(anagrafica: Anagrafica): Observable<CfCheckOutcome> {
+    return this.http.post<CfCheckOutcome>(
+      BACKENDURL + this.cfCheckUrl,
+      anagrafica,
+      httpOptions);
   }
-
-  private extractData(res: Response) {
-    let body = res.json();
-    return body.data || {};
-  }
-
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-        const body = error.json() || '';
-        const err = body.error || JSON.stringify(body);
-        errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);      
-  }
-
 }

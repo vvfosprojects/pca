@@ -43,6 +43,9 @@
     <Compile Include="Anomaly.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IActiveApplicationExistsByFiscalCode.cs" />
+    <Compile Include="Services\IActiveApplicationExistsByFiscalCodeAndPin.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

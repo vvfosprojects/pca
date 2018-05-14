@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DomainModel.Services;
+using Moq;
 using NUnit.Framework;
 using Services.CfChecker;
 
@@ -14,12 +16,23 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWorks()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPSMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            CfChecker checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPSMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
             Assert.That(results.Results, Is.Empty);
+        }
+
+        private static CfChecker GetCfChecker()
+        {
+            var activeApplicationExistsByFiscalCode = new Mock<IActiveApplicationExistsByFiscalCode>();
+            activeApplicationExistsByFiscalCode.Setup(a => a.Exists(It.IsAny<string>())).Returns(false);
+            var activeApplicationExistsByFiscalCodeAndPin = new Mock<IActiveApplicationExistsByFiscalCodeAndPin>();
+            activeApplicationExistsByFiscalCodeAndPin.Setup(a => a.Exists(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
+            var checker = new CfChecker(activeApplicationExistsByFiscalCode.Object, activeApplicationExistsByFiscalCodeAndPin.Object);
+            return checker;
         }
 
         /// <summary>
@@ -30,8 +43,8 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void AnOmocodeFiscalCodeWorks()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("BNZVCN32S10E57PV", "Vincenzo", "Bonzi", new DateTime(1932, 11, 10), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("BNZVCN32S10E57PV", "Vincenzo", "Bonzi", new DateTime(1932, 11, 10), string.Empty);
 
             var results = checker.Check(data);
 
@@ -41,8 +54,8 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWithWrongFirstnameGivesFirstnameError()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPSMCM73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPSMCM73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
@@ -52,8 +65,8 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWithWrongLastnameGivesLastnameError()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPPMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPPMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
@@ -63,8 +76,8 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWithWrongDayGivesBirthDateError()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPSMCL73T17L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPSMCL73T17L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
@@ -74,8 +87,8 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWithWrongMonthGivesBirthDateError()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPSMCL73A16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPSMCL73A16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
@@ -85,8 +98,8 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWithWrongYearGivesBirthDateError()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPSMCL74T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPSMCL74T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
@@ -96,12 +109,80 @@ namespace CfChecker.Impl.UnitTests
         [Test]
         public void MyFiscalCodeWithWrongChecksumGivesChecksumError()
         {
-            var checker = new CfChecker();
-            var data = new CfDataToBeChecked("SPSMCL73T16L259E", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+            var checker = GetCfChecker();
+            var data = new CfDataToBeChecked("SPSMCL73T16L259E", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
 
             var results = checker.Check(data);
 
             Assert.That(results.Results.Single().Code, Is.EqualTo("CfWrongChecksum"));
+        }
+
+        [Test]
+        public void GivesAnomalyIfCfExists()
+        {
+            var activeApplicationExistsByFiscalCode = new Mock<IActiveApplicationExistsByFiscalCode>();
+            activeApplicationExistsByFiscalCode.Setup(a => a.Exists(It.IsAny<string>())).Returns(true);
+            var activeApplicationExistsByFiscalCodeAndPin = new Mock<IActiveApplicationExistsByFiscalCodeAndPin>();
+            activeApplicationExistsByFiscalCodeAndPin.Setup(a => a.Exists(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
+            var checker = new CfChecker(activeApplicationExistsByFiscalCode.Object, activeApplicationExistsByFiscalCodeAndPin.Object);
+
+            var data = new CfDataToBeChecked("SPSMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), string.Empty);
+
+            var results = checker.Check(data);
+
+            Assert.That(results.Results.Single().Code, Is.EqualTo("AlreadyExistingCf"));
+        }
+
+        [Test]
+        public void GivesAnomalyIfPinIsProvidedButCfDoesNotExist()
+        {
+            var activeApplicationExistsByFiscalCode = new Mock<IActiveApplicationExistsByFiscalCode>();
+            activeApplicationExistsByFiscalCode.Setup(a => a.Exists(It.IsAny<string>())).Returns(false);
+            var activeApplicationExistsByFiscalCodeAndPin = new Mock<IActiveApplicationExistsByFiscalCodeAndPin>();
+            activeApplicationExistsByFiscalCodeAndPin.Setup(a => a.Exists(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+
+            var checker = new CfChecker(activeApplicationExistsByFiscalCode.Object, activeApplicationExistsByFiscalCodeAndPin.Object);
+
+            var data = new CfDataToBeChecked("SPSMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+
+            var results = checker.Check(data);
+
+            Assert.That(results.Results.Single().Code, Is.EqualTo("UnexistingCf"));
+        }
+
+        [Test]
+        public void GivesAnomalyIfUnmatchingPinIsProvided()
+        {
+            var activeApplicationExistsByFiscalCode = new Mock<IActiveApplicationExistsByFiscalCode>();
+            activeApplicationExistsByFiscalCode.Setup(a => a.Exists(It.IsAny<string>())).Returns(true);
+            var activeApplicationExistsByFiscalCodeAndPin = new Mock<IActiveApplicationExistsByFiscalCodeAndPin>();
+            activeApplicationExistsByFiscalCodeAndPin.Setup(a => a.Exists(It.IsAny<string>(), It.IsAny<string>())).Returns(false);
+
+            var checker = new CfChecker(activeApplicationExistsByFiscalCode.Object, activeApplicationExistsByFiscalCodeAndPin.Object);
+
+            var data = new CfDataToBeChecked("SPSMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+
+            var results = checker.Check(data);
+
+            Assert.That(results.Results.Single().Code, Is.EqualTo("PinIsInvalid"));
+        }
+
+        [Test]
+        public void SucceedsIfValidPinIsProvided()
+        {
+            var activeApplicationExistsByFiscalCode = new Mock<IActiveApplicationExistsByFiscalCode>();
+            activeApplicationExistsByFiscalCode.Setup(a => a.Exists(It.IsAny<string>())).Returns(true);
+            var activeApplicationExistsByFiscalCodeAndPin = new Mock<IActiveApplicationExistsByFiscalCodeAndPin>();
+            activeApplicationExistsByFiscalCodeAndPin.Setup(a => a.Exists(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+
+            var checker = new CfChecker(activeApplicationExistsByFiscalCode.Object, activeApplicationExistsByFiscalCodeAndPin.Object);
+
+            var data = new CfDataToBeChecked("SPSMCL73T16L259D", "Marcello", "Esposito", new DateTime(1973, 12, 16), "12345");
+
+            var results = checker.Check(data);
+
+            Assert.That(results.Results.All(a => a.Type == ResultType.Success), Is.True);
         }
     }
 }

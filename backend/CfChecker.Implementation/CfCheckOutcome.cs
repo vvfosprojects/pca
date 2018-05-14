@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Services.CfChecker;
+using Services.CfChecker.Impl.CheckResults;
 
 namespace CfChecker.Impl
 {
@@ -18,6 +19,14 @@ namespace CfChecker.Impl
             get
             {
                 return !this.Results.Any(r => r.Type == ResultType.Error);
+            }
+        }
+
+        public bool ShouldTypePin
+        {
+            get
+            {
+                return this.Results.Any(r => r.GetType() == typeof(AlreadyExistingCf));
             }
         }
 

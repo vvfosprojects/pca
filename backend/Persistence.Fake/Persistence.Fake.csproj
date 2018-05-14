@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A0E4C61D-4748-47C9-B184-28DEFEB0E9C4}</ProjectGuid>
+    <ProjectGuid>{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CfChecker.Impl</RootNamespace>
-    <AssemblyName>CfChecker.Impl</AssemblyName>
+    <RootNamespace>Persistence.Fake</RootNamespace>
+    <AssemblyName>Persistence.Fake</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bogus, Version=22.0.8.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Bogus.22.0.8\lib\net40\Bogus.dll</HintPath>
-    </Reference>
-    <Reference Include="FiscalCodeChecker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\FiscalCodeChecker.1.0.2\lib\FiscalCodeChecker.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,15 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CfChecker.cs" />
-    <Compile Include="CfCheckOutcome.cs" />
-    <Compile Include="CheckResults\UnexistingCf.cs" />
-    <Compile Include="CheckResults\AlreadyExistingCf.cs" />
-    <Compile Include="CheckResults\CfBirthDateMismatch.cs" />
-    <Compile Include="CheckResults\CfFirstNameMismatch.cs" />
-    <Compile Include="CheckResults\CfLastNameMismatch.cs" />
-    <Compile Include="CheckResults\CfWrongChecksum.cs" />
-    <Compile Include="CheckResults\PinIsInvalid.cs" />
+    <Compile Include="FakeServices\ActiveApplicationExistsByFiscalCode_ReturnsFalse.cs" />
+    <Compile Include="FakeServices\ActiveApplicationExistsByFiscalCodeAndPin_ReturnsTrue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,13 +49,6 @@
       <Project>{8AC5AC0C-7F1B-48BC-BD16-CC7E469E2D43}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Services\Services.csproj">
-      <Project>{cea8b9f1-fc88-465f-86d1-6b13ae2557af}</Project>
-      <Name>Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
