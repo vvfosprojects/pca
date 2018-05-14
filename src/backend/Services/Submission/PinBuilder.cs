@@ -10,7 +10,7 @@ namespace Services.Submission
     internal class PinBuilder : IPinBuilder
     {
         private Random rnd = new Random();
-        private char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'Z', '2', '3', '4', '5', '6', '7', '8', '9' };
+        private char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'K', 'M', 'N', 'P', 'Q', 'R', 'T', 'W', 'X', 'Y', 'Z', '2', '3', '4', '6', '7', '8', '9' };
 
         public string Build()
         {
