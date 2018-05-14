@@ -12,6 +12,7 @@ import { MatInputModule, MatButtonModule} from '@angular/material';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { CfCheckService } from '../service/cf-check.service';
 import { Anagrafica } from './model/anagrafica.model';
+import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -40,26 +41,30 @@ export class AppComponent {
   /* servFormGroup: FormGroup;
   patFormGroup: FormGroup;
  */
-  constructor(private formBuilder: FormBuilder, private cfCheckService: CfCheckService) { 
+  constructor(private formBuilder: FormBuilder, private cfCheckService_Fake: CfCheckService_Fake) { 
     this.createForm();
     
     // this triggers the FiscalCode validation request to the server, and logs the response
-    // cfCheckService.cfCheck(new Anagrafica(
-    //   "SPSMCL73T16L259D",
-    //   "Marcello",
-    //   "Esposito",
-    //   new Date("1973-12-16"),
-    //   "12345"
-    // )).subscribe(response => console.log(response));
-  }
+/*     cfCheckService.cfCheck(new Anagrafica(
+      "SPSMCL73T16L259D",
+      "Marcello",
+      "Esposito",
+      new Date("1973-12-16"),
+      "12345"
+    )).subscribe(response => console.log(response));
+ */ 
+
+  
+
+}
      
   createForm() {
   this.userRegistrationForm = this.formBuilder.group({
     anagGroup: this.formBuilder.group({
       codFis: ['', [
         Validators.required,
-        Validators.minLength(14),
-        Validators.maxLength(14)
+        Validators.minLength(16),
+        Validators.maxLength(16)
       ]],
       nome: ['', [
         Validators.required,
@@ -85,6 +90,7 @@ export class AppComponent {
   register(): void {
     // API call to register your user
     //this.cfCheckService.checkCf();
+    this.cfCheckService_Fake.cfCheck().subscribe(response => console.log(response));
   }
     
   numberDaysFormControl = new FormControl('', [

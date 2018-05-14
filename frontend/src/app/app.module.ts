@@ -17,6 +17,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material';
 import { CfCheckService } from '../service/cf-check.service';
+import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { CfCheckService } from '../service/cf-check.service';
     MatRadioModule,
     MatNativeDateModule
   ],
-  providers: [ CfCheckService ],
+  providers: [ CfCheckService, CfCheckService_Fake ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

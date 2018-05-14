@@ -37,7 +37,7 @@ export const regExps: { [key: string]: RegExp } = {
  * Collection of reusable error messages
  */
 export const errorMessages: { [key: string]: string } = {
-	codFis: 'Codice fiscale deve contenere 14 caratteri',
+	codFis: 'Codice fiscale deve contenere 16 caratteri',
 	nome: 'Nome può contenere al massimo 40 caratteri',
 	cognome: 'Cognome può contenere al massimo 40 caratteri',
 	email: 'Email deve essere un indirizzo valido (username@domain)',

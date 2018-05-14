@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  backendUrl: "http://localhost:57156/api/CfCheck"
+  backendUrl: "http://localhost:57156/api"
 };
