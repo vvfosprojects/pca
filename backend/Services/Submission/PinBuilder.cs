@@ -17,7 +17,7 @@ namespace Services.Submission
             var sb = new StringBuilder();
 
             for (int i = 0; i < 6; i++)
-                sb.Append(this.chars[rnd.Next()]);
+                sb.Append(this.chars[rnd.Next(chars.Length)]);
 
             return sb.ToString();
         }

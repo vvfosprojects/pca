@@ -9,7 +9,7 @@ using Services.CfChecker;
 
 namespace Services.Submission
 {
-    internal class SubmitApplication : ISubmitApplication
+    public class SubmitApplication : ISubmitApplication
     {
         private readonly ICfChecker cfChecker;
         private readonly IGetActiveApplicationsByFiscalCode getActiveApplicationsByFiscalCode;
