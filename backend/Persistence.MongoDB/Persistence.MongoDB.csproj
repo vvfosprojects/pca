@@ -62,6 +62,7 @@
     <Compile Include="DbContext.cs" />
     <Compile Include="DbServices\ActiveApplicationExistsByFiscalCodeAndPin.cs" />
     <Compile Include="DbServices\ActiveApplicationExistsByFiscalCode.cs" />
+    <Compile Include="DbServices\GetActiveApplicationsByFiscalCode.cs" />
     <Compile Include="DbServices\StoreApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

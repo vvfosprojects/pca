@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CompositionRoot\CompositionRoot.cs" />
+    <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\CfCheckController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -130,6 +131,10 @@
     <ProjectReference Include="..\Persistence.Fake\Persistence.Fake.csproj">
       <Project>{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}</Project>
       <Name>Persistence.Fake</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Persistence.MongoDB\Persistence.MongoDB.csproj">
+      <Project>{CAE90BBB-BAFE-497E-A270-104DB7BC3369}</Project>
+      <Name>Persistence.MongoDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services\Services.csproj">
       <Project>{cea8b9f1-fc88-465f-86d1-6b13ae2557af}</Project>

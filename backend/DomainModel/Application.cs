@@ -20,9 +20,9 @@ namespace DomainModel
         public string DrivingLicense { get; set; }
 
         public string Pin { get; set; }
+        public DateTime SubmissionTime { get; set; }
         public DateTime? DeletionTime { get; set; }
         public Anomaly[] Anomalies { get; set; }
-        public bool ToBeSupervised { get; set; }
         public string SourceIp { get; set; }
     }
 }

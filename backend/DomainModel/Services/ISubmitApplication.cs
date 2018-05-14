@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using DomainModel;
 
-namespace Services.Submission
+namespace DomainModel.Services
 {
     public interface ISubmitApplication
     {
-        void Submit(Application application);
+        ApplicationSubmissionResult Submit(Application application);
     }
 }

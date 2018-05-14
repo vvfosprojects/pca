@@ -1,5 +1,5 @@
 ### Check fiscal code
-POST http://localhost:57156/api/CfCheck
+POST http://localhost:57156/api/cfCheck
 Content-Type: application/json
 
 {
@@ -8,4 +8,20 @@ Content-Type: application/json
     "lastName": "Marzotti",
     "birthDate": "1979-05-28T00:00:00.000Z",
     "pin": ""
+}
+
+### Store application without pin
+POST http://localhost:57156/api/application
+Content-Type: application/json
+
+{
+    "fiscalCode": "MRZMNL79E68H501Z",
+    "firstName": "Manuele",
+    "lastName": "Marzotti",
+    "birthDate": "1979-05-28T00:00:00.000Z",
+    "email": "manuele.marzotti@pippo.it",
+    "phoneNumber": "+393331234567",
+    "workingDays": 101,
+    "drivingLicense": "C class - issued on 10/11/2010 - valid until 10/11/2020",
+    "pin": null
 }
