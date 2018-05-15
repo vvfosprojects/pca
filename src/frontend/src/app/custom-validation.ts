@@ -41,5 +41,6 @@ export const errorMessages: { [key: string]: string } = {
 	nome: 'Nome può contenere al massimo 40 caratteri',
 	cognome: 'Cognome può contenere al massimo 40 caratteri',
 	email: 'Email deve essere un indirizzo valido (username@domain)',
-	confirmEmail: 'Indirizzo email deve coincidere'
+	confirmEmail: 'Indirizzo email deve coincidere',
+	giorni:'Inserire un numero maggiore o uguale a zero'
 };

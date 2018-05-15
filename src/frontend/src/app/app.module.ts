@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material';
 import { CfCheckService } from '../service/cf-check.service';
 import { CfCheckService_Fake } from '../service/cf-check-fake.service';
+import { ApplicationService_Fake } from '../service/application-fake.service';
+import { ApplicationService } from '../service/application.service';
 
 
 @NgModule({
@@ -40,7 +42,7 @@ import { CfCheckService_Fake } from '../service/cf-check-fake.service';
     MatRadioModule,
     MatNativeDateModule
   ],
-  providers: [ CfCheckService, CfCheckService_Fake ],
+  providers: [ CfCheckService, CfCheckService_Fake, ApplicationService_Fake, ApplicationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -13,6 +13,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { CfCheckService } from '../service/cf-check.service';
 import { Anagrafica } from './model/anagrafica.model';
 import { CfCheckService_Fake } from '../service/cf-check-fake.service';
+import { ApplicationService_Fake } from '../service/application-fake.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -41,7 +42,7 @@ export class AppComponent {
   /* servFormGroup: FormGroup;
   patFormGroup: FormGroup;
  */
-  constructor(private formBuilder: FormBuilder, private cfCheckService_Fake: CfCheckService_Fake) { 
+  constructor(private formBuilder: FormBuilder, private cfCheckService_Fake: CfCheckService_Fake, private applicationService_Fake: ApplicationService_Fake ) { 
     this.createForm();
     
     // this triggers the FiscalCode validation request to the server, and logs the response
@@ -76,14 +77,26 @@ export class AppComponent {
       ]],
       tel: ['', Validators.required],
       nascita: ['', Validators.required]
-    }, { validator: CustomValidators.childrenEqual}),
+    }),
     emailGroup: this.formBuilder.group({
       email: ['', [
         Validators.required,
         Validators.email
       ]],
       confirmEmail: ['', Validators.required]
-    }, { validator: CustomValidators.childrenEqual})
+    }, { validator: CustomValidators.childrenEqual}),
+    servizioGroup: this.formBuilder.group({
+      sede: ['', Validators.required],
+      giorni: ['', Validators.min(0)]
+    }),
+    patenteGroup: this.formBuilder.group({
+      patente: ['', Validators.required],
+      categoria: ['', Validators.required],
+      numero: ['', Validators.required],
+      ente: ['', Validators.required],
+      dataRilascio: ['', Validators.required],
+      dataScadenza: ['', Validators.required]
+    })
   });
 }
 
@@ -92,14 +105,13 @@ export class AppComponent {
     //this.cfCheckService.checkCf();
     this.cfCheckService_Fake.cfCheck().subscribe(response => console.log(response));
   }
-    
-  numberDaysFormControl = new FormControl('', [
-    Validators.min(0)
-  ]);
-
   
-  matcher = new MyErrorStateMatcher();
-
+  inserisci(): void {
+    // API call to register your user
+    //this.cfCheckService.checkCf();
+    this.applicationService_Fake.checkDomanda().subscribe(response => console.log(response));
+  }
+  
   sediGroups = [
     {
       name: 'Toscana',
