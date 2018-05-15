@@ -51,6 +51,10 @@
     <Compile Include="Services\IStoreApplication.cs" />
     <Compile Include="Services\ISubmitApplication.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\stuff\pca.licenseheader">
+      <Link>pca.licenseheader</Link>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

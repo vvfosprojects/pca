@@ -54,5 +54,10 @@
       <Name>DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\stuff\pca.licenseheader">
+      <Link>pca.licenseheader</Link>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

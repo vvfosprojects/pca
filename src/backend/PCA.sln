@@ -17,6 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.MongoDB", "Pers
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Fake", "Persistence.Fake\Persistence.Fake.csproj", "{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stuff", "stuff", "{57996309-492E-4064-A72E-4043CACB5E56}"
+	ProjectSection(SolutionItems) = preProject
+		stuff\pca.licenseheader = stuff\pca.licenseheader
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
