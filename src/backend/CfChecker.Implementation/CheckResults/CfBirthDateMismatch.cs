@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Services.CfChecker.Impl.CheckResults
+﻿namespace Services.CfChecker.Impl.CheckResults
 {
     internal class CfBirthDateMismatch : ICfCheckResult
     {
