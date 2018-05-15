@@ -46,16 +46,29 @@ namespace Services.Submission
             application.SubmissionTime = DateTime.UtcNow;
 
             var sameFiscalCodeActiveApplications = this.getActiveApplicationsByFiscalCode.Get(fiscalCode).ToArray();
-            var pinIsValid = !string.IsNullOrWhiteSpace(application.Pin) &&
-                sameFiscalCodeActiveApplications.Any(a => a.Pin == application.Pin);
+            var pinIsEmpty = string.IsNullOrWhiteSpace(application.Pin);
+            var pinIsValid = !pinIsEmpty && sameFiscalCodeActiveApplications.Any(a => a.Pin == application.Pin);
+
+            string userMessage;
+            if (pinIsEmpty)
+            {
+                application.Pin = this.pinBuilder.Build();
+                userMessage = "La domanda di partecipazione è stata correttamente acquisita.";
+            }
+            else
             if (!pinIsValid)
             {
                 application.Pin = this.pinBuilder.Build();
+                userMessage = "La domanda di partecipazione è stata correttamente acquisita con pin indicato.";
+            }
+            else
+            {
+                userMessage = "La domanda di partecipazione è stata correttamente aggiornata.";
             }
 
             this.storeApplication.Store(application);
 
-            return new ApplicationSubmissionResult(fiscalCode, application.Pin, new string[] { }, DateTime.UtcNow);
+            return new ApplicationSubmissionResult(fiscalCode, application.Pin, new string[] { userMessage }, DateTime.UtcNow);
         }
     }
 }
