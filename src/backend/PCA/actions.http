@@ -23,5 +23,6 @@ Content-Type: application/json
     "phoneNumber": "+393331234567",
     "workingDays": 101,
     "drivingLicense": "C class - issued on 10/11/2010 - valid until 10/11/2020",
+	"businessUnits": [ "BU1", "BU2", "BU3" ],
     "pin": null
 }

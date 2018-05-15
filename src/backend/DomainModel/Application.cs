@@ -33,6 +33,7 @@ namespace DomainModel
         public string PhoneNumber { get; set; }
         public int WorkingDays { get; set; }
         public string DrivingLicense { get; set; }
+        public string[] BusinessUnits { get; set; }
 
         public string Pin { get; set; }
         public DateTime SubmissionTime { get; set; }

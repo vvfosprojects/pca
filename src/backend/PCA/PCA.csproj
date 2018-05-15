@@ -110,6 +110,7 @@
     <Content Include="..\stuff\pca.licenseheader">
       <Link>pca.licenseheader</Link>
     </Content>
+    <Content Include="actions.http" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
