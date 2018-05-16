@@ -1,0 +1,13 @@
+<mat-grid-list cols="2" rowHeight="10:2">
+  <mat-grid-tile>
+    Domande inviate: {{ statistics.totalActiveApplicationsEver }}
+      (totali: {{ statistics.totalSubmissionsEver }})<br/>
+    Domande inviate oggi: {{ statistics.submittedToday }}<br/>
+    Domande inviate negli ultimi 5 giorni: {{ statistics.submittedInTheLastFiveDays }}<br/>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    Codici fiscali duplicati: {{ statistics.duplicateFiscalCodeErrors }}<br/>
+    Altri errori: {{ statistics.otherErrors }}
+  </mat-grid-tile>
+</mat-grid-list>
+
