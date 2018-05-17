@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatTableModule } from '@angular/material/table';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StatisticsServiceFake } from './statistics.service.fake';
 import { StatisticsService } from './statistics.service';
@@ -18,11 +16,9 @@ import { ApplicationTableComponent } from './application-table/application-table
     ApplicationTableComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
-    BrowserAnimationsModule,
     HttpClientModule,
-    MatGridListModule,
-    MatTableModule
   ],
   providers: [
     { provide: StatisticsService, useClass: StatisticsServiceFake }

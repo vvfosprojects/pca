@@ -1,13 +1,46 @@
-<mat-grid-list cols="2" rowHeight="10:2">
-  <mat-grid-tile>
-    Domande inviate: {{ statistics.totalActiveApplicationsEver }}
-      (totali: {{ statistics.totalSubmissionsEver }})<br/>
-    Domande inviate oggi: {{ statistics.submittedToday }}<br/>
-    Domande inviate negli ultimi 5 giorni: {{ statistics.submittedInTheLastFiveDays }}<br/>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    Codici fiscali duplicati: {{ statistics.duplicateFiscalCodeErrors }}<br/>
-    Altri errori: {{ statistics.otherErrors }}
-  </mat-grid-tile>
-</mat-grid-list>
-
+<div class="row">
+  <div class="col-sm">
+    <ul class="list-group">
+      <li class="list-group-item">
+        Domande inviate
+        <div class="badge badge-pill badge-info float-right">
+          {{ statistics.totalActiveApplicationsEver }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        Domande totali
+        <div class="badge badge-pill badge-secondary float-right">
+          {{ statistics.totalSubmissionsEver }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        Domande inviate oggi
+        <div class="badge badge-pill badge-info float-right">
+          {{ statistics.submittedToday }}
+        </div>
+      </li>
+      <li class="list-group-item">
+        Domande inviate negli ultimi 5 giorni
+        <div class="badge badge-pill badge-info float-right">
+          {{ statistics.submittedInTheLastFiveDays }}
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm">
+    <ul class="list-group">
+      <li class="list-group-item">
+          Codici fiscali duplicati
+        <div class="badge badge-pill badge-danger float-right">
+          {{ statistics.duplicateFiscalCodeErrors }}
+        </div>
+      </li>
+      <li class="list-group-item">
+          Altri errori
+        <div class="badge badge-pill badge-danger float-right">
+          {{ statistics.otherErrors }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
