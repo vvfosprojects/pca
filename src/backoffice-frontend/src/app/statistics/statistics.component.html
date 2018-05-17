@@ -1,16 +1,18 @@
 <div class="row">
-  <div class="col-sm">
+  <div class="col-sm-4 offset-sm-2">
     <ul class="list-group">
       <li class="list-group-item">
-        Domande inviate
-        <div class="badge badge-pill badge-info float-right">
-          {{ statistics.totalActiveApplicationsEver }}
+        <div>
+          Domande inviate
+          <div class="badge badge-pill badge-info float-right">
+            {{ statistics.totalActiveApplicationsEver }}
+          </div>
         </div>
-      </li>
-      <li class="list-group-item">
-        Domande totali
-        <div class="badge badge-pill badge-secondary float-right">
-          {{ statistics.totalSubmissionsEver }}
+        <div class="text-secondary">
+          Domande totali
+          <div class="badge badge-pill badge-secondary float-right">
+            {{ statistics.totalSubmissionsEver }}
+          </div>
         </div>
       </li>
       <li class="list-group-item">
@@ -27,16 +29,16 @@
       </li>
     </ul>
   </div>
-  <div class="col-sm">
+  <div class="col-sm-4">
     <ul class="list-group">
       <li class="list-group-item">
-          Codici fiscali duplicati
+        Codici fiscali duplicati
         <div class="badge badge-pill badge-danger float-right">
           {{ statistics.duplicateFiscalCodeErrors }}
         </div>
       </li>
       <li class="list-group-item">
-          Altri errori
+        Altri errori
         <div class="badge badge-pill badge-danger float-right">
           {{ statistics.otherErrors }}
         </div>
