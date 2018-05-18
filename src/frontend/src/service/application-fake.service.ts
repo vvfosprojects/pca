@@ -1,7 +1,8 @@
+
+import {of as observableOf,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Anagrafica } from '../app/model/anagrafica.model';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+
 import { CfCheckOutcome } from '../app/model/cf-check-outcome.model';
 import { Domanda } from '../app/model/domanda.model';
 import { DomandaResult } from '../app/model/domanda-result.model';
@@ -29,10 +30,10 @@ export class ApplicationService_Fake {
   constructor() { }
 
   public checkDomanda(): Observable<Domanda> {
-    return Observable.of(this.domanda);
+    return observableOf(this.domanda);
   }
 
   public inserisciDomanda(): Observable<DomandaResult> {
-    return Observable.of(this.domandaResult);
+    return observableOf(this.domandaResult);
   }
 }

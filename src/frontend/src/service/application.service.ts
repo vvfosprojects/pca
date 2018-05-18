@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Anagrafica } from '../app/model/anagrafica.model';
 import { CfCheckOutcome } from '../app/model/cf-check-outcome.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Domanda } from '../app/model/domanda.model';
 import { DomandaResult } from '../app/model/domanda-result.model';
 
