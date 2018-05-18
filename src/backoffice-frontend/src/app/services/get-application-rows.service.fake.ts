@@ -26,6 +26,6 @@ export class GetApplicationRowsServiceFake {
       new ApplicationRow("id12", "Cognome12 Nome12", "XXXYYY55T66R222L", new Date("2010-01-12"), false),
       new ApplicationRow("id13", "Cognome13 Nome13", "XXXYYY55T66R222M", new Date("2010-01-13"), false),
       new ApplicationRow("id14", "Cognome14 Nome14", "XXXYYY55T66R222N", new Date("2010-01-14"), false),
-    ].filter((row, idx) => idx >= startIndex && idx <= startIndex + howMany));
+    ].filter((row, idx) => idx >= startIndex && idx < startIndex + howMany));
   }
 }

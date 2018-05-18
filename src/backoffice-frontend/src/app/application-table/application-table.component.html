@@ -4,15 +4,13 @@
             <th scope="col">Nominativo</th>
             <th scope="col">Codice Fiscale</th>
             <th scope="col">Data invio</th>
-            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of rows">
+        <tr *ngFor="let row of rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies}">
             <td>{{ row.fullName }}</td>
             <td>{{ row.fiscalCode }}</td>
             <td>{{ row.submittedAt.toLocaleDateString() }}</td>
-            <td>{{ row.hasAnomalies }}</td>
         </tr>
     </tbody>
 </table>
