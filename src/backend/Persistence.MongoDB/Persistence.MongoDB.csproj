@@ -63,6 +63,13 @@
     <Compile Include="DbServices\ActiveApplicationExistsByFiscalCodeAndPin.cs" />
     <Compile Include="DbServices\ActiveApplicationExistsByFiscalCode.cs" />
     <Compile Include="DbServices\GetActiveApplicationsByFiscalCode.cs" />
+    <Compile Include="DbServices\Stats\CountAllSubmissionErrors.cs" />
+    <Compile Include="DbServices\Stats\CountDuplicateFiscalCodeErrors.cs" />
+    <Compile Include="DbServices\Stats\GetStatistics.cs" />
+    <Compile Include="DbServices\Stats\CountSubmittedInTheLastFiveDays.cs" />
+    <Compile Include="DbServices\Stats\CountSubmittedToday.cs" />
+    <Compile Include="DbServices\Stats\CountTotalSubmissionsEver.cs" />
+    <Compile Include="DbServices\Stats\CountTotalActiveApplicationsEver.cs" />
     <Compile Include="DbServices\StoreApplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -78,5 +85,6 @@
       <Name>DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

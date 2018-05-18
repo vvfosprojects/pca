@@ -55,6 +55,17 @@ namespace PCA.CompositionRoot
             container.Register<
                 DomainModel.Services.IStoreApplication,
                 Persistence.MongoDB.DbServices.StoreApplication>(Lifestyle.Singleton);
+
+            container.Register<
+                DomainModel.Services.Stats.IGetStatistics,
+                Persistence.MongoDB.DbServices.Stats.GetStatistics>(Lifestyle.Scoped);
+
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountTotalActiveApplicationsEver>(Lifestyle.Scoped);
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountAllSubmissionErrors>(Lifestyle.Scoped);
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountDuplicateFiscalCodeErrors>(Lifestyle.Scoped);
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountSubmittedInTheLastFiveDays>(Lifestyle.Scoped);
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountTotalSubmissionsEver>(Lifestyle.Scoped);
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountSubmittedToday>(Lifestyle.Scoped);
         }
     }
 }

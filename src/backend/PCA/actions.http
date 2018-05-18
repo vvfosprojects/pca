@@ -26,3 +26,6 @@ Content-Type: application/json
 	"businessUnits": [ "BU1", "BU2", "BU3" ],
     "pin": null
 }
+
+### Get statistics
+GET http://localhost:57156/api/statistics
