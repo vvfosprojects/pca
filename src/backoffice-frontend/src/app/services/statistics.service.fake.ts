@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Statistics } from './statistics.model';
+import { Observable, of as observableOf } from 'rxjs';
+import { Statistics } from '../models/statistics.model';
 
 @Injectable()
 export class StatisticsServiceFake {
@@ -8,7 +8,7 @@ export class StatisticsServiceFake {
   constructor() { }
 
   public getStatistics(): Observable<Statistics> {
-    return of(new Statistics(
+    return observableOf(new Statistics(
       1255,
       1323,
       13,
