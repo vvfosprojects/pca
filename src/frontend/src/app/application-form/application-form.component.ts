@@ -9,6 +9,9 @@ import { of as observableOf, Observable } from 'rxjs';
 })
 export class ApplicationFormComponent implements OnInit {
   applicationForm: FormGroup;
+  startDate = new Date(1970, 0, 1);
+  minDate = new Date(1928, 0, 1);
+  maxDate = new Date(2002, 0, 1);
 
   constructor(private fb: FormBuilder) {
     this.createForm();

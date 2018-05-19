@@ -2,7 +2,7 @@
   <div formGroupName="personalData">
     <div>
       <mat-form-field>
-        <input matInput placeholder="Codice Fiscale" formControlName="fiscalCode" maxLength="16" >
+        <input matInput placeholder="Codice Fiscale" formControlName="fiscalCode" maxLength="16">
         <mat-error *ngIf="fiscalCode.invalid && (fiscalCode.dirty || fiscalCode.touched)">
           <div *ngIf="fiscalCode.errors.required">
             Obbligatorio
@@ -14,7 +14,7 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="PIN" formControlName="pin" maxLength="6" >
+        <input matInput placeholder="PIN" formControlName="pin" maxLength="6">
         <mat-error *ngIf="pin.invalid && (pin.dirty || pin.touched)">
           <div *ngIf="pin.errors.minlength || pin.errors.maxlength">
             Deve avere 6 caratteri
@@ -25,7 +25,7 @@
 
     <div>
       <mat-form-field>
-        <input matInput placeholder="Nome" formControlName="firstName" maxLength="30" >
+        <input matInput placeholder="Nome" formControlName="firstName" maxLength="30">
         <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
           <div *ngIf="firstName.errors.required">
             Obbligatorio
@@ -57,12 +57,10 @@
 
     <div>
       <mat-form-field>
-        <input matInput placeholder="Data di nascita" formControlName="birthDate" >
-        <mat-error *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)">
-          <div *ngIf="birthDate.errors.required">
-            Obbligatorio
-          </div>
-        </mat-error>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" 
+          placeholder="Data di nascita" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
       </mat-form-field>
     </div>
   </div>
