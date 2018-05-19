@@ -20,11 +20,13 @@ import { CfCheckService } from '../service/cf-check.service';
 import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 import { ApplicationService_Fake } from '../service/application-fake.service';
 import { ApplicationService } from '../service/application.service';
+import { ApplicationFormComponent } from './application-form/application-form.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ApplicationFormComponent
   ],
   imports: [
     BrowserModule,

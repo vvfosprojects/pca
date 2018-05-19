@@ -1,0 +1,73 @@
+<form [formGroup]="applicationForm">
+  <div formGroupName="personalData">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Codice Fiscale" formControlName="fiscalCode" maxLength="16" >
+        <mat-error *ngIf="fiscalCode.invalid && (fiscalCode.dirty || fiscalCode.touched)">
+          <div *ngIf="fiscalCode.errors.required">
+            Obbligatorio
+          </div>
+          <div *ngIf="fiscalCode.errors.minlength || fiscalCode.errors.maxlength">
+            Deve avere 16 caratteri
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="PIN" formControlName="pin" maxLength="6" >
+        <mat-error *ngIf="pin.invalid && (pin.dirty || pin.touched)">
+          <div *ngIf="pin.errors.minlength || pin.errors.maxlength">
+            Deve avere 6 caratteri
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Nome" formControlName="firstName" maxLength="30" >
+        <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+          <div *ngIf="firstName.errors.required">
+            Obbligatorio
+          </div>
+          <div *ngIf="firstName.errors.minlength">
+            Deve avere almeno 2 caratteri
+          </div>
+          <div *ngIf="firstName.errors.maxlength">
+            Deve avere al massimo 30 caratteri
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Cognome" formControlName="lastName" maxLength="30">
+        <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+          <div *ngIf="lastName.errors.required">
+            Obbligatorio
+          </div>
+          <div *ngIf="lastName.errors.minlength">
+            Deve avere almeno 2 caratteri
+          </div>
+          <div *ngIf="lastName.errors.maxlength">
+            Deve avere al massimo 30 caratteri
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Data di nascita" formControlName="birthDate" >
+        <mat-error *ngIf="birthDate.invalid && (birthDate.dirty || birthDate.touched)">
+          <div *ngIf="birthDate.errors.required">
+            Obbligatorio
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+
+<p>Form value: {{ applicationForm.value | json }}</p>
+<p>Form status: {{ applicationForm.status | json }}</p>
+<p>Form status: {{ applicationForm.errors | json }}</p>

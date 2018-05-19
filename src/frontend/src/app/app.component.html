@@ -1,4 +1,6 @@
+<app-application-form></app-application-form>
 
+<!-- 
 <form [formGroup]="userRegistrationForm" novalidate >
   <ng-template matStepLabel>Dati Anagrafici</ng-template>
 
@@ -97,7 +99,7 @@
       <mat-error *ngIf="numberDaysFormControl.hasError('min')">
           Inserire un numero maggiore di zero
       </mat-error>
-    </mat-form-field> -->
+    </mat-form-field> //->
     <mat-form-field style="width:250px">
       <input matInput placeholder="Giorni di servizio al 31/12/2017" min="0" type="number" class="text-align: right;" formControlName="giorni" required>
       <mat-error>
@@ -109,7 +111,7 @@
 
 <div formGroupName="patenteGroup">
   <mat-form-field floatPlaceholder="always">
-      <!-- the matInput with display:none makes the magic. It's ugly, I've warned you -->
+      <!-- the matInput with display:none makes the magic. It's ugly, I've warned you //->
       <input matInput placeholder="Patenti" style="display: none" formControlName="patente" required>
         <mat-radio-group>
           <mat-radio-button #showCivile [checked]="isChecked" (change)="onChange($event)" value="civile">civile</mat-radio-button>
@@ -218,4 +220,4 @@
   <button mat-raised-button (click)="inserisci()">Inserisci domanda</button>
 
 
-</form>
+</form> -->
