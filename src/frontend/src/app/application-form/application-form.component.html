@@ -66,6 +66,8 @@
       </mat-form-field>
     </div>
   </div>
+
+  <button mat-raised-button color="primary" [disabled]="!applicationForm.valid">Invia la domanda</button>
 </form>
 
 <p>Form value: {{ applicationForm.value | json }}</p>
