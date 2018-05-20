@@ -9,7 +9,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatCardModule,
+  MatIconModule,
+  MatBadgeModule
+} from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -44,9 +50,10 @@ import { ApplicationFormComponent } from './application-form/application-form.co
     MatRadioModule,
     MatNativeDateModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatBadgeModule
   ],
-  providers: [ 
+  providers: [
     { provide: LOCALE_ID, useValue: 'it' },
     { provide: CfCheckService, useClass: CfCheckService_Fake },
     { provide: ApplicationService, useClass: ApplicationService_Fake },
