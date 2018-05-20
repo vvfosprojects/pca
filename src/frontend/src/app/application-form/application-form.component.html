@@ -1,136 +1,138 @@
 <form [formGroup]="applicationForm">
-  <div formGroupName="personalData">
+  <div class="mb-small">
+    <div formGroupName="personalData">
 
-    <mat-card class="mb-small" *ngIf="!!personalDataValidationMessages">
-      <p *ngFor="let msg of personalDataValidationMessages">
-        <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
-        <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
-        <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
-        {{ msg.msg }}
-      </p>
-    </mat-card>
+      <mat-card class="mb-small" *ngIf="!!personalDataValidationMessages">
+        <p *ngFor="let msg of personalDataValidationMessages">
+          <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
+          <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
+          <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
+          {{ msg.msg }}
+        </p>
+      </mat-card>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Codice Fiscale" formControlName="fiscalCode" maxLength="16">
-        <mat-error *ngIf="fiscalCode.invalid && (fiscalCode.dirty || fiscalCode.touched)">
-          <div *ngIf="fiscalCode.errors.required">
-            Obbligatorio
-          </div>
-          <div *ngIf="fiscalCode.errors.minlength || fiscalCode.errors.maxlength">
-            Deve avere 16 caratteri
-          </div>
-        </mat-error>
-      </mat-form-field>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Codice Fiscale" formControlName="fiscalCode" maxLength="16">
+          <mat-error *ngIf="fiscalCode.invalid && (fiscalCode.dirty || fiscalCode.touched)">
+            <div *ngIf="fiscalCode.errors.required">
+              Obbligatorio
+            </div>
+            <div *ngIf="fiscalCode.errors.minlength || fiscalCode.errors.maxlength">
+              Deve avere 16 caratteri
+            </div>
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="PIN" formControlName="pin" maxLength="6">
-        <mat-error *ngIf="pin.invalid && (pin.dirty || pin.touched)">
-          <div *ngIf="pin.errors.minlength || pin.errors.maxlength">
-            Deve avere 6 caratteri
-          </div>
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="PIN" formControlName="pin" maxLength="6">
+          <mat-error *ngIf="pin.invalid && (pin.dirty || pin.touched)">
+            <div *ngIf="pin.errors.minlength || pin.errors.maxlength">
+              Deve avere 6 caratteri
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Nome" formControlName="firstName" maxLength="30">
+          <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+            <div *ngIf="firstName.errors.required">
+              Obbligatorio
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+              Deve avere almeno 2 caratteri
+            </div>
+            <div *ngIf="firstName.errors.maxlength">
+              Deve avere al massimo 30 caratteri
+            </div>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Cognome" formControlName="lastName" maxLength="30">
+          <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+            <div *ngIf="lastName.errors.required">
+              Obbligatorio
+            </div>
+            <div *ngIf="lastName.errors.minlength">
+              Deve avere almeno 2 caratteri
+            </div>
+            <div *ngIf="lastName.errors.maxlength">
+              Deve avere al massimo 30 caratteri
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field>
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Data di nascita" formControlName="birthDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+        </mat-form-field>
+      </div>
     </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Nome" formControlName="firstName" maxLength="30">
-        <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-          <div *ngIf="firstName.errors.required">
-            Obbligatorio
-          </div>
-          <div *ngIf="firstName.errors.minlength">
-            Deve avere almeno 2 caratteri
-          </div>
-          <div *ngIf="firstName.errors.maxlength">
-            Deve avere al massimo 30 caratteri
-          </div>
-        </mat-error>
-      </mat-form-field>
+    <div formGroupName="email">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required">
+              Obbligatorio
+            </div>
+            <div *ngIf="email.errors.email">
+              Non è valida
+            </div>
+          </mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Cognome" formControlName="lastName" maxLength="30">
-        <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-          <div *ngIf="lastName.errors.required">
-            Obbligatorio
-          </div>
-          <div *ngIf="lastName.errors.minlength">
-            Deve avere almeno 2 caratteri
-          </div>
-          <div *ngIf="lastName.errors.maxlength">
-            Deve avere al massimo 30 caratteri
-          </div>
-        </mat-error>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Conferma Email" formControlName="emailConfirmation">
+          <mat-error *ngIf="emailConfirmation.invalid && (emailConfirmation.dirty || emailConfirmation.touched)">
+            <div *ngIf="!!emailConfirmation.errors.mismatch">
+              Le email non corrispondono
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
-    <div>
-      <mat-form-field>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Data di nascita" formControlName="birthDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div formGroupName="email">
-    <div>
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName="email">
-        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-          <div *ngIf="email.errors.required">
-            Obbligatorio
-          </div>
-          <div *ngIf="email.errors.email">
-            Non è valida
-          </div>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Conferma Email" formControlName="emailConfirmation">
-        <mat-error *ngIf="emailConfirmation.invalid && (emailConfirmation.dirty || emailConfirmation.touched)">
-          <div *ngIf="!!emailConfirmation.errors.mismatch">
-            Le email non corrispondono
-          </div>
-        </mat-error>
-      </mat-form-field>
-    </div>
-  </div>
-
-  <div formGroupName="workInfo">
-    <div>
-      <mat-form-field class="input-short">
-        <input matInput placeholder="Giorni lavorati" formControlName="workedDays" type="number">
-        <mat-error *ngIf="workedDays.invalid && (workedDays.dirty || workedDays.touched)">
-          <div *ngIf="workedDays.errors.required">
-            Obbligatorio
-          </div>
-          <div *ngIf="workedDays.errors.min || workedDays.errors.max || workedDays.errors.pattern">
-            Inserisci un numero tra 1 e 9999
-          </div>
-        </mat-error>
-        <mat-hint>Svolti fino al 31/12/2017</mat-hint>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-form-field class="input-long">
-        <mat-select placeholder="Sedi di servizio" multiple formControlName="businessUnits">
-          <mat-optgroup *ngFor="let group of buGroups" [label]="group.name" [disabled]="group.disabled">
-            <mat-option *ngFor="let bu of group.bu" [value]="bu.value">
-              {{ bu.viewValue }}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-        <mat-hint>Dove hai prestato servizio?</mat-hint>
-        <mat-hint align="end" *ngIf="businessUnits.value.length > 0">{{ businessUnits.value.length }} selezionati</mat-hint>
-        <mat-error *ngIf="businessUnits.invalid && (businessUnits.dirty || businessUnits.touched)">
-          <div *ngIf="businessUnits.errors.required">
-            Obbligatorio
-          </div>
-        </mat-error>
-      </mat-form-field>
+    <div formGroupName="workInfo">
+      <div>
+        <mat-form-field class="input-short">
+          <input matInput placeholder="Giorni lavorati" formControlName="workedDays" type="number">
+          <mat-error *ngIf="workedDays.invalid && (workedDays.dirty || workedDays.touched)">
+            <div *ngIf="workedDays.errors.required">
+              Obbligatorio
+            </div>
+            <div *ngIf="workedDays.errors.min || workedDays.errors.max || workedDays.errors.pattern">
+              Inserisci un numero tra 1 e 9999
+            </div>
+          </mat-error>
+          <mat-hint>Svolti fino al 31/12/2017</mat-hint>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field class="input-long">
+          <mat-select placeholder="Sedi di servizio" multiple formControlName="businessUnits">
+            <mat-optgroup *ngFor="let group of buGroups" [label]="group.name" [disabled]="group.disabled">
+              <mat-option *ngFor="let bu of group.bu" [value]="bu.value">
+                {{ bu.viewValue }}
+              </mat-option>
+            </mat-optgroup>
+          </mat-select>
+          <mat-hint>Dove hai prestato servizio?</mat-hint>
+          <mat-hint align="end" *ngIf="businessUnits.value.length > 0">{{ businessUnits.value.length }} selezionati</mat-hint>
+          <mat-error *ngIf="businessUnits.invalid && (businessUnits.dirty || businessUnits.touched)">
+            <div *ngIf="businessUnits.errors.required">
+              Obbligatorio
+            </div>
+          </mat-error>
+        </mat-form-field>
+      </div>
     </div>
   </div>
 
