@@ -49,9 +49,7 @@ export class ApplicationFormComponent implements OnInit {
           Validators.required,
           Validators.email
         ]],
-        emailConfirmation: ['', [
-          Validators.required
-        ]]
+        emailConfirmation: ''
       }, {
           validator: (g: FormGroup) => {
             return this.emailMatch(g);
