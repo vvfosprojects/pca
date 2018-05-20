@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,7 +44,12 @@ import { ApplicationFormComponent } from './application-form/application-form.co
     MatRadioModule,
     MatNativeDateModule
   ],
-  providers: [ CfCheckService, CfCheckService_Fake, ApplicationService_Fake, ApplicationService ],
+  providers: [ 
+    { provide: LOCALE_ID, useValue: 'it' },
+    CfCheckService,
+    CfCheckService_Fake,
+    ApplicationService_Fake,
+    ApplicationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
