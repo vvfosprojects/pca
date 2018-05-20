@@ -43,3 +43,15 @@ body {
     color: gray;
     font-size: 80%;
 }
+
+mat-form-field {
+    margin-right: 8px; 
+}
+
+.input-long {
+    width: 400px;
+}
+
+.input-short {
+    width: 150px;
+}

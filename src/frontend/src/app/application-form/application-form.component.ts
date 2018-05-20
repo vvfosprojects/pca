@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { of as observableOf, Observable } from 'rxjs';
 
 @Component({
@@ -12,6 +12,31 @@ export class ApplicationFormComponent implements OnInit {
   startDate = new Date(1970, 0, 1);
   minDate = new Date(1928, 0, 1);
   maxDate = new Date(2002, 0, 1);
+
+  buGroups = [
+    {
+      name: 'Lazio',
+      bu: [
+        { value: 'DIR-LAZ', viewValue: 'Dir. Reg. Lazio' },
+        { value: 'COM-RM', viewValue: 'Com. Prov. Roma' },
+        { value: 'COM-RT', viewValue: 'Com. Prov. Rieti' },
+        { value: 'COM-VT', viewValue: 'Com. Prov. Viterbo' },
+        { value: 'COM-LT', viewValue: 'Com. Prov. Latina' },
+        { value: 'COM-FR', viewValue: 'Com. Prov. Frosinone' }
+      ]
+    },
+    {
+      name: 'Campania',
+      bu: [
+        { value: 'DIR-CAM', viewValue: 'Dir. Reg. Campania' },
+        { value: 'COM-NA', viewValue: 'Com. Prov. Napoli' },
+        { value: 'COM-CE', viewValue: 'Com. Prov. Caserta' },
+        { value: 'COM-AV', viewValue: 'Com. Prov. Avellino' },
+        { value: 'COM-SA', viewValue: 'Com. Prov. Salerno' },
+        { value: 'COM-BN', viewValue: 'Com. Prov. Benevento' }
+      ]
+    }
+  ];
 
   constructor(private fb: FormBuilder) {
     this.createForm();
@@ -54,7 +79,17 @@ export class ApplicationFormComponent implements OnInit {
           validator: (g: FormGroup) => {
             return this.emailMatch(g);
           }
-        })
+        }),
+      workInfo: this.fb.group({
+        workedDays: [0, [
+          Validators.min(1),
+          Validators.max(9999),
+          Validators.pattern('^[0-9]{1,4}$')
+        ]],
+        businessUnits: ['', [
+          Validators.required
+        ]]
+      })
     },
       {
         validator: (g: FormGroup) => {
@@ -92,6 +127,14 @@ export class ApplicationFormComponent implements OnInit {
 
   get emailConfirmation() {
     return this.applicationForm.get('email.emailConfirmation');
+  }
+
+  get workedDays() {
+    return this.applicationForm.get('workInfo.workedDays');
+  }
+
+  get businessUnits() {
+    return this.applicationForm.get('workInfo.businessUnits');
   }
 
   emailMatch(g: FormGroup) {
