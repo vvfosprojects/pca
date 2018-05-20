@@ -134,7 +134,17 @@
         </mat-form-field>
       </div>
     </div>
+
+    <div formGroupName="gdprCompliancy" class="mt-large">
+        <div class="light">
+          I dati raccolti saranno utilizzati esclusivamente per le finalità legate al presente concorso. Saranno conservati per il
+          tempo strettamente necessario e successivamente cancellati. Non saranno in nessun caso divulgati a terzi.
+          <mat-checkbox formControlName="acceptance">Autorizzo il trattamento dei dati esclusivamente per le finalità indicate di sopra (D.Lgs. 196/2003).</mat-checkbox>
+        </div>
+      </div>
   </div>
 
   <button mat-raised-button color="primary" [disabled]="!applicationForm.valid">Invia la domanda</button>
 </form>
+
+<!-- {{ applicationForm.value | json }} -->

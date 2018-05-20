@@ -83,6 +83,9 @@ export class ApplicationFormComponent implements OnInit {
         businessUnits: ['', [
           Validators.required
         ]]
+      }),
+      gdprCompliancy: this.fb.group({
+        acceptance: [false, Validators.requiredTrue]
       })
     })
   }
@@ -121,6 +124,10 @@ export class ApplicationFormComponent implements OnInit {
 
   get businessUnits() {
     return this.applicationForm.get('workInfo.businessUnits');
+  }
+
+  get acceptance() {
+    return this.applicationForm.get('gdprCompliancy.acceptance');
   }
 
   emailMatch(g: FormGroup) {

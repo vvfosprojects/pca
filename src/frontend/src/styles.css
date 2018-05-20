@@ -59,3 +59,7 @@ mat-form-field {
 .mb-small {
     margin-bottom: 20px;
 }
+
+.mt-large {
+    margin-top: 50px;
+}
