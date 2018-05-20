@@ -9,7 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule } from '@angular/material';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -42,14 +42,15 @@ import { ApplicationFormComponent } from './application-form/application-form.co
     MatDatepickerModule,
     MatSelectModule,
     MatRadioModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [ 
     { provide: LOCALE_ID, useValue: 'it' },
-    CfCheckService,
-    CfCheckService_Fake,
-    ApplicationService_Fake,
-    ApplicationService ],
+    { provide: CfCheckService, useClass: CfCheckService_Fake },
+    { provide: ApplicationService, useClass: ApplicationService_Fake },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

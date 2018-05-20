@@ -1,5 +1,15 @@
 <form [formGroup]="applicationForm">
   <div formGroupName="personalData">
+
+    <mat-card class="mb-small" *ngIf="!!personalDataValidationMessages">
+      <p *ngFor="let msg of personalDataValidationMessages">
+        <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
+        <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
+        <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
+        {{ msg.msg }}
+      </p>
+    </mat-card>
+
     <div>
       <mat-form-field>
         <input matInput placeholder="Codice Fiscale" formControlName="fiscalCode" maxLength="16">

@@ -4,22 +4,25 @@ import { Injectable } from '@angular/core';
 import { Anagrafica } from '../app/model/anagrafica.model';
 
 import { CfCheckOutcome } from '../app/model/cf-check-outcome.model';
+import { CfCheckResult } from '../app/model/cf-check-result.model';
 
 
 @Injectable()
 export class CfCheckService_Fake {
-  private anag: Anagrafica =
-    new Anagrafica(
-      "SPSMCL73T16L259D",
-      "Marcello",
-      "Esposito",
-      new Date("1973-12-16"),
-      "12345"
-    );
+  private outcome = new CfCheckOutcome(
+    [
+      new CfCheckResult("err1", "1 + 1 equals 2. You wrote 3.", "Error"),
+      new CfCheckResult("warn1", "Weather is rainy. You should take the umbrella.", "Warning"),
+      new CfCheckResult("succ1", "You are awesome!", "Success")
+    ],
+    false,
+    false
+  );
 
   constructor() { }
 
-  public cfCheck(): Observable<Anagrafica> {
-    return observableOf(this.anag);
+  public cfCheck(anagrafica: Anagrafica): Observable<CfCheckOutcome> {
+    console.log("CfCheckService fake service called");
+    return observableOf(this.outcome);
   }
 }

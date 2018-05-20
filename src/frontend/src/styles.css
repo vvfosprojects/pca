@@ -55,3 +55,7 @@ mat-form-field {
 .input-short {
     width: 150px;
 }
+
+.mb-small {
+    margin-bottom: 20px;
+}

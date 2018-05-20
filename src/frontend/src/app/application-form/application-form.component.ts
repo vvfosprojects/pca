@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { of as observableOf, Observable } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+
+import { CfCheckService } from '../../service/cf-check.service';
+import { Anagrafica } from '../model/anagrafica.model';
+import { CfCheckOutcome } from '../model/cf-check-outcome.model';
+import { BUGROUPS } from './bu-groups';
 
 @Component({
   selector: 'app-application-form',
@@ -8,37 +14,17 @@ import { of as observableOf, Observable } from 'rxjs';
   styleUrls: ['./application-form.component.css']
 })
 export class ApplicationFormComponent implements OnInit {
+  buGroups = BUGROUPS;
   applicationForm: FormGroup;
   startDate = new Date(1970, 0, 1);
   minDate = new Date(1928, 0, 1);
   maxDate = new Date(2002, 0, 1);
+  personalDataValidationMessages = null;
+  shouldShowPinBox = false;
 
-  buGroups = [
-    {
-      name: 'Lazio',
-      bu: [
-        { value: 'DIR-LAZ', viewValue: 'Dir. Reg. Lazio' },
-        { value: 'COM-RM', viewValue: 'Com. Prov. Roma' },
-        { value: 'COM-RT', viewValue: 'Com. Prov. Rieti' },
-        { value: 'COM-VT', viewValue: 'Com. Prov. Viterbo' },
-        { value: 'COM-LT', viewValue: 'Com. Prov. Latina' },
-        { value: 'COM-FR', viewValue: 'Com. Prov. Frosinone' }
-      ]
-    },
-    {
-      name: 'Campania',
-      bu: [
-        { value: 'DIR-CAM', viewValue: 'Dir. Reg. Campania' },
-        { value: 'COM-NA', viewValue: 'Com. Prov. Napoli' },
-        { value: 'COM-CE', viewValue: 'Com. Prov. Caserta' },
-        { value: 'COM-AV', viewValue: 'Com. Prov. Avellino' },
-        { value: 'COM-SA', viewValue: 'Com. Prov. Salerno' },
-        { value: 'COM-BN', viewValue: 'Com. Prov. Benevento' }
-      ]
-    }
-  ];
-
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private cfCheckService: CfCheckService) {
     this.createForm();
   }
 
@@ -68,7 +54,15 @@ export class ApplicationFormComponent implements OnInit {
           Validators.minLength(6),
           Validators.maxLength(6)
         ]]
-      }),
+      },
+        {
+          validator: (g: FormGroup) => {
+            return this.syncValidation(g);
+          },
+          asyncValidator: (g: FormGroup) => {
+            return this.asyncValidation(g);
+          }
+        }),
       email: this.fb.group({
         email: ['', [
           Validators.required,
@@ -90,15 +84,7 @@ export class ApplicationFormComponent implements OnInit {
           Validators.required
         ]]
       })
-    },
-      {
-        validator: (g: FormGroup) => {
-          return this.syncValidation(g);
-        },
-        asyncValidator: (g: FormGroup) => {
-          return this.asyncValidation(g);
-        }
-      })
+    })
   }
 
   get fiscalCode() {
@@ -151,6 +137,32 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   asyncValidation(g: FormGroup) {
-    return observableOf(null);
+    let pd = this.applicationForm.value.personalData;
+    let a = new Anagrafica(
+      pd.fiscalCode,
+      pd.firstName,
+      pd.lastName,
+      pd.birthDate,
+      pd.pin);
+
+    return this.cfCheckService.cfCheck(a)
+      .pipe(map(outcome => {
+        if (outcome.results.length == 0)
+          this.personalDataValidationMessages = null;
+        else
+          this.personalDataValidationMessages = outcome.results
+            .map(r => {
+              return {
+                type: r.type,
+                msg: r.message
+              }
+            });
+        this.shouldShowPinBox = outcome.shouldTypePin;
+
+        if (outcome.canSubmit)
+          return null;
+        else
+          return { "cfError": true };
+      }));
   }
 }

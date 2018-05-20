@@ -19,7 +19,7 @@ export class CfCheckService {
 
   constructor(private http: HttpClient) { }
 
-  cfCheck(anagrafica: Anagrafica): Observable<CfCheckOutcome> {
+  public cfCheck(anagrafica: Anagrafica): Observable<CfCheckOutcome> {
     return this.http.post<CfCheckOutcome>(
       BACKENDURL + this.cfCheckUrl,
       anagrafica,
