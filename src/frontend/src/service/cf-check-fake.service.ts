@@ -16,7 +16,7 @@ export class CfCheckService_Fake {
       new CfCheckResult("succ1", "You are awesome!", "Success")
     ],
     false,
-    false
+    true
   );
 
   constructor() { }
