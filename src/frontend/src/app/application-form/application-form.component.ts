@@ -44,7 +44,19 @@ export class ApplicationFormComponent implements OnInit {
           Validators.maxLength(6)
         ]]
       }),
-      workingDays: ['']
+      email: this.fb.group({
+        email: ['', [
+          Validators.required,
+          Validators.email
+        ]],
+        emailConfirmation: ['', [
+          Validators.required
+        ]]
+      }, {
+          validator: (g: FormGroup) => {
+            return this.emailMatch(g);
+          }
+        })
     },
       {
         validator: (g: FormGroup) => {
@@ -76,12 +88,28 @@ export class ApplicationFormComponent implements OnInit {
     return this.applicationForm.get('personalData.birthDate');
   }
 
+  get email() {
+    return this.applicationForm.get('email.email');
+  }
+
+  get emailConfirmation() {
+    return this.applicationForm.get('email.emailConfirmation');
+  }
+
+  emailMatch(g: FormGroup) {
+    let emailValue = g.get('email').value;
+    let emailConfirmationValue = g.get('emailConfirmation').value;
+    if (emailValue !== emailConfirmationValue)
+      g.get('emailConfirmation').setErrors({ mismatch: true });
+
+    return null;
+  }
+
   syncValidation(g: FormGroup) {
     return null;
   }
 
   asyncValidation(g: FormGroup) {
-    console.log('async');
     return observableOf(null);
   }
 }

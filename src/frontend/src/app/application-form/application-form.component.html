@@ -57,17 +57,37 @@
 
     <div>
       <mat-form-field>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" 
-          placeholder="Data di nascita" formControlName="birthDate">
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Data di nascita" formControlName="birthDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
       </mat-form-field>
     </div>
   </div>
 
+  <div formGroupName="email">
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors.required">
+            Obbligatorio
+          </div>
+          <div *ngIf="email.errors.email">
+            Non è valida
+          </div>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Conferma Email" formControlName="emailConfirmation">
+        <mat-error *ngIf="emailConfirmation.invalid && (emailConfirmation.dirty || emailConfirmation.touched)">
+          <div *ngIf="!!emailConfirmation.errors.mismatch">
+            Le email non corrispondono
+          </div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
   <button mat-raised-button color="primary" [disabled]="!applicationForm.valid">Invia la domanda</button>
 </form>
-
-<p>Form value: {{ applicationForm.value | json }}</p>
-<p>Form status: {{ applicationForm.status | json }}</p>
-<p>Form status: {{ applicationForm.errors | json }}</p>
