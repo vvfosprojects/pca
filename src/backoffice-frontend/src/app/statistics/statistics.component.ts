@@ -19,4 +19,12 @@ export class StatisticsComponent implements OnInit {
   ngOnInit() {
   }
 
+  private noDuplicateFiscalCodeErrors(): boolean {
+    return this.statistics.duplicateFiscalCodeErrors == 0;
+  }
+
+  private noOtherErrors(): boolean {
+    return this.statistics.otherErrors == 0;
+  }
+
 }

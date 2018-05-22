@@ -1,23 +1,9 @@
 <div class="card mb-3">
-  <div class="card-header bg-info">
+  <div class="card-header">
     Domande
   </div>
   <div class="card-body">
     <ul class="list-group">
-      <li class="list-group-item">
-        <div>
-          Inviate
-          <div class="badge badge-pill badge-info float-right">
-            {{ statistics.totalActiveApplicationsEver }}
-          </div>
-        </div>
-        <div class="text-secondary">
-          Totali
-          <div class="badge badge-pill badge-secondary float-right">
-            {{ statistics.totalSubmissionsEver }}
-          </div>
-        </div>
-      </li>
       <li class="list-group-item">
         Inviate oggi
         <div class="badge badge-pill badge-info float-right">
@@ -30,24 +16,38 @@
           {{ statistics.submittedInTheLastFiveDays }}
         </div>
       </li>
+      <li class="list-group-item">
+        <div>
+          Inviate da sempre
+          <div class="badge badge-pill badge-info float-right">
+            {{ statistics.totalActiveApplicationsEver }}
+          </div>
+        </div>
+        <div class="text-secondary small">
+          Totali
+          <div class="badge badge-pill badge-secondary float-right">
+            {{ statistics.totalSubmissionsEver }}
+          </div>
+        </div>
+      </li>
     </ul>
   </div>
 </div>
 <div class="card">
-  <div class="card-header bg-warning">
+  <div class="card-header">
     Errori
   </div>
   <div class="card-body">
     <ul class="list-group">
       <li class="list-group-item">
         Codici fiscali duplicati
-        <div class="badge badge-pill badge-danger float-right">
+        <div class="badge badge-pill float-right" [ngClass]="{'badge-danger': !noDuplicateFiscalCodeErrors(), 'badge-success': noDuplicateFiscalCodeErrors()}">
           {{ statistics.duplicateFiscalCodeErrors }}
         </div>
       </li>
       <li class="list-group-item">
         Altri errori
-        <div class="badge badge-pill badge-danger float-right">
+        <div class="badge badge-pill float-right" [ngClass]="{'badge-danger': !noOtherErrors(), 'badge-success': noOtherErrors()}">
           {{ statistics.otherErrors }}
         </div>
       </li>

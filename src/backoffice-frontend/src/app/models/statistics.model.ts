@@ -1,11 +1,11 @@
 export class Statistics {
     constructor(
-        private totalActiveApplicationsEver: number,
-        private totalSubmissionsEver: number,
-        private duplicateFiscalCodeErrors: number,
-        private otherErrors: number,
-        private submittedToday: number,
-        private submittedInTheLastFiveDays: number
+        public totalActiveApplicationsEver: number,
+        public totalSubmissionsEver: number,
+        public duplicateFiscalCodeErrors: number,
+        public otherErrors: number,
+        public submittedToday: number,
+        public submittedInTheLastFiveDays: number
     ) {
         
     }

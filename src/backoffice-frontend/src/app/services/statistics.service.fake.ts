@@ -12,7 +12,7 @@ export class StatisticsServiceFake {
       1255,
       1323,
       13,
-      28,
+      18,
       102,
       328
     ));
