@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="CfChecker.cs" />
     <Compile Include="CfCheckOutcome.cs" />
+    <Compile Include="CheckResults\CfException.cs" />
     <Compile Include="CheckResults\UnexistingCf.cs" />
     <Compile Include="CheckResults\AlreadyExistingCf.cs" />
     <Compile Include="CheckResults\CfBirthDateMismatch.cs" />

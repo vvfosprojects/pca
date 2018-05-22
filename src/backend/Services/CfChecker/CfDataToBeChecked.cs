@@ -25,11 +25,11 @@ namespace Services.CfChecker
     {
         public CfDataToBeChecked(string fiscalCode, string firstName, string lastName, DateTime birthDate, string pin)
         {
-            FiscalCode = fiscalCode ?? throw new ArgumentNullException(nameof(fiscalCode));
-            FirstName = firstName ?? throw new ArgumentNullException(nameof(firstName));
-            LastName = lastName ?? throw new ArgumentNullException(nameof(lastName));
+            FiscalCode = fiscalCode.ToUpper();
+            FirstName = firstName.ToUpper();
+            LastName = lastName.ToUpper();
             BirthDate = birthDate;
-            Pin = pin;
+            Pin = string.IsNullOrWhiteSpace(pin) ? null : pin.ToUpper();
         }
 
         public string FiscalCode { get; }
