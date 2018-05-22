@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
-import { of as observableOf, Observable } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
+import { of as observableOf, Observable, timer } from 'rxjs';
+import { map, filter, delay, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { CfCheckService } from '../../service/cf-check.service';
 import { Anagrafica } from '../model/anagrafica.model';
@@ -144,16 +144,21 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   asyncValidation(g: FormGroup) {
-    let pd = this.applicationForm.value.personalData;
-    let a = new Anagrafica(
-      pd.fiscalCode,
-      pd.firstName,
-      pd.lastName,
-      pd.birthDate,
-      pd.pin);
+    return g.valueChanges
+      .pipe(delay(500))
+      .pipe(debounceTime(1000))
+      .pipe(distinctUntilChanged())
+      .pipe(switchMap(value => {
+        let a = new Anagrafica(
+          value.fiscalCode,
+          value.firstName,
+          value.lastName,
+          value.birthDate,
+          value.pin);
 
-    return this.cfCheckService.cfCheck(a)
-      .pipe(map(outcome => {
+        return this.cfCheckService.cfCheck(a);
+      })).pipe(map(outcome => {
+
         if (outcome.results.length == 0)
           this.personalDataValidationMessages = null;
         else
@@ -164,7 +169,9 @@ export class ApplicationFormComponent implements OnInit {
                 msg: r.message
               }
             });
-        this.shouldShowPinBox = outcome.shouldTypePin;
+
+        if (outcome.shouldTypePin)
+          this.shouldShowPinBox = true;
 
         if (outcome.canSubmit)
           return null;

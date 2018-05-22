@@ -6,9 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Component } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppComponent } from './app.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import {
   MatFormFieldModule,
   MatInputModule,
@@ -22,6 +20,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material';
+
+import { AppComponent } from './app.component';
 import { CfCheckService } from '../service/cf-check.service';
 import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 import { ApplicationService_Fake } from '../service/application-fake.service';
@@ -55,6 +55,7 @@ import { ApplicationFormComponent } from './application-form/application-form.co
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'it' },
+    { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
     { provide: CfCheckService, useClass: CfCheckService_Fake },
     { provide: ApplicationService, useClass: ApplicationService_Fake },
   ],
