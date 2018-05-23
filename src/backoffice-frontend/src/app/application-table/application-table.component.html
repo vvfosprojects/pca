@@ -7,10 +7,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies}">
+        <tr *ngFor="let row of page.rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies}">
             <td>{{ row.fullName }}</td>
             <td>{{ row.fiscalCode }}</td>
             <td>{{ row.submittedAt.toLocaleDateString() }}</td>
         </tr>
     </tbody>
+    <tfoot>
+        Da {{ page.startIdx + 1 }} a {{ page.startIdx + page.howMany }} di {{ page.totalCount }}
+    </tfoot>
 </table>

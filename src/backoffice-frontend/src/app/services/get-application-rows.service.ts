@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ApplicationRow } from '../models/application-row.model';
 import { Observable } from 'rxjs';
+
+import { environment } from '../../environments/environment';
+import { ApplicationRowPage } from '../models/application-row-page.model';
 
 const APIURL = environment.apiUrl;
 
@@ -12,7 +13,7 @@ const APIURL = environment.apiUrl;
 export class GetApplicationRowsService {
   constructor(private http: HttpClient) { }
 
-  public getRows(startIndex: number, howMany: number): Observable<ApplicationRow[]> {
+  public getRows(startIndex: number, howMany: number): Observable<ApplicationRowPage> {
     let action = "/applicationRows";
 
     let params = {
@@ -20,6 +21,6 @@ export class GetApplicationRowsService {
       howMany: howMany
     }
 
-    return this.http.get<ApplicationRow[]>(APIURL + action);
+    return this.http.get<ApplicationRowPage>(APIURL + action);
   }
 }
