@@ -1,0 +1,128 @@
+publiccode-yaml-version: "http://w3id.org/publiccode/version/0.1"
+
+name: geofleet
+applicationSuite: Public Competition Application (PCA) Collector
+url: "https://github.com/vvfosprojects/pca.git"        # URL of this repository
+landingURL: "https://github.com/vvfosprojects/pca"
+
+isBasedOn: ""   # The original repository, "Otello"
+softwareVersion: "1.0"                                        # Last stable version
+releaseDate: # Date of last stable software release
+logo:
+monochromeLogo:
+
+platforms:                   # or Windows, Mac, Linux, etc.
+  - web browser (client)
+  - asp.net WebApi (server)
+
+api: "https://github.com/vvfosprojects/pca"
+
+tags:
+  - public competition application
+  - spatial queries
+  - maps
+
+freeTags:
+  eng:
+    - public competition application
+  ita:
+    - acquisizione domande concorsi pubblici
+
+usedBy:
+  - Corpo Nazionale dei Vigili del Fuoco
+
+roadmap: "https://github.com/vvfosprojects/vvfgeofleet"
+
+developmentStatus: development
+
+softwareType:
+  type: "angular6 frontend with RESTful backend"
+  isRelatedTo:
+    - ""
+
+intendedAudience:
+  onlyFor:
+    - public administrations
+    - enterprises
+  countries: # FIXME ISO 3166-1 alpha-2 + EU
+    - EU
+  unsupportedCountries:     # Explicitly unsupported countries
+    -
+
+description:
+  eng:
+    localisedName: PCA
+    shortDescription: "Public Competition Application"
+    longDescription: >
+        PCA is a software aimed at collecting applications
+        for public competitions.
+    documentation: "https://github.com/vvfosprojects/pca"
+    featureList:
+       - Frontend for public applicants.
+       - Backoffice frontend to check, navigate submitted
+         applications, and reading statistics on the
+         system usage.
+    screenshots:
+       - 
+    videos:                             # Demo videos of the software
+       - 
+    awards:
+       - 
+
+legal:
+  license: AGPL-3.0-or-later        # SPDX expression of license
+  mainCopyrightOwner: 2018 Corpo Nazionale dei Vigili del Fuoco
+  repoOwner: Corpo Nazionale dei Vigili del Fuoco
+  authorsFile: AUTHORS              # file listing copyright information
+
+maintenance:
+  type: "up to internal employees"
+
+  contractors:
+    - name: "" # if maintainance is a contract
+      website: ""
+      until: ""
+
+  contacts:
+    - name: Marcello Esposito
+      email: "marcello.esposito@vigilfuoco.it"
+      affiliation: Corpo Nazionale dei Vigili del Fuoco
+      phone:
+
+localisation:
+  # Does the software support, at least by design, multiple languages?
+  localisationReady: no
+  # Languages already available
+  availableLanguages:
+    - ita
+
+dependencies:             # List of dependencies. The only mandatory list is the proprietary one
+  open:                 # List of open dependencies. Optional
+    - name: MongoDB
+      versionMin: "3.2"
+      versionMax: "4.0"
+      optional: no
+  # List of proprietary software which is a dependency for using this product. This includes runtime dependencies
+  proprietary:
+    -
+  hardware:             # List of special hardware required. Optional.
+    - name: 
+      optional:
+
+ita:
+  accessibile: no # Rispetta i requisiti di legge in materia di accessibilità?
+  interoperabile: no # Rispetta i requisiti di legge sull'interoperabilita'
+
+  riuso:
+    # Codice IPA della PA che ha pubblicato questo repo (repo-owner)
+    codiceIPA: 5EDW58
+
+  spid: no
+  pagopa: no
+  cie: no
+  anpr: no
+
+  designKit:
+    - serviceDesign: no
+    - ui: no
+    - webToolkit: no
