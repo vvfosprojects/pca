@@ -63,3 +63,7 @@ mat-form-field {
 .mt-large {
     margin-top: 50px;
 }
+
+.center {
+    text-align: center;
+}
