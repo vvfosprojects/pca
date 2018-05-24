@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  backendUrl: "http://localhost:57156/api"
+  backendUrl: "http://localhost:57156/api",
+  enableTracing: true
 };

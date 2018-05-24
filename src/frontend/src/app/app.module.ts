@@ -20,6 +20,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CfCheckService } from '../service/cf-check.service';
@@ -28,15 +29,25 @@ import { ApplicationService_Fake } from '../service/application-fake.service';
 import { ApplicationService } from '../service/application.service';
 import { ApplicationFormComponent } from './application-form/application-form.component';
 import { SubmissionResultComponent } from './submission-result/submission-result.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { appRoutes } from './routes';
+import { environment } from '../environments/environment';
 
+const ENABLETRACING = environment.enableTracing;
+const APPROUTES = appRoutes;
 
 @NgModule({
   declarations: [
     AppComponent,
     ApplicationFormComponent,
-    SubmissionResultComponent
+    SubmissionResultComponent,
+    PageNotFoundComponent
   ],
   imports: [
+    RouterModule.forRoot(
+      APPROUTES,
+      { enableTracing: true }
+    ),
     BrowserModule,
     HttpClientModule,
     FormsModule,
