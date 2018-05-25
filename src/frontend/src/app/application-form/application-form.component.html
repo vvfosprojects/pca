@@ -142,10 +142,10 @@
 
     <div formGroupName="licenseInfo">
        <mat-form-field >
-          <input matInput placeholder="Patenti" style="display: none" formControlName="patente">
+          <input matInput placeholder="Patenti" style="display: none" formControlName="license">
           <br>
-          
-          <mat-radio-group formControlName="license">
+
+          <mat-radio-group>
             <mat-radio-button #showVVF [checked]="isChecked" (change)="onChange($event)" value="VVF">VVF</mat-radio-button>
             <mat-radio-button #showCivile [checked]="isChecked" (change)="onChange($event)" value="civile">civile</mat-radio-button>
           </mat-radio-group>          
@@ -295,8 +295,8 @@
     </div>
   </div>
 
-  <button mat-raised-button color="primary" [disabled]="!applicationForm.valid">Invia la domanda</button>
+  <!-- <button mat-raised-button color="primary" [disabled]="!applicationForm.valid" (click)='sendForm()'>Invia la domanda</button> -->
+  <button mat-raised-button color="primary" (click)='sendForm()'>Invia la domanda</button>
   
 </form>
 
-<!-- {{ applicationForm.value | json }} -->

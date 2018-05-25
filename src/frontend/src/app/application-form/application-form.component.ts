@@ -35,6 +35,14 @@ export class ApplicationFormComponent implements OnInit {
     console.log($event);
   }
 
+  sendAnag(){
+    console.log(this.applicationForm.value.personalData);
+  }
+
+  sendForm(){
+    console.log(this.applicationForm.value);
+  }
+
   createForm() {
     this.applicationForm = this.fb.group({
       personalData: this.fb.group({
