@@ -10,12 +10,18 @@ import { GetApplicationRowsService } from './services/get-application-rows.servi
 import { AppComponent } from './app.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ApplicationTableComponent } from './application-table/application-table.component';
+import { FriendlyHourPipe } from './shared/pipes/friendly-hour.pipe';
+import { ApplicationDetailComponent } from './application-detail/application-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     StatisticsComponent,
-    ApplicationTableComponent
+    ApplicationTableComponent,
+    FriendlyHourPipe,
+    ApplicationTableComponent,
+    ApplicationDetailComponent
   ],
   imports: [
     NgbModule.forRoot(),

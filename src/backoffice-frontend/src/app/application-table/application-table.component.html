@@ -1,19 +1,52 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Nominativo</th>
-            <th scope="col">Codice Fiscale</th>
-            <th scope="col">Data invio</th>
+            <th scope="col">&nbsp;&nbsp;</th>
+            <th scope="col">&nbsp;&nbsp;Nominativo</th>
+            <th scope="col">&nbsp;&nbsp;Codice Fiscale</th>
+            <th scope="col">&nbsp;&nbsp;Data invio</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of page.rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies}">
-            <td>{{ row.fullName }}</td>
-            <td>{{ row.fiscalCode }}</td>
-            <td>{{ row.submittedAt.toLocaleDateString() }}</td>
+        <tr *ngFor="let row of page.rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies }">
+            <td *ngIf="row.hasAnomalies">
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            </td>
+            <td *ngIf="!row.hasAnomalies">&nbsp;&nbsp;&nbsp;</td>
+            <td><button type="button" class="btn btn-link text-muted" (showDetail)="mostraApplication(row)">{{ row.fullName }}</button></td>
+            <td><button type="button" class="btn btn-link text-muted" (showDetail)="mostraApplication(row)">{{ row.fiscalCode }}</button></td>
+            <td>{{ row.submittedAt | date : 'dd/MM/yyyy' }} {{ row.submittedAt | friendlyHour }}</td>
         </tr>
     </tbody>
     <tfoot>
-        Da {{ page.startIdx + 1 }} a {{ page.startIdx + page.howMany }} di {{ page.totalCount }}
     </tfoot>
 </table>
+<div class="footer text-right">
+    <span *ngIf="!this.firstPage; else disabilitaprev">
+        <button class="link" (click)="onPrev()" aria-disabled="true">Prev</button>
+    </span>
+    <ng-template #disabilitaprev>
+        <span>
+            <button class="link" aria-disabled="true">Prev</button>
+        </span>
+    </ng-template>
+
+    <span>&nbsp;</span>
+    <span *ngIf="!this.lastPage; else disabilitanext">
+        <button class="link" (click)="onNext()" aria-disabled="true">Next</button>
+    </span>
+    <ng-template #disabilitanext>
+        <span>
+            <button class="link" aria-disabled="true">Next</button>
+        </span>
+    </ng-template>
+
+  
+    <span *ngIf="page.startIdx + page.howMany <= page.totalCount else ultimapage">
+        <span>{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
+    </span> 
+    
+    <ng-template #ultimapage>
+        <span>{{ page.startIdx + 1 }} - {{ page.totalCount }} di {{ page.totalCount }}</span>
+    </ng-template>
+ </div>
