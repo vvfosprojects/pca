@@ -13,8 +13,8 @@
                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             </td>
             <td *ngIf="!row.hasAnomalies">&nbsp;&nbsp;&nbsp;</td>
-            <td>{{ row.fullName }}</td>
-            <td>{{ row.fiscalCode }}</td>
+            <td><button type="button" class="btn btn-link" (click)="selDettaglio()">{{ row.fullName }}</button></td>
+            <td><button type="button" class="btn btn-link" (click)="selDettaglio()">{{ row.fiscalCode }}</button></td>
             <td>{{ row.submittedAt | date : 'dd/MM/yyyy' }} {{ row.submittedAt | friendlyHour }}</td>
         </tr>
     </tbody>

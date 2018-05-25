@@ -44,5 +44,11 @@ export class ApplicationTableComponent implements OnInit {
        this.firstPage = true;
        this.lastPage = false;
     }
-  }
 
+    selDettaglio() {
+      return;
+      }
+    }
+  
+  
+ 
