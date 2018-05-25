@@ -200,20 +200,18 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   asyncValidation(g: FormGroup) {
-    return g.valueChanges
+    let a = new Anagrafica(
+      g.value.fiscalCode,
+      g.value.firstName,
+      g.value.lastName,
+      g.value.birthDate,
+      g.value.pin);
+
+    return this.cfCheckService.cfCheck(a)
       .pipe(delay(500))
       .pipe(debounceTime(1000))
       .pipe(distinctUntilChanged())
-      .pipe(switchMap(value => {
-        let a = new Anagrafica(
-          value.fiscalCode,
-          value.firstName,
-          value.lastName,
-          value.birthDate,
-          value.pin);
-
-        return this.cfCheckService.cfCheck(a);
-      })).pipe(map(outcome => {
+      .pipe(map(outcome => {
 
         if (outcome.results.length == 0)
           this.personalDataValidationMessages = null;
