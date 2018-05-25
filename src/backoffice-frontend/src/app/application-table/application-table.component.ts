@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { GetApplicationRowsService } from '../services/get-application-rows.service';
 import { ApplicationRow } from '../models/application-row.model';
 import { ApplicationRowPage } from '../models/application-row-page.model';
@@ -10,6 +10,9 @@ import { ApplicationRowPage } from '../models/application-row-page.model';
   styleUrls: ['./application-table.component.css']
 })
 export class ApplicationTableComponent implements OnInit {
+
+  @Output() showDetail: EventEmitter<ApplicationRow> = new EventEmitter();
+
   private curPage: number = 0;
   private pageSize: number = 5;
    
@@ -27,7 +30,7 @@ export class ApplicationTableComponent implements OnInit {
   }
 
 
-  onNext() {
+  private onNext() {
     this.curPage = this.curPage+this.pageSize;
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
     .subscribe(page => this.page = page);
@@ -36,7 +39,7 @@ export class ApplicationTableComponent implements OnInit {
        this.firstPage = false;
        }
 
-  onPrev() {
+  private onPrev() {
     this.curPage = this.curPage-this.pageSize;
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
     .subscribe(page => this.page = page);
@@ -45,9 +48,15 @@ export class ApplicationTableComponent implements OnInit {
        this.lastPage = false;
     }
 
-    selDettaglio() {
-      return;
+   private mostraApplication(row: ApplicationRow) {
+        //da cambiare
+        //console.log(event.id);
+        //this.router.navigate(['/application-detail', row.id);
+        return;
       }
+
+
+
     }
   
   
