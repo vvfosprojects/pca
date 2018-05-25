@@ -31,6 +31,10 @@ export class ApplicationFormComponent implements OnInit {
   ngOnInit() {
   }
 
+  onChange($event){
+    console.log($event);
+  }
+
   createForm() {
     this.applicationForm = this.fb.group({
       personalData: this.fb.group({
@@ -84,6 +88,26 @@ export class ApplicationFormComponent implements OnInit {
           Validators.required
         ]]
       }),
+      licenseInfo: this.fb.group({
+        license: ['', [
+          Validators.required
+        ]],
+        categoria: ['',[
+          Validators.required
+        ]],
+        numero: ['',[
+          Validators.required
+        ]],
+        ente: ['',[
+          Validators.required
+        ]],
+        dataRilascio: ['',[
+          Validators.required
+        ]],
+        dataScadenza: ['',[
+          Validators.required
+        ]],
+      }),
       gdprCompliancy: this.fb.group({
         acceptance: [false, Validators.requiredTrue]
       })
@@ -124,6 +148,30 @@ export class ApplicationFormComponent implements OnInit {
 
   get businessUnits() {
     return this.applicationForm.get('workInfo.businessUnits');
+  }
+
+  get license() {
+    return this.applicationForm.get('licenseInfo.license');
+  }
+
+  get categoria() {
+    return this.applicationForm.get('licenseInfo.categoria');
+  }
+
+  get numero() {
+    return this.applicationForm.get('licenseInfo.numero');
+  }
+
+  get ente() {
+    return this.applicationForm.get('licenseInfo.ente');
+  }
+
+  get dataRilascio() {
+    return this.applicationForm.get('licenseInfo.dataRilascio');
+  }
+
+  get dataScadenza() {
+    return this.applicationForm.get('licenseInfo.dataScadenza');
   }
 
   get acceptance() {
