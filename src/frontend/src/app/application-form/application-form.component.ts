@@ -21,6 +21,8 @@ export class ApplicationFormComponent implements OnInit {
   maxDate = new Date(2002, 0, 1);
   personalDataValidationMessages = null;
   shouldShowPinBox = false;
+  civilLicenseSelected: boolean = false;
+  vvfLicenseSelected: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,15 +33,15 @@ export class ApplicationFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChange($event){
+  onChange($event) {
     console.log($event);
   }
 
-  sendAnag(){
+  sendAnag() {
     console.log(this.applicationForm.value.personalData);
   }
 
-  sendForm(){
+  sendForm() {
     console.log(this.applicationForm.value);
   }
 
@@ -97,22 +99,19 @@ export class ApplicationFormComponent implements OnInit {
         ]]
       }),
       licenseInfo: this.fb.group({
-        license: ['', [
+        categoria: ['', [
           Validators.required
         ]],
-        categoria: ['',[
+        numero: ['', [
           Validators.required
         ]],
-        numero: ['',[
+        ente: ['', [
           Validators.required
         ]],
-        ente: ['',[
+        dataRilascio: ['', [
           Validators.required
         ]],
-        dataRilascio: ['',[
-          Validators.required
-        ]],
-        dataScadenza: ['',[
+        dataScadenza: ['', [
           Validators.required
         ]],
       }),
@@ -184,6 +183,11 @@ export class ApplicationFormComponent implements OnInit {
 
   get acceptance() {
     return this.applicationForm.get('gdprCompliancy.acceptance');
+  }
+
+  selectLicense(event) {
+    this.civilLicenseSelected = event.value == "CIV";
+    this.vvfLicenseSelected = event.value == "VVF";
   }
 
   emailMatch(g: FormGroup) {
