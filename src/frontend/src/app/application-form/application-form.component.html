@@ -213,8 +213,11 @@
             <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
             <mat-datepicker #pickerScadenza></mat-datepicker>
             <mat-error *ngIf="validUntil.invalid && (validUntil.dirty || validUntil.touched)">
-              <div *ngIf="validUntil.errors.required">
+              <div *ngIf="!!validUntil.errors.required">
                 Obbligatorio
+              </div>
+              <div *ngIf="!!validUntil.errors.invalid">
+                Ricontrolla le date
               </div>
             </mat-error>
           </mat-form-field>

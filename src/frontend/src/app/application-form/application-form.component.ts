@@ -114,7 +114,11 @@ export class ApplicationFormComponent implements OnInit {
         validUntil: ['', [
           Validators.required
         ]],
-      }),
+      }, {
+          validator: (g: FormGroup) => {
+            return this.licenseDatesAreValid(g);
+          }
+        }),
       gdprCompliancy: this.fb.group({
         acceptance: [false, Validators.requiredTrue]
       })
@@ -200,6 +204,15 @@ export class ApplicationFormComponent implements OnInit {
     let emailConfirmationValue = g.get('emailConfirmation').value;
     if (emailValue !== emailConfirmationValue)
       g.get('emailConfirmation').setErrors({ mismatch: true });
+
+    return null;
+  }
+
+  licenseDatesAreValid(g: FormGroup) {
+    let releaseDateValue = g.get('releaseDate').value;
+    let validUntilDateValue = g.get('validUntil').value;
+    if (releaseDateValue >= validUntilDateValue)
+      g.get('validUntil').setErrors({ invalid: true });
 
     return null;
   }
