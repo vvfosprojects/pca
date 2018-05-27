@@ -47,7 +47,7 @@ const APPROUTES = appRoutes;
   imports: [
     RouterModule.forRoot(
       APPROUTES,
-      { enableTracing: true }
+      { enableTracing: ENABLETRACING }
     ),
     BrowserModule,
     HttpClientModule,
