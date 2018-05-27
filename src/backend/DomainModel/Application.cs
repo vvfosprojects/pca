@@ -31,11 +31,11 @@ namespace DomainModel
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public string[] BusinessUnits { get; set; }
         public int WorkingDays { get; set; }
         public string DrivingLicense { get; set; }
-        public string[] BusinessUnits { get; set; }
-
         public string Pin { get; set; }
+
         public DateTime SubmissionTime { get; set; }
         public DateTime? DeletionTime { get; set; }
         public Anomaly[] Anomalies { get; set; }

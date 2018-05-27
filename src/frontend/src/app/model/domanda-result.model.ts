@@ -1,7 +1,9 @@
 export class DomandaResult {
     constructor(
-        public code: string,
-        public message: string
+        public fiscalCode: string,
+        public pin: string,
+        public messagesToTheUser: string[],
+        public submittedAt: Date
     ) {}
     
 }
