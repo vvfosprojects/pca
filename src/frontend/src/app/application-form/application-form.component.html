@@ -147,7 +147,7 @@
       </mat-radio-group>
 
 
-      <div *ngIf="civilLicenseSelected">
+      <div *ngIf="civilLicenseSelected || vvfLicenseSelected">
         <table cellspacing="0">
           <tr>
             <td>
@@ -176,7 +176,7 @@
         <table cellspacing="0">
           <tr>
             <td>
-              <mat-form-field>
+              <mat-form-field *ngIf="civilLicenseSelected">
                 <mat-select placeholder="Ente" formControlName="ente">
                   <mat-option value="prefettura">Prefettura</mat-option>
                   <mat-option value="motorizzazione">Motorizzazione</mat-option>
@@ -187,66 +187,8 @@
                   </div>
                 </mat-error>
               </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field>
-                <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="dataRilascio">
-                <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
-                <mat-datepicker #pickerRilascio></mat-datepicker>
-                <mat-error *ngIf="dataRilascio.invalid && (dataRilascio.dirty || dataRilascio.touched)">
-                  <div *ngIf="dataRilascio.errors.required">
-                    Obbligatorio
-                  </div>
-                </mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
 
-        <div>
-          <mat-form-field>
-            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="dataScadenza">
-            <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
-            <mat-datepicker #pickerScadenza></mat-datepicker>
-            <mat-error *ngIf="dataScadenza.invalid && (dataScadenza.dirty || dataScadenza.touched)">
-              <div *ngIf="dataScadenza.errors.required">
-                Obbligatorio
-              </div>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <div *ngIf="vvfLicenseSelected">
-        <table cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field>
-                <input matInput placeholder="Categoria" formControlName="categoria">
-                <mat-error *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
-                  <div *ngIf="categoria.errors.required">
-                    Obbligatorio
-                  </div>
-                </mat-error>
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field>
-                <input matInput placeholder="Numero" formControlName="numero">
-                <mat-error *ngIf="numero.invalid && (numero.dirty || numero.touched)">
-                  <div *ngIf="numero.errors.required">
-                    Obbligatorio
-                  </div>
-                </mat-error>
-              </mat-form-field>
-            </td>
-          </tr>
-        </table>
-
-        <table cellspacing="0">
-          <tr>
-            <td>
-              <mat-form-field>
+              <mat-form-field *ngIf="vvfLicenseSelected">
                 <input matInput placeholder="Ente" value="D.C. per la  Formazione" readonly>
               </mat-form-field>
             </td>
@@ -278,7 +220,6 @@
           </mat-form-field>
         </div>
       </div>
-
     </div>
 
     <div formGroupName="gdprCompliancy" class="mt-large">
