@@ -1,5 +1,3 @@
-export enum ResultType { Error, Warning, Success }
-
 export class Domanda {
     constructor(
         public fiscalCode: string, 
