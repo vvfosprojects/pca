@@ -188,6 +188,11 @@ export class ApplicationFormComponent implements OnInit {
   selectLicense(event) {
     this.civilLicenseSelected = event.value == "CIV";
     this.vvfLicenseSelected = event.value == "VVF";
+
+    if (this.vvfLicenseSelected)
+      this.applicationForm.get("licenseInfo.releasedBy").setValue("D.C. per la Formazione");
+    else
+      this.applicationForm.get("licenseInfo.releasedBy").setValue(null);
   }
 
   emailMatch(g: FormGroup) {
