@@ -99,19 +99,19 @@ export class ApplicationFormComponent implements OnInit {
         ]]
       }),
       licenseInfo: this.fb.group({
-        categoria: ['', [
+        category: ['', [
           Validators.required
         ]],
-        numero: ['', [
+        number: ['', [
           Validators.required
         ]],
-        ente: ['', [
+        releasedBy: ['', [
           Validators.required
         ]],
-        dataRilascio: ['', [
+        releaseDate: ['', [
           Validators.required
         ]],
-        dataScadenza: ['', [
+        validUntil: ['', [
           Validators.required
         ]],
       }),
@@ -161,24 +161,24 @@ export class ApplicationFormComponent implements OnInit {
     return this.applicationForm.get('licenseInfo.license');
   }
 
-  get categoria() {
-    return this.applicationForm.get('licenseInfo.categoria');
+  get category() {
+    return this.applicationForm.get('licenseInfo.category');
   }
 
-  get numero() {
-    return this.applicationForm.get('licenseInfo.numero');
+  get number() {
+    return this.applicationForm.get('licenseInfo.number');
   }
 
-  get ente() {
-    return this.applicationForm.get('licenseInfo.ente');
+  get releasedBy() {
+    return this.applicationForm.get('licenseInfo.releasedBy');
   }
 
-  get dataRilascio() {
-    return this.applicationForm.get('licenseInfo.dataRilascio');
+  get releaseDate() {
+    return this.applicationForm.get('licenseInfo.releaseDate');
   }
 
-  get dataScadenza() {
-    return this.applicationForm.get('licenseInfo.dataScadenza');
+  get validUntil() {
+    return this.applicationForm.get('licenseInfo.validUntil');
   }
 
   get acceptance() {
