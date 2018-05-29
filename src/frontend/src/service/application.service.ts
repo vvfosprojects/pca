@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { Anagrafica } from '../app/model/anagrafica.model';
 import { CfCheckOutcome } from '../app/model/cf-check-outcome.model';
-import { Observable } from 'rxjs';
 import { Domanda } from '../app/model/domanda.model';
 import { DomandaResult } from '../app/model/domanda-result.model';
+
+import { catchError } from 'rxjs/operators';
+import { of as observableOf, Observable, throwError } from 'rxjs';
 
 const BACKENDURL = environment.backendUrl;
 
@@ -17,14 +19,35 @@ const httpOptions = {
 
 @Injectable()
 export class ApplicationService {
-  private cfCheckUrl = '/application';
+  private applicationUrl = '/application';
 
   constructor(private http: HttpClient) { }
 
-  inserisci(domanda: Domanda): Observable<DomandaResult> {
-    return this.http.post<DomandaResult>(
-      BACKENDURL + this.cfCheckUrl,
-      domanda,
-      httpOptions);
+  public inserisciDomanda(domanda: Domanda): Observable<DomandaResult> {
+    return this.http.post<DomandaResult>(BACKENDURL + this.applicationUrl, domanda, httpOptions)
+      .pipe(
+        catchError(error => this.handleError(error))
+      );
   }
-}
+
+
+private handleError(error: HttpErrorResponse) {
+  if (error.error instanceof ErrorEvent) {
+    // A client-side or network error occurred. Handle it accordingly.
+    console.error('An error occurred:', error.error.message);
+  } else {
+    // The backend returned an unsuccessful response code.
+    // The response body may contain clues as to what went wrong,
+    console.error(
+      `Backend returned code ${error.status}, ` +
+      `body was: ${error.error}`);
+  }
+  // return an observable with a user-facing error message
+  return observableOf(new DomandaResult(
+    "",
+    "",
+    ["NetError", "Si è verificato un errore nel contattare il server. Riprovare più tardi.", "Error"],
+    new Date()
+  ));
+  }
+};

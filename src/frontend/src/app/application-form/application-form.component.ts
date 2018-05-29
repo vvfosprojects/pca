@@ -7,6 +7,8 @@ import { CfCheckService } from '../../service/cf-check.service';
 import { Anagrafica } from '../model/anagrafica.model';
 import { CfCheckOutcome } from '../model/cf-check-outcome.model';
 import { BUGROUPS } from './bu-groups';
+import { Domanda } from '../model/domanda.model';
+import { ApplicationService } from '../../service/application.service';
 
 @Component({
   selector: 'app-application-form',
@@ -26,7 +28,8 @@ export class ApplicationFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private cfCheckService: CfCheckService) {
+    private cfCheckService: CfCheckService,
+    private applicationService: ApplicationService) {
     this.createForm();
   }
 
@@ -41,10 +44,7 @@ export class ApplicationFormComponent implements OnInit {
     console.log(this.applicationForm.value.personalData);
   }
 
-  sendForm() {
-    console.log(this.applicationForm.value);
-  }
-
+  
   createForm() {
     this.applicationForm = this.fb.group({
       personalData: this.fb.group({
@@ -254,5 +254,37 @@ export class ApplicationFormComponent implements OnInit {
         else
           return { "cfError": true };
       }));
+  }
+
+
+  sendForm(g: FormGroup) {
+    console.log(this.applicationForm.value);
+    let drivingLicense = g.value.category + g.value.number + g.value.releasedBy + g.value.releaseDate + g.value.validUntil;
+    let a = new Domanda(
+      g.value.fiscalCode,
+      g.value.firstName,
+      g.value.lastName,
+      g.value.birthDate, 
+      g.value.email,
+      g.value.businessUnits,
+      g.value.workingDays,
+      drivingLicense,
+      g.value.pin);
+
+    console.log(a);
+
+    return this.applicationService.inserisciDomanda(a)
+      .pipe(delay(500))
+      .pipe(debounceTime(1000))
+      .pipe(distinctUntilChanged())
+      .pipe(map(outcome => {
+        return{
+           fiscalCode: outcome.fiscalCode,
+           pin: outcome.pin,
+           messagesToTheUser: outcome.messagesToTheUser,
+           submittedAt: outcome.submittedAt
+        }
+       }));
+      ;
   }
 }
