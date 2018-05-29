@@ -1,5 +1,3 @@
-export enum ResultType { Error, Warning, Success }
-
 export class Domanda {
     constructor(
         public fiscalCode: string, 
@@ -8,7 +6,7 @@ export class Domanda {
         public birthDate: string, 
         public email: string, 
         public phoneNumber: string,
-        public sedi: string[],
+        public businessUnits: string[],
         public workingDays: number,
         public drivingLicense: string,
         public pin: string

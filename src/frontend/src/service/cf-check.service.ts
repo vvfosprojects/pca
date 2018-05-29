@@ -25,6 +25,7 @@ export class CfCheckService {
   public cfCheck(anagrafica: Anagrafica): Observable<CfCheckOutcome> {
     return this.http.post<CfCheckOutcome>(BACKENDURL + this.cfCheckUrl, anagrafica, httpOptions)
       .pipe(
+        //tap((anagrafica: Anagrafica) => this.log(`added codFisc w/ id=${anagrafica.fiscalCode}`)),
         catchError(error => this.handleError(error))
       );
   }

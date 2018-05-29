@@ -21,6 +21,8 @@ export class ApplicationFormComponent implements OnInit {
   maxDate = new Date(2002, 0, 1);
   personalDataValidationMessages = null;
   shouldShowPinBox = false;
+  civilLicenseSelected: boolean = false;
+  vvfLicenseSelected: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,8 +33,16 @@ export class ApplicationFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChange($event){
+  onChange($event) {
     console.log($event);
+  }
+
+  sendAnag() {
+    console.log(this.applicationForm.value.personalData);
+  }
+
+  sendForm() {
+    console.log(this.applicationForm.value);
   }
 
   createForm() {
@@ -89,25 +99,26 @@ export class ApplicationFormComponent implements OnInit {
         ]]
       }),
       licenseInfo: this.fb.group({
-        license: ['', [
+        category: ['', [
           Validators.required
         ]],
-        categoria: ['',[
+        number: ['', [
           Validators.required
         ]],
-        numero: ['',[
+        releasedBy: ['', [
           Validators.required
         ]],
-        ente: ['',[
+        releaseDate: ['', [
           Validators.required
         ]],
-        dataRilascio: ['',[
+        validUntil: ['', [
           Validators.required
         ]],
-        dataScadenza: ['',[
-          Validators.required
-        ]],
-      }),
+      }, {
+          validator: (g: FormGroup) => {
+            return this.licenseDatesAreValid(g);
+          }
+        }),
       gdprCompliancy: this.fb.group({
         acceptance: [false, Validators.requiredTrue]
       })
@@ -154,28 +165,38 @@ export class ApplicationFormComponent implements OnInit {
     return this.applicationForm.get('licenseInfo.license');
   }
 
-  get categoria() {
-    return this.applicationForm.get('licenseInfo.categoria');
+  get category() {
+    return this.applicationForm.get('licenseInfo.category');
   }
 
-  get numero() {
-    return this.applicationForm.get('licenseInfo.numero');
+  get number() {
+    return this.applicationForm.get('licenseInfo.number');
   }
 
-  get ente() {
-    return this.applicationForm.get('licenseInfo.ente');
+  get releasedBy() {
+    return this.applicationForm.get('licenseInfo.releasedBy');
   }
 
-  get dataRilascio() {
-    return this.applicationForm.get('licenseInfo.dataRilascio');
+  get releaseDate() {
+    return this.applicationForm.get('licenseInfo.releaseDate');
   }
 
-  get dataScadenza() {
-    return this.applicationForm.get('licenseInfo.dataScadenza');
+  get validUntil() {
+    return this.applicationForm.get('licenseInfo.validUntil');
   }
 
   get acceptance() {
     return this.applicationForm.get('gdprCompliancy.acceptance');
+  }
+
+  selectLicense(event) {
+    this.civilLicenseSelected = event.value == "CIV";
+    this.vvfLicenseSelected = event.value == "VVF";
+
+    if (this.vvfLicenseSelected)
+      this.applicationForm.get("licenseInfo.releasedBy").setValue("D.C. per la Formazione");
+    else
+      this.applicationForm.get("licenseInfo.releasedBy").setValue(null);
   }
 
   emailMatch(g: FormGroup) {
@@ -187,25 +208,32 @@ export class ApplicationFormComponent implements OnInit {
     return null;
   }
 
+  licenseDatesAreValid(g: FormGroup) {
+    let releaseDateValue = g.get('releaseDate').value;
+    let validUntilDateValue = g.get('validUntil').value;
+    if (releaseDateValue >= validUntilDateValue)
+      g.get('validUntil').setErrors({ invalid: true });
+
+    return null;
+  }
+
   syncValidation(g: FormGroup) {
     return null;
   }
 
   asyncValidation(g: FormGroup) {
-    return g.valueChanges
+    let a = new Anagrafica(
+      g.value.fiscalCode,
+      g.value.firstName,
+      g.value.lastName,
+      g.value.birthDate,
+      g.value.pin);
+
+    return this.cfCheckService.cfCheck(a)
       .pipe(delay(500))
       .pipe(debounceTime(1000))
       .pipe(distinctUntilChanged())
-      .pipe(switchMap(value => {
-        let a = new Anagrafica(
-          value.fiscalCode,
-          value.firstName,
-          value.lastName,
-          value.birthDate,
-          value.pin);
-
-        return this.cfCheckService.cfCheck(a);
-      })).pipe(map(outcome => {
+      .pipe(map(outcome => {
 
         if (outcome.results.length == 0)
           this.personalDataValidationMessages = null;

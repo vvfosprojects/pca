@@ -141,25 +141,20 @@
 
 
     <div formGroupName="licenseInfo">
-       <mat-form-field >
-          <input matInput placeholder="Patenti" style="display: none" formControlName="patente">
-          <br>
-          
-          <mat-radio-group formControlName="license">
-            <mat-radio-button #showVVF [checked]="isChecked" (change)="onChange($event)" value="VVF">VVF</mat-radio-button>
-            <mat-radio-button #showCivile [checked]="isChecked" (change)="onChange($event)" value="civile">civile</mat-radio-button>
-          </mat-radio-group>          
-        </mat-form-field>
+      <mat-radio-group>
+        <mat-radio-button (change)="selectLicense($event)" value="VVF">VVF</mat-radio-button>
+        <mat-radio-button (change)="selectLicense($event)" value="CIV">Civile</mat-radio-button>
+      </mat-radio-group>
 
-        
-      <div *ngIf="showCivile.checked">
+
+      <div *ngIf="civilLicenseSelected || vvfLicenseSelected">
         <table cellspacing="0">
           <tr>
             <td>
               <mat-form-field>
-                <input matInput placeholder="Categoria" formControlName="categoria">
-                <mat-error *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
-                  <div *ngIf="categoria.errors.required">
+                <input matInput placeholder="Categoria" formControlName="category">
+                <mat-error *ngIf="category.invalid && (category.dirty || category.touched)">
+                  <div *ngIf="category.errors.required">
                     Obbligatorio
                   </div>
                 </mat-error>
@@ -167,9 +162,9 @@
             </td>
             <td>
               <mat-form-field>
-                <input matInput placeholder="Numero" formControlName="numero">
-                <mat-error *ngIf="numero.invalid && (numero.dirty || numero.touched)">
-                  <div *ngIf="numero.errors.required">
+                <input matInput placeholder="Numero" formControlName="number">
+                <mat-error *ngIf="number.invalid && (number.dirty || number.touched)">
+                  <div *ngIf="number.errors.required">
                     Obbligatorio
                   </div>
                 </mat-error>
@@ -177,32 +172,36 @@
             </td>
           </tr>
         </table>
-          
-        <table cellspacing="0" >
+
+        <table cellspacing="0">
           <tr>
             <td>
-              <mat-form-field >
-                <mat-select placeholder="Ente" formControlName="ente">
+              <mat-form-field *ngIf="civilLicenseSelected">
+                <mat-select placeholder="Ente" formControlName="releasedBy">
                   <mat-option value="prefettura">Prefettura</mat-option>
                   <mat-option value="motorizzazione">Motorizzazione</mat-option>
                 </mat-select>
-                <mat-error *ngIf="ente.invalid && (ente.dirty || ente.touched)">
-                  <div *ngIf="ente.errors.required">
+                <mat-error *ngIf="releasedBy.invalid && (releasedBy.dirty || releasedBy.touched)">
+                  <div *ngIf="releasedBy.errors.required">
                     Obbligatorio
                   </div>
                 </mat-error>
               </mat-form-field>
+
+              <mat-form-field *ngIf="vvfLicenseSelected">
+                <input matInput placeholder="Ente" formControlName="releasedBy" readonly>
+              </mat-form-field>
             </td>
             <td>
               <mat-form-field>
-                <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="dataRilascio">
-                  <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
-                  <mat-datepicker #pickerRilascio></mat-datepicker>
-                  <mat-error *ngIf="dataRilascio.invalid && (dataRilascio.dirty || dataRilascio.touched)">
-                    <div *ngIf="dataRilascio.errors.required">
-                      Obbligatorio
-                    </div>
-                  </mat-error>
+                <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="releaseDate">
+                <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerRilascio></mat-datepicker>
+                <mat-error *ngIf="releaseDate.invalid && (releaseDate.dirty || releaseDate.touched)">
+                  <div *ngIf="releaseDate.errors.required">
+                    Obbligatorio
+                  </div>
+                </mat-error>
               </mat-form-field>
             </td>
           </tr>
@@ -210,80 +209,20 @@
 
         <div>
           <mat-form-field>
-            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="dataScadenza">
-              <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
-              <mat-datepicker #pickerScadenza></mat-datepicker>
-              <mat-error *ngIf="dataScadenza.invalid && (dataScadenza.dirty || dataScadenza.touched)">
-                <div *ngIf="dataScadenza.errors.required">
-                  Obbligatorio
-                </div>
-              </mat-error>
+            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="validUntil">
+            <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
+            <mat-datepicker #pickerScadenza></mat-datepicker>
+            <mat-error *ngIf="validUntil.invalid && (validUntil.dirty || validUntil.touched)">
+              <div *ngIf="!!validUntil.errors.required">
+                Obbligatorio
+              </div>
+              <div *ngIf="!!validUntil.errors.invalid">
+                Ricontrolla le date
+              </div>
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
-           
-      <div *ngIf="showVVF.checked">
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field>
-                  <input matInput placeholder="Categoria" formControlName="categoria">
-                  <mat-error *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)">
-                    <div *ngIf="categoria.errors.required">
-                      Obbligatorio
-                    </div>
-                  </mat-error>
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field>
-                  <input matInput placeholder="Numero" formControlName="numero">
-                  <mat-error *ngIf="numero.invalid && (numero.dirty || numero.touched)">
-                    <div *ngIf="numero.errors.required">
-                      Obbligatorio
-                    </div>
-                  </mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-            
-          <table cellspacing="0" >
-            <tr>
-              <td>
-                <mat-form-field >
-                  <input matInput placeholder="Ente" value="D.C. per la  Formazione" readonly>
-                </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field>
-                  <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="dataRilascio">
-                    <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
-                    <mat-datepicker #pickerRilascio></mat-datepicker>
-                    <mat-error *ngIf="dataRilascio.invalid && (dataRilascio.dirty || dataRilascio.touched)">
-                      <div *ngIf="dataRilascio.errors.required">
-                        Obbligatorio
-                      </div>
-                    </mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-  
-          <div>
-            <mat-form-field>
-              <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="dataScadenza">
-                <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
-                <mat-datepicker #pickerScadenza></mat-datepicker>
-                <mat-error *ngIf="dataScadenza.invalid && (dataScadenza.dirty || dataScadenza.touched)">
-                  <div *ngIf="dataScadenza.errors.required">
-                    Obbligatorio
-                  </div>
-                </mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-
     </div>
 
     <div formGroupName="gdprCompliancy" class="mt-large">
@@ -295,8 +234,7 @@
     </div>
   </div>
 
-  <button mat-raised-button color="primary" [disabled]="!applicationForm.valid">Invia la domanda</button>
-  
-</form>
+  <button mat-raised-button color="primary" [disabled]="!applicationForm.valid" (click)='sendForm()'>Invia la domanda</button>
+  <!-- <button mat-raised-button color="primary" (click)='sendForm()'>Invia la domanda</button> -->
 
-<!-- {{ applicationForm.value | json }} -->
+</form>
