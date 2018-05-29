@@ -47,7 +47,6 @@ export class ApplicationFormComponent implements OnInit {
     console.log(this.applicationForm.value.personalData);
   }
 
-  
   createForm() {
     this.applicationForm = this.fb.group({
       personalData: this.fb.group({
@@ -261,30 +260,30 @@ export class ApplicationFormComponent implements OnInit {
 
 
   sendForm() {
-    console.log(this.applicationForm.value);
-    //let drivingLicense = g.get('category').value + " " + g.get('number').value + " " + g.get('releasedBy').value + " " + g.get('releaseDate').value + " " + g.get('validUntil').value;
-    let drivingLicense = this.applicationForm.get('licenseInfo.license') + " " + this.applicationForm.get('licenseInfo.category') + " " + this.applicationForm.get('licenseInfo.number') + " " +
-                         this.applicationForm.get('licenseInfo.releaseDate') + " " + this.applicationForm.get('licenseInfo.validUntil');
-    /* let a = new Domanda(
-      this.applicationForm.get('personalData.fiscalCode'),
-      this.applicationForm.get('personalData.firstName'),
-      this.applicationForm.get('personalData.lastName'),
-      this.applicationForm.get('personalData.birthDate'),
-      this.applicationForm.get('email.email'),
-      this.applicationForm.get('workInfo.businessUnits'),
-      this.applicationForm.get('workInfo.workedDays'),
-      drivingLicense,
-      "PIN FINTO"   //chiedere a Marcello perché non lo abbiamo al momento dell'invio
-    );
-  
+    let drivingLicense =
+      "Patente " + this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta" + " " +
+      "di categoria " + this.category.value + " " +
+      "n. " + this.number.value + " " +
+      "rilasciata il " + this.releaseDate.value + " " +
+      "valida fino al " + this.validUntil.value;
 
-    console.log("domanda da inviare al backend " + a);
- */
+    let a = new Domanda(
+      this.fiscalCode.value,
+      this.firstName.value,
+      this.lastName.value,
+      this.birthDate.value,
+      this.email.value,
+      this.businessUnits.value,
+      this.workedDays.value,
+      drivingLicense,
+      this.pin.value
+    );
+
+    console.log("Going to insert", a);
+
     return this.applicationService.inserisciDomanda(a)
-      .pipe(delay(500))
-      .pipe(debounceTime(1000))
-      .pipe(distinctUntilChanged())
-      .pipe(map(outcome => {
+      .subscribe(outcome => {
+        console.log("Service returned", outcome);
 
         if (outcome.messagesToTheUser.length == 0)
           this.personalDataValidationMessages = null;
@@ -297,9 +296,8 @@ export class ApplicationFormComponent implements OnInit {
               }
             });
 
-
-       if (outcome.submissionOk)
+        if (outcome.submissionOk)
           this.router.navigate(['/submission-result']);
-      }));
+      });
   }
 }
