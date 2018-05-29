@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { Anagrafica } from '../app/model/anagrafica.model';
 import { CfCheckOutcome } from '../app/model/cf-check-outcome.model';
 import { Domanda } from '../app/model/domanda.model';
+import { DomandaOutcome } from '../app/model/domanda-outcome.model';
 import { DomandaResult } from '../app/model/domanda-result.model';
 
 import { catchError } from 'rxjs/operators';
@@ -23,8 +24,8 @@ export class ApplicationService {
 
   constructor(private http: HttpClient) { }
 
-  public inserisciDomanda(domanda: Domanda): Observable<DomandaResult> {
-    return this.http.post<DomandaResult>(BACKENDURL + this.applicationUrl, domanda, httpOptions)
+  public inserisciDomanda(domanda: Domanda): Observable<DomandaOutcome> {
+    return this.http.post<DomandaOutcome>(BACKENDURL + this.applicationUrl, domanda, httpOptions)
       .pipe(
         catchError(error => this.handleError(error))
       );
@@ -43,11 +44,14 @@ private handleError(error: HttpErrorResponse) {
       `body was: ${error.error}`);
   }
   // return an observable with a user-facing error message
-  return observableOf(new DomandaResult(
+  return observableOf(new DomandaOutcome(
     "",
     "",
-    ["NetError", "Si è verificato un errore nel contattare il server. Riprovare più tardi.", "Error"],
-    new Date()
+    [
+      new DomandaResult("NetError", "Si è verificato un errore nel contattare il server. Riprovare più tardi.", "Error")
+    ],
+    new Date(),
+    false
   ));
   }
 };

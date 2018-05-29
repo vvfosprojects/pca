@@ -11,7 +11,7 @@ import { DomandaResult } from '../app/model/domanda-result.model';
 
 
 @Injectable()
-export class ApplicationService_Fake {
+export class ApplicationServiceSuccess_Fake {
   constructor() { }
 
   public inserisciDomanda(d: Domanda): Observable<DomandaOutcome> {
@@ -19,9 +19,9 @@ export class ApplicationService_Fake {
       d.fiscalCode,
       "ABC424",
       [
-        new DomandaResult("err1", "Your submission has not been saved", "Error"),
-        new DomandaResult("warn1", "Your submission has been accepted with reserve", "Warning"),
-        new DomandaResult("succ3", "You will receive a confirmation email", "Success")
+        new DomandaResult("succ1", "Your submission has been successfully saved", "Success"),
+        new DomandaResult("succ2", "You can update your submission using the returned PIN", "Success"),
+        new DomandaResult("succ3", "Don't forget to check the official website periodically", "Success")
       ],
       new Date(),
       true);

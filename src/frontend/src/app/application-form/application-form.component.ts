@@ -9,6 +9,7 @@ import { CfCheckOutcome } from '../model/cf-check-outcome.model';
 import { BUGROUPS } from './bu-groups';
 import { Domanda } from '../model/domanda.model';
 import { ApplicationService } from '../../service/application.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-application-form',
@@ -16,6 +17,7 @@ import { ApplicationService } from '../../service/application.service';
   styleUrls: ['./application-form.component.css']
 })
 export class ApplicationFormComponent implements OnInit {
+  [x: string]: any;
   buGroups = BUGROUPS;
   applicationForm: FormGroup;
   startDate = new Date(1970, 0, 1);
@@ -29,7 +31,8 @@ export class ApplicationFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private cfCheckService: CfCheckService,
-    private applicationService: ApplicationService) {
+    private applicationService: ApplicationService,
+    private router: Router) {
     this.createForm();
   }
 
@@ -257,34 +260,46 @@ export class ApplicationFormComponent implements OnInit {
   }
 
 
-  sendForm(g: FormGroup) {
+  sendForm() {
     console.log(this.applicationForm.value);
-    let drivingLicense = g.value.category + g.value.number + g.value.releasedBy + g.value.releaseDate + g.value.validUntil;
-    let a = new Domanda(
-      g.value.fiscalCode,
-      g.value.firstName,
-      g.value.lastName,
-      g.value.birthDate, 
-      g.value.email,
-      g.value.businessUnits,
-      g.value.workingDays,
+    //let drivingLicense = g.get('category').value + " " + g.get('number').value + " " + g.get('releasedBy').value + " " + g.get('releaseDate').value + " " + g.get('validUntil').value;
+    let drivingLicense = this.applicationForm.get('licenseInfo.license') + " " + this.applicationForm.get('licenseInfo.category') + " " + this.applicationForm.get('licenseInfo.number') + " " +
+                         this.applicationForm.get('licenseInfo.releaseDate') + " " + this.applicationForm.get('licenseInfo.validUntil');
+    /* let a = new Domanda(
+      this.applicationForm.get('personalData.fiscalCode'),
+      this.applicationForm.get('personalData.firstName'),
+      this.applicationForm.get('personalData.lastName'),
+      this.applicationForm.get('personalData.birthDate'),
+      this.applicationForm.get('email.email'),
+      this.applicationForm.get('workInfo.businessUnits'),
+      this.applicationForm.get('workInfo.workedDays'),
       drivingLicense,
-      g.value.pin);
+      "PIN FINTO"   //chiedere a Marcello perché non lo abbiamo al momento dell'invio
+    );
+  
 
-    console.log(a);
-
+    console.log("domanda da inviare al backend " + a);
+ */
     return this.applicationService.inserisciDomanda(a)
       .pipe(delay(500))
       .pipe(debounceTime(1000))
       .pipe(distinctUntilChanged())
       .pipe(map(outcome => {
-        return{
-           fiscalCode: outcome.fiscalCode,
-           pin: outcome.pin,
-           messagesToTheUser: outcome.messagesToTheUser,
-           submittedAt: outcome.submittedAt
-        }
-       }));
-      ;
+
+        if (outcome.messagesToTheUser.length == 0)
+          this.personalDataValidationMessages = null;
+        else
+          this.personalDataValidationMessages = outcome.messagesToTheUser
+            .map(r => {
+              return {
+                type: r.type,
+                msg: r.message
+              }
+            });
+
+
+       if (outcome.submissionOk)
+          this.router.navigate(['/submission-result']);
+      }));
   }
 }
