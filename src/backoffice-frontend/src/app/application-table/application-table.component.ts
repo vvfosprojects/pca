@@ -15,6 +15,8 @@ export class ApplicationTableComponent implements OnInit {
 
   private curPage: number = 0;
   private pageSize: number = 5;
+  
+ 
    
 
   private page: ApplicationRowPage;
@@ -22,31 +24,51 @@ export class ApplicationTableComponent implements OnInit {
   private lastPage : boolean = false;
   private firstPage : boolean = true;
   
+ /*  private numberPage : number = 1;
+  private totPage = ['1','2','3'];
+ */
+  
   constructor(private getApplicationRowsService: GetApplicationRowsService) { }
-
+ 
   ngOnInit() {
     this.getApplicationRowsService.getRows(this.curPage * this.pageSize, this.pageSize)
       .subscribe(page => this.page = page);
+      if ((this.curPage+this.pageSize >= this.page.totalCount) ||  (this.page.totalCount == 0))
+      {
+        this.lastPage = true;
+      }  
+      else
+        this.lastPage = false;
   }
 
 
   private onNext() {
     this.curPage = this.curPage+this.pageSize;
+    // this.numberPage = this.numberPage + 1;
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
     .subscribe(page => this.page = page);
-    if (this.curPage+this.pageSize > this.page.totalCount) 
+    if ((this.curPage+this.pageSize >= this.page.totalCount) ||  (this.page.totalCount == 0)) 
+    {
        this.lastPage = true;
        this.firstPage = false;
-       }
+      }
+    else
+      this.firstPage = false;
+    }
 
   private onPrev() {
     this.curPage = this.curPage-this.pageSize;
+    // this.numberPage = this.numberPage - 1;
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
     .subscribe(page => this.page = page);
-    if (this.curPage <= 0) 
+    if (this.curPage <= 0)  
+    {
        this.firstPage = true;
        this.lastPage = false;
     }
+    else
+       this.lastPage = false;
+  }
 
    private mostraApplication(row: ApplicationRow) {
         //da cambiare
