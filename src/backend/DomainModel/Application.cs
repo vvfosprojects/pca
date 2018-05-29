@@ -23,11 +23,49 @@ namespace DomainModel
 {
     public class Application
     {
+        private string fiscalCode;
+        private string firstName;
+        private string lastName;
+
         public string Id { get; set; }
 
-        public string FiscalCode { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string FiscalCode
+        {
+            get
+            {
+                return this.fiscalCode;
+            }
+            set
+            {
+                this.fiscalCode = value.ToUpper();
+            }
+        }
+
+        public string FirstName
+        {
+            get
+            {
+                return this.firstName;
+            }
+
+            set
+            {
+                this.firstName = value.ToUpper();
+            }
+        }
+
+        public string LastName
+        {
+            get
+            {
+                return this.lastName;
+            }
+            set
+            {
+                this.lastName = value.ToUpper();
+            }
+        }
+
         public DateTime BirthDate { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
