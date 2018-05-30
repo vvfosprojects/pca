@@ -260,12 +260,17 @@ export class ApplicationFormComponent implements OnInit {
 
 
   sendForm() {
+    
+    let licenseSelected = this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta";
+    
     let drivingLicense =
-      "Patente " + this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta" + " " +
+      "Patente " + licenseSelected + " " +
       "di categoria " + this.category.value + " " +
       "n. " + this.number.value + " " +
       "rilasciata il " + this.releaseDate.value + " " +
       "valida fino al " + this.validUntil.value;
+
+      console.log("drivingLicense: ", drivingLicense);
 
     let a = new Domanda(
       this.fiscalCode.value,
@@ -297,7 +302,10 @@ export class ApplicationFormComponent implements OnInit {
             });
 
         if (outcome.submissionOk)
-          this.router.navigate(['/submission-result']);
+          //cercare come passare array
+          console.log("message ", outcome.messagesToTheUser);
+          
+          this.router.navigate(['/submission-result', { pin: outcome.pin, messages: outcome.messagesToTheUser, email: this.email.value}]);
       });
   }
 }
