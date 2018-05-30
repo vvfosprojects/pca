@@ -1,10 +1,28 @@
 <section class="mat-typography center">
+  
+    <!-- <p *ngFor="let msg of messagesToTheUser">
+        <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
+        <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
+        <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
+        {{ msg.msg }}
+      </p> -->
+
   <h3>Congratulazioni! La tua domanda è stata acquisita con il PIN indicato di sotto.</h3>
-  <h1>A7556R</h1>
+  <h1>{{pin}}</h1>
+  
   <h3>Conserva il PIN in un posto sicuro. Ti servirà qualora volessi aggiornare la tua domanda.</h3>
+  
+  <br>
+  <h3>E' stata inviata un'email all'indirizzo {{emailAddress}} indicato in fase di inserimento della domanda.</h3>
+
+
+
+  <br>
   <div class="button-row">
+    <button mat-raised-button (click)="goHome()">Home</button>
     <a href="javascript:window.print()">
       <button mat-raised-button color="primary">Stampa la pagina</button>
     </a>
   </div>
+
 </section>

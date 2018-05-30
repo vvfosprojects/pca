@@ -24,7 +24,7 @@ export class ApplicationService_Fake {
         new DomandaResult("succ3", "You will receive a confirmation email", "Success")
       ],
       new Date(),
-      true);
+      false);
 
     return observableOf(result);
   }

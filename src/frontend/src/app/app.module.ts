@@ -32,7 +32,9 @@ import { SubmissionResultComponent } from './submission-result/submission-result
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { appRoutes } from './routes';
 import { environment } from '../environments/environment';
+
 import { CfCheckServiceSuccess_Fake } from '../service/cf-check-fake-success.service';
+import { ApplicationServiceSuccess_Fake } from '../service/application-fake-success.service';
 
 const ENABLETRACING = environment.enableTracing;
 const APPROUTES = appRoutes;
@@ -72,7 +74,8 @@ const APPROUTES = appRoutes;
     { provide: MAT_DATE_LOCALE, useValue: 'it-IT' },
     //{ provide: CfCheckService, useClass: CfCheckService_Fake },
     { provide: CfCheckService, useClass: CfCheckServiceSuccess_Fake },
-    { provide: ApplicationService, useClass: ApplicationService_Fake },
+    //{ provide: ApplicationService, useClass: ApplicationService_Fake },
+    { provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },    
   ],
   bootstrap: [AppComponent]
 })
