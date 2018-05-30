@@ -62,6 +62,14 @@ namespace Persistence.MongoDB
 
                 this.Applications.Indexes.CreateOne(indexDefinition);
             }
+
+            {
+                var indexDefinition = Builders<Application>.IndexKeys
+                    .Ascending(_ => _.SubmissionTime)
+                    .Ascending(_ => _.DeletionTime);
+
+                this.Applications.Indexes.CreateOne(indexDefinition);
+            }
         }
 
         private void MapClasses()
