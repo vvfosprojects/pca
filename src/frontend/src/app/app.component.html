@@ -1,1 +1,4 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+
+<app-application-form *ngIf="!submitted"></app-application-form>
+<app-submission-result *ngIf="submitted" [submissionResult]="submissionResult"></app-submission-result>

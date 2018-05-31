@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { of as observableOf, Observable, timer } from 'rxjs';
 import { map, filter, delay, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
@@ -10,6 +10,8 @@ import { BUGROUPS } from './bu-groups';
 import { Domanda } from '../model/domanda.model';
 import { ApplicationService } from '../../service/application.service';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
+import { DomandaOutcome } from '../model/domanda-outcome.model';
 
 @Component({
   selector: 'app-application-form',
@@ -27,6 +29,7 @@ export class ApplicationFormComponent implements OnInit {
   shouldShowPinBox = false;
   civilLicenseSelected: boolean = false;
   vvfLicenseSelected: boolean = false;
+  @Output() submissionResut: EventEmitter<DomandaOutcome> = new EventEmitter<DomandaOutcome>();
 
   constructor(
     private fb: FormBuilder,
@@ -302,10 +305,9 @@ export class ApplicationFormComponent implements OnInit {
             });
 
         if (outcome.submissionOk)
-          //cercare come passare array
-          console.log("message ", outcome.messagesToTheUser);
-          
-          this.router.navigate(['/submission-result', { pin: outcome.pin, messages: outcome.messagesToTheUser, email: this.email.value}]);
+            this.submissionResut.emit(outcome);
+                   
+          //this.router.navigate(['/submission-result', { pin: outcome.pin, messages: outcome.messagesToTheUser, email: this.email.value}]);
       });
   }
 }

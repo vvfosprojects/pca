@@ -1,4 +1,5 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ViewChild, Input } from '@angular/core';
+import { DomandaOutcome } from './model/domanda-outcome.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component, NgModule } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  submitted: boolean = false;
+      
+  constructor(){
+    //this.submitted = this.submissionResult.submissionOk;
+    
+    console.log("submitted: ", this.submitted);
+   
+  }
 }
