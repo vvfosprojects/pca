@@ -5,7 +5,8 @@ export class DomandaOutcome {
         public fiscalCode: string,
         public pin: string,
         public messagesToTheUser: DomandaResult[],
-        public submittedAt: Date,
+        //public submittedAt: Date,
+        public submittedAt: string,
         public submissionOk: boolean
     ) {}
     

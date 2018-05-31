@@ -31,6 +31,7 @@ export class ApplicationFormComponent implements OnInit {
   vvfLicenseSelected: boolean = false;
   @Output() submissionResut: EventEmitter<DomandaOutcome> = new EventEmitter<DomandaOutcome>();
 
+
   constructor(
     private fb: FormBuilder,
     private cfCheckService: CfCheckService,
@@ -233,6 +234,8 @@ export class ApplicationFormComponent implements OnInit {
       g.value.lastName,
       g.value.birthDate,
       g.value.pin);
+
+      console.log("Going to check", a);
 
     return this.cfCheckService.cfCheck(a)
       .pipe(delay(500))
