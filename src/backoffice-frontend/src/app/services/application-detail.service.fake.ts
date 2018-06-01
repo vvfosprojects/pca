@@ -25,14 +25,15 @@ private application : ApplicationDetail[] = [
 constructor() { }
 
  public getApplication(id: string): Observable<ApplicationDetail> {
-    // let result = this.application.find(application => application.id === id);
-    // return observableOf(result);
-    let result = new ApplicationDetail('id1', 'XXXYYY55T66R222A','Mario Rossi',new Date(2016, 3, 4, 10, 10, 0),"mail@vigilfuoco.it",'3351234567', 2,'Patente 1405934',['Roma',],new Date(2016, 3, 4, 10, 10, 0), 
+     let result = this.application.find(application => application.id === id);
+     return observableOf(result); 
+     
+   /*  let result = new ApplicationDetail('id1', 'XXXYYY55T66R222A','Mario Rossi',new Date(2016, 3, 4, 10, 10, 0),"mail@vigilfuoco.it",'3351234567', 2,'Patente 1405934',['Roma',],new Date(2016, 3, 4, 10, 10, 0), 
     [
      new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'), new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'),
-    ],'172.1.3.45'
+    ],'172.1.3.45' 
  )
-    return observableOf(result);
+    return observableOf(result);*/
     
   }
 
