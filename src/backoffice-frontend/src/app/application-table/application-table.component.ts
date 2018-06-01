@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GetApplicationRowsService } from '../services/get-application-rows.service';
 import { ApplicationRow } from '../models/application-row.model';
 import { ApplicationRowPage } from '../models/application-row-page.model';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -11,14 +12,13 @@ import { ApplicationRowPage } from '../models/application-row-page.model';
 })
 export class ApplicationTableComponent implements OnInit {
 
-  @Output() showDetail: EventEmitter<ApplicationRow> = new EventEmitter();
+  @Input() application: ApplicationRow;
+
+//  @Output() showDetail: EventEmitter<ApplicationRow> = new EventEmitter();
 
   private curPage: number = 0;
   private pageSize: number = 5;
   
- 
-   
-
   private page: ApplicationRowPage;
   
   private lastPage : boolean = false;
@@ -28,7 +28,7 @@ export class ApplicationTableComponent implements OnInit {
   private totPage = ['1','2','3'];
  */
   
-  constructor(private getApplicationRowsService: GetApplicationRowsService) { }
+  constructor(private router: Router, private getApplicationRowsService: GetApplicationRowsService) { }
  
   ngOnInit() {
     this.getApplicationRowsService.getRows(this.curPage * this.pageSize, this.pageSize)
@@ -71,15 +71,11 @@ export class ApplicationTableComponent implements OnInit {
   }
 
    private mostraApplication(row: ApplicationRow) {
-        //da cambiare
-        //console.log(event.id);
-        //this.router.navigate(['/application-detail', row.id);
-        return;
-      }
-
-
-
+     console.log(row);
+     this.router.navigate(['/application-detail', row.id]);
     }
+
+}
   
   
  

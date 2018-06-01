@@ -2,6 +2,7 @@ import { AnomaliesRow } from "./anomalies-row.model";
 
 export class ApplicationDetail {
     constructor(
+        public id :string,
         public fiscalCode : string,
         public fullName: string,
         public birthDate : Date,

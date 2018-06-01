@@ -1,3 +1,12 @@
+<div class="row">
+    <div class="col-sm-4">
+        <app-statistics></app-statistics>
+    </div>
+    <div class="col-sm-8">
+        <!-- <app-application-table></app-application-table> -->
+
+
+
 <table class="table">
     <thead>
         <tr>
@@ -13,8 +22,9 @@
                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
             </td>
             <td *ngIf="!row.hasAnomalies">&nbsp;&nbsp;&nbsp;</td>
-            <td><button type="button" class="btn btn-link text-muted" (showDetail)="mostraApplication(row)">{{ row.fullName }}</button></td>
-            <td><button type="button" class="btn btn-link text-muted" (showDetail)="mostraApplication(row)">{{ row.fiscalCode }}</button></td>
+            <!-- <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button></td> -->
+            <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button></td>
+            <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fiscalCode }}</button></td>
             <td>{{ row.submittedAt | date : 'dd/MM/yyyy' }} {{ row.submittedAt | friendlyHour }}</td>
         </tr>
     </tbody>
@@ -104,8 +114,7 @@
 <!--   versione con numeri: da finire , gestire la disabilitazione dei numeri se non ci sono records.  -->
 
  </div>
-
-
- 
+</div>
+</div> 
 
  
