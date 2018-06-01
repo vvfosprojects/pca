@@ -92,7 +92,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field *ngIf="email.valid">
           <input matInput placeholder="Conferma Email" formControlName="emailConfirmation">
           <mat-error *ngIf="emailConfirmation.invalid && (emailConfirmation.dirty || emailConfirmation.touched)">
             <div *ngIf="!!emailConfirmation.errors.mismatch">
@@ -100,6 +100,11 @@
             </div>
           </mat-error>
         </mat-form-field>
+
+        <mat-form-field *ngIf="email.invalid">
+          <input matInput placeholder="Conferma Email" readonly>
+        </mat-form-field>
+
       </div>
     </div>
 
