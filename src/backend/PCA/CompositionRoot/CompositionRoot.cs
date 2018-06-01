@@ -60,6 +60,10 @@ namespace PCA.CompositionRoot
                 DomainModel.Services.Stats.IGetStatistics,
                 Persistence.MongoDB.DbServices.Stats.GetStatistics>(Lifestyle.Scoped);
 
+            container.Register<
+                DomainModel.Services.ApplicationPages.IGetActiveApplicationPage,
+                Persistence.MongoDB.DbServices.GetActiveApplicationPage>(Lifestyle.Scoped);
+
             container.Register<Persistence.MongoDB.DbServices.Stats.CountTotalActiveApplicationsEver>(Lifestyle.Scoped);
             container.Register<Persistence.MongoDB.DbServices.Stats.CountAllSubmissionErrors>(Lifestyle.Scoped);
             container.Register<Persistence.MongoDB.DbServices.Stats.CountDuplicateFiscalCodeErrors>(Lifestyle.Scoped);

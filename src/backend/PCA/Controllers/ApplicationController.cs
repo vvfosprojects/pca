@@ -18,11 +18,15 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using DomainModel;
 using DomainModel.Services;
+using DomainModel.Services.ApplicationPages;
 
 namespace PCA.Controllers
 {
@@ -30,10 +34,33 @@ namespace PCA.Controllers
     public class ApplicationController : ApiController
     {
         private readonly ISubmitApplication submitApplication;
+        private readonly IGetActiveApplicationPage GetActiveApplications;
 
-        public ApplicationController(ISubmitApplication storeApplication)
+        public ApplicationController(ISubmitApplication storeApplication,
+            IGetActiveApplicationPage GetActiveApplications)
         {
             this.submitApplication = storeApplication ?? throw new ArgumentNullException(nameof(storeApplication));
+            this.GetActiveApplications = GetActiveApplications ?? throw new ArgumentNullException(nameof(GetActiveApplications));
+        }
+
+        public async Task<object> Get(int startIndex, int howMany, bool? onlyErrors = false)
+        {
+            var applicationPage = await this.GetActiveApplications.GetAsync(startIndex, howMany, onlyErrors);
+            return new
+            {
+                StartIdx = applicationPage.StartIdx,
+                HowMany = applicationPage.HowMany,
+                TotalCount = applicationPage.TotalCount,
+                Rows = applicationPage.Applications.Select(a =>
+                    new
+                    {
+                        Id = a.Id,
+                        FullName = $"{a.LastName} {a.FirstName}",
+                        FiscalCode = a.FiscalCode,
+                        SubmittedAt = a.SubmissionTime,
+                        HasAnomalies = a.Anomalies.Any()
+                    })
+            };
         }
 
         public ApplicationSubmissionResult Post(Application application)

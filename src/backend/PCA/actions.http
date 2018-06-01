@@ -29,3 +29,9 @@ Content-Type: application/json
 
 ### Get statistics
 GET http://localhost:57156/api/statistics
+
+### Get in-error application page
+GET http://localhost:57156/api/application?startIndex=0&howMany=10
+
+### Get application page
+GET http://localhost:57156/api/application?startIndex=0&howMany=10&onlyErrors=true
