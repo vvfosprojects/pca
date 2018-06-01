@@ -50,7 +50,8 @@ private handleError(error: HttpErrorResponse) {
     [
       new DomandaResult("NetError", "Si è verificato un errore nel contattare il server. Riprovare più tardi.", "Error")
     ],
-    new Date(),
+    //new Date(),
+    null,
     false
   ));
   }

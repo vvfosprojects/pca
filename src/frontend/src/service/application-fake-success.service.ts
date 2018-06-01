@@ -23,7 +23,8 @@ export class ApplicationServiceSuccess_Fake {
         new DomandaResult("succ2", "You can update your submission using the returned PIN", "Success"),
         new DomandaResult("succ3", "Don't forget to check the official website periodically", "Success")
       ],
-      new Date(),
+      //new Date(),
+      null,
       true);
 
     return observableOf(result);

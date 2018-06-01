@@ -4,7 +4,8 @@ export class Anagrafica {
         public fiscalCode: string,
         public firstName: string,
         public lastName: string,
-        public birthDate: Date,
+        //public birthDate: Date,
+        public birthDate: string,
         public pin: string
     ) {}
 
