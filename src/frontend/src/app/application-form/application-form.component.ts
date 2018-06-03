@@ -29,8 +29,6 @@ export class ApplicationFormComponent implements OnInit {
   shouldShowPinBox = false;
   civilLicenseSelected: boolean = false;
   vvfLicenseSelected: boolean = false;
-  @Output() submissionResut: EventEmitter<DomandaOutcome> = new EventEmitter<DomandaOutcome>();
-
 
   constructor(
     private fb: FormBuilder,
@@ -235,7 +233,7 @@ export class ApplicationFormComponent implements OnInit {
       g.value.birthDate,
       g.value.pin);
 
-      console.log("Going to check", a);
+    console.log("Going to check", a);
 
     return this.cfCheckService.cfCheck(a)
       .pipe(delay(500))
@@ -266,9 +264,9 @@ export class ApplicationFormComponent implements OnInit {
 
 
   sendForm() {
-    
+
     let licenseSelected = this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta";
-    
+
     let drivingLicense =
       "Patente " + licenseSelected + " " +
       "di categoria " + this.category.value + " " +
@@ -276,7 +274,7 @@ export class ApplicationFormComponent implements OnInit {
       "rilasciata il " + this.releaseDate.value + " " +
       "valida fino al " + this.validUntil.value;
 
-      console.log("drivingLicense: ", drivingLicense);
+    console.log("drivingLicense: ", drivingLicense);
 
     let a = new Domanda(
       this.fiscalCode.value,
@@ -308,9 +306,7 @@ export class ApplicationFormComponent implements OnInit {
             });
 
         if (outcome.submissionOk)
-            this.submissionResut.emit(outcome);
-                   
-          //this.router.navigate(['/submission-result', { pin: outcome.pin, messages: outcome.messagesToTheUser, email: this.email.value}]);
+          this.router.navigate(['/submission-result']);
       });
   }
 }

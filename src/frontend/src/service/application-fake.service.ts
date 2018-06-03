@@ -12,21 +12,24 @@ import { DomandaResult } from '../app/model/domanda-result.model';
 
 @Injectable()
 export class ApplicationService_Fake {
+  private result: DomandaOutcome = new DomandaOutcome(
+    "XXXYYY99T99R999X",
+    "ABC424",
+    [
+      new DomandaResult("err1", "Your submission has not been saved", "Error"),
+      new DomandaResult("warn1", "Your submission has been accepted with reserve", "Warning"),
+      new DomandaResult("succ3", "You will receive a confirmation email", "Success")
+    ],
+    null,
+    false);
+
   constructor() { }
 
   public inserisciDomanda(d: Domanda): Observable<DomandaOutcome> {
-    let result: DomandaOutcome = new DomandaOutcome(
-      d.fiscalCode,
-      "ABC424",
-      [
-        new DomandaResult("err1", "Your submission has not been saved", "Error"),
-        new DomandaResult("warn1", "Your submission has been accepted with reserve", "Warning"),
-        new DomandaResult("succ3", "You will receive a confirmation email", "Success")
-      ],
-      //new Date(),
-      null,
-      false);
+    return observableOf(this.result);
+  }
 
-    return observableOf(result);
+  public getLastResponse(): DomandaOutcome {
+    return this.result;
   }
 }

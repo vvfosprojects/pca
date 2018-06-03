@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 import { DomandaResult } from '../model/domanda-result.model';
 import { DomandaOutcome } from '../model/domanda-outcome.model';
+import { ApplicationService } from '../../service/application.service';
 
 @Component({
   selector: 'app-submission-result',
@@ -9,40 +11,13 @@ import { DomandaOutcome } from '../model/domanda-outcome.model';
   styleUrls: ['./submission-result.component.css']
 })
 export class SubmissionResultComponent implements OnInit {
- 
-  pin: any;
-  messagesToTheUser: any;
-  
-  @Input() submissionResult: DomandaOutcome;
-  
-  //constructor(private route: ActivatedRoute, private router: Router) { }
-  constructor(private router: Router) { }
-  
+  private result: DomandaOutcome;
+
+  constructor(
+    private applicationService: ApplicationService
+  ) { }
+
   ngOnInit() {
-    this.pin = this.submissionResult.pin;
-    this.messagesToTheUser = this.submissionResult.messagesToTheUser
-    .map(r => {
-      return {
-        type: r.type,
-        msg: r.message
-      }
-    });
-    
-    // this.pin = this.route.snapshot.paramMap.get('pin');
-    // this.emailAddress = this.route.snapshot.paramMap.get('email');
-
-    // //non legge array
-    // this.messagesToTheUser = this.route.snapshot.paramMap.getAll('messages');
-    // console.log("messages:", this.messagesToTheUser);
-
-    // this.route.paramMap.subscribe(params => {
-    //   this.messagesToTheUser=params.getAll('messages');
-    // });
-    // console.log("messages 2:", this.messagesToTheUser);
-    
-   }
-
-  goHome(): void {
-    this.router.navigate(['/application-form']);
+    this.result = this.applicationService.getLastResponse();
   }
 }

@@ -7,12 +7,6 @@ import { DomandaOutcome } from './model/domanda-outcome.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  submitted: boolean = false;
-      
   constructor(){
-    //this.submitted = this.submissionResult.submissionOk;
-    
-    console.log("submitted: ", this.submitted);
-   
   }
 }

@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 
 export const appRoutes: Routes = [
     { path: 'application-form', component: ApplicationFormComponent },
-    { path: 'submission-result',      component: SubmissionResultComponent },
+    { path: 'submission-result', component: SubmissionResultComponent },
     { path: '',
       redirectTo: '/application-form',
       pathMatch: 'full'
