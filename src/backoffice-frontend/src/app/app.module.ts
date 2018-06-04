@@ -26,11 +26,7 @@ const ROUTES = [
  path: 'application-detail/:id', 
    component: ApplicationDetailComponent
   }];
- /* {
-   path: 'application-detail', 
-   component: ApplicationDetailComponent, children: [{
-    path: ':id',  component: ApplicationDetailComponent  
-  }] */
+
   /* { path: '**', 
    component: PageNotFoundComponent 
  } */
@@ -50,8 +46,7 @@ const ROUTES = [
     NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES),
-    
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [
     { provide: ApplicationDetailService, useClass: ApplicationDetailServiceFake },

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of as observableOf } from 'rxjs';
-// import { Observable } from "rxjs/Observable";
-// import 'rxjs/add/observable/of';
 
 import { ApplicationDetail} from '../models/application-detail.model';
 import { ApplicationRow } from '../models/application-row.model';
@@ -62,16 +60,5 @@ private fakeRows: ApplicationRow[] = [
     return observableOf(result);
   }
 
-/*   public getApplication(id: string): Observable<ApplicationDetail> {
-      return observableOf(this.fakeRows
-       // (+) before `id` turns the string into a number
-       .find(application => application.id === +id));
-  } */
-
- /*  public getApplication(id: string): Observable<ApplicationDetail> {
-    return observableOf(this.fakeRows
-     // (+) before `id` turns the string into a number
-     .find(application => application.id === +id));
-}  */
 
 }

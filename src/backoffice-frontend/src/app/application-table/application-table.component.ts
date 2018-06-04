@@ -14,7 +14,6 @@ export class ApplicationTableComponent implements OnInit {
 
   @Input() application: ApplicationRow;
 
-//  @Output() showDetail: EventEmitter<ApplicationRow> = new EventEmitter();
 
   private curPage: number = 0;
   private pageSize: number = 5;

@@ -7,34 +7,33 @@ import { GetApplicationRowsService } from '../services/get-application-rows.serv
 import { ApplicationRow } from '../models/application-row.model';
 import { ApplicationDetailService } from '../services/application-detail.service';
 import { ApplicationDetailServiceFake } from '../services/application-detail.service.fake';
-// import { switchMap } from 'rxjs/operators';
-// import 'rxjs/add/operator/switchMap';
-// import { Observable } from 'rxjs';
-// import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-application-detail',
   templateUrl: './application-detail.component.html',
-  styleUrls: ['./application-detail.component.css']
+  styleUrls: ['./application-detail.component.css'],
+  providers: [ ApplicationDetailServiceFake ]
 })
 export class ApplicationDetailComponent implements OnInit {
-
+ idapplication:string;
   @Input() application: ApplicationDetail;
 
-  constructor(private route: ActivatedRoute, private router: Router,private applicationDetailServiceFake: ApplicationDetailServiceFake
+  constructor(private route: ActivatedRoute, private router: Router,private applicationDetailServiceFake: ApplicationDetailServiceFake,
     ) {
-      
+      this.idapplication = this.route.snapshot.paramMap.get('id');
      }
 
   ngOnInit() {
-    this.application.id = this.route.snapshot.paramMap.get('id');
-      this.getDettaglioApplication(this.application.id);
-    }
+    this.route.paramMap.subscribe(params => {
+      this.idapplication = params.get('id');
+    })
+     this.getDettaglioApplication(this.idapplication);
+   }
   
   
   getDettaglioApplication(id:string) {
-  
-   this.applicationDetailServiceFake.getApplication(id)
+
+    this.applicationDetailServiceFake.getApplication(id)
     .subscribe((application: ApplicationDetail) => this.application = application);
    
   }

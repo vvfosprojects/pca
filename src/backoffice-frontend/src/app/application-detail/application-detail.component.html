@@ -8,34 +8,29 @@
    <div class="col-4">
       <dl> 
           <dt>Codice Fiscale</dt>   
-          <!-- <DD>{{ application.fiscalCode }}</DD> -->
-          <dd>Valore </dd>  
+           <DD>{{ application.fiscalCode }}</DD>
            <BR>  
        <DT>Telefono</DT>
-         <!-- <DD>{{ application.phoneNumber }}</DD> -->
-         <DD>Valore </DD>
+         <DD>{{ application.phoneNumber }}</DD>
+
      </dl>
   </div>
   <div class="col-4">
      <dl>
        <dt>Nominativo</dt>
-      <!-- <DD>{{ application.fullName }}</DD> -->
-        <dd>Valore </dd>
+      <DD>{{ application.fullName }}</DD>
       <BR>  
       <DT>Email</DT>
-        <DD>Valore </DD>
-        <!-- <DD>{{ application.eMail }}</DD> -->
+       <DD>{{ application.eMail }}</DD> 
      </dl>
   </div>
   <div class="col-4">
      <dl>
         <dt>Data di nascita</dt>
-          <!-- <DD>{{ application.birthDate }}</DD> -->
-          <dd>Valore </dd>
+          <DD>{{ application.birthDate | date : 'dd/MM/yyyy' }}</DD> 
         <BR>  
         <DT>Patente di Guida</DT>
-          <DD>Valore </DD>
-          <!-- <DD>{{ application.drivingLicense }}</DD>     -->
+          <DD>{{ application.drivingLicense }}</DD>   
      </dl>
   </div>   
   </div>
@@ -49,22 +44,19 @@
     <div class="col-4">
        <dl> 
          <DT>Giorni lavorativi</DT>
-          <DD>Valore </DD>
-            <!-- <DD>{{ application.workingDays }}</DD> -->
+            <DD>{{ application.workingDays }}</DD> 
       </dl>
    </div>
    <div class="col-4">
       <dl>
           <DT>Unità Operative</DT>
-          <DD>Valore </DD>
-            <!-- <DD>{{ application.businessUnits }}</DD> -->
+            <DD>{{ application.businessUnits }}</DD>
       </dl>
    </div>
    <div class="col-4">
       <dl>
           <DT>Data invio</DT>
-          <DD>Valore </DD>
-            <!-- <DD>{{ application.submissionTime }}</DD> -->
+            <DD>{{ application.submissionTime | date : 'dd/MM/yyyy'}}</DD>
       </dl>
    </div>   
    </div>
@@ -75,19 +67,29 @@
    </div>   
    <BR> 
    <div class="row">
-     <div class="col-4">
-        <dl> 
-          <dt>Data rilevazione</dt>   
-            <!-- <DD>{{ application.detectionTime }}</DD> -->
-            <dd>Valore </dd>
-        </dl> 
-     </div>
-     <div class="col-8"> 
-       <dl>
-          <DT>Informazioni</DT>
-            <!-- <DD>{{ application.info }}</DD>   -->
-            <DD>Valore </DD>
+      <div class="col-4" >
+         <dl> 
+           <dt>Data rilevazione</dt>   
+         </dl> 
+      </div>
+      <div class="col-8"> 
+        <dl>
+           <DT>Informazioni</DT>
         </dl>  
-     </div>   
-  </div>   
-   
+      </div>   
+   </div>   
+   <div class="row" *ngFor="let i of application.anomaly">
+      <div class="col-4" >
+        <DD>{{ i.detectionTime | date : 'dd/MM/yyyy'}}</DD>
+      </div>
+      <div class="col-8"> 
+        <DD>{{ i.info }}</DD>   
+      </div>   
+   </div>   
+  <div>
+    <div  class="footer text-right h2">
+        <a class='freccia-link' onclick="history.back()">
+          <i class="tasto-back fa fa-arrow-circle-o-left" aria-hidden="true" title="Back"></i>
+        </a>
+      </div>
+  </div> 
