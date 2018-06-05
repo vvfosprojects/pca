@@ -61,14 +61,6 @@ export class ApplicationFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChange($event) {
-    console.log($event);
-  }
-
-  sendAnag() {
-    console.log(this.applicationForm.value.personalData);
-  }
-
   createForm() {
     this.applicationForm = this.fb.group({
       personalData: this.fb.group({
@@ -252,8 +244,6 @@ export class ApplicationFormComponent implements OnInit {
       g.value.lastName,
       g.value.birthDate,
       g.value.pin);
-
-    console.log("Going to check", a);
 
     return this.cfCheckService.cfCheck(a)
       .pipe(delay(500))
