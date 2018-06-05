@@ -274,8 +274,6 @@ export class ApplicationFormComponent implements OnInit {
       "rilasciata il " + this.releaseDate.value + " " +
       "valida fino al " + this.validUntil.value;
 
-    console.log("drivingLicense: ", drivingLicense);
-
     let a = new Domanda(
       this.fiscalCode.value,
       this.firstName.value,
@@ -287,8 +285,6 @@ export class ApplicationFormComponent implements OnInit {
       drivingLicense,
       this.pin.value
     );
-
-    console.log("Going to insert", a);
 
     return this.applicationService.inserisciDomanda(a)
       .subscribe(outcome => {
