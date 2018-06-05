@@ -44,6 +44,7 @@
     <Compile Include="ApplicationSubmissionResult.cs" />
     <Compile Include="Application.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultMessage.cs" />
     <Compile Include="Services\ApplicationPages\ApplicationPage.cs" />
     <Compile Include="Services\IActiveApplicationExistsByFiscalCode.cs" />
     <Compile Include="Services\IActiveApplicationExistsByFiscalCodeAndPin.cs" />

@@ -1,4 +1,6 @@
 <section class="mat-typography center">
+  
+  <h1>{{ result.pin }}</h1>
 
   <p *ngFor="let msg of result.messagesToTheUser">
     <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
@@ -7,17 +9,6 @@
     {{ msg.message }}
   </p>
 
-  <h3>Congratulazioni! La tua domanda è stata acquisita con il PIN indicato di sotto.</h3>
-  <h1>{{ result.pin }}</h1>
-
-  <h3>Conserva il PIN in un posto sicuro. Ti servirà qualora volessi aggiornare la tua domanda.</h3>
-
-  <br>
-  <h3>E' stata inviata un'email di conferma all'indirizzo indicato in fase di inserimento della domanda.</h3>
-
-
-
-  <br>
   <div class="button-row">
     <a href="javascript:window.print()">
       <button mat-raised-button color="primary">Stampa la pagina</button>

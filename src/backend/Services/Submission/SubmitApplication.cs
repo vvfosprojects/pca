@@ -18,6 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using DomainModel;
 using DomainModel.Services;
@@ -65,26 +66,48 @@ namespace Services.Submission
             var pinIsEmpty = string.IsNullOrWhiteSpace(application.Pin);
             var pinIsValid = !pinIsEmpty && sameFiscalCodeActiveApplications.Any(a => a.Pin == application.Pin);
 
-            string userMessage;
+            var userMessages = new List<ResultMessage>();
             if (pinIsEmpty)
             {
                 application.Pin = this.pinBuilder.Build();
-                userMessage = "La domanda di partecipazione è stata correttamente acquisita.";
+                userMessages.Add(new ResultMessage(
+                    "storeOk",
+                    "La domanda di partecipazione è stata correttamente acquisita.",
+                    "Success"));
             }
             else
             if (!pinIsValid)
             {
                 application.Pin = this.pinBuilder.Build();
-                userMessage = "La domanda di partecipazione è stata correttamente acquisita con pin indicato.";
+                userMessages.Add(new ResultMessage(
+                    "storeOk",
+                    "La domanda di partecipazione è stata correttamente acquisita.",
+                    "Success"));
+                userMessages.Add(new ResultMessage(
+                    "newPin",
+                    "Annota il nuovo PIN, che potrai usare se desideri aggiornare la domanda.",
+                    "Warning"));
             }
             else
             {
-                userMessage = "La domanda di partecipazione è stata correttamente aggiornata.";
+                userMessages.Add(new ResultMessage(
+                    "updateOk",
+                    "La domanda di partecipazione è stata correttamente aggiornata.",
+                    "Success"));
+                userMessages.Add(new ResultMessage(
+                    "pinUnchanged",
+                    "Il PIN resta identico a quello già in tuo possesso.",
+                    "Success"));
             }
+
+            userMessages.Add(new ResultMessage(
+                    "pinUnchanged",
+                    "Conserva il PIN in un posto sicuro.Ti servirà qualora volessi aggiornare la tua domanda.",
+                    "Success"));
 
             this.storeApplication.Store(application);
 
-            return new ApplicationSubmissionResult(fiscalCode, application.Pin, new string[] { userMessage }, DateTime.UtcNow, true);
+            return new ApplicationSubmissionResult(fiscalCode, application.Pin, userMessages.ToArray(), DateTime.UtcNow, true);
         }
     }
 }

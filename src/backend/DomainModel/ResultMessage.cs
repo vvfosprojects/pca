@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="ApplicationSubmissionResult.cs" company="CNVVF">
+// <copyright file="ResultMessage.cs" company="CNVVF">
 // Copyright (C) 2018 - CNVVF
 //
 // This file is part of Public Competition Application (PCA).
@@ -21,21 +21,17 @@ using System;
 
 namespace DomainModel
 {
-    public class ApplicationSubmissionResult
+    public class ResultMessage
     {
-        public ApplicationSubmissionResult(string fiscalCode, string pin, ResultMessage[] messagesToTheUser, DateTime submittedAt, bool submissionOk)
+        public ResultMessage(string code, string message, string type)
         {
-            this.FiscalCode = fiscalCode ?? throw new ArgumentNullException(nameof(fiscalCode));
-            this.Pin = pin ?? throw new ArgumentNullException(nameof(pin));
-            this.MessagesToTheUser = messagesToTheUser ?? throw new ArgumentNullException(nameof(messagesToTheUser));
-            this.SubmittedAt = submittedAt;
-            this.SubmissionOk = submissionOk;
+            Code = code ?? throw new ArgumentNullException(nameof(code));
+            Message = message ?? throw new ArgumentNullException(nameof(message));
+            Type = type ?? throw new ArgumentNullException(nameof(type));
         }
 
-        public string FiscalCode { get; }
-        public string Pin { get; }
-        public ResultMessage[] MessagesToTheUser { get; }
-        public DateTime SubmittedAt { get; }
-        public bool SubmissionOk { get; }
+        public string Code { get; }
+        public string Message { get; }
+        public string Type { get; }
     }
 }
