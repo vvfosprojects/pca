@@ -29,6 +29,7 @@ export class ApplicationFormComponent implements OnInit {
   shouldShowPinBox = false;
   civilLicenseSelected: boolean = false;
   vvfLicenseSelected: boolean = false;
+  submitting: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -286,10 +287,10 @@ export class ApplicationFormComponent implements OnInit {
       this.pin.value
     );
 
+    this.submitting = true;
+
     return this.applicationService.inserisciDomanda(a)
       .subscribe(outcome => {
-        console.log("Service returned", outcome);
-
         if (outcome.messagesToTheUser.length == 0)
           this.personalDataValidationMessages = null;
         else
@@ -303,6 +304,8 @@ export class ApplicationFormComponent implements OnInit {
 
         if (outcome.submissionOk)
           this.router.navigate(['/submission-result']);
+
+        this.submitting = false;
       });
   }
 }
