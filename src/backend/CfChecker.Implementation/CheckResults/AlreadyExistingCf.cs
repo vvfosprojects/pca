@@ -23,7 +23,7 @@ namespace Services.CfChecker.Impl.CheckResults
     {
         public string Code => "AlreadyExistingCf";
 
-        public string Message => "Se stai modificando una precedente iscrizione, inserisci nella casella accanto il PIN che ti è stato fornito dal sistema.";
+        public string Message => "Se stai modificando una precedente iscrizione, inserisci nella casella accanto il PIN che ti è stato fornito dal sistema. Se invece è la tua prima iscrizione, lascia pure la casella vuota.";
 
         public ResultType Type => ResultType.Warning;
     }
