@@ -2,6 +2,8 @@ import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { of as observableOf, Observable, timer } from 'rxjs';
 import { map, filter, delay, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { CfCheckService } from '../../service/cf-check.service';
 import { Anagrafica } from '../model/anagrafica.model';
@@ -13,18 +15,35 @@ import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
 import { DomandaOutcome } from '../model/domanda-outcome.model';
 
+// Depending on whether rollup is used, moment needs to be imported differently.
+// Since Moment.js doesn't have a default export, we normally need to import using the `* as`
+// syntax. However, rollup creates a synthetic default module and we thus need to import it using
+// the `default as` syntax.
+import * as moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+//import { default as _rollupMoment } from 'moment';
+
+//const moment = _rollupMoment || _moment;
+
 @Component({
   selector: 'app-application-form',
   templateUrl: './application-form.component.html',
-  styleUrls: ['./application-form.component.css']
+  styleUrls: ['./application-form.component.css'],
+  providers: [
+    // `MomentDateAdapter` and `MAT_MOMENT_DATE_FORMATS` can be automatically provided by importing
+    // `MatMomentDateModule` in your applications root module. We provide it at the component level
+    // here, due to limitations of our example generation script.
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
+  ],
 })
 export class ApplicationFormComponent implements OnInit {
   [x: string]: any;
   buGroups = BuGroups;
   applicationForm: FormGroup;
-  startDate = new Date(1970, 0, 1);
-  minDate = new Date(1928, 0, 1);
-  maxDate = new Date(2002, 0, 1);
+  startDate = moment([1970, 0, 1]);
+  minDate = moment([1930, 0, 1]);
+  maxDate = moment([2004, 0, 1]);
   personalDataValidationMessages = null;
   shouldShowPinBox = false;
   civilLicenseSelected: boolean = false;

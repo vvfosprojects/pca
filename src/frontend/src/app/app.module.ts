@@ -70,10 +70,15 @@ const APPROUTES = appRoutes;
     MatBadgeModule
   ],
   providers: [
+    { provide: LOCALE_ID, useValue: 'it-IT' },
+
     //{ provide: CfCheckService, useClass: CfCheckService_Fake },
     { provide: CfCheckService, useClass: CfCheckServiceSuccess_Fake },
+    //{ provide: CfCheckService, useClass: CfCheckService },
+
     //{ provide: ApplicationService, useClass: ApplicationService_Fake },
-    { provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },    
+    { provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },
+    //{ provide: ApplicationService, useClass: ApplicationService },    
   ],
   bootstrap: [AppComponent]
 })
