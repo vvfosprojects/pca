@@ -6,7 +6,7 @@ import { map, filter, delay, debounceTime, distinctUntilChanged, switchMap } fro
 import { CfCheckService } from '../../service/cf-check.service';
 import { Anagrafica } from '../model/anagrafica.model';
 import { CfCheckOutcome } from '../model/cf-check-outcome.model';
-import { BUGROUPS } from './bu-groups';
+import { BuGroups } from './bu-groups';
 import { Domanda } from '../model/domanda.model';
 import { ApplicationService } from '../../service/application.service';
 import { Router } from '@angular/router';
@@ -20,7 +20,7 @@ import { DomandaOutcome } from '../model/domanda-outcome.model';
 })
 export class ApplicationFormComponent implements OnInit {
   [x: string]: any;
-  buGroups = BUGROUPS;
+  buGroups = BuGroups;
   applicationForm: FormGroup;
   startDate = new Date(1970, 0, 1);
   minDate = new Date(1928, 0, 1);

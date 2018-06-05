@@ -1,4 +1,4 @@
-export const BUGROUPS = [
+export const BuGroups = [
     {
         name: 'Lazio',
         bu: [
