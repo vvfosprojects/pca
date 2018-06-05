@@ -7,7 +7,7 @@ import { Domanda } from '../app/model/domanda.model';
 import { DomandaOutcome } from '../app/model/domanda-outcome.model';
 import { DomandaResult } from '../app/model/domanda-result.model';
 
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { of as observableOf, Observable, throwError } from 'rxjs';
 
 const BACKENDURL = environment.backendUrl;
@@ -26,14 +26,14 @@ export class ApplicationService {
   constructor(private http: HttpClient) { }
 
   public inserisciDomanda(domanda: Domanda): Observable<DomandaOutcome> {
-    let resultObs = this.http.post<DomandaOutcome>(BACKENDURL + this.applicationUrl, domanda, httpOptions)
+    return this.http.post<DomandaOutcome>(BACKENDURL + this.applicationUrl, domanda, httpOptions)
+      .pipe(map(result => {
+        this.lastResponse = result;
+        return result;
+      }))
       .pipe(
         catchError(error => this.handleError(error))
       );
-
-    resultObs.subscribe(r => this.lastResponse = r);
-
-    return resultObs;
   }
 
   public getLastResponse(): DomandaOutcome {
