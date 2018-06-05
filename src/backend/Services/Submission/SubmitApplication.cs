@@ -84,7 +84,7 @@ namespace Services.Submission
 
             this.storeApplication.Store(application);
 
-            return new ApplicationSubmissionResult(fiscalCode, application.Pin, new string[] { userMessage }, DateTime.UtcNow);
+            return new ApplicationSubmissionResult(fiscalCode, application.Pin, new string[] { userMessage }, DateTime.UtcNow, true);
         }
     }
 }

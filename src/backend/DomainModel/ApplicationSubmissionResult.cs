@@ -23,17 +23,19 @@ namespace DomainModel
 {
     public class ApplicationSubmissionResult
     {
-        public ApplicationSubmissionResult(string fiscalCode, string pin, string[] messagesToTheUser, DateTime submittedAt)
+        public ApplicationSubmissionResult(string fiscalCode, string pin, string[] messagesToTheUser, DateTime submittedAt, bool submissionOk)
         {
-            FiscalCode = fiscalCode ?? throw new ArgumentNullException(nameof(fiscalCode));
-            Pin = pin ?? throw new ArgumentNullException(nameof(pin));
-            MessagesToTheUser = messagesToTheUser ?? throw new ArgumentNullException(nameof(messagesToTheUser));
-            SubmittedAt = submittedAt;
+            this.FiscalCode = fiscalCode ?? throw new ArgumentNullException(nameof(fiscalCode));
+            this.Pin = pin ?? throw new ArgumentNullException(nameof(pin));
+            this.MessagesToTheUser = messagesToTheUser ?? throw new ArgumentNullException(nameof(messagesToTheUser));
+            this.SubmittedAt = submittedAt;
+            this.SubmissionOk = submissionOk;
         }
 
         public string FiscalCode { get; }
         public string Pin { get; }
         public string[] MessagesToTheUser { get; }
         public DateTime SubmittedAt { get; }
+        public bool SubmissionOk { get; }
     }
 }
