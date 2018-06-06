@@ -242,7 +242,7 @@ export class ApplicationFormComponent implements OnInit {
       g.value.fiscalCode,
       g.value.firstName,
       g.value.lastName,
-      g.value.birthDate,
+      g.value.birthDate.format("YYYY/MM/DD"),
       g.value.pin);
 
     return this.cfCheckService.cfCheck(a)
@@ -281,14 +281,14 @@ export class ApplicationFormComponent implements OnInit {
       "Patente " + licenseSelected + " " +
       "di categoria " + this.category.value + " " +
       "n. " + this.number.value + " " +
-      "rilasciata il " + this.releaseDate.value + " " +
-      "valida fino al " + this.validUntil.value;
+      "rilasciata il " + this.releaseDate.value.format("DD/MM/YYYY") + " " +
+      "valida fino al " + this.validUntil.value.format("DD/MM/YYYY");
 
     let a = new Domanda(
       this.fiscalCode.value,
       this.firstName.value,
       this.lastName.value,
-      this.birthDate.value,
+      this.birthDate.value.format("YYYY/MM/DD"),
       this.email.value,
       this.businessUnits.value,
       this.workedDays.value,
