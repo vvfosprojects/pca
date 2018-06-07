@@ -8,12 +8,10 @@ import { Statistics } from '../models/statistics.model';
   styleUrls: ['./statistics.component.css']
 })
 export class StatisticsComponent implements OnInit {
-  private statistics: Statistics;
+  private statistics: Statistics = null;
 
   constructor(private statisticsService: StatisticsService) {
-    this.statisticsService.getStatistics().subscribe(s => {
-        this.statistics = s;
-    });
+    this.statisticsService.getStatistics().subscribe(s => this.statistics = s);
   }
 
   ngOnInit() {
