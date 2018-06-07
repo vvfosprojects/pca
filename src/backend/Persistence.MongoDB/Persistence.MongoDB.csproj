@@ -62,6 +62,7 @@
     <Compile Include="DbContext.cs" />
     <Compile Include="DbServices\ActiveApplicationExistsByFiscalCodeAndPin.cs" />
     <Compile Include="DbServices\ActiveApplicationExistsByFiscalCode.cs" />
+    <Compile Include="DbServices\GetActiveApplicationById.cs" />
     <Compile Include="DbServices\GetActiveApplicationPage.cs" />
     <Compile Include="DbServices\GetActiveApplicationsByFiscalCode.cs" />
     <Compile Include="DbServices\Stats\CountAllSubmissionErrors.cs" />

@@ -35,3 +35,6 @@ GET http://localhost:57156/api/application?startIndex=0&howMany=10
 
 ### Get application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10&onlyErrors=true
+
+### Get application page
+GET http://localhost:57156/api/application?id=ABCD

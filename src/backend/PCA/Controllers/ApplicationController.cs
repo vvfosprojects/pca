@@ -35,12 +35,15 @@ namespace PCA.Controllers
     {
         private readonly ISubmitApplication submitApplication;
         private readonly IGetActiveApplicationPage GetActiveApplications;
+        private readonly IGetActiveApplicationById getActiveApplicationById;
 
         public ApplicationController(ISubmitApplication storeApplication,
-            IGetActiveApplicationPage GetActiveApplications)
+            IGetActiveApplicationPage getActiveApplications,
+            IGetActiveApplicationById getActiveApplicationById)
         {
             this.submitApplication = storeApplication ?? throw new ArgumentNullException(nameof(storeApplication));
-            this.GetActiveApplications = GetActiveApplications ?? throw new ArgumentNullException(nameof(GetActiveApplications));
+            this.GetActiveApplications = getActiveApplications ?? throw new ArgumentNullException(nameof(getActiveApplications));
+            this.getActiveApplicationById = getActiveApplicationById ?? throw new ArgumentNullException(nameof(getActiveApplicationById));
         }
 
         public async Task<object> Get(int startIndex, int howMany, bool? onlyErrors = false)
@@ -61,6 +64,11 @@ namespace PCA.Controllers
                         HasAnomalies = a.Anomalies.Any()
                     })
             };
+        }
+
+        public object Get(string id)
+        {
+            return this.getActiveApplicationById.Get(id);
         }
 
         public ApplicationSubmissionResult Post(Application application)

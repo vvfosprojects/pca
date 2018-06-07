@@ -49,6 +49,7 @@
     <Compile Include="Services\IActiveApplicationExistsByFiscalCode.cs" />
     <Compile Include="Services\IActiveApplicationExistsByFiscalCodeAndPin.cs" />
     <Compile Include="Services\ApplicationPages\IGetActiveApplicationPage.cs" />
+    <Compile Include="Services\IGetActiveApplicationById.cs" />
     <Compile Include="Services\IGetActiveApplicationsByFiscalCode.cs" />
     <Compile Include="Services\IPinBuilder.cs" />
     <Compile Include="Services\IStoreApplication.cs" />
