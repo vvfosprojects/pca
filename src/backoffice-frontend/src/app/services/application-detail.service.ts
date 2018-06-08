@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment';
@@ -13,14 +13,11 @@ const APIURL = environment.apiUrl;
 export class ApplicationDetailService {
   constructor(private http: HttpClient) { }
 
-  public getApplication(startIndex: number, howMany: number): Observable<ApplicationDetail> {
-    let action = "/applicationDetail";
+  public getApplication(id: string): Observable<ApplicationDetail> {
+    const action = "/application";
+    const params = new HttpParams().set('id', id);
 
- /*    let params = {
-      id: id
-     }
- */
-    return this.http.get<ApplicationDetail>(APIURL + action);
+    return this.http.get<ApplicationDetail>(APIURL + action, { params });
   }
 }
 

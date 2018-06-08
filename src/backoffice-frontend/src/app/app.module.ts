@@ -37,8 +37,13 @@ import { routes } from './routes';
   ],
   providers: [
     { provide: ApplicationDetailService, useClass: ApplicationDetailServiceFake },
+    // { provide: ApplicationDetailService, useClass: ApplicationDetailService },
+    
     { provide: StatisticsService, useClass: StatisticsServiceFake },
+    // { provide: StatisticsService, useClass: StatisticsService },
+    
     { provide: GetApplicationRowsService, useClass: GetApplicationRowsServiceFake },
+    // { provide: GetApplicationRowsService, useClass: GetApplicationRowsService },
 
   ],
   bootstrap: [AppComponent]

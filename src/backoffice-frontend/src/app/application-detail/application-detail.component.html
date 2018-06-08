@@ -1,95 +1,107 @@
-<BR>
-<BR>
- <div class="row">
-     <h5>Dati Anagrafici</h5> 
-  </div>   
-  <BR>
-  <div class="row">
-   <div class="col-4">
-      <dl> 
-          <dt>Codice Fiscale</dt>   
-           <DD>{{ application.fiscalCode }}</DD>
-           <BR>  
-       <DT>Telefono</DT>
-         <DD>{{ application.phoneNumber }}</DD>
+<div *ngIf="!application">
+  <i class="fa fa-spinner fa-pulse fa-fw fa-3x"></i>
+</div>
 
-     </dl>
+<div *ngIf="!!application">
+  <div class="card m-3">
+    <div class="card-header">
+      Dati Anagrafici
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <dl>
+            <dt>Codice Fiscale</dt>
+            <DD>{{ application.fiscalCode }}</DD>
+            <BR>
+            <DT>Telefono</DT>
+            <DD>{{ application.phoneNumber }}</DD>
+
+          </dl>
+        </div>
+        <div class="col-4">
+          <dl>
+            <dt>Nominativo</dt>
+            <DD>{{ application.fullName }}</DD>
+            <BR>
+            <DT>Email</DT>
+            <DD>{{ application.email }}</DD>
+          </dl>
+        </div>
+        <div class="col-4">
+          <dl>
+            <dt>Data di nascita</dt>
+            <DD>{{ application.birthDate | date : 'dd/MM/yyyy' }}</DD>
+            <BR>
+            <DT>Patente di Guida</DT>
+            <DD>{{ application.drivingLicense }}</DD>
+          </dl>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-4">
-     <dl>
-       <dt>Nominativo</dt>
-      <DD>{{ application.fullName }}</DD>
-      <BR>  
-      <DT>Email</DT>
-       <DD>{{ application.eMail }}</DD> 
-     </dl>
-  </div>
-  <div class="col-4">
-     <dl>
-        <dt>Data di nascita</dt>
-          <DD>{{ application.birthDate | date : 'dd/MM/yyyy' }}</DD> 
-        <BR>  
-        <DT>Patente di Guida</DT>
-          <DD>{{ application.drivingLicense }}</DD>   
-     </dl>
-  </div>   
-  </div>
-  <BR>
-  <BR>
-  <div class="row">
-      <h5>Info Domanda</h5> 
-   </div>   
-   <BR> 
-   <div class="row">
-    <div class="col-4">
-       <dl> 
-         <DT>Giorni lavorativi</DT>
-            <DD>{{ application.workingDays }}</DD> 
-      </dl>
-   </div>
-   <div class="col-4">
-      <dl>
-          <DT>Unità Operative</DT>
+
+  <div class="card m-3">
+    <div class="card-header">
+      Info domanda
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <dl>
+            <DT>Giorni lavorativi</DT>
+            <DD>{{ application.workingDays }}</DD>
+          </dl>
+        </div>
+        <div class="col-4">
+          <dl>
+            <DT>Unità Operative</DT>
             <DD>{{ application.businessUnits }}</DD>
-      </dl>
-   </div>
-   <div class="col-4">
-      <dl>
-          <DT>Data invio</DT>
-            <DD>{{ application.submissionTime | date : 'dd/MM/yyyy'}}</DD>
-      </dl>
-   </div>   
-   </div>
-   <BR>
-   <BR>
-   <div class="row">
-      <h5>Anomalie</h5> 
-   </div>   
-   <BR> 
-   <div class="row">
-      <div class="col-4" >
-         <dl> 
-           <dt>Data rilevazione</dt>   
-         </dl> 
+          </dl>
+        </div>
+        <div class="col-4">
+          <dl>
+            <DT>Data invio</DT>
+            <DD>{{ application.submissionTime | date : 'dd/MM/yyyy HH:mm:ss'}}</DD>
+          </dl>
+        </div>
+      </div>    
+    </div>
+  </div>
+
+  <div class="card m-3">
+    <div class="card-header">
+      Anomalie
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-4">
+          <dl>
+            <dt>Data rilevazione</dt>
+          </dl>
+        </div>
+        <div class="col-8">
+          <dl>
+            <DT>Informazioni</DT>
+          </dl>
+        </div>
       </div>
-      <div class="col-8"> 
-        <dl>
-           <DT>Informazioni</DT>
-        </dl>  
-      </div>   
-   </div>   
-   <div class="row" *ngFor="let i of application.anomaly">
-      <div class="col-4" >
-        <DD>{{ i.detectionTime | date : 'dd/MM/yyyy'}}</DD>
+      <div class="row" *ngFor="let i of application.anomaly">
+        <div class="col-4">
+          <DD>{{ i.detectionTime | date : 'dd/MM/yyyy'}}</DD>
+        </div>
+        <div class="col-8">
+          <DD>{{ i.info }}</DD>
+        </div>
       </div>
-      <div class="col-8"> 
-        <DD>{{ i.info }}</DD>   
-      </div>   
-   </div>   
+    </div>
+  </div>
+
   <div>
-    <div  class="footer text-right h2">
-        <a class='freccia-link' onclick="history.back()">
-          <i class="tasto-back fa fa-arrow-circle-o-left" aria-hidden="true" title="Back"></i>
-        </a>
-      </div>
-  </div> 
+    <div class="footer text-right h2">
+      <a class='freccia-link' onclick="history.back()">
+        <i class="tasto-back fa fa-arrow-circle-o-left" aria-hidden="true" title="Back"></i>
+      </a>
+    </div>
+  </div>
+</div>

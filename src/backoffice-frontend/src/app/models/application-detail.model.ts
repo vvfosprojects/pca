@@ -6,7 +6,7 @@ export class ApplicationDetail {
         public fiscalCode : string,
         public fullName: string,
         public birthDate : Date,
-        public eMail: string,
+        public email: string,
         public phoneNumber: string,
         public workingDays : number,
         public drivingLicense: string,

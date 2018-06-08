@@ -68,7 +68,26 @@ namespace PCA.Controllers
 
         public object Get(string id)
         {
-            return this.getActiveApplicationById.Get(id);
+            var application = this.getActiveApplicationById.Get(id);
+            return new
+            {
+                id = application.Id,
+                fiscalCode = application.FiscalCode,
+                fullName = $"{application.LastName} {application.FirstName}",
+                birthDate = application.BirthDate,
+                email = application.Email,
+                phoneNumber = "N/A",
+                workingDays = application.WorkingDays,
+                drivingLicense = application.DrivingLicense,
+                businessUnits = string.Join(", ", application.BusinessUnits),
+                submissionTime = application.SubmissionTime,
+                anomaly = application.Anomalies.Select(a => new
+                {
+                    detectionTime = a.DetectionTime,
+                    info = a.Info
+                }),
+                sourceIp = application.SourceIp
+            };
         }
 
         public ApplicationSubmissionResult Post(Application application)

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ApplicationDetail} from '../models/application-detail.model';
+import { ApplicationDetail } from '../models/application-detail.model';
 import { FriendlyHourPipe } from '../shared/pipes/friendly-hour.pipe';
 
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
@@ -12,36 +12,28 @@ import { ApplicationDetailServiceFake } from '../services/application-detail.ser
   selector: 'app-application-detail',
   templateUrl: './application-detail.component.html',
   styleUrls: ['./application-detail.component.css'],
-  providers: [ ApplicationDetailServiceFake ]
+  providers: [ApplicationDetailServiceFake]
 })
 export class ApplicationDetailComponent implements OnInit {
- idapplication:string;
-  @Input() application: ApplicationDetail;
-
-  constructor(private route: ActivatedRoute, private router: Router,private applicationDetailServiceFake: ApplicationDetailServiceFake,
-    ) {
-      this.idapplication = this.route.snapshot.paramMap.get('id');
-     }
+  private application: ApplicationDetail;
+  
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private applicationDetailService: ApplicationDetailService) {
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.idapplication = params.get('id');
-    })
-     this.getDettaglioApplication(this.idapplication);
-   }
-  
-  
-  getDettaglioApplication(id:string) {
-
-    this.applicationDetailServiceFake.getApplication(id)
-    .subscribe((application: ApplicationDetail) => this.application = application);
-   
+      const id = params.get('id');
+      this.applicationDetailService.getApplication(id)
+        .subscribe(application => this.application = application);
+    });
   }
-   
-  }
-  
+}
 
- 
+
+
 
 
 
