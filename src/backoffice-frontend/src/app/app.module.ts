@@ -15,24 +15,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { ApplicationTableComponent } from './application-table/application-table.component';
 import { FriendlyHourPipe } from './shared/pipes/friendly-hour.pipe';
 import { ApplicationDetailComponent } from './application-detail/application-detail.component';
-//import { PageNotFoundComponent } from "app/not-found.component";
-
-const ROUTES = [
-  {
-   path: '',
-   component: ApplicationTableComponent
- }, 
- {
- path: 'application-detail/:id', 
-   component: ApplicationDetailComponent
-  }];
-
-  /* { path: '**', 
-   component: PageNotFoundComponent 
- } */
-// }
-
-
+import { ControlPanelComponent } from './control-panel/control-panel.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
@@ -40,20 +25,22 @@ const ROUTES = [
     StatisticsComponent,
     ApplicationTableComponent,
     FriendlyHourPipe,
-    ApplicationDetailComponent
+    ApplicationDetailComponent,
+    ControlPanelComponent,
+    PageNotFoundComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(routes)
   ],
   providers: [
     { provide: ApplicationDetailService, useClass: ApplicationDetailServiceFake },
     { provide: StatisticsService, useClass: StatisticsServiceFake },
     { provide: GetApplicationRowsService, useClass: GetApplicationRowsServiceFake },
-    
-   ],
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

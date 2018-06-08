@@ -3,71 +3,78 @@
 </div>
 
 <div *ngIf="!!page" class="row">
-    <div class="col-sm-4">
-        <app-statistics></app-statistics>
-    </div>
-    <div class="col-sm-8">
- 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">&nbsp;&nbsp;</th>
-            <th scope="col">&nbsp;&nbsp;Nominativo</th>
-            <th scope="col">&nbsp;&nbsp;Codice Fiscale</th>
-            <th scope="col">&nbsp;&nbsp;Data invio</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let row of page.rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies }">
-            <td *ngIf="row.hasAnomalies">
-                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-            </td>
-            <td *ngIf="!row.hasAnomalies">&nbsp;&nbsp;&nbsp;</td>
-            <!-- <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button></td> -->
-            <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button></td>
-            <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fiscalCode }}</button></td>
-            <td>{{ row.submittedAt | date : 'dd/MM/yyyy' }} {{ row.submittedAt | friendlyHour }}</td>
-        </tr>
-    </tbody>
-    <tfoot>
-    </tfoot>
-</table>
-<div class="footer text-right">
-<!--  page avanti e indietro -->
-    <nav aria-label="Page navigation">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">&nbsp;&nbsp;</th>
+                <th scope="col">&nbsp;&nbsp;Nominativo</th>
+                <th scope="col">&nbsp;&nbsp;Codice Fiscale</th>
+                <th scope="col">&nbsp;&nbsp;Data invio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of page.rows" [ngClass]="{'list-group-item-warning': row.hasAnomalies }">
+                <td *ngIf="row.hasAnomalies">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </td>
+                <td *ngIf="!row.hasAnomalies">&nbsp;&nbsp;&nbsp;</td>
+                <!-- <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button></td> -->
+                <td>
+                    <button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fiscalCode }}</button>
+                </td>
+                <td>{{ row.submittedAt | date : 'dd/MM/yyyy' }} {{ row.submittedAt | friendlyHour }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+        </tfoot>
+    </table>
+    <div class="footer text-right">
+        <!--  page avanti e indietro -->
+        <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end">
-            <span *ngIf="!this.firstPage; else disprev">
-               <li class="page-item"><a class="page-link" (click)="onPrev()" href="#">Previous</a></li>
-            </span>
-            <ng-template #disprev>
-            <span>
-               <li class="page-item disabled"><a class="page-link" (click)="onPrev()" href="#">Previous</a></li>
-            </span>
-            </ng-template>
-         
-            <span *ngIf="!this.lastPage; else disnext">
-               <li class="page-item"><a class="page-link" (click)="onNext()" href="#">Next</a></li>
-            </span>
-            <ng-template #disnext>
-            <span>
-               <li class="page-item disabled"><a class="page-link" (click)="onNext()" href="#">Next</a></li>
-            </span>
-            </ng-template>
-         
+                <span *ngIf="!this.firstPage; else disprev">
+                    <li class="page-item">
+                        <a class="page-link" (click)="onPrev()" href="#">Previous</a>
+                    </li>
+                </span>
+                <ng-template #disprev>
+                    <span>
+                        <li class="page-item disabled">
+                            <a class="page-link" (click)="onPrev()" href="#">Previous</a>
+                        </li>
+                    </span>
+                </ng-template>
+
+                <span *ngIf="!this.lastPage; else disnext">
+                    <li class="page-item">
+                        <a class="page-link" (click)="onNext()" href="#">Next</a>
+                    </li>
+                </span>
+                <ng-template #disnext>
+                    <span>
+                        <li class="page-item disabled">
+                            <a class="page-link" (click)="onNext()" href="#">Next</a>
+                        </li>
+                    </span>
+                </ng-template>
+
             </ul>
             <span *ngIf="page.startIdx + page.howMany <= page.totalCount else ultimapage">
-               <span>{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
-            </span> 
-                
+                <span>{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
+            </span>
+
             <ng-template #ultimapage>
-               <span>{{ page.startIdx + 1 }} - {{ page.totalCount }} di {{ page.totalCount }}</span>
-            </ng-template> 
-    </nav>
-   <!--  page avanti e indietro-->
+                <span>{{ page.startIdx + 1 }} - {{ page.totalCount }} di {{ page.totalCount }}</span>
+            </ng-template>
+        </nav>
+        <!--  page avanti e indietro-->
 
-<!--  versione con numeri: da finire , gestire la disabilitazione dei numeri se non ci sono records.  -->
+        <!--  versione con numeri: da finire , gestire la disabilitazione dei numeri se non ci sono records.  -->
 
-  <!--  <nav aria-label="...">
+        <!--  <nav aria-label="...">
         <ul class="pagination justify-content-end">
                 <span *ngIf="!this.firstPage; else disprev">
                         <li class="page-item"><a class="page-link" (click)="onPrev()" href="#">Previous</a></li>
@@ -112,10 +119,7 @@
                 <span>{{ page.startIdx + 1 }} - {{ page.totalCount }} di {{ page.totalCount }}</span>
              </ng-template> 
       </nav> -->
-<!--   versione con numeri: da finire , gestire la disabilitazione dei numeri se non ci sono records.  -->
+        <!--   versione con numeri: da finire , gestire la disabilitazione dei numeri se non ci sono records.  -->
 
- </div>
+    </div>
 </div>
-</div> 
-
- 
