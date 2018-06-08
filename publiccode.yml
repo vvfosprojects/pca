@@ -1,6 +1,6 @@
 publiccode-yaml-version: "http://w3id.org/publiccode/version/0.1"
 
-name: geofleet
+name: pca 
 applicationSuite: Public Competition Application (PCA) Collector
 url: "https://github.com/vvfosprojects/pca.git"        # URL of this repository
 landingURL: "https://github.com/vvfosprojects/pca"
@@ -13,25 +13,23 @@ monochromeLogo:
 
 platforms:                   # or Windows, Mac, Linux, etc.
   - web browser (client)
-  - asp.net WebApi (server)
+  - asp.net WebApi written in C# .net 4.6 (server)
 
 api: "https://github.com/vvfosprojects/pca"
 
 tags:
   - public competition application
-  - spatial queries
-  - maps
 
 freeTags:
   eng:
     - public competition application
   ita:
-    - acquisizione domande concorsi pubblici
+    - framework di acquisizione domande a concorsi pubblici
 
 usedBy:
   - Corpo Nazionale dei Vigili del Fuoco
 
-roadmap: "https://github.com/vvfosprojects/vvfgeofleet"
+roadmap: "https://github.com/vvfosprojects/pca"
 
 developmentStatus: development
 
@@ -60,7 +58,7 @@ description:
     featureList:
        - Frontend for public applicants.
        - Backoffice frontend to check, navigate submitted
-         applications, and reading statistics on the
+         applications, and reading real-time statistics on the
          system usage.
     screenshots:
        - 
