@@ -27,6 +27,7 @@ using System.Web.Http.Cors;
 using DomainModel;
 using DomainModel.Services;
 using DomainModel.Services.ApplicationPages;
+using PCA.Authorization;
 
 namespace PCA.Controllers
 {
@@ -46,6 +47,7 @@ namespace PCA.Controllers
             this.getActiveApplicationById = getActiveApplicationById ?? throw new ArgumentNullException(nameof(getActiveApplicationById));
         }
 
+        [Authorize]
         public async Task<object> Get(int startIndex, int howMany, bool? onlyErrors = false)
         {
             var applicationPage = await this.GetActiveApplications.GetAsync(startIndex, howMany, onlyErrors);
@@ -66,6 +68,8 @@ namespace PCA.Controllers
             };
         }
 
+        [Authorize]
+        [JwtAuthentication]
         public object Get(string id)
         {
             var application = this.getActiveApplicationById.Get(id);

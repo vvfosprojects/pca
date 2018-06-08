@@ -18,6 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System.Web.Http;
+using PCA.Authorization;
 
 namespace PCA
 {
