@@ -1,3 +1,7 @@
+<div *ngIf="!page" class="row">
+    <i class="fa fa-spinner fa-pulse fa-fw fa-3x"></i>
+</div>
+
 <div *ngIf="!!page" class="row">
     <div class="col-sm-4">
         <app-statistics></app-statistics>
