@@ -17,6 +17,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
+using System;
+using System.Web.Configuration;
+using Services.JwtAuthentication;
 using SimpleInjector;
 
 namespace PCA.CompositionRoot
@@ -67,6 +70,13 @@ namespace PCA.CompositionRoot
             container.Register<
                 DomainModel.Services.IGetActiveApplicationById,
                 Persistence.MongoDB.DbServices.GetActiveApplicationById>(Lifestyle.Scoped);
+
+            container.Register<Services.JwtAuthentication.IJwtTools>(() =>
+            {
+                var secretKey = WebConfigurationManager.AppSettings["jwtSecretKey"];
+                var tokenDuration = Convert.ToInt32(WebConfigurationManager.AppSettings["jwtTokenDuration_sec"]);
+                return new JwtTools(secretKey, tokenDuration);
+            }, Lifestyle.Singleton);
 
             container.Register<Persistence.MongoDB.DbServices.Stats.CountTotalActiveApplicationsEver>(Lifestyle.Scoped);
             container.Register<Persistence.MongoDB.DbServices.Stats.CountAllSubmissionErrors>(Lifestyle.Scoped);

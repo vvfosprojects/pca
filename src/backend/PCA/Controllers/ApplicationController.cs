@@ -48,6 +48,7 @@ namespace PCA.Controllers
         }
 
         [Authorize]
+        [JwtAuthentication]
         public async Task<object> Get(int startIndex, int howMany, bool? onlyErrors = false)
         {
             var applicationPage = await this.GetActiveApplications.GetAsync(startIndex, howMany, onlyErrors);

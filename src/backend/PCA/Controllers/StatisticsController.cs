@@ -26,6 +26,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using DomainModel.Services.Stats;
+using PCA.Authorization;
 
 namespace PCA.Controllers
 {
@@ -39,6 +40,8 @@ namespace PCA.Controllers
             this.getStatistics = getStatistics ?? throw new ArgumentNullException(nameof(getStatistics));
         }
 
+        [Authorize]
+        [JwtAuthentication]
         public async Task<Statistics> Get()
         {
             return await this.getStatistics.GetAsync();

@@ -32,10 +32,13 @@ GET http://localhost:57156/api/statistics
 
 ### Get application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTI4NTc0MTcyIiwidXNlcm5hbWUiOiJmb28ifQ.Qi18JsuMTtYRltqL_p3W1wY1MbrJwy5AW9G65OC3SdE
 
 ### Get in-error application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10&onlyErrors=true
 
 ### Get application page
 GET http://localhost:57156/api/application?id=ABCD
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImZvbyJ9.VPuXJtT__QHP_qcd0gCxFHu5obhzg5GY4uOx5R_ma3E
+
+### Authentication
+GET http://localhost:57156/api/auth?username=foo&password=bar

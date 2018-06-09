@@ -11,27 +11,14 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
-using JWT;
-using JWT.Algorithms;
-using JWT.Builder;
-using Newtonsoft.Json;
+using Services.JwtAuthentication;
 
 namespace PCA.Authorization
 {
     public class JwtAuthenticationAttribute : ActionFilterAttribute, System.Web.Http.Filters.IAuthenticationFilter
     {
-        private const string secret = "AjryHgrt46dg299f8gbcWughTtT5342ydhJJhaget52939489fghdvBvegrftd75d6swhv";
-
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
-            //var token = new JwtBuilder()
-            //  .WithAlgorithm(new HMACSHA256Algorithm())
-            //  .WithSecret(secret)
-            //  //.AddClaim("exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds())
-            //  .ExpirationTime(DateTime.UtcNow)
-            //  .AddClaim("username", "foo")
-            //  .Build();
-
             // 1. Look for credentials in the request.
             HttpRequestMessage request = context.Request;
             AuthenticationHeaderValue authorization = request.Headers.Authorization;
@@ -112,23 +99,10 @@ namespace PCA.Authorization
 
         private string ExtractUserName(string token, HttpRequestMessage request)
         {
-            try
-            {
-                var json = new JwtBuilder()
-                    .WithSecret(secret)
-                    .MustVerifySignature()
-                    .Decode(token);
-                var obj = JsonConvert.DeserializeObject<IDictionary<string, object>>(json);
-                return (string)obj["username"];
-            }
-            catch (TokenExpiredException)
-            {
-                throw new UnauthorizedAccessException("Token expired");
-            }
-            catch (SignatureVerificationException)
-            {
-                throw new UnauthorizedAccessException("Token has invalid signature");
-            }
+            var jwtTools = GlobalConfiguration.Configuration.DependencyResolver
+                .GetService(typeof(IJwtTools)) as IJwtTools;
+
+            return jwtTools.DecodeUsername(token);
         }
     }
 
