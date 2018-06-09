@@ -4,6 +4,6 @@
     {
         string DecodeUsername(string token);
 
-        JwtToken GetToken();
+        JwtToken GetToken(string username);
     }
 }

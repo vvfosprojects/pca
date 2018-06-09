@@ -27,7 +27,7 @@ namespace PCA.Controllers
             if (adminUsername != username || adminPassword != password)
                 return new AuthResult(false, string.Empty, DateTime.UtcNow);
 
-            var result = this.jwtTools.GetToken();
+            var result = this.jwtTools.GetToken(username);
 
             return new AuthResult(true, result.Token, result.ExpirationTime);
         }

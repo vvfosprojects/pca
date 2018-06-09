@@ -48,14 +48,14 @@ namespace Services.JwtAuthentication
             }
         }
 
-        public JwtToken GetToken()
+        public JwtToken GetToken(string username)
         {
             DateTime expTime = DateTime.UtcNow.AddSeconds(this.tokenDuration_Sec);
             var token = new JwtBuilder()
                 .WithAlgorithm(new HMACSHA256Algorithm())
                 .WithSecret(this.secretKey)
                 .ExpirationTime(expTime)
-                .AddClaim("username", "foo")
+                .AddClaim("username", username)
                 .Build();
 
             return new JwtToken(token, expTime);
