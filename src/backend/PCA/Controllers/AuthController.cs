@@ -19,7 +19,7 @@ namespace PCA.Controllers
             this.jwtTools = jwtTools ?? throw new ArgumentNullException(nameof(jwtTools));
         }
 
-        public AuthResult Get(string username, string password)
+        public AuthResult Post(string username, string password)
         {
             var adminUsername = WebConfigurationManager.AppSettings["adminUsername"];
             var adminPassword = WebConfigurationManager.AppSettings["adminPassword"];

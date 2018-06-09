@@ -41,4 +41,4 @@ GET http://localhost:57156/api/application?startIndex=0&howMany=10&onlyErrors=tr
 GET http://localhost:57156/api/application?id=ABCD
 
 ### Authentication
-GET http://localhost:57156/api/auth?username=foo&password=bar
+POST http://localhost:57156/api/auth?username=foo&password=bar
