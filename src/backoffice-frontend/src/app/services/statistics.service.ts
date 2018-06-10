@@ -14,7 +14,7 @@ export class StatisticsService {
   ) { }
   
   public getStatistics(): Observable<Statistics> {
-    let action = "/statistics";
+    const action = "/statistics";
 
     return this.http.get<Statistics>(APIURL + action);
   }

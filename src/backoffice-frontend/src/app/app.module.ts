@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { StatisticsServiceFake } from './services/statistics.service.fake';
 import { StatisticsService } from './services/statistics.service';
@@ -18,6 +20,11 @@ import { ApplicationDetailComponent } from './application-detail/application-det
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { routes } from './routes';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
+import { AuthServiceFake } from './services/auth.service.fake';
+import { AuthInterceptor } from './services/auth.interceptor';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -27,11 +34,14 @@ import { routes } from './routes';
     FriendlyHourPipe,
     ApplicationDetailComponent,
     ControlPanelComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent,
+    NavbarComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
@@ -44,7 +54,15 @@ import { routes } from './routes';
     
     { provide: GetApplicationRowsService, useClass: GetApplicationRowsServiceFake },
     // { provide: GetApplicationRowsService, useClass: GetApplicationRowsService },
+    
+    { provide: AuthService, useClass: AuthServiceFake },
+    // { provide: AuthService, useClass: AuthService },
 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

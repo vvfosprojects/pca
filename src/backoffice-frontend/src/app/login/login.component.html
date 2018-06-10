@@ -1,0 +1,18 @@
+<div class="text-center">
+    <form [formGroup]="form" class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Autenticazione</h1>
+        <fieldset>
+            <div class="form-field">
+                <label for="username" class="sr-only">Nome utente:</label>
+                <input id="username" name="username" class="form-control" formControlName="username" placeholder="Nome utente">
+            </div>
+            <div class="form-field">
+                <label for="password" class="sr-only">Password</label>
+                <input id="password" name="password" class="form-control" formControlName="password" type="password" placeholder="Password">
+            </div>
+        </fieldset>
+        <div class="form-buttons">
+            <button class="btn btn-lg btn-primary btn-block" (click)="login()">Entra</button>
+        </div>
+    </form>
+</div>
