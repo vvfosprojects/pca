@@ -20,7 +20,9 @@ import { DomandaOutcome } from '../model/domanda-outcome.model';
 // syntax. However, rollup creates a synthetic default module and we thus need to import it using
 // the `default as` syntax.
 import * as moment from 'moment';
-import { CatPatenti } from './cat-patenti';
+import { CatPatentiCiv } from './cat-patenti-civ';
+import { CatPatentiVvf } from './cat-patenti-vvf';
+
 // tslint:disable-next-line:no-duplicate-imports
 //import { default as _rollupMoment } from 'moment';
 
@@ -41,7 +43,9 @@ import { CatPatenti } from './cat-patenti';
 export class ApplicationFormComponent implements OnInit {
   [x: string]: any;
   buGroups = BuGroups;
-  catPatenti = CatPatenti;
+  catPatentiCiv = CatPatentiCiv;
+  catPatentiVvf = CatPatentiVvf;
+  
   applicationForm: FormGroup;
   startDate = moment([1970, 0, 1]);
   minDate = moment([1930, 0, 1]);

@@ -123,11 +123,14 @@
       <div>
         <mat-form-field class="input-long">
           <mat-select placeholder="Sedi di servizio" multiple formControlName="businessUnits">
+         <!-- <input type="text" matInput placeholder="Sedi di servizio" multiple formControlName="businessUnits" [matAutocomplete]="autoGroup"> -->
+            <!-- <mat-autocomplete #autoGroup="matAutocomplete"> -->
             <mat-optgroup *ngFor="let group of buGroups" [label]="group.name" [disabled]="group.disabled">
               <mat-option *ngFor="let bu of group.bu" [value]="bu.value">
                 {{ bu.viewValue }}
               </mat-option>
             </mat-optgroup>
+           <!-- </mat-autocomplete> -->
           </mat-select>
           <mat-hint>Dove hai prestato servizio?</mat-hint>
           <mat-hint align="end" *ngIf="businessUnits.value.length > 0">{{ businessUnits.value.length }} selezionati</mat-hint>
@@ -153,9 +156,9 @@
         <table cellspacing="0">
           <tr>
             <td>
-            <mat-form-field class="input-long">
-                <mat-select placeholder="Categoria" formControlName="category">
-                  <mat-option *ngFor="let pat of catPatenti" [value]="pat.value">
+            <mat-form-field *ngIf="civilLicenseSelected" class="input-long">
+                <mat-select placeholder="Categoria" formControlName="category" >
+                  <mat-option *ngFor="let pat of catPatentiCiv" [value]="pat.value">
                     {{ pat.viewValue }}
                   </mat-option>
                 </mat-select>
@@ -165,6 +168,21 @@
                   </div>
                 </mat-error>
               </mat-form-field>
+
+              <mat-form-field *ngIf="vvfLicenseSelected" class="input-long">
+                  <mat-select placeholder="Categoria" formControlName="category" >
+                   <mat-optgroup *ngFor="let group of catPatentiVvf" [label]="group.name" [disabled]="group.disabled">
+                    <mat-option *ngFor="let pat of group.pat" [value]="pat.value">
+                      {{ pat.viewValue }}
+                    </mat-option>
+                   </mat-optgroup>
+                  </mat-select>
+                  <mat-error *ngIf="category.invalid && (category.dirty || category.touched)">
+                    <div *ngIf="category.errors.required">
+                      Obbligatorio
+                    </div>
+                  </mat-error>
+                </mat-form-field>
             </td>
             <td>
               <mat-form-field>

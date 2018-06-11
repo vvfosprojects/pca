@@ -1,4 +1,4 @@
-export const CatPatenti = [
+export const CatPatentiCiv = [
     { value: 'AM', viewValue: 'PATENTE AM' },
     { value: 'A1', viewValue: 'PATENTE A1' },
     { value: 'A2', viewValue: 'PATENTE A2' },
