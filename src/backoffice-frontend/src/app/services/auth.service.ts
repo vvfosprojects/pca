@@ -34,7 +34,7 @@ export class AuthService implements CanActivate {
 
   private setSession(authResult: AuthResult) {
     localStorage.setItem('jwtToken', authResult.jwtToken);
-    localStorage.setItem("expirationTime", JSON.stringify(authResult.expirationDate);
+    localStorage.setItem("expirationTime", JSON.stringify(authResult.expirationDate));
   }
 
   logout() {
