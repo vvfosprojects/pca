@@ -226,6 +226,8 @@ export class ApplicationFormComponent implements OnInit {
     let emailConfirmationValue = g.get('emailConfirmation').value;
     if (emailValue !== emailConfirmationValue)
       g.get('emailConfirmation').setErrors({ mismatch: true });
+    else
+      g.get('emailConfirmation').setErrors(null);
 
     return null;
   }
