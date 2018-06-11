@@ -24,7 +24,7 @@ using Services.CfChecker;
 
 namespace PCA.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:4200, http://localhost:4201", headers: "*", methods: "*")]
     public class CfCheckController : ApiController
     {
         private readonly ICfChecker cfChecker;
