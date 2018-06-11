@@ -153,8 +153,12 @@
         <table cellspacing="0">
           <tr>
             <td>
-              <mat-form-field>
-                <input matInput placeholder="Categoria" formControlName="category">
+            <mat-form-field class="input-long">
+                <mat-select placeholder="Categoria" formControlName="category">
+                  <mat-option *ngFor="let pat of catPatenti" [value]="pat.value">
+                    {{ pat.viewValue }}
+                  </mat-option>
+                </mat-select>
                 <mat-error *ngIf="category.invalid && (category.dirty || category.touched)">
                   <div *ngIf="category.errors.required">
                     Obbligatorio
