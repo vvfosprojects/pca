@@ -45,26 +45,26 @@
             <ul class="pagination justify-content-end">
                 <span *ngIf="!this.firstPage; else disprev">
                     <li class="page-item">
-                        <a class="page-link" (click)="onPrev()" href="#">Previous</a>
+                        <a class="page-link" (click)="onPrev()" href="javascript:void(0)">Previous</a>
                     </li>
                 </span>
                 <ng-template #disprev>
                     <span>
                         <li class="page-item disabled">
-                            <a class="page-link" (click)="onPrev()" href="#">Previous</a>
+                            <a class="page-link" (click)="onPrev()" href="javascript:void(0)">Previous</a>
                         </li>
                     </span>
                 </ng-template>
         
                 <span *ngIf="!this.lastPage; else disnext">
                     <li class="page-item">
-                        <a class="page-link" (click)="onNext()" href="#">Next</a>
+                        <a class="page-link" (click)="onNext()" href="javascript:void(0)">Next</a>
                     </li>
                 </span>
                 <ng-template #disnext>
                     <span>
                         <li class="page-item disabled">
-                            <a class="page-link" (click)="onNext()" href="#">Next</a>
+                            <a class="page-link" (click)="onNext()" href="javascript:void(0)">Next</a>
                         </li>
                     </span>
                 </ng-template>
