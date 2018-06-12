@@ -9,31 +9,31 @@
 
 <div *ngIf="!!statistics" class="card mb-3">
   <div class="card-header">
-    Domande
+    Riepilogo
   </div>
   <div class="card-body">
     <ul class="list-group">
       <li class="list-group-item">
-        Inviate oggi
+        Domande inviate oggi
         <div class="badge badge-pill badge-info float-right">
           {{ statistics.submittedToday }}
         </div>
       </li>
       <li class="list-group-item">
-        Inviate negli ultimi 5 gg
+        Domande inviate ultimi 5 gg
         <div class="badge badge-pill badge-info float-right">
           {{ statistics.submittedInTheLastFiveDays }}
         </div>
       </li>
       <li class="list-group-item">
         <div>
-          Inviate da sempre
+          Totale Candidati
           <div class="badge badge-pill badge-info float-right">
             {{ statistics.totalActiveApplicationsEver }}
           </div>
         </div>
         <div class="text-secondary small">
-          Totali
+          Totale Domande inviate
           <div class="badge badge-pill badge-secondary float-right">
             {{ statistics.totalSubmissionsEver }}
           </div>

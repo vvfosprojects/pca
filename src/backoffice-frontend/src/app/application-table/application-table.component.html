@@ -3,6 +3,7 @@
 </div>
 
 <div *ngIf="!!page" class="row">
+ 
     <table class="table">
         <thead>
             <tr>
@@ -30,10 +31,17 @@
         </tbody>
         <tfoot>
         </tfoot>
-    </table>
+    </table>      
+    
     <div class="footer text-right">
+        
         <!--  page avanti e indietro -->
         <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-start">
+                <span>
+                    <i class="fa fa-file-excel-o fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Esporta"></i>
+                </span>
+            </ul>
             <ul class="pagination justify-content-end">
                 <span *ngIf="!this.firstPage; else disprev">
                     <li class="page-item">
@@ -47,7 +55,7 @@
                         </li>
                     </span>
                 </ng-template>
-
+        
                 <span *ngIf="!this.lastPage; else disnext">
                     <li class="page-item">
                         <a class="page-link" (click)="onNext()" href="#">Next</a>
@@ -60,12 +68,13 @@
                         </li>
                     </span>
                 </ng-template>
-
+        
             </ul>
+        
             <span *ngIf="page.startIdx + page.howMany <= page.totalCount else ultimapage">
                 <span>{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
             </span>
-
+        
             <ng-template #ultimapage>
                 <span>{{ page.startIdx + 1 }} - {{ page.totalCount }} di {{ page.totalCount }}</span>
             </ng-template>

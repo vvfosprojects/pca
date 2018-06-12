@@ -30,6 +30,7 @@ export class ApplicationTableComponent implements OnInit {
   constructor(private router: Router, private getApplicationRowsService: GetApplicationRowsService) { }
 
   ngOnInit() {
+  
     this.getApplicationRowsService.getRows(this.curPage * this.pageSize, this.pageSize)
       .subscribe(page => {
         this.page = page;
@@ -39,23 +40,31 @@ export class ApplicationTableComponent implements OnInit {
         else
           this.lastPage = false;
       });
+   
   }
 
 
   private onNext() {
+    
+
     this.curPage = this.curPage + this.pageSize;
     // this.numberPage = this.numberPage + 1;
+    console.log(this.curPage);
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
       .subscribe(page => this.page = page);
+      
     if ((this.curPage + this.pageSize >= this.page.totalCount) || (this.page.totalCount == 0)) {
       this.lastPage = true;
       this.firstPage = false;
     }
     else
       this.firstPage = false;
-  }
+
+      
+   }
 
   private onPrev() {
+    
     this.curPage = this.curPage - this.pageSize;
     // this.numberPage = this.numberPage - 1;
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)

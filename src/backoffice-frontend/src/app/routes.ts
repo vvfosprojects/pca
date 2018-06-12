@@ -3,6 +3,7 @@ import { ApplicationDetailComponent } from "./application-detail/application-det
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { LoginComponent } from "./login/login.component";
 import { AuthService } from "./services/auth.service";
+import { ApplicationTableComponent } from "./application-table/application-table.component";
 
 export const routes = [
     {
