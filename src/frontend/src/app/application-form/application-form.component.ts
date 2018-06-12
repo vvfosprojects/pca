@@ -20,6 +20,9 @@ import { DomandaOutcome } from '../model/domanda-outcome.model';
 // syntax. However, rollup creates a synthetic default module and we thus need to import it using
 // the `default as` syntax.
 import * as moment from 'moment';
+import { CatPatentiCiv } from './cat-patenti-civ';
+import { CatPatentiVvf } from './cat-patenti-vvf';
+
 // tslint:disable-next-line:no-duplicate-imports
 //import { default as _rollupMoment } from 'moment';
 
@@ -40,6 +43,9 @@ import * as moment from 'moment';
 export class ApplicationFormComponent implements OnInit {
   [x: string]: any;
   buGroups = BuGroups;
+  catPatentiCiv = CatPatentiCiv;
+  catPatentiVvf = CatPatentiVvf;
+  
   applicationForm: FormGroup;
   startDate = moment([1970, 0, 1]);
   minDate = moment([1930, 0, 1]);
@@ -220,6 +226,8 @@ export class ApplicationFormComponent implements OnInit {
     let emailConfirmationValue = g.get('emailConfirmation').value;
     if (emailValue !== emailConfirmationValue)
       g.get('emailConfirmation').setErrors({ mismatch: true });
+    else
+      g.get('emailConfirmation').setErrors(null);
 
     return null;
   }

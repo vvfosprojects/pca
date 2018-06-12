@@ -26,6 +26,7 @@ namespace DomainModel
         private string fiscalCode;
         private string firstName;
         private string lastName;
+        private string pin;
 
         public string Id { get; set; }
 
@@ -72,7 +73,18 @@ namespace DomainModel
         public string[] BusinessUnits { get; set; }
         public int WorkingDays { get; set; }
         public string DrivingLicense { get; set; }
-        public string Pin { get; set; }
+
+        public string Pin
+        {
+            get
+            {
+                return this.pin;
+            }
+            set
+            {
+                this.pin = value.ToUpper();
+            }
+        }
 
         public DateTime SubmissionTime { get; set; }
         public DateTime? DeletionTime { get; set; }

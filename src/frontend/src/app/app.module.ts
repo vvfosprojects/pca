@@ -35,6 +35,8 @@ import { environment } from '../environments/environment';
 
 import { CfCheckServiceSuccess_Fake } from '../service/cf-check-fake-success.service';
 import { ApplicationServiceSuccess_Fake } from '../service/application-fake-success.service';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
 
 const ENABLETRACING = environment.enableTracing;
 const APPROUTES = appRoutes;
@@ -67,7 +69,8 @@ const APPROUTES = appRoutes;
     MatNativeDateModule,
     MatCardModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'it-IT' },
