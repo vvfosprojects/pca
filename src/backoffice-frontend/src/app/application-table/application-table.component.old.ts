@@ -21,17 +21,17 @@ export class ApplicationTableComponent implements OnInit {
   private page: ApplicationRowPage = null;
 
   private lastPage: boolean = false;
-  private firstPage: boolean = true; 
-
+  private firstPage: boolean = true;
  
 
- private pageCorrente: any = 1;
- private previousPage: any;
+  /*  private numberPage : number = 1;
+   private totPage = ['1','2','3'];
+  */
 
- constructor(private router: Router, private getApplicationRowsService: GetApplicationRowsService) { }
+  constructor(private router: Router, private getApplicationRowsService: GetApplicationRowsService) { }
 
   ngOnInit() {
-   
+  
     this.getApplicationRowsService.getRows(this.curPage * this.pageSize, this.pageSize)
       .subscribe(page => {
         this.page = page;
@@ -41,41 +41,14 @@ export class ApplicationTableComponent implements OnInit {
         else
           this.lastPage = false;
       });
-      console.log("oninit", this.curPage);
-      console.log("oninit", this.pageSize);
+   
   }
 
 
-  private loadPage(pageCorrente : number) {
-    // console.log(pageCorrente);
-    if (pageCorrente !== this.previousPage) {
-      
-      this.previousPage = pageCorrente;
-      this.loadData();
-    }
+  private onNext() {
+    
 
-
-  }
-
-   private loadData() {
-     
     this.curPage = this.curPage + this.pageSize;
-    
-    console.log("loadData this.curPage",this.curPage);
-    console.log("loadData this.pageSize",this.pageSize);
-    this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
-    .subscribe(page => this.page = page); 
-  }
-
-   /*    this.dataService.query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-      }).subscribe(
-        (res: Response) => this.onSuccess(res.json(), res.headers),
-        (res: Response) => this.onError(res.json())
-        ) */
-    
-   /*  this.curPage = this.curPage + this.pageSize;
     // this.numberPage = this.numberPage + 1;
     console.log(this.curPage);
     this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
@@ -87,8 +60,24 @@ export class ApplicationTableComponent implements OnInit {
     }
     else
       this.firstPage = false;
- */
+
       
+   }
+
+  private onPrev() {
+    
+    this.curPage = this.curPage - this.pageSize;
+    // this.numberPage = this.numberPage - 1;
+    this.getApplicationRowsService.getRows(this.curPage, this.pageSize)
+      .subscribe(page => this.page = page);
+    if (this.curPage <= 0) {
+      this.firstPage = true;
+      this.lastPage = false;
+    }
+    else
+      this.lastPage = false;
+  }
+
   private mostraApplication(row: ApplicationRow) {
     console.log(row);
     this.router.navigate(['/application-detail', row.id]);
