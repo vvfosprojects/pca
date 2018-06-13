@@ -45,6 +45,9 @@ private fakeRows: ApplicationRow[] = [
   new ApplicationRow("id12", "Antonietta Dalila", "XXXYYY55T66R222L", new Date("2010-01-12T13:54:14.4714227+02:00"), false),
   new ApplicationRow("id13", "Tiziana Dante", "XXXYYY55T66R222M", new Date("2010-01-13T14:06:42.1824294+02:00"), false),
   new ApplicationRow("id14", "Ignazio Sola", "XXXYYY55T66R222N", new Date("2010-01-14T16:50:19.4755534+02:00"), false),
+  new ApplicationRow('id15', "Sola Luigi", "XRRYYY55T66R222N",new Date("2010-01-13T14:06:42.1824294+02:00"),false),
+  new ApplicationRow('id16', "Ignazio Due", "XXXYPP55T66R222N",new Date("2010-01-13T14:06:42.1824294+02:00"),false),
+  new ApplicationRow('id17', "Ignazio Tre","XXXYYY55T66R232N",new Date("2010-01-13T14:06:42.1824294+02:00"),false)
 ];
 
   constructor() { }

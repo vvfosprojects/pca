@@ -19,7 +19,6 @@
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                 </td>
                 <td *ngIf="!row.hasAnomalies">&nbsp;&nbsp;&nbsp;</td>
-                <!-- <td><button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button></td> -->
                 <td>
                     <button type="button" class="btn btn-link text-muted" (click)="mostraApplication(row)">{{ row.fullName }}</button>
                 </td>
@@ -35,14 +34,6 @@
     <ngb-pagination [collectionSize]="page.totalCount" [(page)]="pageCorrente" [maxSize]="5" [pageSize]="pageSize" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
   
     <div class="footer text-right">
-        
-            <span *ngIf="page.startIdx + page.howMany <= page.totalCount else ultimapage">
-                <span>{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
-            </span>
-        
-            <ng-template #ultimapage>
-                <span>{{ page.startIdx + 1 }} - {{ page.totalCount }} di {{ page.totalCount }}</span>
-            </ng-template>
- 
+        <span>{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
     </div>
 </div>

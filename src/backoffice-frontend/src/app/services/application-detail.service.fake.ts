@@ -78,6 +78,21 @@ new ApplicationDetail('id14', 'XXXYYY55T66R222N','Ignazio Sola',new Date(2016, 3
 [
  new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'), new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'),
 ],'172.1.3.45'
+),
+new ApplicationDetail('id15', 'XRRYYY55T66R222N','Sola Luigi',new Date(2016, 3, 4, 10, 10, 0),"mail@vigilfuoco.it",'3351234567', 2,'Patente 1405934',['Roma',],new Date(2016, 3, 4, 10, 10, 0), 
+[
+ new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'), new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'),
+],'172.1.3.45'
+),
+new ApplicationDetail('id16', 'XXXYPP55T66R222N','Ignazio Due',new Date(2016, 3, 4, 10, 10, 0),"mail@vigilfuoco.it",'3351234567', 2,'Patente 1405934',['Roma',],new Date(2016, 3, 4, 10, 10, 0), 
+[
+ new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'), new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'),
+],'172.1.3.45'
+),
+new ApplicationDetail('id17', 'XXXYYY55T66R232N','Ignazio Tre',new Date(2016, 3, 4, 10, 10, 0),"mail@vigilfuoco.it",'3351234567', 2,'Patente 1405934',['Roma',],new Date(2016, 3, 4, 10, 10, 0), 
+[
+ new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'), new AnomaliesRow(new Date(2016, 3, 4, 10, 10, 0), 'Descrizione'),
+],'172.1.3.45'
 )
 ];
 
