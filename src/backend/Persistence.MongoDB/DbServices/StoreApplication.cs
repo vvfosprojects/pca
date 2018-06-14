@@ -20,12 +20,15 @@
 using System;
 using DomainModel;
 using DomainModel.Services;
+using log4net;
 using MongoDB.Driver;
 
 namespace Persistence.MongoDB.DbServices
 {
     internal class StoreApplication : IStoreApplication
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly DbContext dbContext;
 
         public StoreApplication(DbContext dbContext)
@@ -37,6 +40,8 @@ namespace Persistence.MongoDB.DbServices
         {
             this.dbContext.Applications.InsertOne(application);
 
+            log.Info($"Application stored. Id: { application.Id }");
+
             var updateFilter = Builders<Application>.Filter.And(
                 Builders<Application>.Filter.Eq(a => a.FiscalCode, application.FiscalCode),
                 Builders<Application>.Filter.Eq(a => a.DeletionTime, null),
@@ -45,7 +50,9 @@ namespace Persistence.MongoDB.DbServices
 
             var update = Builders<Application>.Update.Set(a => a.DeletionTime, DateTime.UtcNow);
 
-            this.dbContext.Applications.UpdateMany(updateFilter, update);
+            var result = this.dbContext.Applications.UpdateMany(updateFilter, update);
+
+            log.Info($"Application deleted: { result.ModifiedCount }");
         }
     }
 }

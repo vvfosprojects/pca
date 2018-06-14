@@ -22,12 +22,16 @@ using System.Collections.Generic;
 using System.Linq;
 using DomainModel;
 using DomainModel.Services;
+using log4net;
+using Newtonsoft.Json;
 using Services.CfChecker;
 
 namespace Services.Submission
 {
     public class SubmitApplication : ISubmitApplication
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly ICfChecker cfChecker;
         private readonly IGetActiveApplicationsByFiscalCode getActiveApplicationsByFiscalCode;
         private readonly IPinBuilder pinBuilder;
@@ -46,6 +50,8 @@ namespace Services.Submission
 
         public ApplicationSubmissionResult Submit(Application application)
         {
+            log.Info($"Application submitted: { JsonConvert.SerializeObject(application) }");
+
             string fiscalCode = application.FiscalCode;
             var dataToBeChecked = new CfDataToBeChecked(
                 fiscalCode,
@@ -74,6 +80,8 @@ namespace Services.Submission
                     "storeOk",
                     "La domanda di partecipazione è stata correttamente acquisita.",
                     "Success"));
+
+                log.Info("Application stored. Empty Pin.");
             }
             else
             if (!pinIsValid)
@@ -87,6 +95,8 @@ namespace Services.Submission
                     "newPin",
                     "Annota il nuovo PIN, che potrai usare se desideri aggiornare la domanda.",
                     "Warning"));
+
+                log.Info("Application stored. Invalid Pin.");
             }
             else
             {
@@ -98,14 +108,18 @@ namespace Services.Submission
                     "pinUnchanged",
                     "Il PIN resta identico a quello già in tuo possesso.",
                     "Success"));
+
+                log.Info("Application updated. Correct Pin.");
             }
 
             userMessages.Add(new ResultMessage(
                     "pinUnchanged",
-                    "Conserva il PIN in un posto sicuro.Ti servirà qualora volessi aggiornare la tua domanda.",
+                    "Conserva il PIN in un posto sicuro. Ti servirà qualora volessi aggiornare la tua domanda.",
                     "Success"));
 
             this.storeApplication.Store(application);
+
+            log.Debug("Application stored");
 
             return new ApplicationSubmissionResult(fiscalCode, application.Pin, userMessages.ToArray(), DateTime.UtcNow, true);
         }

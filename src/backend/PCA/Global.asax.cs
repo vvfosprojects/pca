@@ -18,6 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System.Web.Http;
+using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using SimpleInjector;
@@ -28,8 +29,13 @@ namespace PCA
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         protected void Application_Start()
         {
+            log4net.Config.XmlConfigurator.Configure();
+            log.Info("Application started.");
+
             // Create the container as usual.
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new AsyncScopedLifestyle();
@@ -48,6 +54,11 @@ namespace PCA
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
             this.SetJsonDefaultFormatting();
+        }
+
+        protected void Application_End()
+        {
+            log.Info("Application stopped.");
         }
 
         private void SetJsonDefaultFormatting()

@@ -21,6 +21,8 @@ using System;
 using Bogus;
 using Bogus.Extensions.Italy;
 using DomainModel.Services;
+using log4net;
+using Newtonsoft.Json;
 using Services.CfChecker;
 using Services.CfChecker.Impl.CheckResults;
 
@@ -28,6 +30,8 @@ namespace CfChecker.Impl
 {
     public class CfChecker : ICfChecker
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly IActiveApplicationExistsByFiscalCode activeApplicationExistsByFiscalCode;
         private readonly IActiveApplicationExistsByFiscalCodeAndPin activeApplicationExistsByFiscalCodeAndPin;
 
@@ -91,6 +95,8 @@ namespace CfChecker.Impl
 #warning to be logged
                 result.AddResult(new CfException());
             }
+
+            log.Debug($"Checking data: { JsonConvert.SerializeObject(data) } with result { JsonConvert.SerializeObject(result) }");
 
             return result;
         }
