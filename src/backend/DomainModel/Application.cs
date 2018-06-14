@@ -23,69 +23,31 @@ namespace DomainModel
 {
     public class Application
     {
-        private string fiscalCode;
-        private string firstName;
-        private string lastName;
-        private string pin;
+        public Application(string fiscalCode, string firstName, string lastName, DateTime birthDate, string email, string pin, string[] businessUnits, int workingDays, string drivingLicense)
+        {
+            FiscalCode = fiscalCode.ToUpperInvariant();
+            FirstName = firstName.ToUpperInvariant();
+            LastName = lastName.ToUpperInvariant();
+            BirthDate = birthDate;
+            Email = email.ToLowerInvariant();
+            Pin = pin == null ? null : pin.ToUpperInvariant();
+            BusinessUnits = businessUnits ?? throw new ArgumentNullException(nameof(businessUnits));
+            WorkingDays = workingDays;
+            DrivingLicense = drivingLicense ?? throw new ArgumentNullException(nameof(drivingLicense));
+        }
 
         public string Id { get; set; }
+        public string FiscalCode { get; protected set; }
+        public string FirstName { get; protected set; }
+        public string LastName { get; protected set; }
+        public DateTime BirthDate { get; protected set; }
+        public string Email { get; protected set; }
+        public string Pin { get; set; }
+        public string[] BusinessUnits { get; protected set; }
+        public int WorkingDays { get; protected set; }
+        public string DrivingLicense { get; protected set; }
 
-        public string FiscalCode
-        {
-            get
-            {
-                return this.fiscalCode;
-            }
-            set
-            {
-                this.fiscalCode = value.ToUpper();
-            }
-        }
-
-        public string FirstName
-        {
-            get
-            {
-                return this.firstName;
-            }
-
-            set
-            {
-                this.firstName = value.ToUpper();
-            }
-        }
-
-        public string LastName
-        {
-            get
-            {
-                return this.lastName;
-            }
-            set
-            {
-                this.lastName = value.ToUpper();
-            }
-        }
-
-        public DateTime BirthDate { get; set; }
-        public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public string[] BusinessUnits { get; set; }
-        public int WorkingDays { get; set; }
-        public string DrivingLicense { get; set; }
-
-        public string Pin
-        {
-            get
-            {
-                return this.pin;
-            }
-            set
-            {
-                this.pin = value.ToUpper();
-            }
-        }
-
         public DateTime SubmissionTime { get; set; }
         public DateTime? DeletionTime { get; set; }
         public Anomaly[] Anomalies { get; set; }
