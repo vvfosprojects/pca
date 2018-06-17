@@ -30,12 +30,15 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Filters;
+using log4net;
 using Services.JwtAuthentication;
 
 namespace PCA.Authorization
 {
     public class JwtAuthenticationAttribute : ActionFilterAttribute, System.Web.Http.Filters.IAuthenticationFilter
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
             // 1. Look for credentials in the request.
@@ -45,6 +48,7 @@ namespace PCA.Authorization
             // 2. If there are no credentials, do nothing.
             if (authorization == null)
             {
+                log.Warn("Missing credentials");
                 return;
             }
 
@@ -52,6 +56,7 @@ namespace PCA.Authorization
             //    authentication scheme, do nothing.
             if (authorization.Scheme != "Bearer")
             {
+                log.Warn("Authorization scheme is not Bearer");
                 return;
             }
 
@@ -59,6 +64,7 @@ namespace PCA.Authorization
             // 5. If the credentials are bad, set the error result.
             if (String.IsNullOrEmpty(authorization.Parameter))
             {
+                log.Warn("Authorization parameters are empty");
                 context.ErrorResult = new AuthenticationFailureResult("Missing credentials", request);
                 return;
             }
@@ -70,19 +76,23 @@ namespace PCA.Authorization
             }
             catch (Exception ex)
             {
+                log.Warn("Cannot extract username from authorization parameters");
                 context.ErrorResult = new AuthenticationFailureResult(ex.Message, request);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(userName))
             {
+                log.Warn("Empty username from authorization parameters");
                 context.ErrorResult = new AuthenticationFailureResult("Invalid credentials", request);
+                return;
             }
 
             IPrincipal principal = await this.VerifyUsername(userName, cancellationToken);
             if (principal == null)
             {
-                context.ErrorResult = new AuthenticationFailureResult("Invalid username or password", request);
+                log.Warn("Invalid username");
+                context.ErrorResult = new AuthenticationFailureResult("Invalid username", request);
             }
 
             // 6. If the credentials are valid, set principal.
@@ -90,6 +100,8 @@ namespace PCA.Authorization
             {
                 context.Principal = principal;
             }
+
+            log.Debug($"Authorization successful for { principal.Identity.Name }");
         }
 
         public Task ChallengeAsync(HttpAuthenticationChallengeContext context, CancellationToken cancellationToken)
