@@ -28,6 +28,7 @@ using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using log4net;
@@ -38,6 +39,8 @@ namespace PCA.Authorization
     public class JwtAuthenticationAttribute : ActionFilterAttribute, System.Web.Http.Filters.IAuthenticationFilter
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+        private static string adminUsername = WebConfigurationManager.AppSettings["adminUsername"];
 
         public async Task AuthenticateAsync(HttpAuthenticationContext context, CancellationToken cancellationToken)
         {
@@ -113,7 +116,7 @@ namespace PCA.Authorization
 
         private Task<IPrincipal> VerifyUsername(string userName, CancellationToken cancellationToken)
         {
-            if (userName != "foo")
+            if (userName != adminUsername)
                 return null;
 
             List<Claim> claims = new List<Claim>()
