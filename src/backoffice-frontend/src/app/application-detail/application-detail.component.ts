@@ -12,24 +12,33 @@ import { ApplicationDetailServiceFake } from '../services/application-detail.ser
   selector: 'app-application-detail',
   templateUrl: './application-detail.component.html',
   styleUrls: ['./application-detail.component.css'],
-  providers: [ApplicationDetailServiceFake]
+  providers: [ApplicationDetailServiceFake, Location]
 })
 export class ApplicationDetailComponent implements OnInit {
   private application: ApplicationDetail;
+  private pagina: string;
   
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private applicationDetailService: ApplicationDetailService) {
+    private applicationDetailService: ApplicationDetailService
+    ) {
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      this.applicationDetailService.getApplication(id)
-        .subscribe(application => this.application = application);
+      
+     this.applicationDetailService.getApplication(id)
+     .subscribe(application => this.application = application);
     });
+    
+   
   }
+
+ /*  goBack(): void {
+     this.router.navigate(['/control-panel']); 
+ } */
 }
 
 

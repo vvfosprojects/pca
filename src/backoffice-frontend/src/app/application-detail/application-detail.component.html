@@ -3,8 +3,9 @@
   <i class="fa fa-spinner fa-pulse fa-fw fa-3x"></i>
 </div>
 <div class="text-left h2">
-  <a class='freccia-link' onclick="history.back()">
-    <i class="tasto-back fa fa-arrow-circle-o-left" aria-hidden="true" title="Back"></i>
+  <a class='freccia-link' onclick="history.back()" href="javascript:void(0)">
+  <!-- <a class='freccia-link' (click)="goBack()"> -->
+     <i class="tasto-back fa fa-arrow-circle-o-left" aria-hidden="true" title="Back"></i>
   </a>
 </div>
 <div *ngIf="!!application">

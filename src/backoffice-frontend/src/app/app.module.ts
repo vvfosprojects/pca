@@ -26,6 +26,7 @@ import { AuthServiceFake } from './services/auth.service.fake';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,14 +38,14 @@ import { NavbarComponent } from './navbar/navbar.component';
     PageNotFoundComponent,
     LoginComponent,
     NavbarComponent
-  ],
+   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
-  ],
+   ],
   providers: [
     { provide: ApplicationDetailService, useClass: ApplicationDetailServiceFake },
     // { provide: ApplicationDetailService, useClass: ApplicationDetailService },
@@ -57,7 +58,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     
     { provide: AuthService, useClass: AuthServiceFake },
     // { provide: AuthService, useClass: AuthService },
-
+ 
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

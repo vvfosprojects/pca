@@ -4,3 +4,20 @@
     right: 80;
     width: 100%;
     }
+
+.justify-content-left {
+    float:left;
+    text-align: left;
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+
+.justify-content-right {
+    float:right;
+    text-align: right;
+}
+
+   
