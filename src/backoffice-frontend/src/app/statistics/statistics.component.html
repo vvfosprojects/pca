@@ -27,13 +27,13 @@
       </li>
       <li class="list-group-item">
         <div>
-          Totale Candidati
+          Totale Codici Fiscali distinti
           <div class="badge badge-pill badge-info float-right">
             {{ statistics.totalActiveApplicationsEver }}
           </div>
         </div>
         <div class="text-secondary small">
-          Totale Domande inviate
+          Totale Domande attive
           <div class="badge badge-pill badge-secondary float-right">
             {{ statistics.totalSubmissionsEver }}
           </div>
@@ -42,6 +42,7 @@
     </ul>
   </div>
 </div>
+
 <div *ngIf="!!statistics" class="card">
   <div class="card-header">
     Errori
@@ -61,4 +62,25 @@
         </div>
       </li>
     </ul>
+  </div>
+  </div>
+ <br>
+  <div *ngIf="!!statistics" class="card">
+    <div class="card-header">
+      Utility
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li class="list-group-item">
+          Ricerca Domanda
+          <input><i class="fa fa-search fa-lg pull-right" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Avvia Ricerca"></i>
+        </li>
+        <li class="list-group-item">
+          Esporta in Excel
+         <span class="pull-right">
+            <i class="fa fa-file-excel-o fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Esporta"></i>
+        </span>
+        </li>
+      </ul>
+    </div>
   </div>
