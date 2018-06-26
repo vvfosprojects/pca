@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StatisticsService } from '../services/statistics.service';
 import { Statistics } from '../models/statistics.model';
 
+
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -9,7 +10,7 @@ import { Statistics } from '../models/statistics.model';
 })
 export class StatisticsComponent implements OnInit {
   private statistics: Statistics = null;
-
+  
   constructor(private statisticsService: StatisticsService) {
     this.statisticsService.getStatistics().subscribe(s => this.statistics = s);
   }
@@ -25,4 +26,5 @@ export class StatisticsComponent implements OnInit {
     return this.statistics.otherErrors == 0;
   }
 
+  
 }
