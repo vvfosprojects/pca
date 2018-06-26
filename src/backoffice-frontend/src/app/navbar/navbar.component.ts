@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  private testoRicerca: string;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,5 +24,9 @@ export class NavbarComponent implements OnInit {
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
+  }
+
+  private clearSearchText(): void {
+    this.testoRicerca = null;
   }
 }
