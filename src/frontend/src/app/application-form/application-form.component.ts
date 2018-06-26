@@ -235,6 +235,11 @@ export class ApplicationFormComponent implements OnInit {
   licenseDatesAreValid(g: FormGroup) {
     let releaseDateValue = g.get('releaseDate').value;
     let validUntilDateValue = g.get('validUntil').value;
+    let todaysDate = new Date();
+
+    if (validUntilDateValue < todaysDate)
+      g.get('validUntil').setErrors({ invalid: true });
+
     if (releaseDateValue >= validUntilDateValue)
       g.get('validUntil').setErrors({ invalid: true });
 

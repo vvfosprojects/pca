@@ -151,8 +151,12 @@
     <br>
 
     <div formGroupName="licenseInfo">
+
       <mat-radio-group>
-        <mat-radio-button (change)="selectLicense($event)" value="VVF">VVF</mat-radio-button>
+        <div>
+          <mat-hint>Che tipo di patente hai?</mat-hint>
+        </div>
+        <mat-radio-button (change)="selectLicense($event)" value="VVF" style="margin-right: 40px">VVF</mat-radio-button>
         <mat-radio-button (change)="selectLicense($event)" value="CIV">Civile</mat-radio-button>
       </mat-radio-group>
 
@@ -261,6 +265,9 @@
       </div>
       <div class="light">
         <mat-checkbox formControlName="acceptance">Autorizzo il trattamento dei dati esclusivamente per le finalità indicate di sopra (D.Lgs. 196/2003).</mat-checkbox>
+        <div>
+          <a target="_blank" href="file://{{outputPath}}/normativa.pdf">Leggi la normativa</a>
+        </div>
       </div>
     </div>
   </div>

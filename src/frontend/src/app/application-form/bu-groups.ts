@@ -2,7 +2,6 @@ export const BuGroups = [
     {
         name: 'Piemonte',
         bu: [
-            { value: 'DIR-PIE', viewValue: 'Dir. Reg. Piemonte' },
             { value: 'COM-TO', viewValue: 'Com. Torino' },
             { value: 'COM-AL', viewValue: 'Com. Alessandria' },
             { value: 'COM-AT', viewValue: 'Com. Asti' },
@@ -16,7 +15,6 @@ export const BuGroups = [
     {
         name: 'Lombardia',
         bu: [
-            { value: 'DIR-LOM', viewValue: 'Dir. Reg. Lombardia' },
             { value: 'COM-MI', viewValue: 'Com. Milano' },
             { value: 'COM-BG', viewValue: 'Com. Bergamo' },
             { value: 'COM-BS', viewValue: 'Com. Brescia' },
@@ -33,7 +31,6 @@ export const BuGroups = [
     {
         name: 'Veneto',
         bu: [
-            { value: 'DIR-VEN', viewValue: 'Dir. Reg. Veneto' },
             { value: 'COM-VE', viewValue: 'Com. Venezia' },
             { value: 'COM-BL', viewValue: 'Com. Belluno' },
             { value: 'COM-PD', viewValue: 'Com. Padova' },
@@ -46,7 +43,6 @@ export const BuGroups = [
     {
         name: 'Friuli Venezia Giulia',
         bu: [
-            { value: 'DIR-FVG', viewValue: 'Dir. Reg. Friuli Venezia Giulia' },
             { value: 'COM-TS', viewValue: 'Com. Trieste' },
             { value: 'COM-GO', viewValue: 'Com. Gorizia' },
             { value: 'COM-PN', viewValue: 'Com. Pordenone' },
@@ -56,7 +52,6 @@ export const BuGroups = [
     {
         name: 'Liguria',
         bu: [
-            { value: 'DIR-LIG', viewValue: 'Dir. Reg. Liguria' },
             { value: 'COM-GE', viewValue: 'Com. Genova' },
             { value: 'COM-IM', viewValue: 'Com. Imperia' },
             { value: 'COM-SP', viewValue: 'Com. La Spezia' },
@@ -66,7 +61,6 @@ export const BuGroups = [
     {
         name: 'Emilia Romagna',
         bu: [
-            { value: 'DIR-EMI', viewValue: 'Dir. Reg. Emilia Romagna' },
             { value: 'COM-BO', viewValue: 'Com. Bologna' },
             { value: 'COM-FE', viewValue: 'Com. Ferrara' },
             { value: 'COM-FC', viewValue: 'Com. Forlì-Cesena' },
@@ -81,7 +75,6 @@ export const BuGroups = [
     {
         name: 'Toscana',
         bu: [
-            { value: 'DIR-TOS', viewValue: 'Dir. Reg. Toscana' },
             { value: 'COM-FI', viewValue: 'Com. Firenze' },
             { value: 'COM-AR', viewValue: 'Com. Arezzo' },
             { value: 'COM-GR', viewValue: 'Com. Grosseto' },
@@ -97,7 +90,6 @@ export const BuGroups = [
     {
         name: 'Marche',
         bu: [
-            { value: 'DIR-MAR', viewValue: 'Dir. Reg. Marche' },
             { value: 'COM-AN', viewValue: 'Com. Ancona' },
             { value: 'COM-AP', viewValue: 'Com. Ascoli Piceno' },
             { value: 'COM-MC', viewValue: 'Com. Macerata' },
@@ -107,7 +99,6 @@ export const BuGroups = [
     {
         name: 'Umbria',
         bu: [
-            { value: 'DIR-UMB', viewValue: 'Dir. Reg. Umbria' },
             { value: 'COM-PG', viewValue: 'Com. Perugia' },
             { value: 'COM-TR', viewValue: 'Com. Terni' }
       ]
@@ -115,7 +106,6 @@ export const BuGroups = [
     {
         name: 'Lazio',
         bu: [
-            { value: 'DIR-LAZ', viewValue: 'Dir. Reg. Lazio' },
             { value: 'COM-RM', viewValue: 'Com. Roma' },
             { value: 'COM-RT', viewValue: 'Com. Rieti' },
             { value: 'COM-VT', viewValue: 'Com. Viterbo' },
@@ -126,7 +116,6 @@ export const BuGroups = [
     {
         name: 'Abruzzo',
         bu: [
-            { value: 'DIR-ABR', viewValue: 'Dir. Reg. Abruzzo' },
             { value: 'COM-AQ', viewValue: 'Com. L"Aquila' },
             { value: 'COM-CH', viewValue: 'Com. Chieti' },
             { value: 'COM-PE', viewValue: 'Com. Pescara' },
@@ -136,7 +125,6 @@ export const BuGroups = [
     {
         name: 'Molise',
         bu: [
-            { value: 'DIR-MOL', viewValue: 'Dir. Reg. Molise' },
             { value: 'COM-CB', viewValue: 'Com. Campobasso' },
             { value: 'COM-IS', viewValue: 'Com. Isernia' }
        ]
@@ -144,7 +132,6 @@ export const BuGroups = [
     {
         name: 'Campania',
         bu: [
-            { value: 'DIR-CAM', viewValue: 'Dir. Reg. Campania' },
             { value: 'COM-NA', viewValue: 'Com. Napoli' },
             { value: 'COM-CE', viewValue: 'Com. Caserta' },
             { value: 'COM-AV', viewValue: 'Com. Avellino' },
@@ -155,7 +142,6 @@ export const BuGroups = [
     {
         name: 'Basilicata',
         bu: [
-            { value: 'DIR-BAS', viewValue: 'Dir. Reg. Basilicata' },
             { value: 'COM-PZ', viewValue: 'Com. Potenza' },
             { value: 'COM-MT', viewValue: 'Com. Matera' }
        ]
@@ -163,7 +149,6 @@ export const BuGroups = [
     {
         name: 'Puglia',
         bu: [
-            { value: 'DIR-PUG', viewValue: 'Dir. Reg. Puglia' },
             { value: 'COM-BA', viewValue: 'Com. Bari' },
             { value: 'COM-BR', viewValue: 'Com. Brindisi' },
             { value: 'COM-FG', viewValue: 'Com. Foggia' },
@@ -174,7 +159,6 @@ export const BuGroups = [
     {
         name: 'Calabria',
         bu: [
-            { value: 'DIR-CAL', viewValue: 'Dir. Reg. Calabria' },
             { value: 'COM-CZ', viewValue: 'Com. Catanzaro' },
             { value: 'COM-CS', viewValue: 'Com. Cosenza' },
             { value: 'COM-KR', viewValue: 'Com. Crotone' },
@@ -185,7 +169,6 @@ export const BuGroups = [
     {
         name: 'Sicilia',
         bu: [
-            { value: 'DIR-SIC', viewValue: 'Dir. Reg. Sicilia' },
             { value: 'COM-PA', viewValue: 'Com. Palermo' },
             { value: 'COM-AG', viewValue: 'Com. Agrigento' },
             { value: 'COM-CL', viewValue: 'Com. Caltanissetta' },
@@ -200,7 +183,6 @@ export const BuGroups = [
     {
         name: 'Sardegna',
         bu: [
-            { value: 'DIR-SAR', viewValue: 'Dir. Reg. Sardegna' },
             { value: 'COM-CA', viewValue: 'Com. Cagliari' },
             { value: 'COM-NU', viewValue: 'Com. Nuoro' },
             { value: 'COM-OR', viewValue: 'Com. Oristano' },
