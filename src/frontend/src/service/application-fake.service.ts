@@ -20,7 +20,7 @@ export class ApplicationService_Fake {
       new DomandaResult("warn1", "Your submission has been accepted with reserve", "Warning"),
       new DomandaResult("succ3", "You will receive a confirmation email", "Success")
     ],
-    null,
+    new Date().toDateString(),
     false);
 
   constructor() { }

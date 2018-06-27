@@ -311,6 +311,8 @@ export class ApplicationFormComponent implements OnInit {
 
     this.submitting = true;
 
+    localStorage.setItem('domanda', JSON.stringify(a));
+    
     return this.applicationService.inserisciDomanda(a)
       .subscribe(outcome => {
         if (outcome.messagesToTheUser.length == 0)
