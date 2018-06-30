@@ -27,17 +27,19 @@ namespace DomainModel.Services.ApplicationPages
 {
     public class ApplicationPage
     {
-        public ApplicationPage(int startIdx, int howMany, int totalCount, IList<Application> applications)
+        public ApplicationPage(int startIdx, int howMany, int totalFilteredCount, int totalCount, IList<Application> applications)
         {
             StartIdx = startIdx;
             HowMany = howMany;
             TotalCount = totalCount;
+            TotalFilteredCount = totalFilteredCount;
             Applications = applications ?? throw new ArgumentNullException(nameof(applications));
         }
 
         public int StartIdx { get; }
         public int HowMany { get; }
         public int TotalCount { get; }
+        public int TotalFilteredCount { get; }
         public IList<Application> Applications { get; }
     }
 }

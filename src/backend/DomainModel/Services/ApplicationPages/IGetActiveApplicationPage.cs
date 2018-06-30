@@ -27,6 +27,6 @@ namespace DomainModel.Services.ApplicationPages
 {
     public interface IGetActiveApplicationPage
     {
-        Task<ApplicationPage> GetAsync(int startIndex, int howMany, bool? onlyErrors = false);
+        Task<ApplicationPage> GetAsync(int startIndex, int howMany, string searchKey, bool? onlyErrors = false);
     }
 }

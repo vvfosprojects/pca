@@ -70,6 +70,24 @@ namespace Persistence.MongoDB
 
                 this.Applications.Indexes.CreateOne(indexDefinition);
             }
+
+            {
+                var indexDefinition = Builders<Application>.IndexKeys
+                    .Text(_ => _.FiscalCode)
+                    .Text(_ => _.FirstName)
+                    .Text(_ => _.LastName)
+                    .Text(_ => _.Email)
+                    .Text(_ => _.Pin)
+                    .Text(_ => _.BusinessUnits)
+                    .Text(_ => _.DrivingLicense)
+                    .Text(_ => _.PhoneNumber);
+
+                var createIndexOptions = new CreateIndexOptions()
+                {
+                    Name = "fullTextIndex"
+                };
+                this.Applications.Indexes.CreateOne(indexDefinition, createIndexOptions);
+            }
         }
 
         private void MapClasses()

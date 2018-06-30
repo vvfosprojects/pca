@@ -37,15 +37,24 @@ namespace Persistence.MongoDB.DbServices
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
 
-        public async Task<ApplicationPage> GetAsync(int startIndex, int howMany, bool? onlyErrors = false)
+        public async Task<ApplicationPage> GetAsync(int startIndex, int howMany, string searchKey, bool? onlyErrors = false)
         {
+            var filterAll = Builders<Application>.Filter
+                .Eq(a => a.DeletionTime, null);
+
             var filter = Builders<Application>.Filter
                 .Eq(a => a.DeletionTime, null);
 
             if (onlyErrors.HasValue && onlyErrors.Value)
                 filter &= !Builders<Application>.Filter.Size(a => a.Anomalies, 0);
 
-            var totalCountTask = dbContext.Applications.CountAsync(filter);
+            if (!string.IsNullOrWhiteSpace(searchKey))
+            {
+                filter &= Builders<Application>.Filter.Text(searchKey.Trim());
+            }
+
+            var totalCountTask = dbContext.Applications.CountAsync(filterAll);
+            var totalFilteredCountTask = dbContext.Applications.CountAsync(filter);
             var applicationsTask = dbContext.Applications.Find(filter)
                 .Skip(startIndex)
                 .Limit(howMany)
@@ -53,11 +62,13 @@ namespace Persistence.MongoDB.DbServices
                 .ToListAsync();
 
             var totalCount = await totalCountTask;
+            var totalFilteredCount = await totalFilteredCountTask;
             var applications = await applicationsTask;
 
             return new ApplicationPage(
                 startIndex,
                 howMany,
+                Convert.ToInt32(totalFilteredCount),
                 Convert.ToInt32(totalCount),
                 applications
                 );

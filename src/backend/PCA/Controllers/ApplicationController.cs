@@ -49,13 +49,14 @@ namespace PCA.Controllers
 
         [Authorize]
         [JwtAuthentication]
-        public async Task<object> Get(int startIndex, int howMany, bool? onlyErrors = false)
+        public async Task<object> Get(int startIndex, int howMany, string searchKey = null, bool? onlyErrors = false)
         {
-            var applicationPage = await this.GetActiveApplications.GetAsync(startIndex, howMany, onlyErrors);
+            var applicationPage = await this.GetActiveApplications.GetAsync(startIndex, howMany, searchKey, onlyErrors);
             return new
             {
                 StartIdx = applicationPage.StartIdx,
                 HowMany = applicationPage.HowMany,
+                TotalFilteredCount = applicationPage.TotalFilteredCount,
                 TotalCount = applicationPage.TotalCount,
                 Rows = applicationPage.Applications.Select(a =>
                     new

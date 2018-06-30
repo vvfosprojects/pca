@@ -32,10 +32,15 @@ GET http://localhost:57156/api/statistics
 
 ### Get application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTI4NTc0MTcyIiwidXNlcm5hbWUiOiJmb28ifQ.Qi18JsuMTtYRltqL_p3W1wY1MbrJwy5AW9G65OC3SdE
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTMwMzg2NDI2IiwidXNlcm5hbWUiOiJmb28ifQ.gPMeE88notiNLCTnA9EaBS8UQzPVAgspNzy-ii-57ps
 
 ### Get in-error application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10&onlyErrors=true
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTMwMzg2NDI2IiwidXNlcm5hbWUiOiJmb28ifQ.gPMeE88notiNLCTnA9EaBS8UQzPVAgspNzy-ii-57ps
+
+### Get full text matching applications
+GET http://localhost:57156/api/application?startIndex=0&howMany=10&searchKey=foo
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTMwMzg2NDI2IiwidXNlcm5hbWUiOiJmb28ifQ.gPMeE88notiNLCTnA9EaBS8UQzPVAgspNzy-ii-57ps
 
 ### Get application page
 GET http://localhost:57156/api/application?id=ABCD
