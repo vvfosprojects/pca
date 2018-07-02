@@ -5,26 +5,23 @@ applicationSuite: Public Competition Application (PCA) Collector
 url: "https://github.com/vvfosprojects/pca.git"        # URL of this repository
 landingURL: "https://github.com/vvfosprojects/pca"
 
-isBasedOn: ""   # The original repository, "Otello"
-softwareVersion: "1.0"                                        # Last stable version
-releaseDate: # Date of last stable software release
-logo:
-monochromeLogo:
+# isBasedOn: ""
+softwareVersion: "0.1"
+releaseDate: "2018-07-02"
+# logo:
+# monochromeLogo:
 
-platforms:                   # or Windows, Mac, Linux, etc.
+inputTypes:
+  - text/plain
+outputTypes:
+  - text/plain
+
+platforms: # or Windows, Mac, Linux, etc.
   - web browser (client)
   - asp.net WebApi written in C# .net 4.6 (server)
 
-api: "https://github.com/vvfosprojects/pca"
-
 tags:
-  - public competition application
-
-freeTags:
-  eng:
-    - public competition application
-  ita:
-    - framework di acquisizione domande a concorsi pubblici
+  - archiving
 
 usedBy:
   - Corpo Nazionale dei Vigili del Fuoco
@@ -33,94 +30,128 @@ roadmap: "https://github.com/vvfosprojects/pca"
 
 developmentStatus: development
 
-softwareType:
-  type: "angular6 frontend with RESTful backend"
-  isRelatedTo:
-    - ""
+softwareType: "web application"
 
 intendedAudience:
   onlyFor:
     - public administrations
     - enterprises
-  countries: # FIXME ISO 3166-1 alpha-2 + EU
-    - EU
-  unsupportedCountries:     # Explicitly unsupported countries
-    -
 
 description:
   eng:
     localisedName: PCA
-    shortDescription: "Public Competition Application"
+    genericName: Public Competition Application
+    shortDescription: >
+        Application aimed at gathering applications
+        for public competitions. It is web based and can be
+        used both by applicants and by backoffice users.
+        
     longDescription: >
-        PCA is a software aimed at collecting applications
-        for public competitions.
+        PCA is a software aimed at gathering applications
+        for public competitions. The software is designed not
+        to require applicant strong authentication. Submitted
+        applications are keyed by the applicant's Italian fiscal
+        code. Fiscal code duplications are allowed by the software,
+        since otherwise an applicant might be unable to submit when
+        her/his fiscal code has been stolen by another fake
+        applicant. It is up to the backoffice users to fix fiscal
+        code duplications. On application submission, the applicant
+        receives a PIN, which allows her/him to possibly update
+        her/his application later on. In case the PIN gets lost, the
+        applicant can submit new applications from scratch. Also
+        in this case, a fiscal code duplication occurs and must be
+        fixed. Applications are never deleted. In case of application
+        update, the old version is marked logically deleted. All
+        actions are logged, even fiscal code matches. The
+        software has been designed to tolerate an high load from
+        the users and can store an ideally unlimited number of
+        applications. The software is composed of a backend
+        (based on Asp.Net WebApi2), a frontend GUI (dedicated
+        to applicants) and a backoffice GUI (dedicated to
+        backoffice users). The frontend is based on Angular6
+        framework and Material design. The backoffice is based
+        on Angular6 framework and Bootstrap v4.
+        The system is compliant with security by-design and by-default
+        enforced by GDPR regulation. The backoffice GUI is protected
+        through a token-based JWT authentication. Real-time statistics
+        on submitted application are available from the backoffice.
+        Implementation of a Denial of Service (DoS) reaction mechanism
+        is planned (basically based on IP client identity). The
+        reaction enforces a binary exponential backoff delay on every
+        request coming from a DoS IP address.
+
     documentation: "https://github.com/vvfosprojects/pca"
+    apiDocumentation: "https://read.the.api.doc/medusa/v1.0"
+
+    freeTags:
+       - public competitions
+
     featureList:
-       - Frontend for public applicants.
-       - Backoffice frontend to check, navigate submitted
-         applications, and reading real-time statistics on the
-         system usage.
-    screenshots:
-       - 
-    videos:                             # Demo videos of the software
-       - 
-    awards:
-       - 
+       - Web based frontend for public applicants.
+       - Web based backoffice frontend to check, navigate submitted
+         applications.
+       - RESTful backend
+       - Publishes real-time statistics on the system usage.
 
 legal:
   license: AGPL-3.0-or-later        # SPDX expression of license
   mainCopyrightOwner: 2018 Corpo Nazionale dei Vigili del Fuoco
   repoOwner: Corpo Nazionale dei Vigili del Fuoco
-  authorsFile: AUTHORS              # file listing copyright information
+  authorsFile: AUTHORS
 
 maintenance:
   type: "up to internal employees"
-
-  contractors:
-    - name: "" # if maintainance is a contract
-      website: ""
-      until: ""
 
   contacts:
     - name: Marcello Esposito
       email: "marcello.esposito@vigilfuoco.it"
       affiliation: Corpo Nazionale dei Vigili del Fuoco
-      phone:
 
 localisation:
-  # Does the software support, at least by design, multiple languages?
   localisationReady: no
-  # Languages already available
   availableLanguages:
     - ita
 
-dependencies:             # List of dependencies. The only mandatory list is the proprietary one
-  open:                 # List of open dependencies. Optional
+dependsOn:
+  open:
     - name: MongoDB
       versionMin: "3.2"
       versionMax: "4.0"
       optional: no
-  # List of proprietary software which is a dependency for using this product. This includes runtime dependencies
   proprietary:
-    -
-  hardware:             # List of special hardware required. Optional.
-    - name: 
-      optional:
+    - name: MS Internet Information Services
 
-ita:
-  accessibile: no # Rispetta i requisiti di legge in materia di accessibilità?
-  interoperabile: no # Rispetta i requisiti di legge sull'interoperabilita'
+it:
+
+  conforme:
+    accessibile: no
+    interoperabile: no
+    sicuro: yes
+    privacy: yes
 
   riuso:
-    # Codice IPA della PA che ha pubblicato questo repo (repo-owner)
     codiceIPA: 5EDW58
 
   spid: no
   pagopa: no
   cie: no
   anpr: no
+  ecosistemi:
+    - sanita
+    - welfare
+    - finanza-pubblica
+    - scuola
+    - istruzione-superiore-ricerca
+    - difesa-sicurezza-soccorso-legalita
+    - giustizia
+    - infrastruttura-logistica
+    - sviluppo-sostenibilita
+    - beni-culturali-turismo
+    - agricoltura
+    - italia-europa-mondo
 
   designKit:
-    - serviceDesign: no
-    - ui: no
-    - webToolkit: no
+    seo: no
+    ui: no
+    web: no
+    content: no
