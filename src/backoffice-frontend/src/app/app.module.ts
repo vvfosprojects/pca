@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { StatisticsServiceFake } from './services/statistics.service.fake';
 import { StatisticsService } from './services/statistics.service';
@@ -42,6 +43,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes)
@@ -58,7 +60,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     
     { provide: AuthService, useClass: AuthServiceFake },
     // { provide: AuthService, useClass: AuthService },
- 
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

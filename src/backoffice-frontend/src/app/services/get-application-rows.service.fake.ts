@@ -52,11 +52,12 @@ private fakeRows: ApplicationRow[] = [
 
   constructor() { }
 
-  public getRows(startIndex: number, howMany: number): Observable<ApplicationRowPage> {
+  public getRows(startIndex: number, howMany: number, searchKey: string): Observable<ApplicationRowPage> {
     let page = this.fakeRows.filter((row, idx) => idx >= startIndex && idx < startIndex + howMany);
     let result = new ApplicationRowPage(
       startIndex,
       howMany,
+      this.fakeRows.length,
       this.fakeRows.length,
       page
     );

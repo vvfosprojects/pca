@@ -13,13 +13,16 @@ const APIURL = environment.apiUrl;
 export class GetApplicationRowsService {
   constructor(private http: HttpClient) { }
 
-  public getRows(startIndex: number, howMany: number): Observable<ApplicationRowPage> {
+  public getRows(startIndex: number, howMany: number, searchKey: string): Observable<ApplicationRowPage> {
     let action = "/application";
 
     let params = new HttpParams()
       .set('startIndex', startIndex.toString())
-      .set('howMany', howMany.toString());
+      .set('howMany', howMany.toString())
+      .set('searchKey', howMany.toString());
 
     return this.http.get<ApplicationRowPage>(APIURL + action, { params: params } );
   }
+
+
 }

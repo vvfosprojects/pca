@@ -2,8 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GetApplicationRowsService } from '../services/get-application-rows.service';
 import { ApplicationRow } from '../models/application-row.model';
 import { ApplicationRowPage } from '../models/application-row-page.model';
+import { SearchService } from '../models/application-row-page.model';
 
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
+import { NavbarComponent } from '../navbar/navbar.component';
 @Component({
   selector: 'app-application-table',
   templateUrl: './application-table.component.html',
@@ -12,23 +14,32 @@ import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 export class ApplicationTableComponent implements OnInit {
   private pageCorrente: any = 1;
   @Input() application: ApplicationRow;
-
-
+  @Input() search: SearchService;
+  
   private itemCorrenti: number = 0;
   private pageSize: number = 5;
- 
+  
+  private searchKey: string;
  
   private page: ApplicationRowPage = null;
 
   
   
- constructor(private router: Router, private route: ActivatedRoute, private getApplicationRowsService: GetApplicationRowsService) { }
+ constructor(private router: Router, private route: ActivatedRoute, private getApplicationRowsService: GetApplicationRowsService
+) { }
 
   ngOnInit() {
-       
-    this.getApplicationRowsService.getRows(0, this.pageSize)
-    .subscribe(page => { this.page = page;}); 
+               
+   /*  let searchChiave = window.localStorage.getItem('searchChiave');
 
+    this.searchKey = searchChiave;
+    console.log("app-table",this.searchKey); */
+
+   
+ /* this.getApplicationRowsService.getRows(0, this.pageSize, this.searchKey)
+    .subscribe(page => { this.page = page;}); 
+  */
+/*
     let pageStorage = window.localStorage.getItem('pageStorage');
 
     if (pageStorage)  
@@ -36,17 +47,26 @@ export class ApplicationTableComponent implements OnInit {
           this.pageCorrente = pageStorage;
           this.loadPage(this.pageCorrente);
      }      
+*/
+
+      this.search.setPageInfo(this.itemCorrenti, this.pageSize);
+    /* this.search.onNewPage(); */
+     
    } 
 
-
-
+  
   private loadPage(pageCorrente : number) {
 
     this.itemCorrenti = (this.page.howMany*pageCorrente) - this.page.howMany;
 
     window.localStorage.setItem('pageStorage', this.pageCorrente);
     
-    this.getApplicationRowsService.getRows(this.itemCorrenti, this.pageSize)
+    let searchChiave = window.localStorage.getItem('searchChiave');
+
+    this.searchKey = searchChiave;
+    console.log("app-table1",this.searchKey);
+
+    this.getApplicationRowsService.getRows(this.itemCorrenti, this.pageSize, this.searchKey)
     .subscribe(page => this.page = page);
       
   }

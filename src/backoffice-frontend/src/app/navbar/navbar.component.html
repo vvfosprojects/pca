@@ -7,9 +7,6 @@
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <button (click)="exportAsXLSX()"><i class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="top" title="Esporta"></i></button>
- 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li *ngIf="isLoggedIn()" class="nav-item">
@@ -19,15 +16,21 @@
         </a>
       </li>
      </ul>
-   </div>
+  </div>
   
+  <button type="button" class="btn btn-outline-dark" (click)="exportAsXLSX()"><i class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i></button>
   <div class="col-3">  
+    
     <div class="input-group pull-right">
-        <input type="text" class="form-control" placeholder="Cerca..."   (keyup)="ricerca($event)">
+      <!--   <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+      </div> -->
+      <input type="text" class="form-control" placeholder="Cerca..."  [(ngModel)]="searchKey" (keyup)="ricerca($event)">
         <span class="input-group-btn">
             <button class="btn btn-secondary" type="button" (click)="clearSearchText()"><i class="fa fa-times" aria-hidden="true"></i></button>
         </span>
     </div>
   </div>  
-
+ 
 </nav>
+

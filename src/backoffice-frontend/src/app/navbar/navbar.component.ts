@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 
 import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-navbar',
@@ -9,15 +10,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  private testoRicerca: string;
-
-  constructor(private authService: AuthService, private router: Router) { }
+  private searchKey: string;
+ 
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   logout() {
-    localStorage.removeItem('pageStorage');
     this.authService.logout();
     this.router.navigate(['/login']);
   }
@@ -26,7 +26,24 @@ export class NavbarComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  private clearSearchText(): void {
-    this.testoRicerca = null;
+  private ricerca(event) {
+  
+    window.localStorage.setItem('searchChiave', this.searchKey);
+
+      let searchChiave = window.localStorage.getItem('searchChiave');
+
+      this.searchKey = searchChiave;
+
+    console.log('prima navigate', this.searchKey)
+
+    this.router.navigate(['/control-panel']);
+     
   }
+ 
+   private clearSearchText(): void {
+    this.searchKey = null;
+    window.localStorage.setItem('searchChiave', this.searchKey);
+    this.router.navigate(['/control-panel']);
+  }
+ 
 }
