@@ -26,6 +26,7 @@ import { AuthService } from './services/auth.service';
 import { AuthServiceFake } from './services/auth.service.fake';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ControlPanelComponent,
     PageNotFoundComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchBoxComponent
    ],
   imports: [
     NgbModule.forRoot(),

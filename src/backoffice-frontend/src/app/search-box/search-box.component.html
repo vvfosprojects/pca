@@ -1,0 +1,8 @@
+<div class="input-group pull-right">
+  <input type="text" class="form-control" placeholder="Cerca nelle domande..." (input)="textChanged($event.target.value)" />
+  <span class="input-group-btn">
+    <button class="btn btn-secondary" type="button" (click)="clearSearchText()">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+  </span>
+</div>
