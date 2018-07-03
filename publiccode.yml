@@ -81,7 +81,7 @@ description:
         request coming from a DoS IP address.
 
     documentation: "https://github.com/vvfosprojects/pca"
-    apiDocumentation: "https://read.the.api.doc/medusa/v1.0"
+    apiDocumentation: "https://github.com/vvfosprojects/pca"
 
     freeTags:
        - public competitions
