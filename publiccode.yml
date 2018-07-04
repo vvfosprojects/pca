@@ -34,8 +34,19 @@ softwareType: "standalone"
 
 intendedAudience:
   onlyFor:
-    - public administrations
-    - enterprises
+    - cities
+    - health-services
+    - police-forces
+    - it-ag-sanita
+    - it-altrilocali
+    - it-aci
+    - hospital
+    - it-az-servizi
+    - it-metro
+    - city
+    - it-regione
+  countries:
+    - IT
 
 description:
   eng:
