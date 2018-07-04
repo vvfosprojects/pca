@@ -1,8 +1,8 @@
-<div class="input-group pull-right">
-  <input type="text" class="form-control" placeholder="Cerca nelle domande..." [(ngModel)]="searchKey" (input)="textChanged($event.target.value)" />
-  <span class="input-group-btn">
-    <button class="btn btn-secondary" type="button"  (click)="clearSearchText(searchKey)">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </button>
-  </span>
+<div class="input-group input-group-lg">
+  <div class="input-group-prepend">
+    <div class="input-group-text" id="btnGroupAddon2">
+      <i class="fa fa-search" aria-hidden="true"></i>
+    </div>
+  </div>
+  <input type="text" class="form-control" placeholder="Cerca nelle domande..." (input)="textChanged($event.target.value)" />
 </div>

@@ -7,7 +7,6 @@ import { GetApplicationRowsService } from '../services/get-application-rows.serv
   styleUrls: ['./search-box.component.css']
 })
 export class SearchBoxComponent implements OnInit {
-  private searchKey : string;
   constructor(private getRows: GetApplicationRowsService) { }
 
   ngOnInit() {
@@ -16,11 +15,4 @@ export class SearchBoxComponent implements OnInit {
   private textChanged(searchKey: string) {
     this.getRows.setSearchKey(searchKey);
   }
-
-  private clearSearchText(searchKey: string) {
-    this.searchKey = searchKey;
-    this.searchKey = null;
-    this.getRows.setSearchKey(this.searchKey);
-  }
-
 }

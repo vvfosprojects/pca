@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top navbar-expand navbar-light bg-light">
   <a class="navbar-brand" href="#">
-      <i class="fa fa-vcard-o"></i>
-      PCA Backoffice
+    <i class="fa fa-vcard-o"></i>
+    PCA Backoffice
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -15,13 +15,16 @@
           Esci
         </a>
       </li>
-     </ul>
+    </ul>
   </div>
- 
-  <a [href]="fileUrl" class="btn btn-outline-primary" role="button" aria-pressed="true" (click)="downloadFile()" download="dany.pdf"><i class="fa fa-file-excel-o fa-lg" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i></a> 
- <!---<button type="button" class="btn btn-outline-dark" (click)="downloadFile()"><i class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i></button> -->
-  <div class="col-3">  
-    <search-box></search-box>
-  </div> 
-</nav>
 
+  <div class="mr-3">
+    <a [href]="fileUrl" class="btn btn-outline-primary" role="button" aria-pressed="true" (click)="downloadFile()" download="dany.pdf">
+      <i class="fa fa-file-excel-o fa-lg" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i>
+    </a>
+  </div>
+  <!---<button type="button" class="btn btn-outline-dark" (click)="downloadFile()"><i class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i></button> -->
+  <div>
+    <search-box></search-box>
+  </div>
+</nav>
