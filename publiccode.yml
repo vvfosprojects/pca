@@ -30,7 +30,7 @@ roadmap: "https://github.com/vvfosprojects/pca"
 
 developmentStatus: development
 
-softwareType: "web application"
+softwareType: "standalone"
 
 intendedAudience:
   onlyFor:
