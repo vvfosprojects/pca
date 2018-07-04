@@ -1,7 +1,7 @@
 <div class="input-group pull-right">
-  <input type="text" class="form-control" placeholder="Cerca nelle domande..." (input)="textChanged($event.target.value)" />
+  <input type="text" class="form-control" placeholder="Cerca nelle domande..." [(ngModel)]="searchKey" (input)="textChanged($event.target.value)" />
   <span class="input-group-btn">
-    <button class="btn btn-secondary" type="button" (click)="clearSearchText()">
+    <button class="btn btn-secondary" type="button"  (click)="clearSearchText(searchKey)">
       <i class="fa fa-times" aria-hidden="true"></i>
     </button>
   </span>

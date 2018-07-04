@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { GetApplicationRowsService } from '../services/get-application-rows.service';
 import { ApplicationRow } from '../models/application-row.model';
 import { ApplicationRowPage } from '../models/application-row-page.model';
-import { SearchService } from '../models/application-row-page.model';
+
 
 import { Router} from "@angular/router";
 
