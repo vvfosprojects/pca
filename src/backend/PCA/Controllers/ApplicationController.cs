@@ -56,7 +56,7 @@ namespace PCA.Controllers
             {
                 StartIdx = applicationPage.StartIdx,
                 HowMany = applicationPage.HowMany,
-                TotalFilteredCount = applicationPage.TotalFilteredCount,
+                TotalFiltered = applicationPage.TotalFilteredCount,
                 TotalCount = applicationPage.TotalCount,
                 Rows = applicationPage.Applications.Select(a =>
                     new
