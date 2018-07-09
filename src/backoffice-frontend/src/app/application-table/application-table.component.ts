@@ -15,7 +15,7 @@ export class ApplicationTableComponent implements OnInit {
   private curPage: number;
   private pageSize: number;
   private page: ApplicationRowPage = null;
-
+  
   constructor(private getRows: GetApplicationRowsService,
     private router: Router) { }
 
@@ -26,12 +26,14 @@ export class ApplicationTableComponent implements OnInit {
     this.getRows.newPage.subscribe(page => {
       this.page = page;
     });
-  }
+      
+ }
 
 
   private loadPage(pageCorrente: number) {
     this.curPage = pageCorrente;
     this.getRows.setPageInfo(this.curPage, this.pageSize);
+      
   }
 
   private mostraApplication(row: ApplicationRow) {

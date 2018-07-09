@@ -13,11 +13,17 @@
 .justify-content-center {
     display: flex;
     justify-content: center;
-}
+   }
 
 .justify-content-right {
     float:right;
     text-align: right;
-}
+ }
 
-   
+.vertical {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   }
+
+  

@@ -47,13 +47,13 @@ export class GetApplicationRowsServiceFake {
     new ApplicationRow("id14", "Ignazio Sola", "XXXYYY55T66R222N", new Date("2010-01-14T16:50:19.4755534+02:00"), false),
     new ApplicationRow('id15', "Sola Luigi", "XRRYYY55T66R222N", new Date("2010-01-13T14:06:42.1824294+02:00"), false),
     new ApplicationRow('id16', "Ignazio Due", "XXXYPP55T66R222N", new Date("2010-01-13T14:06:42.1824294+02:00"), false),
-    new ApplicationRow('id17', "Ignazio Tre", "XXXYYY55T66R232N", new Date("2010-01-13T14:06:42.1824294+02:00"), false)
+    new ApplicationRow('id17', "Ignazio Tre", "XXXYYY55T66R232N", new Date("2010-01-13T14:06:42.1824294+02:00"), false) 
   ];
   private newPageObservable: BehaviorSubject<ApplicationRowPage> = new BehaviorSubject(null);
   private searchKey: string = "";
   private curPage: number = 1;
   private pageSize: number = 5;
-
+  
   constructor() { 
     this.triggerSearch();
   }
@@ -92,7 +92,6 @@ export class GetApplicationRowsServiceFake {
       filteredCount,
       page
     );
-
     this.newPageObservable.next(result);
   }
 
