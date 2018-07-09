@@ -38,11 +38,10 @@ export class NavbarComponent implements OnInit {
   }
 
   isLoggedIn(): boolean {
-     return this.authService.isLoggedIn();
+    return this.authService.isLoggedIn();
   }
 
-
-  
+   
  private downloadFile() {
   /* const httpOptions = {
     headers: new HttpHeaders({ 'responseType':  'ResponseContentType.Blob',

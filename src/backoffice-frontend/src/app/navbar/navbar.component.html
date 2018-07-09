@@ -21,13 +21,14 @@
   
 
   <div class="mr-3">
-    <a [href]="fileUrl" class="btn btn-outline-primary" role="button" aria-pressed="true" (click)="downloadFile()" download="dany.pdf">
+    <a *ngIf="isLoggedIn()" [href]="fileUrl" class="btn btn-outline-primary" role="button" aria-pressed="true" (click)="downloadFile()" download="dany.pdf">
       <i class="fa fa-file-excel-o fa-lg" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i>
     </a>
   </div>
   <!---<button type="button" class="btn btn-outline-dark" (click)="downloadFile()"><i class="fa fa-file-excel-o" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i></button> -->
-  <div>
+  <div *ngIf="isLoggedIn()">
     <search-box></search-box>
   </div>
+
 
 </nav>
