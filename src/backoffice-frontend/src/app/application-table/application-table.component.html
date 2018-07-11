@@ -31,16 +31,10 @@
         <tfoot>
         </tfoot>
     </table>      
-   
-    <div class="footer">
-     <!--    <span class="justify-content-left">
-            <i class="fa fa-file-excel-o fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Esporta"></i>
-        </span> -->
-        <span class="justify-content-center">
-            <ngb-pagination [collectionSize]="page.totalCount" [(page)]="pageCorrente" [maxSize]="5" [pageSize]="pageSize" [rotate]="true"
-                [boundaryLinks]="true" (pageChange)="loadPage($event)">
-            </ngb-pagination>
-        </span>
-        <span class="justify-content-right">{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalCount }}</span>
-    </div>
- </div>
+    <ngb-pagination class="ml-auto justify-content-center" [collectionSize]="page.totalFiltered" [(page)]="curPage" [maxSize]="5" [pageSize]="pageSize"
+        [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)">
+    </ngb-pagination>
+    <span *ngIf="(page.totalFiltered > 0) && (page.totalFiltered < (page.startIdx + page.howMany))" class="ml-3 vertical">{{ page.startIdx + 1 }} - {{ page.totalFiltered }} di {{ page.totalFiltered }} tot. ({{ page.totalCount }}) </span>
+    <span *ngIf="(page.totalFiltered > 0) && (page.totalFiltered >= (page.startIdx + page.howMany))" class="ml-3 vertical">{{ page.startIdx + 1 }} - {{ page.startIdx + page.howMany }} di {{ page.totalFiltered }} tot. ({{ page.totalCount }}) </span>
+</div>
+

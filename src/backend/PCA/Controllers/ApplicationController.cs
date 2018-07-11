@@ -27,6 +27,7 @@ using System.Web.Http.Cors;
 using DomainModel;
 using DomainModel.Services;
 using DomainModel.Services.ApplicationPages;
+using log4net;
 using PCA.Authorization;
 
 namespace PCA.Controllers
@@ -34,6 +35,8 @@ namespace PCA.Controllers
     [EnableCors(origins: "http://localhost:4200, http://localhost:4201", headers: "*", methods: "*")]
     public class ApplicationController : ApiController
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly ISubmitApplication submitApplication;
         private readonly IGetActiveApplicationPage GetActiveApplications;
         private readonly IGetActiveApplicationById getActiveApplicationById;
@@ -51,12 +54,14 @@ namespace PCA.Controllers
         [JwtAuthentication]
         public async Task<object> Get(int startIndex, int howMany, string searchKey = null, bool? onlyErrors = false)
         {
+            log.Debug($"Search triggered: { searchKey }");
+
             var applicationPage = await this.GetActiveApplications.GetAsync(startIndex, howMany, searchKey, onlyErrors);
             return new
             {
                 StartIdx = applicationPage.StartIdx,
                 HowMany = applicationPage.HowMany,
-                TotalFilteredCount = applicationPage.TotalFilteredCount,
+                TotalFiltered = applicationPage.TotalFilteredCount,
                 TotalCount = applicationPage.TotalCount,
                 Rows = applicationPage.Applications.Select(a =>
                     new

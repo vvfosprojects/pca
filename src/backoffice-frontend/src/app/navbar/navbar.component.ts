@@ -2,17 +2,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from "@angular/router";
 
 import { AuthService } from '../services/auth.service';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
-})
+ })
 export class NavbarComponent implements OnInit {
-  private searchKey: string;
+  
  
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  fileUrl;
+  
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -26,24 +29,14 @@ export class NavbarComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  private ricerca(event) {
+   
+ private downloadFile() {
+       
   
-    window.localStorage.setItem('searchChiave', this.searchKey);
-
-      let searchChiave = window.localStorage.getItem('searchChiave');
-
-      this.searchKey = searchChiave;
-
-    console.log('prima navigate', this.searchKey)
-
-    this.router.navigate(['/control-panel']);
+      this.fileUrl='http://www.vigilfuoco.it/aspx/ReturnDocument.aspx?IdDocumento=12498';
      
-  }
+  } 
+
+} 
  
-   private clearSearchText(): void {
-    this.searchKey = null;
-    window.localStorage.setItem('searchChiave', this.searchKey);
-    this.router.navigate(['/control-panel']);
-  }
- 
-}
+
