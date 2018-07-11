@@ -14,16 +14,14 @@ const APIURL = environment.apiUrl;
 export class GetApplicationRowsService {
   private filterSubject: Subject<SearchData> = new Subject<SearchData>();
   private newPageObservable: BehaviorSubject<ApplicationRowPage> = new BehaviorSubject(null);
-  private curPage: number = 1;
-  private pageSize: number = 5;
-  private searchKey: string = "";
+  private searchData: SearchData = SearchData.create();
 
   /**
    * Triggers the first time a search with default values. Then, subscribes the filter observable for future searches.
    * @param http The injected service
    */
   constructor(private http: HttpClient) {
-    this._triggerSearch(this.buildSearchData());
+    this._triggerSearch(this.searchData);
 
     this.filterSubject.pipe(
       debounceTime(250),
@@ -36,7 +34,7 @@ export class GetApplicationRowsService {
    * @param searchKey The new search key
    */
   public setSearchKey(searchKey: string): void {
-    this.searchKey = searchKey.trim();
+    this.searchData = new SearchData(this.searchData.curPage, this.searchData.pageSize, searchKey.trim());
     this.triggerSearch();
   }
 
@@ -46,8 +44,7 @@ export class GetApplicationRowsService {
    * @param pageSize The new page size
    */
   public setPageInfo(curPage: number, pageSize: number) {
-    this.curPage = curPage;
-    this.pageSize = pageSize;
+    this.searchData = new SearchData(curPage, pageSize, this.searchData.searchKey);
     this.triggerSearch();
   }
 
@@ -62,21 +59,14 @@ export class GetApplicationRowsService {
    * Returns currently active page data
    */
   public getPageInfo(): number[] {
-    return [this.curPage, this.pageSize];
+    return [ this.searchData.curPage, this.searchData.pageSize ];
   }
 
   /**
    * This method triggers a new value on the filter observable.
    */
   private triggerSearch(): void {
-    this.filterSubject.next(this.buildSearchData());
-  }
-
-  /**
-   * Creates and returns new search data from current values
-   */
-  private buildSearchData(): SearchData {
-    return new SearchData(this.curPage, this.pageSize, this.searchKey);
+    this.filterSubject.next(this.searchData);
   }
 
   /**
@@ -103,9 +93,9 @@ export class GetApplicationRowsService {
  * A local class holding the current search data
  */
 class SearchData {
-  constructor(public curPage: number,
-    public pageSize: number,
-    public searchKey: string) { }
+  constructor(public readonly curPage: number,
+    public readonly pageSize: number,
+    public readonly searchKey: string) { }
 
   /**
    * Performs the equality operator
@@ -115,5 +105,9 @@ class SearchData {
     return this.curPage == other.curPage &&
       this.pageSize == other.pageSize &&
       this.searchKey == other.searchKey;
+  }
+
+  public static create() {
+    return new SearchData(1, 5, "");
   }
 }
