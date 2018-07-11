@@ -15,7 +15,7 @@ namespace FakeApplicationProducer
     public class Producer
     {
         [Test]
-        //[Ignore("Not a test but a fake db feeder.")]
+        [Ignore("Not a test but a fake db feeder.")]
         public void FillDatabase()
         {
             var faker = new Faker("it");
