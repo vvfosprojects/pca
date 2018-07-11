@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCA", "PCA\PCA.csproj", "{E8B6696A-AB9A-412C-94E7-395000B965E4}"
 EndProject
@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stuff", "stuff", "{57996309
 	ProjectSection(SolutionItems) = preProject
 		stuff\pca.licenseheader = stuff\pca.licenseheader
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeApplicationProducer", "FakeApplicationProducer\FakeApplicationProducer.csproj", "{A44AA720-FB8C-4D66-B431-9985B9BDD2A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A44AA720-FB8C-4D66-B431-9985B9BDD2A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A44AA720-FB8C-4D66-B431-9985B9BDD2A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A44AA720-FB8C-4D66-B431-9985B9BDD2A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44AA720-FB8C-4D66-B431-9985B9BDD2A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
