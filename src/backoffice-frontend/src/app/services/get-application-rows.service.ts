@@ -83,7 +83,6 @@ export class GetApplicationRowsService {
    * Actually triggers the http request towards the backend. This method is filtered by the filterSubject observable.
    */
   private _triggerSearch(searchData: SearchData): void {
-    console.log(searchData);
     let action = "/application";
     let startIndex = (searchData.curPage - 1) * searchData.pageSize;
 
