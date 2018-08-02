@@ -22,9 +22,9 @@
 
   <div class="mr-3">
  
-   <a *ngIf="isLoggedIn()" [href]="fileUrl" class="btn btn-outline-primary" role="button" aria-pressed="true" (click)="downloadFile()" >
+   <div *ngIf="isLoggedIn()" href="#" class="btn btn-outline-primary" role="button" aria-pressed="true" (click)="downloadFile()" >
       <i class="fa fa-file-excel-o fa-lg" data-toggle="tooltip" data-placement="top" title="Esporta in excel"></i>
-   </a>
+   </div>
    
   </div>
 

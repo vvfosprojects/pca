@@ -18,6 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
+using System.Text;
 
 namespace DomainModel
 {
@@ -52,5 +53,29 @@ namespace DomainModel
         public DateTime? DeletionTime { get; set; }
         public Anomaly[] Anomalies { get; set; }
         public string SourceIp { get; set; }
+
+        public string ToCsv()
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.FiscalCode);
+            sb.Append(';');
+            sb.Append(this.LastName);
+            sb.Append(';');
+            sb.Append(this.FirstName);
+            sb.Append(';');
+            sb.Append(this.BirthDate.Date.ToString("dd/MM/yyyy"));
+            sb.Append(';');
+            sb.Append(this.Email);
+            sb.Append(';');
+            sb.Append(string.Join(", ", this.BusinessUnits));
+            sb.Append(';');
+            sb.Append(this.WorkingDays);
+            sb.Append(';');
+            sb.Append(this.DrivingLicense);
+            sb.Append(';');
+            sb.Append(this.SubmissionTime.ToString("dd/MM/yyyy HH.mm.ss"));
+
+            return sb.ToString();
+        }
     }
 }

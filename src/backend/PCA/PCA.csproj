@@ -108,6 +108,7 @@
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CfCheckController.cs" />
+    <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -63,6 +63,13 @@ export class GetApplicationRowsService {
   }
 
   /**
+   * Returns currently active search key
+   */
+  public getSearchKey(): string {
+    return this.searchData.searchKey;
+  }
+
+  /**
    * This method triggers a new value on the filter observable.
    */
   private triggerSearch(): void {
