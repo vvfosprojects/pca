@@ -31,7 +31,6 @@ using Services.JwtAuthentication;
 
 namespace PCA.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200, http://localhost:4201", headers: "*", methods: "*")]
     public class AuthController : ApiController
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);

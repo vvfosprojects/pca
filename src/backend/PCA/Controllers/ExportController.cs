@@ -32,7 +32,6 @@ using PCA.Authorization;
 
 namespace PCA.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200, http://localhost:4201", headers: "*", methods: "*")]
     public class ExportController : ApiController
     {
         private static Random rnd = new Random();
