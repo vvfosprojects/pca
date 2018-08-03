@@ -90,7 +90,6 @@ export class GetApplicationRowsService {
 
     this.http.get<ApplicationRowPage>(APIURL + action, { params: params })
       .subscribe(row => {
-        console.log("richiesta http");
         this.newPageObservable.next(row);
       });
   }
