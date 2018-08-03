@@ -47,7 +47,9 @@ namespace PCA.Controllers
 
         [Authorize]
         [JwtAuthentication]
-        public object Post()
+        [HttpPost]
+        [Route("api/export/getDownloadAuthKey")]
+        public object GetDownloadAuthKey()
         {
             currentAuthKey = GetCurrentAuthKey();
             return new { authKey = currentAuthKey };

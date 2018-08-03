@@ -36,7 +36,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private exportData() {
-    const generateDownloadKeyAction = "/export";
+    const generateDownloadKeyAction = "/export/getDownloadAuthKey";
     this.http.post(APIURL + generateDownloadKeyAction, {})
       .subscribe((response: any) => {
         let currentSearchKey = this.getRows.getSearchKey();
