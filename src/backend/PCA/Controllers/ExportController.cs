@@ -57,7 +57,7 @@ namespace PCA.Controllers
 
         public async Task<HttpResponseMessage> Get(string searchKey, string downloadAuthKey)
         {
-            if (downloadAuthKey != currentAuthKey)
+            if (string.IsNullOrWhiteSpace(downloadAuthKey) || (downloadAuthKey != currentAuthKey))
                 throw new UnauthorizedAccessException("Unauthorized download");
 
             var page = await this.getActiveApplications.GetAsync(0, int.MaxValue, searchKey);
@@ -82,7 +82,7 @@ namespace PCA.Controllers
         private static string GetCurrentAuthKey()
         {
             const int length = 50;
-            const string chars = "ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789";
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_0123456789";
             return new string(Enumerable.Repeat(chars, length)
                 .Select(s => s[rnd.Next(s.Length)]).ToArray());
         }
