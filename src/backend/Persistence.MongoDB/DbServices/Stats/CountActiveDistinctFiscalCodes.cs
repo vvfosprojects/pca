@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="CountTotalActiveApplicationsEver.cs" company="CNVVF">
+// <copyright file="CountActiveDistinctFiscalCodes.cs" company="CNVVF">
 // Copyright (C) 2018 - CNVVF
 //
 // This file is part of Public Competition Application (PCA).
