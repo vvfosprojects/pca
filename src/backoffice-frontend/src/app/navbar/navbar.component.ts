@@ -35,13 +35,12 @@ export class NavbarComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  private downloadFile() {
+  private exportData() {
     const generateDownloadKeyAction = "/export";
     this.http.post(APIURL + generateDownloadKeyAction, {})
       .subscribe((response: any) => {
         let currentSearchKey = this.getRows.getSearchKey();
         const downloadAction = "/export?searchKey=" + currentSearchKey + "&downloadAuthKey=" + response.authKey;
-        console.log(downloadAction);
         window.location.href = APIURL + downloadAction;
       });
   }
