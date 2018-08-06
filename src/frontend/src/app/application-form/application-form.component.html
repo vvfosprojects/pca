@@ -115,7 +115,7 @@
     <mat-divider class="interlinea"></mat-divider>
     <mat-card>
       <div formGroupName="workInfo">
-        <div>
+        <div class="interlinea">
           <mat-form-field class="input-short">
             <input matInput placeholder="Giorni lavorati" formControlName="workedDays" type="number" min=0>
             <mat-error *ngIf="workedDays.invalid && (workedDays.dirty || workedDays.touched)">
@@ -148,22 +148,25 @@
               </div>
             </mat-error>
           </mat-form-field>
-          <mat-radio-group>
-            <mat-hint> Che tipo di patente hai? </mat-hint>
-            <mat-radio-button (change)="selectLicense($event)" value="VVF" style="margin-right: 40px">VVF</mat-radio-button>
-            <mat-radio-button (change)="selectLicense($event)" value="CIV">Civile</mat-radio-button>
-          </mat-radio-group>
+          
+        
 
 
         </div>
+        <div >
+            <mat-radio-group>
+              <mat-hint> Che tipo di patente hai? </mat-hint>
+              <mat-radio-button (change)="selectLicense($event)" value="VVF" style="margin-right: 40px">VVF</mat-radio-button>
+              <mat-radio-button (change)="selectLicense($event)" value="CIV">Civile</mat-radio-button>
+            </mat-radio-group>
+          </div>
       </div>
 
       <div formGroupName="licenseInfo">
 
         <div *ngIf="civilLicenseSelected || vvfLicenseSelected">
-          <table cellspacing="0">
-            <tr>
-              <td>
+          
+              
                 <mat-form-field *ngIf="civilLicenseSelected">
                   <mat-select placeholder="Categoria" formControlName="category">
                     <mat-option *ngFor="let pat of catPatentiCiv" [value]="pat.value">
@@ -191,8 +194,7 @@
                     </div>
                   </mat-error>
                 </mat-form-field>
-              </td>
-              <td>
+              
                 <mat-form-field>
                   <input matInput placeholder="Numero" formControlName="number">
                   <mat-error *ngIf="number.invalid && (number.dirty || number.touched)">
@@ -201,8 +203,6 @@
                     </div>
                   </mat-error>
                 </mat-form-field>
-              </td>
-              <td>
                 <mat-form-field *ngIf="civilLicenseSelected">
                   <mat-select placeholder="Ente" formControlName="releasedBy">
                     <mat-option value="prefettura">Prefettura</mat-option>
@@ -218,9 +218,7 @@
                 <mat-form-field *ngIf="vvfLicenseSelected">
                   <input matInput placeholder="Ente" formControlName="releasedBy" readonly>
                 </mat-form-field>
-              </td>
-              <td>
-                <mat-form-field>
+               <mat-form-field>
                   <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="releaseDate">
                   <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
                   <mat-datepicker #pickerRilascio></mat-datepicker>
@@ -230,8 +228,6 @@
                     </div>
                   </mat-error>
                 </mat-form-field>
-              </td>
-              <td>
                 <mat-form-field>
                   <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="validUntil">
                   <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
@@ -245,9 +241,6 @@
                     </div>
                   </mat-error>
                 </mat-form-field>
-              </td>
-            </tr>
-          </table>
         </div>
 
       </div>
