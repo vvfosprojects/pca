@@ -36,6 +36,7 @@ import { environment } from '../environments/environment';
 import { CfCheckServiceSuccess_Fake } from '../service/cf-check-fake-success.service';
 import { ApplicationServiceSuccess_Fake } from '../service/application-fake-success.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { HelpComponent } from './help/help.component';
 
 
 const ENABLETRACING = environment.enableTracing;
@@ -46,7 +47,8 @@ const APPROUTES = appRoutes;
     AppComponent,
     ApplicationFormComponent,
     SubmissionResultComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HelpComponent
   ],
   imports: [
     RouterModule.forRoot(
