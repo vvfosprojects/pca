@@ -36,6 +36,7 @@ import { environment } from '../environments/environment';
 import { CfCheckServiceSuccess_Fake } from '../service/cf-check-fake-success.service';
 import { ApplicationServiceSuccess_Fake } from '../service/application-fake-success.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { HelpComponent } from './help/help.component';
 
 
@@ -72,7 +73,8 @@ const APPROUTES = appRoutes;
     MatCardModule,
     MatIconModule,
     MatBadgeModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'it-IT' },
