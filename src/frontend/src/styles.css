@@ -29,6 +29,15 @@ body {
     font-size: 17px;
 }
 
+.mat-tab-labels{
+    background-color: white;
+    
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+	background-color: #ab201d;
+}
+
 /* Change the color of links on hover */
 .topnav a:hover {
     border-bottom: solid white 3px;
