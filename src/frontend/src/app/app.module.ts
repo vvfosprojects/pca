@@ -39,6 +39,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HelpComponent } from './help/help.component';
+import { SpidComponent } from './spid/spid.component';
 
 
 const ENABLETRACING = environment.enableTracing;
@@ -50,7 +51,8 @@ const APPROUTES = appRoutes;
     ApplicationFormComponent,
     SubmissionResultComponent,
     PageNotFoundComponent,
-    HelpComponent
+    HelpComponent,
+    SpidComponent
   ],
   imports: [
     RouterModule.forRoot(

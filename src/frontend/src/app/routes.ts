@@ -3,11 +3,13 @@ import { SubmissionResultComponent } from "./submission-result/submission-result
 import { ApplicationFormComponent } from "./application-form/application-form.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { HelpComponent } from "./help/help.component";
+import { SpidComponent } from "./spid/spid.component";
 
 export const appRoutes: Routes = [
     { path: 'application-form', component: ApplicationFormComponent },
     { path: 'submission-result', component: SubmissionResultComponent },
     { path: 'help', component: HelpComponent },
+    { path: 'spid', component: SpidComponent },
     { path: '',
       redirectTo: '/application-form',
       pathMatch: 'full'
