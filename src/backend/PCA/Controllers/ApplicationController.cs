@@ -22,7 +22,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using DomainModel;
 using DomainModel.Services;
 using DomainModel.Services.ApplicationPages;

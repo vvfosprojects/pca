@@ -19,7 +19,6 @@
 //-----------------------------------------------------------------------
 using System;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using Services.CfChecker;
 
 namespace PCA.Controllers
