@@ -17,7 +17,6 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
-
 namespace DomainModel.Services
 {
     public interface IGetActiveApplicationById
