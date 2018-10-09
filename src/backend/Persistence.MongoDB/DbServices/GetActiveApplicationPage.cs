@@ -53,8 +53,8 @@ namespace Persistence.MongoDB.DbServices
                 filter &= Builders<Application>.Filter.Text(searchKey.Trim());
             }
 
-            var totalCountTask = dbContext.Applications.CountAsync(filterAll);
-            var totalFilteredCountTask = dbContext.Applications.CountAsync(filter);
+            var totalCountTask = dbContext.Applications.CountDocumentsAsync(filterAll);
+            var totalFilteredCountTask = dbContext.Applications.CountDocumentsAsync(filter);
             var applicationsTask = dbContext.Applications.Find(filter)
                 .Skip(startIndex)
                 .Limit(howMany)

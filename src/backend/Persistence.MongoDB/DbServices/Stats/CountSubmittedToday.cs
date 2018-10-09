@@ -39,7 +39,7 @@ namespace Persistence.MongoDB.DbServices.Stats
         public async Task<long> CountAsync()
         {
             var midNight = DateTime.Today.ToUniversalTime();
-            return await this.dbContext.Applications.CountAsync(a => a.DeletionTime == null && a.SubmissionTime >= midNight);
+            return await this.dbContext.Applications.CountDocumentsAsync(a => a.DeletionTime == null && a.SubmissionTime >= midNight);
         }
     }
 }

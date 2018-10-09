@@ -38,7 +38,7 @@ namespace Persistence.MongoDB.DbServices.Stats
 
         public async Task<long> CountAsync()
         {
-            return await this.dbContext.Applications.CountAsync(a => a.DeletionTime == null && a.Anomalies.Length > 0);
+            return await this.dbContext.Applications.CountDocumentsAsync(a => a.DeletionTime == null && a.Anomalies.Length > 0);
         }
     }
 }

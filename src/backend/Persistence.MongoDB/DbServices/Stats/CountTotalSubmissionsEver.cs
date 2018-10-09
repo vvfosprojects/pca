@@ -38,7 +38,7 @@ namespace Persistence.MongoDB.DbServices.Stats
 
         public async Task<long> CountAsync()
         {
-            return await this.dbContext.Applications.CountAsync(_ => true);
+            return await this.dbContext.Applications.CountDocumentsAsync(_ => true);
         }
     }
 }
