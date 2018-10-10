@@ -12,8 +12,6 @@ import { BuGroups } from './bu-groups';
 import { Domanda } from '../model/domanda.model';
 import { ApplicationService } from '../../service/application.service';
 import { Router } from '@angular/router';
-import { EventEmitter } from '@angular/core';
-import { DomandaOutcome } from '../model/domanda-outcome.model';
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -284,7 +282,6 @@ export class ApplicationFormComponent implements OnInit {
           return { "cfError": true };
       }));
   }
-
 
   sendForm() {
 
