@@ -1,84 +1,63 @@
 <section class="mat-typography center">
-  
-  <h1>{{ result.pin }}</h1>
+    <div>
+        <h1>Complimenti! La tua domanda è stata acquisita!</h1>
+        <h3>Ecco il tuo PIN</h3>
+        <h1 class="mat-display-2">{{ result.pin }}</h1>
+        <h4>
+            Conservalo. Ti sarà utile qualora volessi aggiornare la tua domanda.
+        </h4>
+        <h5>
+            Puoi fotografarlo con il tuo smartphone o stamparlo con il tasto in basso.
+        </h5>
+    </div>
+    <div>
+        <p *ngFor="let msg of result.messagesToTheUser">
+            <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
+            <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
+            <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
+            {{ msg.message }}
+        </p>
+    </div>
 
-  <p *ngFor="let msg of result.messagesToTheUser">
-    <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
-    <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
-    <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
-    {{ msg.message }}
-  </p>
-  
+    <div>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    Ecco il riepilogo della tua domanda
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <p>
+                    Codice fiscale: {{ domanda.fiscalCode }}
+                </p>
+                <p>
+                    Nome: {{ domanda.firstName }}
+                </p>
+                <p>
+                    Cognome: {{ domanda.lastName }}
+                </p>
+                <p>
+                    Data di nascita: {{ domanda.birthDate }}
+                </p>
+                <p>
+                    Giorni di servizio: {{ domanda.workedDays }}
+                </p>
+                <p>
+                    Codici dei comandi di servizio: {{ domanda.businessUnits }}
+                </p>
+                <p>
+                    Patente: {{ domanda.drivingLicense }}
+                </p>
+                <p>
+                    Data di inoltro della domanda: {{ result.submittedAt }}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>AL MINISTERO DELL'INTERNO - DIPARTIMENTO DEI VIGILI DEL FUOCO, DEL SOCCORSO PUBBLICO E DELLA DIFESA CIVILE </mat-card-title>
-      <mat-card-subtitle>DIREZIONE CENTRALE PER GLI AFFARI GENERALI - Ufficio II - Affari concorsuali e contenzioso - Ufficio per la gestione dei concorsi d'accesso</mat-card-subtitle>
-    </mat-card-header>
-      
-     <mat-card-content>
-     <p style="text-align: justify">
-      Il/La sottoscritto/a {{ domanda.firstName }} {{ domanda.lastName }}, nato/a il {{ domanda.birthDate }}, C.F. {{ domanda.fiscalCode }}
-      </p>
-      <div>CHIEDE</div>
-      <p style="text-align: justify">
-       di essere ammesso/a a partecipare alla procedura speciale di reclutamento a domanda, riservata al personale volontario di cui all'articolo 6, comma 1, del decreto legislativo 8 marzo 2006, n. 139, che risulti iscritto nell'apposito elenco istituito per le necessità delle strutture centrali e periferiche del Corpo medesimo, nei limiti e per le finalità di cui all'articolo 1, commi 287, 289 e 295 della legge 27 dicembre 2017, n. 205. A tal fine, sotto la propria responsabilità e consapevole delle conseguenze penali cui si incorre in caso di falsità in atti o dichiarazioni mendaci, ai sensi dell'art. 76 del decreto del Presidente della Repubblica 28 dicembre 2000, n. 445 nonché delle leggi speciali in materia
-      </p>
-      <div>DICHIARA</div>
-      <p style="text-align: justify">
-          - di non essere stato espulso dalle forze armate e dai corpi militarmente organizzati, di non essere stato destituito da pubblici uffici o dispensato dall'impiego presso una pubblica amministrazione per persistente insufficiente rendimento, di non essere stato dichiarato decaduto da un impiego statale, ai sensi dell'art. 127, comma 1, lettera d), del decreto del Presidente della Repubblica 10 gennaio 1957, n. 3, né licenziato ai sensi delle corrispondenti disposizioni dei contratti collettivi nazionali di lavoro relativi al personale dei vari comparti; 
-      </p>
-      <p style="text-align: justify">
-          - di non aver riportato condanne a pena detentiva per reati non colposi; 
-      </p>
-      <p style="text-align: justify">
-          - di non essere stato sottoposto a misure di prevenzione; 
-      </p>
-      <p style="text-align: justify">
-          - di essere iscritto nell'elenco del Personale Volontario prima dell'1/1/2015; 
-      </p>
-      <!-- <p style="text-align: justify">
-          - di essere attualmente iscritto presso l'elenco del personale volontario del {{ domanda.comando }};
-      </p> -->
-      <p style="text-align: justify">
-          - di avere effettuato n. {{ domanda.workedDays }} giorni di servizio alla data dell'1/1/2018;
-      </p>
-      <p style="text-align: center">
-          presso il Comando prov.le di (indicare i Comandi presso cui si è prestato servizio):
-      </p>
-      <p style="text-align: center">
-              {{ domanda.businessUnits }} 
-      </p>
-      <p style="text-align: justify">
-          - di essere in possesso alla data dell'1/1/2018 della patente
-      </p>
-      <p style="text-align: center">
-          {{ domanda.drivingLicense }}
-      </p>
-      <!-- <p style="text-align: justify">
-          - di essere in possesso dei seguenti titoli preferenziali:
-      </p>
-      <p style="text-align: center">
-          - CONIUGATO E NON CONIUGATO CON RIGUARDO AL NUMERO DEI FIGLI A CARICO
-      </p>
-      <p style="text-align: justify">
-      - di avere 1 figlio a carico; - di essere a conoscenza del testo integrale del bando di concorso.
-      </p> -->
-      <div>
-        Data {{ result.submittedAt }}             Firma __________________________________________________
-      
-      </div>
-   
-
-      
-    </mat-card-content>
-  </mat-card>
-  
-
-  <div class="button-row">
-    <a href="javascript:window.print()">
-      <button mat-raised-button color="primary">Stampa la pagina</button>
-    </a>
-  </div>
-
+    <div class="button-row">
+        <a href="javascript:window.print()">
+            <button mat-raised-button color="primary">Stampa la pagina</button>
+        </a>
+    </div>
 </section>
