@@ -59,7 +59,7 @@ mat-form-field {
 }
 
 .input-long {
-    width: 400px;
+    width: 340px;
 }
 
 .input-short {
@@ -76,4 +76,8 @@ mat-form-field {
 
 .center {
     text-align: center;
+}
+
+.field-val {
+    font-weight: bold;
 }

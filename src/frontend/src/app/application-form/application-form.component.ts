@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { CatPatentiCiv } from './cat-patenti-civ';
 import { CatPatentiVvf } from './cat-patenti-vvf';
+import { License } from '../model/license.model';
 
 // tslint:disable-next-line:no-duplicate-imports
 //import { default as _rollupMoment } from 'moment';
@@ -302,9 +303,18 @@ export class ApplicationFormComponent implements OnInit {
       this.email.value,
       this.businessUnits.value,
       this.workedDays.value,
-      drivingLicense,
+      new License(
+        licenseSelected,
+        this.category.value,
+        this.number.value,
+        this.releasedBy.value,
+        this.releaseDate.value.format("DD/MM/YYYY"),
+        this.validUntil.value.format("DD/MM/YYYY")
+      ),
       this.pin.value
     );
+
+    console.log(a);
 
     this.submitting = true;
 

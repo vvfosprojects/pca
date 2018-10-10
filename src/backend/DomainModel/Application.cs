@@ -24,7 +24,7 @@ namespace DomainModel
 {
     public class Application
     {
-        public Application(string fiscalCode, string firstName, string lastName, DateTime birthDate, string email, string pin, string[] businessUnits, int workingDays, string drivingLicense)
+        public Application(string fiscalCode, string firstName, string lastName, DateTime birthDate, string email, string pin, string[] businessUnits, int workingDays, License license)
         {
             FiscalCode = fiscalCode.ToUpperInvariant();
             FirstName = firstName.ToUpperInvariant();
@@ -34,7 +34,7 @@ namespace DomainModel
             Pin = pin == null ? null : pin.ToUpperInvariant();
             BusinessUnits = businessUnits ?? throw new ArgumentNullException(nameof(businessUnits));
             WorkingDays = workingDays;
-            DrivingLicense = drivingLicense ?? throw new ArgumentNullException(nameof(drivingLicense));
+            License = license ?? throw new ArgumentNullException(nameof(license));
         }
 
         public string Id { get; set; }
@@ -46,7 +46,7 @@ namespace DomainModel
         public string Pin { get; set; }
         public string[] BusinessUnits { get; protected set; }
         public int WorkingDays { get; protected set; }
-        public string DrivingLicense { get; protected set; }
+        public License License { get; protected set; }
 
         public string PhoneNumber { get; set; }
         public DateTime SubmissionTime { get; set; }
@@ -71,7 +71,7 @@ namespace DomainModel
             sb.Append(';');
             sb.Append(this.WorkingDays);
             sb.Append(';');
-            sb.Append(this.DrivingLicense);
+            sb.Append(this.License);
             sb.Append(';');
             sb.Append(this.SubmissionTime.ToString("dd/MM/yyyy HH.mm.ss"));
 

@@ -86,7 +86,7 @@ namespace PCA.Controllers
                 email = application.Email,
                 phoneNumber = "N/A",
                 workingDays = application.WorkingDays,
-                drivingLicense = application.DrivingLicense,
+                License = application.License,
                 businessUnits = string.Join(", ", application.BusinessUnits),
                 submissionTime = application.SubmissionTime,
                 anomaly = application.Anomalies.Select(a => new

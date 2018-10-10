@@ -84,7 +84,7 @@ namespace Persistence.MongoDB
                     .Text(_ => _.Email)
                     .Text(_ => _.Pin)
                     .Text(_ => _.BusinessUnits)
-                    .Text(_ => _.DrivingLicense)
+                    .Text(_ => _.License.Number)
                     .Text(_ => _.PhoneNumber),
                     new CreateIndexOptions()
                     {

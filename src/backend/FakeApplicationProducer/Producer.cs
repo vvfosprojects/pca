@@ -48,7 +48,14 @@ namespace FakeApplicationProducer
                     faker.Random.Replace("******"),
                     new string[0],
                     faker.Random.Number(10, 100),
-                    faker.Lorem.Paragraph()
+                    new License(
+                        faker.PickRandom("VVF", "Civile"),
+                        faker.PickRandom("A", "B", "C", "I cat.", "II cat.", "III cat.", "IV cat."),
+                        faker.Random.Replace("#####"),
+                        faker.PickRandom("Prefettura", "CNVVF"),
+                        faker.Date.Past(5, DateTime.Today.AddYears(-5)),
+                        faker.Date.Future(5)
+                        )
                     );
                 app.SourceIp = faker.Internet.Ip();
                 app.Anomalies = new Anomaly[0];

@@ -1,62 +1,49 @@
 <section class="mat-typography center">
-    <div>
-        <h1>Complimenti! La tua domanda è stata acquisita!</h1>
-        <h3>Ecco il tuo PIN</h3>
-        <h1 class="mat-display-2">{{ result.pin }}</h1>
-        <h4>
-            Conservalo. Ti sarà utile qualora volessi aggiornare la tua domanda.
-        </h4>
-        <h5>
-            Puoi fotografarlo con il tuo smartphone o stamparlo con il tasto in basso.
-        </h5>
-    </div>
-    <div>
-        <p *ngFor="let msg of result.messagesToTheUser">
-            <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
-            <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
-            <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
-            {{ msg.message }}
-        </p>
-    </div>
+    <h1>Complimenti! La tua domanda è stata acquisita!</h1>
+    <h3>Ecco il tuo PIN</h3>
+    <h1 class="mat-display-2">{{ result.pin }}</h1>
+    <p *ngFor="let msg of result.messagesToTheUser">
+        <mat-icon color="accent" *ngIf="msg.type === 'Error'">error_outline</mat-icon>
+        <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
+        <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
+        {{ msg.message }}
+    </p>
 
-    <div>
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>
-                    Ecco il riepilogo della tua domanda
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <p>
-                    Codice fiscale: {{ domanda.fiscalCode }}
-                </p>
-                <p>
-                    Nome: {{ domanda.firstName }}
-                </p>
-                <p>
-                    Cognome: {{ domanda.lastName }}
-                </p>
-                <p>
-                    Data di nascita: {{ domanda.birthDate }}
-                </p>
-                <p>
-                    Email: {{ domanda.email }}
-                </p>
-                <p>
-                    Giorni di servizio: {{ domanda.workedDays }}
-                </p>
-                <p>
-                    Codici dei comandi di servizio: {{ domanda.businessUnits }}
-                </p>
-                <p>
-                    Patente: {{ domanda.drivingLicense }}
-                </p>
-                <p>
-                    Data di inoltro della domanda: {{ result.submittedAt }}
-                </p>
-            </mat-card-content>
-        </mat-card>
-    </div>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                Ecco il riepilogo della tua domanda
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                <span class="title">Codice fiscale:</span> {{ domanda.fiscalCode }}
+            </p>
+            <p>
+                Nome: <span class="field-val">{{ domanda.firstName }}</span>
+                Cognome: <span class="field-val">{{ domanda.lastName }}</span>
+                Data di nascita: <span class="field-val">{{ domanda.birthDate }}</span>
+            </p>
+            <p>
+                Email: <span class="field-val">{{ domanda.email }}</span>
+            </p>
+            <p>
+                Giorni di servizio: <span class="field-val">{{ domanda.workingDays }}</span>
+                Codici dei comandi di servizio: <span class="field-val">{{ domanda.businessUnits }}</span>
+            </p>
+            <p>
+                Patente: <span class="field-val">{{ domanda.license.type }}</span>
+                cat. <span class="field-val">{{ domanda.license.category }}</span>
+                n. <span class="field-val">{{ domanda.license.number }}</span>
+                rilasciata da <span class="field-val">{{ domanda.license.releasedBy }}</span> <br />
+                Data rilascio: <span class="field-val">{{ domanda.license.releaseDate }}</span>
+                Data scadenza: <span class="field-val">{{ domanda.license.validUntil }}</span>
+            </p>
+            <p>
+                <span class="title">Data di inoltro della domanda:</span> {{ result.submittedAt }}
+            </p>
+        </mat-card-content>
+    </mat-card>
 
     <div class="button-row">
         <a href="javascript:window.print()">
