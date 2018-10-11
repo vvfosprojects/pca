@@ -18,7 +18,9 @@ const httpOptions = {
   })
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ApplicationService {
   private applicationUrl = '/application';
   private lastResponse: DomandaOutcome;

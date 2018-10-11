@@ -6,7 +6,9 @@ import { HttpClient } from '@angular/common/http';
 
 const APIURL = environment.apiUrl;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StatisticsService {
   
   constructor(
