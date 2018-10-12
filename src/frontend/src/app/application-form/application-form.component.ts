@@ -288,13 +288,6 @@ export class ApplicationFormComponent implements OnInit {
 
     let licenseSelected = this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta";
 
-    let drivingLicense =
-      "Patente " + licenseSelected + " " +
-      "di categoria " + this.category.value + " " +
-      "n. " + this.number.value + " " +
-      "rilasciata il " + this.releaseDate.value.format("DD/MM/YYYY") + " " +
-      "valida fino al " + this.validUntil.value.format("DD/MM/YYYY");
-
     let a = new Domanda(
       this.fiscalCode.value,
       this.firstName.value,
@@ -308,8 +301,8 @@ export class ApplicationFormComponent implements OnInit {
         this.category.value,
         this.number.value,
         this.releasedBy.value,
-        this.releaseDate.value.format("DD/MM/YYYY"),
-        this.validUntil.value.format("DD/MM/YYYY")
+        this.releaseDate.value.format("YYYY/MM/DD"),
+        this.validUntil.value.format("YYYY/MM/DD")
       ),
       this.pin.value
     );
