@@ -12,8 +12,8 @@ import { Domanda } from '../model/domanda.model';
   styleUrls: ['./submission-result.component.css']
 })
 export class SubmissionResultComponent implements OnInit {
-  private result: DomandaOutcome;
-  private domanda: Domanda; 
+  result: DomandaOutcome;
+  domanda: Domanda; 
   constructor(
     private applicationService: ApplicationService
   ) { }
