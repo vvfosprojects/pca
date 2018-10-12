@@ -1,7 +1,7 @@
 <div class="interlinea">
   <p>
     Completa il modulo riportato di sotto con tutti i dati richiesti. Al termine premi il tasto
-    <em>Invia la domanda</em>. Riceverai un codice che ti servirà nel caso volessi aggiornare la tua domanda in
+    <em>Invia la domanda</em>. Riceverai un codice che ti servirà qualora vorrai aggiornare la tua domanda in
     seguito.
     Procedi a compilare il modulo anche se vuoi aggiornare una domanda precedentemente inviata, avendo il PIN a portata
     di mano. Il sistema ti guiderà per recuperare i dati già inviati.
@@ -218,29 +218,32 @@
           <mat-form-field *ngIf="vvfLicenseSelected">
             <input matInput placeholder="Ente" formControlName="releasedBy" readonly>
           </mat-form-field>
-          <mat-form-field>
-            <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="releaseDate">
-            <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
-            <mat-datepicker #pickerRilascio></mat-datepicker>
-            <mat-error *ngIf="releaseDate.invalid && (releaseDate.dirty || releaseDate.touched)">
-              <div *ngIf="releaseDate.errors.required">
-                Obbligatorio
-              </div>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="validUntil">
-            <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
-            <mat-datepicker #pickerScadenza></mat-datepicker>
-            <mat-error *ngIf="validUntil.invalid && (validUntil.dirty || validUntil.touched)">
-              <div *ngIf="!!validUntil.errors.required">
-                Obbligatorio
-              </div>
-              <div *ngIf="!!validUntil.errors.invalid">
-                Ricontrolla le date
-              </div>
-            </mat-error>
-          </mat-form-field>
+
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerRilascio" placeholder="Data di rilascio" formControlName="releaseDate">
+              <mat-datepicker-toggle matSuffix [for]="pickerRilascio"></mat-datepicker-toggle>
+              <mat-datepicker #pickerRilascio></mat-datepicker>
+              <mat-error *ngIf="releaseDate.invalid && (releaseDate.dirty || releaseDate.touched)">
+                <div *ngIf="releaseDate.errors.required">
+                  Obbligatorio
+                </div>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="pickerScadenza" placeholder="Data di scadenza" formControlName="validUntil">
+              <mat-datepicker-toggle matSuffix [for]="pickerScadenza"></mat-datepicker-toggle>
+              <mat-datepicker #pickerScadenza></mat-datepicker>
+              <mat-error *ngIf="validUntil.invalid && (validUntil.dirty || validUntil.touched)">
+                <div *ngIf="!!validUntil.errors.required">
+                  Obbligatorio
+                </div>
+                <div *ngIf="!!validUntil.errors.invalid">
+                  Ricontrolla le date
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
 
       </div>
@@ -255,19 +258,15 @@
     </div>
     <div class="light" style="padding-top: 10px;padding-bottom: 10px;">
       <mat-checkbox formControlName="acceptance">
+          Autorizzo il trattamento dei dati esclusivamente per le finalità indicate di sopra (Regolamento EU/2016/679).
       </mat-checkbox>
-      <span>
-        Autorizzo il trattamento dei dati esclusivamente per le finalità indicate di sopra (Regolamento EU/2016/679).
-      </span>
-
-      <div style="padding-top: 10px;">
-        <a target="_blank" href="file://{{outputPath}}/normativa.pdf">Leggi la normativa</a>
-      </div>
+      <a target="_blank" href="file://{{outputPath}}/normativa.pdf">Leggi la normativa</a>
     </div>
   </div>
 
-  <button *ngIf="!submitting" mat-raised-button color="primary" [disabled]="!applicationForm.valid" (click)='sendForm()'>Invia
-    la domanda</button>
-  <!-- <button mat-raised-button color="primary" (click)='sendForm()'>Invia la domanda</button> -->
+  <section class="mat-typography center">
+    <button *ngIf="!submitting" mat-raised-button color="primary" [disabled]="!applicationForm.valid" (click)='sendForm()'>Invia
+      la domanda</button>
+  </section>
 
 </form>
