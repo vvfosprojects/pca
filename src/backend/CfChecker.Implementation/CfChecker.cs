@@ -89,14 +89,14 @@ namespace CfChecker.Impl
                         if (!this.activeApplicationExistsByFiscalCodeAndPin.Exists(data.FiscalCode, data.Pin))
                         result.AddResult(new PinIsInvalid());
                 }
+
+                log.Debug($"Checking data: { JsonConvert.SerializeObject(data) } with result { JsonConvert.SerializeObject(result) }");
             }
             catch (Exception)
             {
-#warning to be logged
+                log.Warn("An error occurred during validation.");
                 result.AddResult(new CfException());
             }
-
-            log.Debug($"Checking data: { JsonConvert.SerializeObject(data) } with result { JsonConvert.SerializeObject(result) }");
 
             return result;
         }

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./assets/spid/css/spid-sp-access-button.min.css";
 
 body {
     margin: 0px;
@@ -29,6 +30,15 @@ body {
     font-size: 17px;
 }
 
+.mat-tab-labels{
+    background-color: white;
+    
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+	background-color: #ab201d;
+}
+
 /* Change the color of links on hover */
 .topnav a:hover {
     border-bottom: solid white 3px;
@@ -49,7 +59,7 @@ mat-form-field {
 }
 
 .input-long {
-    width: 400px;
+    width: 340px;
 }
 
 .input-short {
@@ -66,4 +76,8 @@ mat-form-field {
 
 .center {
     text-align: center;
+}
+
+.field-val {
+    font-weight: bold;
 }

@@ -21,13 +21,16 @@ namespace DomainModel.Services.Stats
 {
     public class Statistics
     {
-        public Statistics(long totalActiveApplicationsEver,
+        public Statistics(
+            long totalActiveDistinctFiscalCodes,
+            long totalActiveApplicationsEver,
             long totalSubmissionsEver,
             long duplicateFiscalCodeErrors,
             long otherErrors,
             long submittedToday,
             long submittedInTheLastFiveDays)
         {
+            TotalActiveDistinctFiscalCodes = totalActiveDistinctFiscalCodes;
             TotalActiveApplicationsEver = totalActiveApplicationsEver;
             TotalSubmissionsEver = totalSubmissionsEver;
             DuplicateFiscalCodeErrors = duplicateFiscalCodeErrors;
@@ -36,6 +39,7 @@ namespace DomainModel.Services.Stats
             SubmittedInTheLastFiveDays = submittedInTheLastFiveDays;
         }
 
+        public long TotalActiveDistinctFiscalCodes { get; }
         public long TotalActiveApplicationsEver { get; }
         public long TotalSubmissionsEver { get; }
         public long DuplicateFiscalCodeErrors { get; }

@@ -113,8 +113,13 @@ namespace Services.Submission
             }
 
             userMessages.Add(new ResultMessage(
-                    "pinUnchanged",
+                    "savePin",
                     "Conserva il PIN in un posto sicuro. Ti servirà qualora volessi aggiornare la tua domanda.",
+                    "Success"));
+
+            userMessages.Add(new ResultMessage(
+                    "howToSavePin",
+                    "Puoi fotografarlo con il tuo smartphone o stamparlo con il tasto in basso.",
                     "Success"));
 
             this.storeApplication.Store(application);

@@ -63,6 +63,13 @@ export class GetApplicationRowsService {
   }
 
   /**
+   * Returns currently active search key
+   */
+  public getSearchKey(): string {
+    return this.searchData.searchKey;
+  }
+
+  /**
    * This method triggers a new value on the filter observable.
    */
   private triggerSearch(): void {
@@ -83,7 +90,6 @@ export class GetApplicationRowsService {
 
     this.http.get<ApplicationRowPage>(APIURL + action, { params: params })
       .subscribe(row => {
-        console.log("richiesta http");
         this.newPageObservable.next(row);
       });
   }
@@ -108,6 +114,6 @@ class SearchData {
   }
 
   public static create() {
-    return new SearchData(1, 5, "");
+    return new SearchData(1, 10, "");
   }
 }

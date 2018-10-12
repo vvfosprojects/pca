@@ -18,12 +18,13 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
+using System.Text;
 
 namespace DomainModel
 {
     public class Application
     {
-        public Application(string fiscalCode, string firstName, string lastName, DateTime birthDate, string email, string pin, string[] businessUnits, int workingDays, string drivingLicense)
+        public Application(string fiscalCode, string firstName, string lastName, DateTime birthDate, string email, string pin, string[] businessUnits, int workingDays, License license)
         {
             FiscalCode = fiscalCode.ToUpperInvariant();
             FirstName = firstName.ToUpperInvariant();
@@ -33,7 +34,7 @@ namespace DomainModel
             Pin = pin == null ? null : pin.ToUpperInvariant();
             BusinessUnits = businessUnits ?? throw new ArgumentNullException(nameof(businessUnits));
             WorkingDays = workingDays;
-            DrivingLicense = drivingLicense ?? throw new ArgumentNullException(nameof(drivingLicense));
+            License = license ?? throw new ArgumentNullException(nameof(license));
         }
 
         public string Id { get; set; }
@@ -45,12 +46,36 @@ namespace DomainModel
         public string Pin { get; set; }
         public string[] BusinessUnits { get; protected set; }
         public int WorkingDays { get; protected set; }
-        public string DrivingLicense { get; protected set; }
+        public License License { get; protected set; }
 
         public string PhoneNumber { get; set; }
         public DateTime SubmissionTime { get; set; }
         public DateTime? DeletionTime { get; set; }
         public Anomaly[] Anomalies { get; set; }
         public string SourceIp { get; set; }
+
+        public string ToCsv()
+        {
+            var sb = new StringBuilder();
+            sb.Append(this.FiscalCode);
+            sb.Append(';');
+            sb.Append(this.LastName);
+            sb.Append(';');
+            sb.Append(this.FirstName);
+            sb.Append(';');
+            sb.Append(this.BirthDate.Date.ToString("dd/MM/yyyy"));
+            sb.Append(';');
+            sb.Append(this.Email);
+            sb.Append(';');
+            sb.Append(string.Join(", ", this.BusinessUnits));
+            sb.Append(';');
+            sb.Append(this.WorkingDays);
+            sb.Append(';');
+            sb.Append(this.License);
+            sb.Append(';');
+            sb.Append(this.SubmissionTime.ToString("dd/MM/yyyy HH.mm.ss"));
+
+            return sb.ToString();
+        }
     }
 }

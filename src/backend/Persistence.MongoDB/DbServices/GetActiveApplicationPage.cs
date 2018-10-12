@@ -18,9 +18,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DomainModel;
 using DomainModel.Services.ApplicationPages;
@@ -53,8 +50,8 @@ namespace Persistence.MongoDB.DbServices
                 filter &= Builders<Application>.Filter.Text(searchKey.Trim());
             }
 
-            var totalCountTask = dbContext.Applications.CountAsync(filterAll);
-            var totalFilteredCountTask = dbContext.Applications.CountAsync(filter);
+            var totalCountTask = dbContext.Applications.CountDocumentsAsync(filterAll);
+            var totalFilteredCountTask = dbContext.Applications.CountDocumentsAsync(filter);
             var applicationsTask = dbContext.Applications.Find(filter)
                 .Skip(startIndex)
                 .Limit(howMany)

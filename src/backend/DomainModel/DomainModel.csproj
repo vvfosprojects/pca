@@ -43,6 +43,7 @@
     <Compile Include="Anomaly.cs" />
     <Compile Include="ApplicationSubmissionResult.cs" />
     <Compile Include="Application.cs" />
+    <Compile Include="License.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultMessage.cs" />
     <Compile Include="Services\ApplicationPages\ApplicationPage.cs" />

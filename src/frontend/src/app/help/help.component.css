@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 100%;
+  }
+  
+  .example-header-image-spid {
+    background-image: url('https://fakeimg.pl/100x100/?text=SPID');
+    background-size: cover;
+  }
+
+  .example-header-image-pin {
+    background-image: url('https://fakeimg.pl/100x100/?text=PIN');
+    background-size: cover;
+  }

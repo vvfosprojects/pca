@@ -99,4 +99,8 @@ export class GetApplicationRowsServiceFake {
     return [ this.curPage, this.pageSize ];
   }
 
+  public getSearchKey(): string {
+    return this.searchKey;
+  }
+
 }

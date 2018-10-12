@@ -18,9 +18,6 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DomainModel.Services.Stats;
 
@@ -34,13 +31,15 @@ namespace Persistence.MongoDB.DbServices.Stats
         private readonly CountSubmittedInTheLastFiveDays countSubmittedInTheLastFiveDays;
         private readonly CountSubmittedToday countSubmittedToday;
         private readonly CountTotalSubmissionsEver countTotalSubmissionsEver;
+        private readonly CountActiveDistinctFiscalCodes countActiveDistinctFiscalCodes;
 
         public GetStatistics(CountTotalActiveApplicationsEver countTotalActiveApplicationsEver,
             CountAllSubmissionErrors countAllSubmissionErrors,
             CountDuplicateFiscalCodeErrors countDuplicateFiscalCodeErrors,
             CountSubmittedInTheLastFiveDays countSubmittedInTheLastFiveDays,
             CountSubmittedToday countSubmittedToday,
-            CountTotalSubmissionsEver countTotalSubmissionsEver)
+            CountTotalSubmissionsEver countTotalSubmissionsEver,
+            CountActiveDistinctFiscalCodes countActiveDistinctFiscalCodes)
         {
             this.countTotalActiveApplicationsEver = countTotalActiveApplicationsEver ?? throw new ArgumentNullException(nameof(countTotalActiveApplicationsEver));
             this.countAllSubmissionErrors = countAllSubmissionErrors ?? throw new ArgumentNullException(nameof(countAllSubmissionErrors));
@@ -48,6 +47,7 @@ namespace Persistence.MongoDB.DbServices.Stats
             this.countSubmittedInTheLastFiveDays = countSubmittedInTheLastFiveDays ?? throw new ArgumentNullException(nameof(countSubmittedInTheLastFiveDays));
             this.countSubmittedToday = countSubmittedToday ?? throw new ArgumentNullException(nameof(countSubmittedToday));
             this.countTotalSubmissionsEver = countTotalSubmissionsEver ?? throw new ArgumentNullException(nameof(countTotalSubmissionsEver));
+            this.countActiveDistinctFiscalCodes = countActiveDistinctFiscalCodes ?? throw new ArgumentNullException(nameof(countActiveDistinctFiscalCodes));
         }
 
         public async Task<Statistics> GetAsync()
@@ -58,10 +58,12 @@ namespace Persistence.MongoDB.DbServices.Stats
             var countTotalSubmissionsEverTask = this.countTotalSubmissionsEver.CountAsync();
             var submittedTodayTask = this.countSubmittedToday.CountAsync();
             var submittedInTheLastFiveDaysTask = this.countSubmittedInTheLastFiveDays.CountAsync();
+            var totalActiveDistinctFiscalCodesTask = this.countActiveDistinctFiscalCodes.CountAsync();
 
             var otherErrors = await allSubmissionErrorsTask > await duplicateFiscalCodeErrorsTask ? await allSubmissionErrorsTask - await duplicateFiscalCodeErrorsTask : 0;
 
             return new Statistics(
+                await totalActiveDistinctFiscalCodesTask,
                 await totalActiveApplicationsEverTask,
                 await countTotalSubmissionsEverTask,
                 await duplicateFiscalCodeErrorsTask,

@@ -18,11 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DomainModel;
 using MongoDB.Driver;
 
 namespace Persistence.MongoDB.DbServices.Stats
@@ -38,7 +34,7 @@ namespace Persistence.MongoDB.DbServices.Stats
 
         public async Task<long> CountAsync()
         {
-            return await this.dbContext.Applications.CountAsync(_ => true);
+            return await this.dbContext.Applications.CountDocumentsAsync(_ => true);
         }
     }
 }

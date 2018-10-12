@@ -16,7 +16,9 @@ const httpOptions = {
   })
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CfCheckService {
   private cfCheckUrl = '/cfCheck';
 

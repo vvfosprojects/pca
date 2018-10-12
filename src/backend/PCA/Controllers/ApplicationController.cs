@@ -18,12 +18,10 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using DomainModel;
 using DomainModel.Services;
 using DomainModel.Services.ApplicationPages;
@@ -32,7 +30,6 @@ using PCA.Authorization;
 
 namespace PCA.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200, http://localhost:4201", headers: "*", methods: "*")]
     public class ApplicationController : ApiController
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -89,7 +86,7 @@ namespace PCA.Controllers
                 email = application.Email,
                 phoneNumber = "N/A",
                 workingDays = application.WorkingDays,
-                drivingLicense = application.DrivingLicense,
+                License = application.License,
                 businessUnits = string.Join(", ", application.BusinessUnits),
                 submissionTime = application.SubmissionTime,
                 anomaly = application.Anomalies.Select(a => new

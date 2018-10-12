@@ -27,13 +27,19 @@
       </li>
       <li class="list-group-item">
         <div>
-          Totale Codici Fiscali distinti
+          Totale codici fiscali distinti
           <div class="badge badge-pill badge-info float-right">
+            {{ statistics.totalActiveDistinctFiscalCodes }}
+          </div>
+        </div>
+        <div class="text-secondary small">
+          Totale domande valide
+          <div class="badge badge-pill badge-secondary float-right">
             {{ statistics.totalActiveApplicationsEver }}
           </div>
         </div>
         <div class="text-secondary small">
-          Totale Domande attive
+          Totale invii
           <div class="badge badge-pill badge-secondary float-right">
             {{ statistics.totalSubmissionsEver }}
           </div>

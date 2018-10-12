@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Statistics } from '../models/statistics.model';
 import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 const APIURL = environment.apiUrl;
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class StatisticsService {
   
   constructor(

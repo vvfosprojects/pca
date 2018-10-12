@@ -18,11 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DomainModel;
 using MongoDB.Driver;
 
 namespace Persistence.MongoDB.DbServices.Stats
@@ -39,7 +35,7 @@ namespace Persistence.MongoDB.DbServices.Stats
         public async Task<long> CountAsync()
         {
             var lastFiveDaysMidNight = DateTime.Today.AddDays(-5).ToUniversalTime();
-            return await this.dbContext.Applications.CountAsync(a => a.DeletionTime == null && a.SubmissionTime >= lastFiveDaysMidNight);
+            return await this.dbContext.Applications.CountDocumentsAsync(a => a.DeletionTime == null && a.SubmissionTime >= lastFiveDaysMidNight);
         }
     }
 }

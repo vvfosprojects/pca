@@ -17,8 +17,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
+using System;
+using System.Configuration;
 using System.Web.Http;
-using PCA.Authorization;
+using System.Web.Http.Cors;
 
 namespace PCA
 {
@@ -27,7 +29,9 @@ namespace PCA
         public static void Register(HttpConfiguration config)
         {
             // Servizi e configurazione dell'API Web
-            config.EnableCors();
+            string corsAllowedOrigins = Convert.ToString(ConfigurationManager.AppSettings["corsAllowedOrigins"]);
+            var cors = new EnableCorsAttribute(corsAllowedOrigins, "*", "*");
+            config.EnableCors(cors);
 
             // Route dell'API Web
             config.MapHttpAttributeRoutes();

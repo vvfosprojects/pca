@@ -9,9 +9,10 @@ export class StatisticsServiceFake {
 
   public getStatistics(): Observable<Statistics> {
     return observableOf(new Statistics(
+      1245,
       1255,
       1323,
-      13,
+      10,
       18,
       102,
       328

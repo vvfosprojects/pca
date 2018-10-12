@@ -56,37 +56,42 @@ namespace Persistence.MongoDB
         private void CreateIndexes()
         {
             {
-                var indexDefinition = Builders<Application>.IndexKeys
+                var indexDefinition = Builders<Application>.IndexKeys;
+                var indexModel = new CreateIndexModel<Application>(
+                    indexDefinition
                     .Ascending(_ => _.FiscalCode)
-                    .Ascending(_ => _.DeletionTime);
-
-                this.Applications.Indexes.CreateOne(indexDefinition);
+                    .Ascending(_ => _.DeletionTime));
+                this.Applications.Indexes.CreateOne(indexModel);
             }
 
             {
-                var indexDefinition = Builders<Application>.IndexKeys
+                var indexDefinition = Builders<Application>.IndexKeys;
+                var indexModel = new CreateIndexModel<Application>(
+                    indexDefinition
                     .Ascending(_ => _.SubmissionTime)
-                    .Ascending(_ => _.DeletionTime);
+                    .Ascending(_ => _.DeletionTime));
 
-                this.Applications.Indexes.CreateOne(indexDefinition);
+                this.Applications.Indexes.CreateOne(indexModel);
             }
 
             {
-                var indexDefinition = Builders<Application>.IndexKeys
+                var indexDefinition = Builders<Application>.IndexKeys;
+                var indexModel = new CreateIndexModel<Application>(
+                    indexDefinition
                     .Text(_ => _.FiscalCode)
                     .Text(_ => _.FirstName)
                     .Text(_ => _.LastName)
                     .Text(_ => _.Email)
                     .Text(_ => _.Pin)
                     .Text(_ => _.BusinessUnits)
-                    .Text(_ => _.DrivingLicense)
-                    .Text(_ => _.PhoneNumber);
+                    .Text(_ => _.License.Number)
+                    .Text(_ => _.PhoneNumber),
+                    new CreateIndexOptions()
+                    {
+                        Name = "fullTextIndex"
+                    });
 
-                var createIndexOptions = new CreateIndexOptions()
-                {
-                    Name = "fullTextIndex"
-                };
-                this.Applications.Indexes.CreateOne(indexDefinition, createIndexOptions);
+                this.Applications.Indexes.CreateOne(indexModel);
             }
         }
 

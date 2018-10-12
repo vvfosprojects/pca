@@ -1,14 +1,17 @@
+import { License } from "./license.model";
+
 export class Domanda {
     constructor(
-        public fiscalCode: string, 
-        public firstName: string,
-        public lastName: string,
-        public birthDate: string, 
-        public email: string,
-        public businessUnits: string[],
-        public workingDays: number,
-        public drivingLicense: string,
-        public pin: string
+        public readonly fiscalCode: string, 
+        public readonly firstName: string,
+        public readonly lastName: string,
+        public readonly birthDate: string, 
+        public readonly email: string,
+        public readonly businessUnits: string[],
+        public readonly workingDays: number,
+        public readonly license: License,
+
+        public readonly pin: string
     ) {}
     
 }

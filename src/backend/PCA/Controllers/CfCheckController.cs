@@ -19,12 +19,10 @@
 //-----------------------------------------------------------------------
 using System;
 using System.Web.Http;
-using System.Web.Http.Cors;
 using Services.CfChecker;
 
 namespace PCA.Controllers
 {
-    [EnableCors(origins: "http://localhost:4200, http://localhost:4201", headers: "*", methods: "*")]
     public class CfCheckController : ApiController
     {
         private readonly ICfChecker cfChecker;

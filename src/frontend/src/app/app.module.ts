@@ -36,6 +36,10 @@ import { environment } from '../environments/environment';
 import { CfCheckServiceSuccess_Fake } from '../service/cf-check-fake-success.service';
 import { ApplicationServiceSuccess_Fake } from '../service/application-fake-success.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTabsModule} from '@angular/material/tabs';
+import { HelpComponent } from './help/help.component';
+import { SpidComponent } from './spid/spid.component';
 
 
 const ENABLETRACING = environment.enableTracing;
@@ -46,7 +50,9 @@ const APPROUTES = appRoutes;
     AppComponent,
     ApplicationFormComponent,
     SubmissionResultComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HelpComponent,
+    SpidComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -70,18 +76,18 @@ const APPROUTES = appRoutes;
     MatCardModule,
     MatIconModule,
     MatBadgeModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatExpansionModule,
+    MatTabsModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'it-IT' },
 
     //{ provide: CfCheckService, useClass: CfCheckService_Fake },
     { provide: CfCheckService, useClass: CfCheckServiceSuccess_Fake },
-    // { provide: CfCheckService, useClass: CfCheckService },
 
     //{ provide: ApplicationService, useClass: ApplicationService_Fake },
     { provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },
-    // { provide: ApplicationService, useClass: ApplicationService },    
   ],
   bootstrap: [AppComponent]
 })

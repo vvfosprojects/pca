@@ -29,21 +29,23 @@ Content-Type: application/json
 
 ### Get statistics
 GET http://localhost:57156/api/statistics
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTM5MTIyMDQ5IiwidXNlcm5hbWUiOiJmb28ifQ.E-RRkY44ULCoq3RJuccRnBNT_PjlvRUdp4RCcKffweU
 
 ### Get application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTMwMzg2NDI2IiwidXNlcm5hbWUiOiJmb28ifQ.gPMeE88notiNLCTnA9EaBS8UQzPVAgspNzy-ii-57ps
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTM5MTIyMDQ5IiwidXNlcm5hbWUiOiJmb28ifQ.E-RRkY44ULCoq3RJuccRnBNT_PjlvRUdp4RCcKffweU
 
 ### Get in-error application page
 GET http://localhost:57156/api/application?startIndex=0&howMany=10&onlyErrors=true
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTMwMzg2NDI2IiwidXNlcm5hbWUiOiJmb28ifQ.gPMeE88notiNLCTnA9EaBS8UQzPVAgspNzy-ii-57ps
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTM5MTIyMDQ5IiwidXNlcm5hbWUiOiJmb28ifQ.E-RRkY44ULCoq3RJuccRnBNT_PjlvRUdp4RCcKffweU
 
 ### Get full text matching applications
-GET http://localhost:57156/api/application?startIndex=0&howMany=10&searchKey=foo
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTMwMzg2NDI2IiwidXNlcm5hbWUiOiJmb28ifQ.gPMeE88notiNLCTnA9EaBS8UQzPVAgspNzy-ii-57ps
+GET http://localhost:57156/api/application?startIndex=0&howMany=10&searchKey=manuele
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTM5MTIyMDQ5IiwidXNlcm5hbWUiOiJmb28ifQ.E-RRkY44ULCoq3RJuccRnBNT_PjlvRUdp4RCcKffweU
 
 ### Get application page
-GET http://localhost:57156/api/application?id=ABCD
+GET http://localhost:57156/api/application?id=5b2515944eb6d909d0afd796
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOiIxNTM5MTIyMDQ5IiwidXNlcm5hbWUiOiJmb28ifQ.E-RRkY44ULCoq3RJuccRnBNT_PjlvRUdp4RCcKffweU
 
 ### Authentication
 POST http://localhost:57156/api/auth

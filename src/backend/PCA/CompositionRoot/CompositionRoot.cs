@@ -84,6 +84,7 @@ namespace PCA.CompositionRoot
             container.Register<Persistence.MongoDB.DbServices.Stats.CountSubmittedInTheLastFiveDays>(Lifestyle.Scoped);
             container.Register<Persistence.MongoDB.DbServices.Stats.CountTotalSubmissionsEver>(Lifestyle.Scoped);
             container.Register<Persistence.MongoDB.DbServices.Stats.CountSubmittedToday>(Lifestyle.Scoped);
+            container.Register<Persistence.MongoDB.DbServices.Stats.CountActiveDistinctFiscalCodes>(Lifestyle.Scoped);
         }
     }
 }

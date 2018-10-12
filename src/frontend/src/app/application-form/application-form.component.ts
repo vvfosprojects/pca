@@ -12,8 +12,6 @@ import { BuGroups } from './bu-groups';
 import { Domanda } from '../model/domanda.model';
 import { ApplicationService } from '../../service/application.service';
 import { Router } from '@angular/router';
-import { EventEmitter } from '@angular/core';
-import { DomandaOutcome } from '../model/domanda-outcome.model';
 
 // Depending on whether rollup is used, moment needs to be imported differently.
 // Since Moment.js doesn't have a default export, we normally need to import using the `* as`
@@ -22,6 +20,7 @@ import { DomandaOutcome } from '../model/domanda-outcome.model';
 import * as moment from 'moment';
 import { CatPatentiCiv } from './cat-patenti-civ';
 import { CatPatentiVvf } from './cat-patenti-vvf';
+import { License } from '../model/license.model';
 
 // tslint:disable-next-line:no-duplicate-imports
 //import { default as _rollupMoment } from 'moment';
@@ -285,17 +284,9 @@ export class ApplicationFormComponent implements OnInit {
       }));
   }
 
-
   sendForm() {
 
     let licenseSelected = this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta";
-
-    let drivingLicense =
-      "Patente " + licenseSelected + " " +
-      "di categoria " + this.category.value + " " +
-      "n. " + this.number.value + " " +
-      "rilasciata il " + this.releaseDate.value.format("DD/MM/YYYY") + " " +
-      "valida fino al " + this.validUntil.value.format("DD/MM/YYYY");
 
     let a = new Domanda(
       this.fiscalCode.value,
@@ -305,9 +296,18 @@ export class ApplicationFormComponent implements OnInit {
       this.email.value,
       this.businessUnits.value,
       this.workedDays.value,
-      drivingLicense,
+      new License(
+        licenseSelected,
+        this.category.value,
+        this.number.value,
+        this.releasedBy.value,
+        this.releaseDate.value.format("YYYY/MM/DD"),
+        this.validUntil.value.format("YYYY/MM/DD")
+      ),
       this.pin.value
     );
+
+    console.log(a);
 
     this.submitting = true;
 
