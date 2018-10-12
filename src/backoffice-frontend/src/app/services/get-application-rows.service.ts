@@ -114,6 +114,6 @@ class SearchData {
   }
 
   public static create() {
-    return new SearchData(1, 5, "");
+    return new SearchData(1, 10, "");
   }
 }
