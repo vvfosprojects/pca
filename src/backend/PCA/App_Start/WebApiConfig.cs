@@ -17,20 +17,32 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
+using PCA.App_Start;
 using System;
 using System.Configuration;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.WebHost;
 
 namespace PCA
 {
     public static class WebApiConfig
     {
+
         public static void Register(HttpConfiguration config)
         {
+            var httpControllerRouteHandler = typeof(HttpControllerRouteHandler).GetField("_instance",
+            System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.NonPublic);
+
+            if (httpControllerRouteHandler != null)
+            {
+                httpControllerRouteHandler.SetValue(null,
+                    new Lazy<HttpControllerRouteHandler>(() => new SessionHttpControllerRouteHandler(), true));
+            }
+
             // Servizi e configurazione dell'API Web
             string corsAllowedOrigins = Convert.ToString(ConfigurationManager.AppSettings["corsAllowedOrigins"]);
-            var cors = new EnableCorsAttribute(corsAllowedOrigins, "*", "*");
+            var cors = new EnableCorsAttribute(corsAllowedOrigins, "*", "*") { SupportsCredentials = true };
             config.EnableCors(cors);
 
             // Route dell'API Web
@@ -41,6 +53,13 @@ namespace PCA
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "ActionApi",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
+
         }
     }
 }

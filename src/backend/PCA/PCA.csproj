@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -85,6 +86,7 @@
     <Reference Include="System.Web.Http.WebHost, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.6\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -94,39 +96,114 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Authentication\Spid\Logout\Default.aspx" />
+    <Content Include="Controls\CookieViewer.ascx" />
+    <Content Include="Controls\TicketManager.ascx" />
+    <Content Include="CookiesRequired.aspx" />
+    <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="MasterPage.css" />
+    <Content Include="NotAuthorized.aspx" />
+    <Content Include="Authentication\Spid\Login\Default.aspx" />
+    <Content Include="Secure\Default.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\SessionControllerHandler.cs" />
+    <Compile Include="App_Start\SessionHttpControllerRouteHandler.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Authentication\Spid\Logout\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authentication\Spid\Logout\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Authorization\JwtAuthenticationAttribute.cs" />
     <Compile Include="CompositionRoot\CompositionRoot.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CfCheckController.cs" />
     <Compile Include="Controllers\ExportController.cs" />
+    <Compile Include="Controllers\SpidController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
+    <Compile Include="Controls\CookieViewer.ascx.cs">
+      <DependentUpon>CookieViewer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\CookieViewer.ascx.designer.cs">
+      <DependentUpon>CookieViewer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TicketManager.ascx.cs">
+      <DependentUpon>TicketManager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Controls\TicketManager.ascx.designer.cs">
+      <DependentUpon>TicketManager.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CookiesRequired.aspx.cs">
+      <DependentUpon>CookiesRequired.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CookiesRequired.aspx.designer.cs">
+      <DependentUpon>CookiesRequired.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
     <Compile Include="Models\AuthData.cs" />
     <Compile Include="Models\AuthResult.cs" />
+    <Compile Include="NotAuthorized.aspx.cs">
+      <DependentUpon>NotAuthorized.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NotAuthorized.aspx.designer.cs">
+      <DependentUpon>NotAuthorized.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Authentication\Spid\Login\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Authentication\Spid\Login\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\stuff\pca.licenseheader">
       <Link>pca.licenseheader</Link>
     </Content>
     <Content Include="actions.http" />
+    <Content Include="MasterPage.master" />
+    <Content Include="libman.json" />
     <None Include="packages.config" />
+    <Content Include="Authentication\Spid\Login\Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -139,6 +216,10 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{8ac5ac0c-7f1b-48bc-bd16-cc7e469e2d43}</Project>
       <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DotNetCasClient\DotNetCasClient.csproj">
+      <Project>{883a296e-c898-4d1f-9ed9-de7569defb3d}</Project>
+      <Name>DotNetCasClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Persistence.Fake\Persistence.Fake.csproj">
       <Project>{2B779F0B-AEF3-47E9-BB45-B629CA2EF505}</Project>

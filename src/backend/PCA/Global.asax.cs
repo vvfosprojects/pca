@@ -17,7 +17,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
+using System;
+using System.Web;
 using System.Web.Http;
+using System.Web.SessionState;
 using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -72,5 +75,17 @@ namespace PCA
             // serializes enum as strings
             jsonFormatter.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
         }
+
+        protected void Session_OnStart()
+        {
+            log.Info("Session started.");
+            log.Info("sessionId: " + Session.SessionID);
+        }
+
+        protected void Session_End()
+        {
+            log.Info("Session stopped.");
+        }
+
     }
 }

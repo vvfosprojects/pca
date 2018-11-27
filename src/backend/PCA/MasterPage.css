@@ -1,0 +1,87 @@
+﻿/**
+    Licensed to Jasig under one or more contributor license
+    agreements. See the NOTICE file distributed with this work
+    for additional information regarding copyright ownership.
+    Jasig licenses this file to you under the Apache License,
+    Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a
+    copy of the License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on
+    an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied. See the License for the
+    specific language governing permissions and limitations
+    under the License.
+*/
+body 
+{
+    font-family: Verdana;
+    margin: 1em 0 1em 0;
+    background-color: #f1f4f6;
+}
+
+form 
+{
+    display: inline;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.header 
+{
+    width: 100%;
+}
+
+div.title 
+{
+    vertical-align: top;
+    padding: 10px 15px 10px 15px;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    background-color: #014f73;
+}
+
+div.content {
+    color: White;
+    font-size: smaller;
+    padding: 5px 10px;
+    background-color: #76bb78;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+div.body 
+{
+    background-color: #f1f4f6;
+}
+
+div.headerBody 
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1010px;
+}
+
+div.innerBody 
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 1010px;
+    position: relative;
+    background-color: White;
+}
+
+div.menu 
+{
+    background-color: #f1f4f6;
+}
+
+div.clear 
+{
+    clear: both;
+}

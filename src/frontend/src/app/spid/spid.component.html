@@ -1,12 +1,25 @@
 
 <div style="text-align:center; padding-bottom:30px;">
   <!-- AGID - SPID IDP BUTTON SMALL "ENTRA CON SPID" * begin * -->
-  <a href="#" class="italia-it-button italia-it-button-size-s button-spid" spid-idp-button="#spid-idp-button-small-get" aria-haspopup="true"
-    aria-expanded="false">
-    <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;"
-        alt="" /></span>
-    <span class="italia-it-button-text">Entra con SPID</span>
-  </a>
+  <div *ngIf="!isAuthenticated()">
+    <a (click)="login()" href="" class="italia-it-button italia-it-button-size-s button-spid" spid-idp-button="#spid-idp-button-small-get" aria-haspopup="true" aria-expanded="false">
+      <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;" alt="" /></span>
+      <span class="italia-it-button-text">Entra con SPID</span>
+    </a>
+  </div>
+  <div *ngIf="isAuthenticated()">
+    <div>
+      <a (click)="logout()" href="" class="italia-it-button italia-it-button-size-s button-spid" spid-idp-button="#spid-idp-button-small-get" aria-haspopup="true" aria-expanded="false">
+          <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;" alt="" /></span>
+          <span class="italia-it-button-text">Logout</span>
+        </a>
+    </div>
+    <div *ngFor="let spid of key(spidData)">
+        <p>{{spid}} : {{spidData[spid]}}</p>
+    </div>
+  </div>
+
+  <!--
   <div id="spid-idp-button-small-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">
     <ul id="spid-idp-list-small-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">
       <li class="spid-idp-button-link" data-idp="arubaid">
@@ -52,10 +65,11 @@
       </li>
     </ul>
 
-
   </div>
+  
   <a href="javascript:void(0)" onclick="window.history.back();" class="italia-it-button italia-it-button-size-s button-spid"
     style="width:auto !important;">
     <span class="italia-it-button-text">Indietro</span>
   </a>
+  -->
 </div>

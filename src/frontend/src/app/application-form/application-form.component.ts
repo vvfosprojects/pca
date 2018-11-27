@@ -50,10 +50,13 @@ export class ApplicationFormComponent implements OnInit {
   minDate = moment([1930, 0, 1]);
   maxDate = moment([2004, 0, 1]);
   personalDataValidationMessages = null;
+  spidDataValidationMessages: string = null;
+  spidDataValidationFields = [];
   shouldShowPinBox = false;
   civilLicenseSelected: boolean = false;
   vvfLicenseSelected: boolean = false;
   submitting: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -144,6 +147,11 @@ export class ApplicationFormComponent implements OnInit {
         acceptance: [false, Validators.requiredTrue]
       })
     })
+  }
+
+  reset() {
+    this.form.reset();
+    this.submitting = false;
   }
 
   get fiscalCode() {
@@ -284,6 +292,54 @@ export class ApplicationFormComponent implements OnInit {
       }));
   }
 
+  checkAndSendForm() {
+    console.log("Data validation...");
+
+    let licenseSelected = this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta";
+
+    let a = new Domanda(
+      this.fiscalCode.value,
+      this.firstName.value,
+      this.lastName.value,
+      this.birthDate.value.format("YYYY/MM/DD"),
+      this.email.value,
+      this.businessUnits.value,
+      this.workedDays.value,
+      new License(
+        licenseSelected,
+        this.category.value,
+        this.number.value,
+        this.releasedBy.value,
+        this.releaseDate.value.format("YYYY/MM/DD"),
+        this.validUntil.value.format("YYYY/MM/DD")
+      ),
+      this.pin.value
+    );
+
+    this.applicationService.checkDomanda(a)
+      .subscribe(outcome => {
+
+      console.log(outcome);
+
+      if(outcome.message != null){
+        this.spidDataValidationMessages = outcome.message;
+      }
+        
+      if (outcome.fields != null)
+        this.spidDataValidationFields = outcome.fields;
+
+      if(outcome.submit){
+        this.sendForm();
+      } else {
+        this.router.navigate(['/application-form']);
+      }
+      
+    });
+
+
+
+  }
+
   sendForm() {
 
     let licenseSelected = this.vvfLicenseSelected ? "VVF" : this.civilLicenseSelected ? "civile" : "sconosciuta";
@@ -309,27 +365,30 @@ export class ApplicationFormComponent implements OnInit {
 
     console.log(a);
 
+    console.log("Submit...");
     this.submitting = true;
 
     localStorage.setItem('domanda', JSON.stringify(a));
-    
+
     return this.applicationService.inserisciDomanda(a)
-      .subscribe(outcome => {
-        if (outcome.messagesToTheUser.length == 0)
-          this.personalDataValidationMessages = null;
-        else
-          this.personalDataValidationMessages = outcome.messagesToTheUser
-            .map(r => {
-              return {
-                type: r.type,
-                msg: r.message
-              }
-            });
+    .subscribe(outcome => {
+      if (outcome.messagesToTheUser.length == 0)
+        this.personalDataValidationMessages = null;
+      else
+        this.personalDataValidationMessages = outcome.messagesToTheUser
+          .map(r => {
+            return {
+              type: r.type,
+              msg: r.message
+            }
+          });
 
-        if (outcome.submissionOk)
-          this.router.navigate(['/submission-result']);
+      if (outcome.submissionOk)
+        this.router.navigate(['/submission-result']);
 
-        this.submitting = false;
-      });
+      this.submitting = false;
+    });
+
   }
+
 }

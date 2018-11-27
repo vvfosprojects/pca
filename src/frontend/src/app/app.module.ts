@@ -27,6 +27,8 @@ import { CfCheckService } from '../service/cf-check.service';
 import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 import { ApplicationService_Fake } from '../service/application-fake.service';
 import { ApplicationService } from '../service/application.service';
+import { SpidService } from '../service/spid.service';
+
 import { ApplicationFormComponent } from './application-form/application-form.component';
 import { SubmissionResultComponent } from './submission-result/submission-result.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -36,8 +38,8 @@ import { environment } from '../environments/environment';
 import { CfCheckServiceSuccess_Fake } from '../service/cf-check-fake-success.service';
 import { ApplicationServiceSuccess_Fake } from '../service/application-fake-success.service';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatTabsModule} from '@angular/material/tabs';
 import { HelpComponent } from './help/help.component';
 import { SpidComponent } from './spid/spid.component';
 
@@ -82,12 +84,12 @@ const APPROUTES = appRoutes;
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'it-IT' },
-
     //{ provide: CfCheckService, useClass: CfCheckService_Fake },
     { provide: CfCheckService, useClass: CfCheckServiceSuccess_Fake },
-
     //{ provide: ApplicationService, useClass: ApplicationService_Fake },
-    { provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },
+    //{ provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },
+    { provide: ApplicationService, useClass: ApplicationService },
+    SpidService
   ],
   bootstrap: [AppComponent]
 })
