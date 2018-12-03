@@ -97,15 +97,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Authentication\Spid\Logout\Default.aspx" />
-    <Content Include="Controls\CookieViewer.ascx" />
-    <Content Include="Controls\TicketManager.ascx" />
     <Content Include="CookiesRequired.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="MasterPage.css" />
     <Content Include="NotAuthorized.aspx" />
     <Content Include="Authentication\Spid\Login\Default.aspx" />
-    <Content Include="Secure\Default.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -129,20 +126,6 @@
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\SpidController.cs" />
     <Compile Include="Controllers\StatisticsController.cs" />
-    <Compile Include="Controls\CookieViewer.ascx.cs">
-      <DependentUpon>CookieViewer.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\CookieViewer.ascx.designer.cs">
-      <DependentUpon>CookieViewer.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TicketManager.ascx.cs">
-      <DependentUpon>TicketManager.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Controls\TicketManager.ascx.designer.cs">
-      <DependentUpon>TicketManager.ascx</DependentUpon>
-    </Compile>
     <Compile Include="CookiesRequired.aspx.cs">
       <DependentUpon>CookiesRequired.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -182,9 +165,6 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Authentication\Spid\Login\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Secure\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
   </ItemGroup>

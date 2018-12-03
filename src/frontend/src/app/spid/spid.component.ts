@@ -30,6 +30,7 @@ export class SpidComponent implements OnInit {
       response =>{
       this.spidData = response;
         if(typeof this.spidData != 'undefined' && this.spidData){
+          console.log(this.spidData.submit);
           this.authenticated = true;
         }
       },

@@ -20,8 +20,5 @@
 
 -->
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
-    <siteMapNode url="~/Default.aspx" title="Home">
-        <siteMapNode url="~/Authentication/Spid/" title="Authentication Spid" description="Authentication Spid"/>
-    </siteMapNode>
-
+    <siteMapNode url="~/Default.aspx" title="Home" />
 </siteMap>

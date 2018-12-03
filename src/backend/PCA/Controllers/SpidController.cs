@@ -61,6 +61,7 @@ namespace PCA.Controllers
                         var dict = new Dictionary<string, string>();
                         CasAuthenticationTicket casTicket = CasAuthentication.ServiceTicketManager.GetTicket(ticket.UserData);
 
+                        var jsonObject = new JObject();
                         if (CasAuthentication.ServiceTicketManager.VerifyClientTicket(casTicket))
                         {
                             dict.Add("status", "OK");
@@ -83,16 +84,18 @@ namespace PCA.Controllers
                         {
                             dict.Add("status", "KO");
                             dict.Add("message", "Authentication failed!");
+                            jsonObject = JObject.Parse(JsonConvert.SerializeObject(dict));
+                            return Request.CreateResponse(HttpStatusCode.Unauthorized, jsonObject);
                         }
 
-                        var jsonObject = JObject.Parse(JsonConvert.SerializeObject(dict));
+                        jsonObject = JObject.Parse(JsonConvert.SerializeObject(dict));
                         log.Info("Spind Authentication: " + jsonObject.ToString());
                         return Request.CreateResponse(HttpStatusCode.OK, jsonObject);
                     }
                 }
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK);
+            return Request.CreateResponse(HttpStatusCode.InternalServerError);
         }
 
         [HttpPost]
