@@ -21,18 +21,12 @@ const httpOptions = {
 export class SpidService {
 
   private spidLoginUrl = '/spid/login';
-  private spidLogOutUrl = '/spid/logout';
 
   constructor(private http: HttpClient) { }
 
   login(): Observable<any> 
   {
     return this.http.get<any>(BACKENDURL + this.spidLoginUrl, httpOptions);
-  }
-
-  logout(): Observable<any> 
-  {
-    return this.http.get<any>(BACKENDURL + this.spidLogOutUrl, httpOptions);
   }
 
 }
