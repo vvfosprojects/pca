@@ -18,6 +18,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Security;
 using DotNetCasClient;
@@ -54,9 +55,28 @@ namespace Authentication.Spid.Login
               
                 if (serviceTicket != null)
                 {
-                    Session.Add("serviceTicket", serviceTicket);
-                    log.Info("Save serviceTicket in Session (" + HttpContext.Current.Session.SessionID + ") -> [serviceTicket: " + serviceTicket + "]");
-                    redirectUrl = CasAuthentication.CasClientUrl + "spid";
+                    HttpContext.Current.Session["serviceTicket"] = serviceTicket;
+                    log.Info("Saved serviceTicket in Session (" + HttpContext.Current.Session.SessionID + ") -> [serviceTicket: " + serviceTicket + "]");
+
+                    CasAuthenticationTicket casTicket = CasAuthentication.ServiceTicketManager.GetTicket(serviceTicket);
+                    if (CasAuthentication.ServiceTicketManager.VerifyClientTicket(casTicket))
+                    {
+                        var dict = new Dictionary<string, string>();
+                        foreach (KeyValuePair<string, IList<string>> item in casTicket.Assertion.Attributes)
+                        {
+                            var key = item.Key;
+                            var values = item.Value;
+                            string attribute = null;
+                            foreach (string value in values)
+                            {
+                                attribute = value;
+                            }
+                            dict.Add(key, attribute);
+                        }
+                        HttpContext.Current.Session["attributes_spid"] = dict;
+                        log.Info("Saved attributes_spid in Session (" + HttpContext.Current.Session.SessionID + ")");
+                        redirectUrl = CasAuthentication.CasClientUrl + "spid";
+                    }  
                 }    
             }
 

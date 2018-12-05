@@ -26,17 +26,22 @@ export class SpidComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.spidService.login().subscribe(
+    this.spidService.attributes().subscribe(
       response =>{
-      this.spidData = response;
-        if(typeof this.spidData != 'undefined' && this.spidData){
-          console.log(this.spidData.submit);
+        this.spidData = response;
+        if(this.spidData.status == "OK"){
           this.authenticated = true;
+        } else {
+          this.authenticated = false;
         }
       },
       err => {
-      console.log(err);
+        console.log(err);
       });
+  }
+
+  isAuthenticated(){
+    return this.authenticated;
   }
 
   login(){
@@ -46,11 +51,6 @@ export class SpidComponent implements OnInit {
   logout(){
     this.authenticated = false;
     window.open( this.BACKENDBASEURL + this.spidLogOutUrl , '_self');
-  }
-
-
-  isAuthenticated(){
-    return this.authenticated;
   }
 
 }

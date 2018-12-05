@@ -20,13 +20,13 @@ const httpOptions = {
 })
 export class SpidService {
 
-  private spidLoginUrl = '/spid/login';
+  private spidAttributesUrl = '/spid/attributes';
 
   constructor(private http: HttpClient) { }
 
-  login(): Observable<any> 
+  attributes(): Observable<any> 
   {
-    return this.http.get<any>(BACKENDURL + this.spidLoginUrl, httpOptions);
+    return this.http.get<any>(BACKENDURL + this.spidAttributesUrl, httpOptions);
   }
 
 }

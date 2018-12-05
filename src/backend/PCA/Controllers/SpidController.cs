@@ -8,12 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Web;
-using System.Web.Security;
 using Newtonsoft.Json;
-using System;
 using DomainModel;
 using Services.Submission;
-using System.IO;
 
 namespace PCA.Controllers
 {
@@ -22,8 +19,8 @@ namespace PCA.Controllers
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         [HttpGet]
-        [Route("api/spid/login")]
-        public HttpResponseMessage GetLogin()
+        [Route("api/spid/attributes")]
+        public HttpResponseMessage GetAttributes()
         {
             if (HttpContext.Current == null || HttpContext.Current.Session == null)
             {
@@ -36,66 +33,32 @@ namespace PCA.Controllers
          
             if (CasAuthentication.ServiceTicketManager != null)
             {
+                var jsonObject = new JObject();
+                bool authenticated = HttpContext.Current.Request.IsAuthenticated;
+                Dictionary<string, string> attributes = (Dictionary<string, string>)HttpContext.Current.Session["attributes_spid"];
 
-                FormsAuthenticationTicket ticket = null;
-                HttpCookieCollection cookies = HttpContext.Current.Request.Cookies;
-                if (cookies != null && cookies.Count > 0)
-                {
-                    for (int i = 0; i < cookies.Count; i++)
-                    {
-                        if (cookies[i].Name.Equals(".ASPXAUTH"))
-                        {
-                            ticket = FormsAuthentication.Decrypt(cookies[i].Value);
-                        }
-                    }
+                if (authenticated && attributes.Any())
+                {               
+                    attributes.Add("status", "OK");
+                    attributes.Add("message", "Authentication successfully");
+                    jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
+                    attributes.Remove("status");
+                    attributes.Remove("message");
+                    log.Info("Spind Authentication: " + jsonObject.ToString());
+                    return Request.CreateResponse(HttpStatusCode.OK, jsonObject);                  
                 }
-
-                bool IsAuthenticated = HttpContext.Current.Request.IsAuthenticated;
-
-                if (ticket != null && IsAuthenticated)
+                else
                 {
-                    IEnumerable<string> serviceTickets = CasAuthentication.ServiceTicketManager.GetUserServiceTickets(HttpContext.Current.User.Identity.Name);
-
-                    if (serviceTickets != null && serviceTickets.Any())
-                    {
-                        var dict = new Dictionary<string, string>();
-                        CasAuthenticationTicket casTicket = CasAuthentication.ServiceTicketManager.GetTicket(ticket.UserData);
-
-                        var jsonObject = new JObject();
-                        if (CasAuthentication.ServiceTicketManager.VerifyClientTicket(casTicket))
-                        {
-                            dict.Add("status", "OK");
-                            dict.Add("message", "Authentication successfully");
-
-                            foreach (KeyValuePair<string, IList<string>> item in casTicket.Assertion.Attributes)
-                            {
-                                var key = item.Key;
-                                var values = item.Value;
-                                string attribute = null;
-                                foreach (string value in values)
-                                {
-                                    attribute = value;
-                                }
-                                dict.Add(key, attribute);
-                            }                  
-                            HttpContext.Current.Session["attributes_spid"] = dict;
-                        }
-                        else
-                        {
-                            dict.Add("status", "KO");
-                            dict.Add("message", "Authentication failed!");
-                            jsonObject = JObject.Parse(JsonConvert.SerializeObject(dict));
-                            return Request.CreateResponse(HttpStatusCode.Unauthorized, jsonObject);
-                        }
-
-                        jsonObject = JObject.Parse(JsonConvert.SerializeObject(dict));
-                        log.Info("Spind Authentication: " + jsonObject.ToString());
-                        return Request.CreateResponse(HttpStatusCode.OK, jsonObject);
-                    }
+                    attributes = new Dictionary<string, string>();
+                    attributes.Add("status", "KO");
+                    attributes.Add("message", "Not Authorized");
+                    jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
+                    attributes.Remove("status");
+                    attributes.Remove("message");
+                    return Request.CreateResponse(HttpStatusCode.Unauthorized, jsonObject);
                 }
             }
-
-            return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         [HttpPost]
