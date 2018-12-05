@@ -27,9 +27,9 @@ namespace PCA.Controllers
                 throw new System.ApplicationException("Current Session is null!");
             }
 
-            log.Info("SpidController SessionId: " + HttpContext.Current.Session.SessionID);
-            log.Info("SpidController IsNewSession: " + HttpContext.Current.Session.IsNewSession);
-            log.Info("SpidController IsAuthenticated: " + HttpContext.Current.Request.IsAuthenticated);
+            //log.Info("SpidController SessionId: " + HttpContext.Current.Session.SessionID);
+            //log.Info("SpidController IsNewSession: " + HttpContext.Current.Session.IsNewSession);
+            //log.Info("SpidController IsAuthenticated: " + HttpContext.Current.Request.IsAuthenticated);
          
             if (CasAuthentication.ServiceTicketManager != null)
             {
@@ -38,25 +38,18 @@ namespace PCA.Controllers
                 Dictionary<string, string> attributes = (Dictionary<string, string>)HttpContext.Current.Session["attributes_spid"];
 
                 if (authenticated && attributes.Any())
-                {               
-                    attributes.Add("status", "OK");
-                    attributes.Add("message", "Authentication successfully");
+                {
                     jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
-                    attributes.Remove("status");
-                    attributes.Remove("message");
-                    log.Info("Spind Authentication: " + jsonObject.ToString());
-                    return Request.CreateResponse(HttpStatusCode.OK, jsonObject);                  
+                    jsonObject.Add("status", "OK");
+                    jsonObject.Add("message", "Authentication successfully");
+                    log.Info("Spind Authentication: " + jsonObject.ToString());                                  
                 }
                 else
                 {
-                    attributes = new Dictionary<string, string>();
-                    attributes.Add("status", "KO");
-                    attributes.Add("message", "Not Authorized");
-                    jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
-                    attributes.Remove("status");
-                    attributes.Remove("message");
-                    return Request.CreateResponse(HttpStatusCode.Unauthorized, jsonObject);
+                    jsonObject.Add("status", "KO");
+                    jsonObject.Add("message", "Not Authorized");                   
                 }
+                return Request.CreateResponse(HttpStatusCode.OK, jsonObject);
             }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -65,7 +58,6 @@ namespace PCA.Controllers
         [Route("api/spid/check")]
         public ApplicationCheckResult Post(Application application)
         {
-
             if (HttpContext.Current == null || HttpContext.Current.Session == null)
             {
                 throw new System.ApplicationException("Current Session is null!");
