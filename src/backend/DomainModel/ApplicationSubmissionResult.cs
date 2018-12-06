@@ -32,6 +32,13 @@ namespace DomainModel
             this.SubmissionOk = submissionOk;
         }
 
+        public ApplicationSubmissionResult(ResultMessage[] messagesToTheUser, DateTime submittedAt, bool submissionOk)
+        {
+            this.MessagesToTheUser = messagesToTheUser ?? throw new ArgumentNullException(nameof(messagesToTheUser));
+            this.SubmittedAt = submittedAt;
+            this.SubmissionOk = submissionOk;
+        }
+
         public string FiscalCode { get; }
         public string Pin { get; }
         public ResultMessage[] MessagesToTheUser { get; }

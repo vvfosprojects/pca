@@ -32,7 +32,7 @@ namespace Services.Submission
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public ApplicationCheckResult Check(Application application, bool authenticated, IDictionary<string, string> attributes)
+        public ApplicationCheckResult Check(Application application, IDictionary<string, string> attributes)
         {
             log.Info($"Application check: { JsonConvert.SerializeObject(application) }");
 
@@ -40,13 +40,12 @@ namespace Services.Submission
             string message = null;
             var fields = new List<string>();
 
-            if(authenticated && attributes.Any())
+            if(attributes.Any())
             {
                 foreach (KeyValuePair<string, string> attribute in attributes)
                 {
                     string key = attribute.Key;
                     string value = attribute.Value;
-                    var check = new { valid = "false" };
 
                     if (value != null)
                     {

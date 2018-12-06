@@ -18,16 +18,8 @@
             <mat-icon color="warn" *ngIf="msg.type === 'Warning'">warning</mat-icon>
             <mat-icon color="primary" *ngIf="msg.type === 'Success'">check_circle_outline</mat-icon>
             {{ msg.msg }}
+            {{ msg.code }}
           </p>
-        </mat-card>
-        <mat-card *ngIf="!!spidDataValidationMessages">
-            <mat-icon color="accent">error_outline</mat-icon>
-            {{ spidDataValidationMessages }}
-            <div *ngIf="!!spidDataValidationFields">
-              <ul *ngFor="let field of spidDataValidationFields">
-                <li>{{ field }}</li>
-              </ul>
-            </div>
         </mat-card>
         <div>
           <mat-form-field>
@@ -273,7 +265,7 @@
   </div>
 
   <section class="mat-typography center">
-    <button *ngIf="!submitting" mat-raised-button color="primary" [disabled]="!applicationForm.valid" (click)='checkAndSendForm()'>Invia la domanda</button>
+    <button *ngIf="!submitting" mat-raised-button color="primary" [disabled]="!applicationForm.valid" (click)='sendForm()'>Invia la domanda</button>
   </section>
 
 </form>

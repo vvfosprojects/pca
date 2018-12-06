@@ -23,6 +23,6 @@ namespace DomainModel.Services
 {
     public interface ICheckApplication
     {
-        ApplicationCheckResult Check(Application application, bool authenticated, IDictionary<string, string> attributes);
+        ApplicationCheckResult Check(Application application, IDictionary<string, string> attributes);
     }
 }

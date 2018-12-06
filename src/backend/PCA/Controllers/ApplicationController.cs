@@ -18,6 +18,7 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -27,6 +28,7 @@ using DomainModel.Services;
 using DomainModel.Services.ApplicationPages;
 using log4net;
 using PCA.Authorization;
+using Services.Submission;
 
 namespace PCA.Controllers
 {
@@ -100,8 +102,9 @@ namespace PCA.Controllers
 
         public ApplicationSubmissionResult Post(Application application)
         {
+            Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
             application.SourceIp = HttpContext.Current.Request.UserHostAddress;
-            return this.submitApplication.Submit(application);
+            return this.submitApplication.Submit(application, attributes);
         }
 
     }

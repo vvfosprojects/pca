@@ -53,19 +53,5 @@ namespace PCA.Controllers
             }
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-
-        [HttpPost]
-        [Route("api/spid/check")]
-        public ApplicationCheckResult Post(Application application)
-        {
-            if (HttpContext.Current == null || HttpContext.Current.Session == null)
-            {
-                throw new System.ApplicationException("Current Session is null!");
-            }
-
-            bool authenticated = HttpContext.Current.Request.IsAuthenticated;
-            Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
-            return new CheckApplication().Check(application, authenticated, attributes);
-        }
     }
 }
