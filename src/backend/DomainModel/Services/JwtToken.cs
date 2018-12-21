@@ -19,7 +19,7 @@
 //-----------------------------------------------------------------------
 using System;
 
-namespace Services.JwtAuthentication
+namespace DomainModel.Services
 {
     public class JwtToken
     {

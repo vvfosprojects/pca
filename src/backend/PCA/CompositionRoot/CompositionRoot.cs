@@ -71,7 +71,7 @@ namespace PCA.CompositionRoot
                 DomainModel.Services.IGetActiveApplicationById,
                 Persistence.MongoDB.DbServices.GetActiveApplicationById>(Lifestyle.Scoped);
 
-            container.Register<Services.JwtAuthentication.IJwtTools>(() =>
+            container.Register<DomainModel.Services.IJwtTools>(() =>
             {
                 var secretKey = WebConfigurationManager.AppSettings["jwtSecretKey"];
                 var tokenDuration = Convert.ToInt32(WebConfigurationManager.AppSettings["jwtTokenDuration_sec"]);

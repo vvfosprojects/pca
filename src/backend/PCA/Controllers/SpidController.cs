@@ -3,14 +3,14 @@ using System.Web.Http;
 using log4net;
 using System.Net.Http;
 using System.Net;
-using DotNetCasClient;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Web;
 using Newtonsoft.Json;
-using DomainModel;
-using Services.Submission;
+using System;
+using System.Net.Http.Headers;
+using DomainModel.Services;
 
 namespace PCA.Controllers
 {
@@ -18,40 +18,75 @@ namespace PCA.Controllers
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        private readonly IJwtTools jwtTools;
+
+        public SpidController(IJwtTools jwtTools)
+        {
+            this.jwtTools = jwtTools ?? throw new ArgumentNullException(nameof(jwtTools));
+        }
+
         [HttpGet]
         [Route("api/spid/attributes")]
         public HttpResponseMessage GetAttributes()
         {
-            if (HttpContext.Current == null || HttpContext.Current.Session == null)
-            {
-                throw new System.ApplicationException("Current Session is null!");
-            }
 
-            //log.Info("SpidController SessionId: " + HttpContext.Current.Session.SessionID);
-            //log.Info("SpidController IsNewSession: " + HttpContext.Current.Session.IsNewSession);
-            //log.Info("SpidController IsAuthenticated: " + HttpContext.Current.Request.IsAuthenticated);
-         
-            if (CasAuthentication.ServiceTicketManager != null)
+            var jsonObject = new JObject();
+            try
             {
-                var jsonObject = new JObject();
-                bool authenticated = HttpContext.Current.Request.IsAuthenticated;
-                Dictionary<string, string> attributes = (Dictionary<string, string>)HttpContext.Current.Session["attributes_spid"];
-
-                if (authenticated && attributes.Any())
+                string token = null;
+                var authHeader = HttpContext.Current.Request.Headers["Authorization"];
+                if (authHeader != null)
                 {
+                    AuthenticationHeaderValue authorization = AuthenticationHeaderValue.Parse(authHeader);
+                    token = authorization.Parameter;
+                }
+
+                if (token != null)
+                {
+                    IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
+                    IDictionary<string, object> attributes = jwtTools.DecodeAttributes(token);
+
+                    log.Info("Successful authentication");
                     jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
                     jsonObject.Add("status", "OK");
-                    jsonObject.Add("message", "Authentication successfully");
-                    log.Info("Spind Authentication: " + jsonObject.ToString());                                  
+                    jsonObject.Add("message", "SPID attributes found correctly");
+                    log.Info("SPID attributes found correctly: " + jsonObject.ToString());
                 }
                 else
                 {
                     jsonObject.Add("status", "KO");
-                    jsonObject.Add("message", "Not Authorized");                   
-                }
-                return Request.CreateResponse(HttpStatusCode.OK, jsonObject);
+                    jsonObject.Add("message", "SPID attributes not found!");
+                    log.Warn("SPID attributes not found: " + jsonObject.ToString());
+                }                  
             }
-            return Request.CreateResponse(HttpStatusCode.OK);
+            catch (Exception e)
+            {
+                log.Warn("GetAttributes: " + e.Message);
+                jsonObject.Add("status", "KO");
+                jsonObject.Add("message", e.Message);
+            }
+    
+            return Request.CreateResponse(HttpStatusCode.OK, jsonObject);
         }
+
+
+        [HttpGet]
+        [Route("api/spid/token")]
+        public AuthResult GetJwtToken()
+        {     
+            bool authenticated = HttpContext.Current.Request.IsAuthenticated;
+            Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
+
+            if (authenticated && attributes.Any())
+            {            
+                var result = this.jwtTools.GetToken(attributes);
+                log.Info("Successful authentication");
+                return new AuthResult(true, result.Token, result.ExpirationTime);
+            }
+        
+            log.Warn("Not Authorized");
+            return new AuthResult(false, string.Empty, DateTime.UtcNow);
+        }
+
     }
 }

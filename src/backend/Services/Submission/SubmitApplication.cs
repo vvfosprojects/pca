@@ -129,6 +129,13 @@ namespace Services.Submission
             return new ApplicationSubmissionResult(fiscalCode, application.Pin, userMessages.ToArray(), DateTime.UtcNow, true);
         }
 
+
+
+
+
+
+
+
         public ApplicationSubmissionResult Submit(Application application, Dictionary<string, string> attributes)
         {
             log.Info($"Application submitted: { JsonConvert.SerializeObject(application) }");
@@ -167,6 +174,7 @@ namespace Services.Submission
             }
             else
             {
+
                 ApplicationCheckResult app = new CheckApplication().Check(application, attributes);
                 if (!app.Submit)
                 {
@@ -189,7 +197,7 @@ namespace Services.Submission
                     return new ApplicationSubmissionResult(userMessages.ToArray(), DateTime.UtcNow, false);
                 }
             }
-           
+
             if (pinIsEmpty)
             {
                 application.Pin = this.pinBuilder.Build();
@@ -245,5 +253,9 @@ namespace Services.Submission
 
             return new ApplicationSubmissionResult(fiscalCode, application.Pin, userMessages.ToArray(), DateTime.UtcNow, true);
         }
+
+
+
     }
+
 }

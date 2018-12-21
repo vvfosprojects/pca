@@ -17,12 +17,13 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
-using System.Collections.Generic;
+using System.Collections.Generic; 
 
 namespace DomainModel.Services
 {
     public interface ICheckApplication
     {
         ApplicationCheckResult Check(Application application, IDictionary<string, string> attributes);
+        ApplicationCheckResult CheckWithJwtToken(Application application, IJwtTools jwtTools, string token);
     }
 }

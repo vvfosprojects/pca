@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpidService } from '../../service/spid.service';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
-import { SpidResult } from '../model/spid-result.model';
+import { AuthResult } from '../model/auth-result.model';
 import { of as observableOf, Observable, timer } from 'rxjs';
 
 @Component({
@@ -13,44 +13,50 @@ import { of as observableOf, Observable, timer } from 'rxjs';
 export class SpidComponent implements OnInit {
 
   private BACKENDBASEURL = environment.backendBaseUrl;
-  private authenticated : boolean = false;
-  private spidData: any;
+  private spidData = [];
   private key = Object.keys;
 
-  private spidLoginUrl =  '/Authentication/Spid/Login/Default.aspx';
-  private spidLogOutUrl = '/Authentication/Spid/Logout/Default.aspx';
-
-
-  constructor(private spidService: SpidService,
-    private router: Router) {
-   }
+  constructor(
+    private spidService: SpidService, 
+    private router: Router) {}
 
   ngOnInit() {
-    this.spidService.attributes().subscribe(
-      response =>{
-        this.spidData = response;
-        if(this.spidData.status == "OK"){
-          this.authenticated = true;
-        } else {
-          this.authenticated = false;
-        }
+     this.spidService.getJwtToken()
+     .subscribe(
+       (res: AuthResult) => {
+         if (res.success){
+          this.getAttributes();
+         }
+       },
+       err => {
+        console.log(err);
+       }
+       );
+  }
+
+  public linkLogin(){
+    const link = '/Authentication/Spid/Login/Default.aspx';
+    window.open( this.BACKENDBASEURL + link , '_self');
+  }
+
+  public linkLogout(){
+    const link = '/Authentication/Spid/Logout/Default.aspx';
+    window.open( this.BACKENDBASEURL + link , '_self');
+    this.spidService.logout();
+  }
+
+  public isAuthenticated(){
+    return this.spidService.isLoggedIn();
+  }
+
+  private getAttributes(){
+    this.spidService.getSpidAttributes()
+    .subscribe(
+      res => {
+        this.spidData = res;
       },
       err => {
         console.log(err);
       });
   }
-
-  isAuthenticated(){
-    return this.authenticated;
-  }
-
-  login(){
-    window.open( this.BACKENDBASEURL + this.spidLoginUrl , '_self');
-  }
-
-  logout(){
-    this.authenticated = false;
-    window.open( this.BACKENDBASEURL + this.spidLogOutUrl , '_self');
-  }
-
 }

@@ -19,6 +19,7 @@
 //-----------------------------------------------------------------------
 using System.Collections.Generic;
 
+
 namespace DomainModel.Services
 {
     public interface ISubmitApplication

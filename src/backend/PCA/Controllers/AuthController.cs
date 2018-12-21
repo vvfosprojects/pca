@@ -20,9 +20,9 @@
 using System;
 using System.Web.Configuration;
 using System.Web.Http;
+using DomainModel.Services;
 using log4net;
 using PCA.Models;
-using Services.JwtAuthentication;
 
 namespace PCA.Controllers
 {

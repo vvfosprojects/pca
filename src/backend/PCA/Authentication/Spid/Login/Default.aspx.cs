@@ -75,7 +75,7 @@ namespace Authentication.Spid.Login
                         }
                         HttpContext.Current.Session["attributes_spid"] = dict;
                         log.Info("Saved attributes_spid in Session (" + HttpContext.Current.Session.SessionID + ")");
-                        redirectUrl = CasAuthentication.CasClientUrl + "spid";
+                        redirectUrl = CasAuthentication.CasClientUrl + "/spid";
                     }  
                 }    
             }

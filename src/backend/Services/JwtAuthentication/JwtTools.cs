@@ -19,20 +19,23 @@
 //-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using DomainModel.Services;
 using JWT;
 using JWT.Algorithms;
 using JWT.Builder;
+using log4net;
 using Newtonsoft.Json;
 
 namespace Services.JwtAuthentication
 {
     public class JwtTools : IJwtTools
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly string secretKey;
         private readonly int tokenDuration_Sec;
 
-        public JwtTools(string secretKey,
-            int tokenDuration_sec)
+        public JwtTools(string secretKey, int tokenDuration_sec)
         {
             if (string.IsNullOrWhiteSpace(secretKey))
             {
@@ -42,6 +45,40 @@ namespace Services.JwtAuthentication
             this.secretKey = secretKey;
             tokenDuration_Sec = tokenDuration_sec;
         }
+
+
+        public JwtToken GetToken(string username)
+        {
+            DateTime expTime = DateTime.UtcNow.AddSeconds(this.tokenDuration_Sec);
+            var token = new JwtBuilder()
+                .WithAlgorithm(new HMACSHA256Algorithm())
+                .WithSecret(this.secretKey)
+                .ExpirationTime(expTime)
+                .AddClaim("username", username)
+                .Build();
+
+            return new JwtToken(token, expTime);
+        }
+
+
+        public JwtToken GetToken(Dictionary<string, string> attributes)
+        {
+            DateTime expTime = DateTime.UtcNow.AddSeconds(this.tokenDuration_Sec);
+            JwtBuilder jwtBuilder = new JwtBuilder()
+                .WithAlgorithm(new HMACSHA256Algorithm())
+                .WithSecret(this.secretKey)
+                .ExpirationTime(expTime);
+
+            foreach (KeyValuePair<string, string> claim in attributes)
+            {
+                log.Info("Add to JwtToken spid attribute key:[" + claim.Key + "] value:[" + claim.Value + "]");
+                jwtBuilder.AddClaim(claim.Key, claim.Value);
+            }
+
+            var token = jwtBuilder.Build();
+            return new JwtToken(token, expTime);
+        }
+
 
         public string DecodeUsername(string token)
         {
@@ -64,17 +101,48 @@ namespace Services.JwtAuthentication
             }
         }
 
-        public JwtToken GetToken(string username)
+        public string DecodeAttribute(string token, string attribute)
         {
-            DateTime expTime = DateTime.UtcNow.AddSeconds(this.tokenDuration_Sec);
-            var token = new JwtBuilder()
-                .WithAlgorithm(new HMACSHA256Algorithm())
-                .WithSecret(this.secretKey)
-                .ExpirationTime(expTime)
-                .AddClaim("username", username)
-                .Build();
+            try
+            {
+                log.Info("Decode JwtToken for Spit attribute:[" + attribute + "]");
+                var json = new JwtBuilder()
+                    .WithSecret(this.secretKey)
+                    .MustVerifySignature()
+                    .Decode(token);
+                var obj = JsonConvert.DeserializeObject<IDictionary<string, object>>(json);
+                return obj.ContainsKey(attribute) ? (string) obj[attribute] : null;
+            }
+            catch (TokenExpiredException)
+            {
+                throw new UnauthorizedAccessException("Token expired");
+            }
+            catch (SignatureVerificationException)
+            {
+                throw new UnauthorizedAccessException("Token has invalid signature");
+            }
+        }
 
-            return new JwtToken(token, expTime);
+        public IDictionary<string, object> DecodeAttributes(string token)
+        {
+            try
+            {
+                log.Info("Decode JwtToken...");
+                var json = new JwtBuilder()
+                    .WithSecret(this.secretKey)
+                    .MustVerifySignature()
+                    .Decode(token);
+                var obj = JsonConvert.DeserializeObject<IDictionary<string, object>>(json);
+                return obj;
+            }
+            catch (TokenExpiredException)
+            {
+                throw new UnauthorizedAccessException("Token expired");
+            }
+            catch (SignatureVerificationException)
+            {
+                throw new UnauthorizedAccessException("Token has invalid signature");
+            }
         }
     }
 }

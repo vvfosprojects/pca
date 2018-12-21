@@ -20,6 +20,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -28,6 +30,7 @@ using DomainModel.Services;
 using DomainModel.Services.ApplicationPages;
 using log4net;
 using PCA.Authorization;
+using Services.JwtAuthentication;
 using Services.Submission;
 
 namespace PCA.Controllers
@@ -102,10 +105,55 @@ namespace PCA.Controllers
 
         public ApplicationSubmissionResult Post(Application application)
         {
-            Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
-            application.SourceIp = HttpContext.Current.Request.UserHostAddress;
-            return this.submitApplication.Submit(application, attributes);
-        }
+            //Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
+            //application.SourceIp = HttpContext.Current.Request.UserHostAddress;
+            //return this.submitApplication.Submit(application, attributes);
 
+            var userMessages = new List<ResultMessage>();
+            IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
+
+            string token = null;
+            var authHeader = HttpContext.Current.Request.Headers["Authorization"]; 
+            if (authHeader != null)
+            {
+                AuthenticationHeaderValue authorization = AuthenticationHeaderValue.Parse(authHeader);
+                token = authorization.Parameter;
+            }
+
+            if (token == null)
+            {
+                userMessages.Add(new ResultMessage(
+                "session",
+                "Utente non autorizzato",
+                "Error"));
+                log.Info("Attributi SPID mancanti, l'utente potrebbe non essere autorizzato");
+                return new ApplicationSubmissionResult(userMessages.ToArray(), DateTime.UtcNow, false);
+            }
+
+            ApplicationCheckResult check = new CheckApplication().CheckWithJwtToken(application, jwtTools, token);
+            if(!check.Submit)
+            {
+                userMessages.Add(new ResultMessage(
+                    " ",
+                    check.Message,
+                    "Error"));
+
+                if (check.Fields.Any())
+                {
+                    foreach (string field in check.Fields)
+                    {
+                        userMessages.Add(new ResultMessage(
+                        field,
+                        " ",
+                        "Error"));
+                    }
+                }
+                log.Info("I dati inseriti non sono validi. Controlla le informazioni inserite.");
+                return new ApplicationSubmissionResult(userMessages.ToArray(), DateTime.UtcNow, false);
+            }
+
+            return this.submitApplication.Submit(application);
+                 
+        }
     }
 }

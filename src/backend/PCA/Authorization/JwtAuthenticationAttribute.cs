@@ -30,8 +30,8 @@ using System.Threading.Tasks;
 using System.Web.Configuration;
 using System.Web.Http;
 using System.Web.Http.Filters;
+using DomainModel.Services;
 using log4net;
-using Services.JwtAuthentication;
 
 namespace PCA.Authorization
 {

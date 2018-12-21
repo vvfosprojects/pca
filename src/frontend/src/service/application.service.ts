@@ -16,6 +16,7 @@ const BACKENDURL = environment.backendUrl;
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   }),
   withCredentials: true
 };
@@ -24,13 +25,13 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ApplicationService {
-  private applicationUrl = '/application';
   private lastResponse: DomandaOutcome;
 
   constructor(private http: HttpClient) { }
 
   public inserisciDomanda(domanda: Domanda): Observable<DomandaOutcome> {
-    return this.http.post<DomandaOutcome>(BACKENDURL + this.applicationUrl, domanda, httpOptions)
+    const action = '/application';
+    return this.http.post<DomandaOutcome>(BACKENDURL + action, domanda, httpOptions)
       .pipe(map(result => {
         this.lastResponse = result;
         return result;

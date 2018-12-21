@@ -42,7 +42,7 @@ namespace Authentication.Spid.Logout
             {
                 if(CasAuthentication.CasClientUrl != null)
                 {
-                    string redirectUrl = CasAuthentication.CasClientUrl + "spid";
+                    string redirectUrl = CasAuthentication.CasClientUrl + "/spid";
                     log.Info("Logout Redirect to: " + redirectUrl);
                     Response.Redirect(redirectUrl);
                 }

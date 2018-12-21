@@ -21,6 +21,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material';
 import { RouterModule, Routes } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CfCheckService } from '../service/cf-check.service';
@@ -28,6 +29,7 @@ import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 import { ApplicationService_Fake } from '../service/application-fake.service';
 import { ApplicationService } from '../service/application.service';
 import { SpidService } from '../service/spid.service';
+import { JwtInterceptor } from '../service/jwt.interceptor';
 
 import { ApplicationFormComponent } from './application-form/application-form.component';
 import { SubmissionResultComponent } from './submission-result/submission-result.component';
@@ -42,6 +44,7 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { MatTabsModule} from '@angular/material/tabs';
 import { HelpComponent } from './help/help.component';
 import { SpidComponent } from './spid/spid.component';
+
 
 
 const ENABLETRACING = environment.enableTracing;
@@ -89,7 +92,8 @@ const APPROUTES = appRoutes;
     //{ provide: ApplicationService, useClass: ApplicationService_Fake },
     //{ provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },
     { provide: ApplicationService, useClass: ApplicationService },
-    SpidService
+    { provide: SpidService, useClass: SpidService },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

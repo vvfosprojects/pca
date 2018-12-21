@@ -17,12 +17,17 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // </copyright>
 //-----------------------------------------------------------------------
-namespace Services.JwtAuthentication
+using System.Collections.Generic;
+
+namespace DomainModel.Services
 {
     public interface IJwtTools
     {
-        string DecodeUsername(string token);
-
         JwtToken GetToken(string username);
+        JwtToken GetToken(Dictionary<string, string> attributes);
+
+        string DecodeUsername(string token);
+        string DecodeAttribute(string token, string attribute);
+        IDictionary<string, object> DecodeAttributes(string token);
     }
 }

@@ -54,12 +54,8 @@ import { SearchBoxComponent } from './search-box/search-box.component';
     { provide: ApplicationDetailService, useClass: ApplicationDetailServiceFake },
     { provide: StatisticsService, useClass: StatisticsServiceFake },
     { provide: GetApplicationRowsService, useClass: GetApplicationRowsServiceFake },
-    { provide: AuthService, useClass: AuthServiceFake },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    { provide: AuthService, useClass: AuthService },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
