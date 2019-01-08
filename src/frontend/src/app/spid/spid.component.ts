@@ -3,6 +3,7 @@ import { SpidService } from '../../service/spid.service';
 import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { AuthResult } from '../model/auth-result.model';
+import { SpidAttributeResult } from '../model/spid-attribute-result.model';
 import { of as observableOf, Observable, timer } from 'rxjs';
 
 @Component({
@@ -12,8 +13,8 @@ import { of as observableOf, Observable, timer } from 'rxjs';
 })
 export class SpidComponent implements OnInit {
 
-  private BACKENDBASEURL = environment.backendBaseUrl;
-  private spidData = [];
+  BACKENDBASEURL = environment.backendBaseUrl;
+  private spidAttributeResult : SpidAttributeResult;
   private key = Object.keys;
 
   constructor(
@@ -61,10 +62,11 @@ export class SpidComponent implements OnInit {
     this.spidService.getSpidAttributes()
     .subscribe(
       res => {
-        this.spidData = res;
+        this.spidAttributeResult = res;
       },
       err => {
         console.log(err);
       });
   }
+
 }

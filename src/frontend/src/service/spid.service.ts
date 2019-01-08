@@ -5,6 +5,8 @@ import * as moment from "moment";
 import { environment } from '../environments/environment';
 import { of as observableOf, Observable, throwError } from 'rxjs';
 import { AuthResult } from '../app/model/auth-result.model';
+import { SpidAttributeResult } from '../app/model/spid-attribute-result.model';
+import { catchError, map } from 'rxjs/operators';
 
 const BACKENDURL = environment.backendUrl;
 
@@ -35,9 +37,9 @@ export class SpidService {
       .pipe(shareReplay());
   }
 
-  public getSpidAttributes(): Observable<any> {
+  public getSpidAttributes() : Observable<SpidAttributeResult>{
     const action = "/spid/attributes";
-    return this.http.get<any>(BACKENDURL + action, httpOptions);
+    return this.http.get<SpidAttributeResult>(BACKENDURL + action, httpOptions);
   }
 
   public logout() {

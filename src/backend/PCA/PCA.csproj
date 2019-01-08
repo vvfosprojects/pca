@@ -151,6 +151,8 @@
       <DependentUpon>MasterPage.master</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthData.cs" />
+    <Compile Include="Models\SpidAttribute.cs" />
+    <Compile Include="Models\SpidAttributeResult.cs" />
     <Compile Include="Models\AuthResult.cs" />
     <Compile Include="NotAuthorized.aspx.cs">
       <DependentUpon>NotAuthorized.aspx</DependentUpon>

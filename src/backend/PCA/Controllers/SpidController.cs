@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http.Headers;
 using DomainModel.Services;
+using System.Globalization;
 
 namespace PCA.Controllers
 {
@@ -26,8 +27,26 @@ namespace PCA.Controllers
         }
 
         [HttpGet]
+        [Route("api/spid/token")]
+        public AuthResult GetJwtToken()
+        {
+            bool isAuthenticated = HttpContext.Current.Request.IsAuthenticated;
+            Dictionary<string, string> attributes = (Dictionary<string, string>)HttpContext.Current.Session["attributes_spid"];
+
+            if (isAuthenticated && attributes.Any())
+            {
+                var result = this.jwtTools.GetToken(attributes);
+                log.Info("Successful JWT Token: " + result.Token);
+                return new AuthResult(true, result.Token, result.ExpirationTime);
+            }
+
+            log.Warn("Not authenticated or missing SPID Attributes");
+            return new AuthResult(false, string.Empty, DateTime.UtcNow);
+        }
+
+        [HttpGet]
         [Route("api/spid/attributes")]
-        public HttpResponseMessage GetAttributes()
+        public SpidAttributeResult GetAttributes()
         {
 
             var jsonObject = new JObject();
@@ -42,48 +61,84 @@ namespace PCA.Controllers
                 }
 
                 if (token != null)
-                {                  
-                    IDictionary<string, object> attributes = this.jwtTools.DecodeAttributes(token);
-                    log.Info("Successful authentication");
-                    jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
-                    jsonObject.Add("status", "OK");
-                    jsonObject.Add("message", "SPID attributes found correctly");
-                    log.Info("SPID Attributes found correctly: " + jsonObject.ToString());
-                }
-                else
                 {
-                    jsonObject.Add("status", "KO");
-                    jsonObject.Add("message", "SPID attributes not found!");
-                    log.Warn("SPID Attributes not found: " + jsonObject.ToString());
-                }                  
+                    log.Info("Successful authentication");
+                    IDictionary<string, object> attributes = this.jwtTools.DecodeAttributes(token);
+                    SpidAttribute spidAttribute = this.getSpidAttribute(attributes);
+                    return new SpidAttributeResult(true, "SPID attributes found correctly", spidAttribute);
+                }
             }
             catch (Exception e)
             {
-                log.Warn("GetAttributes: " + e.Message);
-                jsonObject.Add("status", "KO");
-                jsonObject.Add("message", e.Message);
+                return new SpidAttributeResult(false, e.Message, null);
             }
-    
-            return Request.CreateResponse(HttpStatusCode.OK, jsonObject);
+
+            return new SpidAttributeResult(false, "SPID attributes not found!", null);
         }
 
-
-        [HttpGet]
-        [Route("api/spid/token")]
-        public AuthResult GetJwtToken()
+        private SpidAttribute getSpidAttribute(IDictionary<string, object> attributes)
         {
-            bool isAuthenticated = HttpContext.Current.Request.IsAuthenticated;
-            Dictionary<string, string> attributes = (Dictionary<string, string>)HttpContext.Current.Session["attributes_spid"];
+            SpidAttribute spidAttribute = new SpidAttribute();
 
-            if (isAuthenticated && attributes.Any())
+            foreach (KeyValuePair<string, object> attribute in attributes)
             {
-                var result = this.jwtTools.GetToken(attributes);
-                log.Info("Successful JWT Token: " + result.Token);
-                return new AuthResult(true, result.Token, result.ExpirationTime);
+                string key = attribute.Key;
+                string value = (string)attribute.Value;
+
+                if (value != null)
+                {
+                    switch (key)
+                    {
+                        case "spidCode":
+                            spidAttribute.spidcode = value;
+                            break;
+                        case "Nome":
+                            spidAttribute.nome = value;
+                            break;
+                        case "Cognome":
+                            spidAttribute.cognome = value;
+                            break;
+                        case "CodiceFiscale":
+                            string prefixcf = "TINIT-";
+                            int size_prefixcf = prefixcf.Length;
+                            string cf = value.Contains(prefixcf) ? value.Substring(size_prefixcf) : value;
+                            spidAttribute.codicefiscale = value;
+                            break;
+                        case "Email":
+                            spidAttribute.email = value;
+                            break;
+                        case "DataNascita":                           
+                            spidAttribute.datanascita = value;
+                            break;
+                        case "RagioneSociale":
+                            spidAttribute.ragionesociale = value;
+                            break;
+                        case "PIva":
+                            string prefixpiva = "VATIT-";
+                            int size_prefixpiva = prefixpiva.Length;
+                            string piva = value.Contains(prefixpiva) ? value.Substring(size_prefixpiva) : value;
+                            spidAttribute.piva = piva;
+                            break;
+                        case "Pec":
+                            spidAttribute.pec = value;
+                            break;
+                        case "LuogoNascita":
+                            spidAttribute.luogonascita = value;
+                            break;
+                        case "ProvNascita":
+                            spidAttribute.provnascita = value;
+                            break;
+                        case "Sesso":
+                            spidAttribute.sesso = value;
+                            break;
+                        case "NumTel":
+                            spidAttribute.numtel = value;
+                            break;
+                    }
+                }
             }
-            
-            log.Warn("Not authenticated or missing SPID Attributes");
-            return new AuthResult(false, string.Empty, DateTime.UtcNow);
+
+            return spidAttribute;
         }
 
     }

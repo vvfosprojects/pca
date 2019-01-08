@@ -5,10 +5,11 @@ import { map, filter, delay, debounceTime, distinctUntilChanged, switchMap } fro
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
-
+import { SpidService } from '../../service/spid.service';
 import { CfCheckService } from '../../service/cf-check.service';
 import { Anagrafica } from '../model/anagrafica.model';
 import { CfCheckOutcome } from '../model/cf-check-outcome.model';
+
 import { BuGroups } from './bu-groups';
 import { Domanda } from '../model/domanda.model';
 import { ApplicationService } from '../../service/application.service';
@@ -56,9 +57,8 @@ export class ApplicationFormComponent implements OnInit {
   vvfLicenseSelected: boolean = false;
   submitting: boolean = false;
 
-
-
   constructor(
+    private spidService: SpidService, 
     private fb: FormBuilder,
     private cfCheckService: CfCheckService,
     private applicationService: ApplicationService,
@@ -67,6 +67,7 @@ export class ApplicationFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getAttributes();
   }
 
   createForm() {
@@ -347,6 +348,17 @@ export class ApplicationFormComponent implements OnInit {
         
     });
 
+  }
+
+  getAttributes(){
+    this.spidService.getSpidAttributes()
+    .subscribe(
+      res => {
+        this.spidData = res;
+      },
+      err => {
+        console.log(err);
+      });
   }
 
 }

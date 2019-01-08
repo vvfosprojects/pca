@@ -15,10 +15,12 @@
             </div>
             <div *ngIf="isLoggedIn()">
               <h4>ATTRIBUTI SPID: </h4>
-                <ul id="attribute-spid">
-                  <li *ngFor="let spid of key(spidData)">
-                      <p>{{spid}}: {{spidData[spid]}}</p>
-                  </li>
+                <ul id="attribute-spid" *ngIf="spidAttributeResult.success">                
+                    <div *ngFor="let keyspid of key(spidAttributeResult.spidAttribute)">
+                        <li *ngIf="spidAttributeResult.spidAttribute[keyspid]">
+                          <p>{{keyspid}}: {{spidAttributeResult.spidAttribute[keyspid]}}</p>
+                      </li>
+                    </div>
                 </ul>
             </div>
         </div>
