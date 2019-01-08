@@ -117,10 +117,7 @@ namespace PCA.Controllers
 
             if (token == null)
             {
-                userMessages.Add(new ResultMessage(
-                "session",
-                "Utente non autorizzato",
-                "Error"));
+                userMessages.Add(new ResultMessage("session", "Utente non autorizzato", "Error"));
                 log.Info("Attributi SPID mancanti, l'utente potrebbe non essere autorizzato");
                 return new ApplicationSubmissionResult(userMessages.ToArray(), DateTime.UtcNow, false);
             }
@@ -134,7 +131,7 @@ namespace PCA.Controllers
                 {
                     foreach (string field in check.Fields)
                     {
-                        userMessages.Add(new ResultMessage( field, " ", "Error"));
+                        userMessages.Add(new ResultMessage(field, " ", "Error"));
                     }
                 }
                 log.Info("I dati inseriti non sono validi. Controlla le informazioni inserite.");

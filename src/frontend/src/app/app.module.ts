@@ -44,6 +44,7 @@ import { MatExpansionModule} from '@angular/material/expansion';
 import { MatTabsModule} from '@angular/material/tabs';
 import { HelpComponent } from './help/help.component';
 import { SpidComponent } from './spid/spid.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 
@@ -57,7 +58,8 @@ const APPROUTES = appRoutes;
     SubmissionResultComponent,
     PageNotFoundComponent,
     HelpComponent,
-    SpidComponent
+    SpidComponent,
+    MenuComponent
   ],
   imports: [
     RouterModule.forRoot(

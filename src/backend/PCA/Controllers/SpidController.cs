@@ -18,6 +18,13 @@ namespace PCA.Controllers
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        private readonly IJwtTools jwtTools;
+
+        public SpidController(IJwtTools jwtTools)
+        {
+            this.jwtTools = jwtTools ?? throw new ArgumentNullException(nameof(jwtTools));
+        }
+
         [HttpGet]
         [Route("api/spid/attributes")]
         public HttpResponseMessage GetAttributes()
@@ -35,21 +42,19 @@ namespace PCA.Controllers
                 }
 
                 if (token != null)
-                {
-                    IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
-                    IDictionary<string, object> attributes = jwtTools.DecodeAttributes(token);
-
+                {                  
+                    IDictionary<string, object> attributes = this.jwtTools.DecodeAttributes(token);
                     log.Info("Successful authentication");
                     jsonObject = JObject.Parse(JsonConvert.SerializeObject(attributes));
                     jsonObject.Add("status", "OK");
                     jsonObject.Add("message", "SPID attributes found correctly");
-                    log.Info("SPID attributes found correctly: " + jsonObject.ToString());
+                    log.Info("SPID Attributes found correctly: " + jsonObject.ToString());
                 }
                 else
                 {
                     jsonObject.Add("status", "KO");
                     jsonObject.Add("message", "SPID attributes not found!");
-                    log.Warn("SPID attributes not found: " + jsonObject.ToString());
+                    log.Warn("SPID Attributes not found: " + jsonObject.ToString());
                 }                  
             }
             catch (Exception e)
@@ -66,19 +71,18 @@ namespace PCA.Controllers
         [HttpGet]
         [Route("api/spid/token")]
         public AuthResult GetJwtToken()
-        {     
-            bool authenticated = HttpContext.Current.Request.IsAuthenticated;
-            Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
+        {
+            bool isAuthenticated = HttpContext.Current.Request.IsAuthenticated;
+            Dictionary<string, string> attributes = (Dictionary<string, string>)HttpContext.Current.Session["attributes_spid"];
 
-            if (authenticated && attributes.Any())
+            if (isAuthenticated && attributes.Any())
             {
-                IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
-                var result = jwtTools.GetToken(attributes);
-                log.Info("Successful authentication");
+                var result = this.jwtTools.GetToken(attributes);
+                log.Info("Successful JWT Token: " + result.Token);
                 return new AuthResult(true, result.Token, result.ExpirationTime);
             }
-        
-            log.Warn("Not Authorized");
+            
+            log.Warn("Not authenticated or missing SPID Attributes");
             return new AuthResult(false, string.Empty, DateTime.UtcNow);
         }
 

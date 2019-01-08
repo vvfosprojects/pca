@@ -21,17 +21,7 @@ export class SpidComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-     this.spidService.getJwtToken()
-     .subscribe(
-       (res: AuthResult) => {
-         if (res.success){
-          this.getAttributes();
-         }
-       },
-       err => {
-        console.log(err);
-       }
-       );
+    this.isLoggedOut() ? this.getToken() : this.getAttributes();
   }
 
   public linkLogin(){
@@ -45,11 +35,29 @@ export class SpidComponent implements OnInit {
     this.spidService.logout();
   }
 
-  public isAuthenticated(){
+  public isLoggedIn(){
     return this.spidService.isLoggedIn();
   }
 
-  private getAttributes(){
+  public isLoggedOut(){
+    return this.spidService.isLoggedOut();
+  }
+
+  getToken(){
+    this.spidService.getJwtToken()
+     .subscribe(
+       (res: AuthResult) => {
+         if (res.success){
+          this.getAttributes();
+         }
+       },
+       err => {
+        console.log(err);
+       }
+    );
+  }
+
+  getAttributes(){
     this.spidService.getSpidAttributes()
     .subscribe(
       res => {

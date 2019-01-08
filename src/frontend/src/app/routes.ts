@@ -6,12 +6,13 @@ import { HelpComponent } from "./help/help.component";
 import { SpidComponent } from "./spid/spid.component";
 
 export const appRoutes: Routes = [
+    { path: 'spid', component: SpidComponent },
     { path: 'application-form', component: ApplicationFormComponent },
     { path: 'submission-result', component: SubmissionResultComponent },
     { path: 'help', component: HelpComponent },
-    { path: 'spid', component: SpidComponent },
+
     { path: '',
-      redirectTo: '/application-form',
+      redirectTo: '/spid',
       pathMatch: 'full'
     },
     { path: '**', component: PageNotFoundComponent }

@@ -1,6 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./assets/spid/css/spid-sp-access-button.min.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
 
 body {
     margin: 0px;
@@ -12,24 +14,6 @@ body {
     margin: auto;
 }
 
-/* Add a black background color to the top navigation */
-.topnav {
-    background-color: #AB201D;
-    overflow: hidden;
-    margin-bottom: 25px;
-    box-shadow: 5px 5px 5px lightgrey;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
 .mat-tab-labels{
     background-color: white;
     
@@ -37,16 +21,6 @@ body {
 
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
 	background-color: #ab201d;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-    border-bottom: solid white 3px;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-    border-bottom: solid white 3px;
 }
 
 .light {

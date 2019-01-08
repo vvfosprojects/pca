@@ -27,15 +27,15 @@ export class SpidService {
   public getJwtToken(){
     const action = "/spid/token";
     return this.http.get<AuthResult>(BACKENDURL + action, httpOptions)
-    .pipe(tap((res: AuthResult) => {
-      if (res.success)
-        this.setSession(res);
-    }))
-    .pipe(shareReplay());
+      .pipe(tap((res: AuthResult) => {
+        if (res.success){
+          this.setSession(res);
+        }
+      }))
+      .pipe(shareReplay());
   }
 
-  public getSpidAttributes(): Observable<any> 
-  {
+  public getSpidAttributes(): Observable<any> {
     const action = "/spid/attributes";
     return this.http.get<any>(BACKENDURL + action, httpOptions);
   }
@@ -45,25 +45,20 @@ export class SpidService {
     localStorage.removeItem("expirationTime");
   }
 
+  public isLoggedOut(): boolean {
+    return !this.isLoggedIn();
+  }
+
   public isLoggedIn(): boolean {
     const expiration = localStorage.getItem("expirationTime");
     if (!expiration)
       return false;
 
-    return moment().isBefore(this.getExpiration());
-  }
-
-  public isLoggedOut(): boolean {
-    return !this.isLoggedIn();
-  }
-
-  private getExpiration() {
-    const expiration = localStorage.getItem("expirationTime");
     const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+    return moment().isBefore(moment(expiresAt));
   }
 
-  private setSession(authResult: AuthResult) {
+  setSession(authResult: AuthResult) {
     localStorage.setItem('jwtToken', authResult.jwtToken);
     localStorage.setItem("expirationTime", JSON.stringify(authResult.expirationDate));
   }
