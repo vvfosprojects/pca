@@ -18,13 +18,6 @@ namespace PCA.Controllers
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private readonly IJwtTools jwtTools;
-
-        public SpidController(IJwtTools jwtTools)
-        {
-            this.jwtTools = jwtTools ?? throw new ArgumentNullException(nameof(jwtTools));
-        }
-
         [HttpGet]
         [Route("api/spid/attributes")]
         public HttpResponseMessage GetAttributes()
@@ -78,8 +71,9 @@ namespace PCA.Controllers
             Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
 
             if (authenticated && attributes.Any())
-            {            
-                var result = this.jwtTools.GetToken(attributes);
+            {
+                IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
+                var result = jwtTools.GetToken(attributes);
                 log.Info("Successful authentication");
                 return new AuthResult(true, result.Token, result.ExpirationTime);
             }

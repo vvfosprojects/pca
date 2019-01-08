@@ -60,6 +60,8 @@
     <Compile Include="CfChecker\ICfCheckOutcome.cs" />
     <Compile Include="CfChecker\ICfChecker.cs" />
     <Compile Include="CfChecker\ICfCheckResult.cs" />
+    <Compile Include="JwtAuthentication\IJwtTools.cs" />
+    <Compile Include="JwtAuthentication\JwtToken.cs" />
     <Compile Include="JwtAuthentication\JwtTools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Submission\PinBuilder.cs" />

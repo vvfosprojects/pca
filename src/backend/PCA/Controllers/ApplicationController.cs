@@ -105,15 +105,10 @@ namespace PCA.Controllers
 
         public ApplicationSubmissionResult Post(Application application)
         {
-            //Dictionary<string, string> attributes = (Dictionary<string, string>) HttpContext.Current.Session["attributes_spid"];
-            //application.SourceIp = HttpContext.Current.Request.UserHostAddress;
-            //return this.submitApplication.Submit(application, attributes);
-
-            var userMessages = new List<ResultMessage>();
-            IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
-
             string token = null;
-            var authHeader = HttpContext.Current.Request.Headers["Authorization"]; 
+            var userMessages = new List<ResultMessage>();
+            var authHeader = HttpContext.Current.Request.Headers["Authorization"];
+
             if (authHeader != null)
             {
                 AuthenticationHeaderValue authorization = AuthenticationHeaderValue.Parse(authHeader);
@@ -130,22 +125,16 @@ namespace PCA.Controllers
                 return new ApplicationSubmissionResult(userMessages.ToArray(), DateTime.UtcNow, false);
             }
 
-            ApplicationCheckResult check = new CheckApplication().CheckWithJwtToken(application, jwtTools, token);
+            IJwtTools jwtTools = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IJwtTools)) as IJwtTools;
+            ApplicationCheckResult check = new CheckApplication().Check(application, jwtTools.DecodeAttributes(token));
             if(!check.Submit)
             {
-                userMessages.Add(new ResultMessage(
-                    " ",
-                    check.Message,
-                    "Error"));
-
+                userMessages.Add(new ResultMessage(" ", check.Message, "Error"));           
                 if (check.Fields.Any())
                 {
                     foreach (string field in check.Fields)
                     {
-                        userMessages.Add(new ResultMessage(
-                        field,
-                        " ",
-                        "Error"));
+                        userMessages.Add(new ResultMessage( field, " ", "Error"));
                     }
                 }
                 log.Info("I dati inseriti non sono validi. Controlla le informazioni inserite.");

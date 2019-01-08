@@ -23,7 +23,6 @@ namespace DomainModel.Services
 {
     public interface ICheckApplication
     {
-        ApplicationCheckResult Check(Application application, IDictionary<string, string> attributes);
-        ApplicationCheckResult CheckWithJwtToken(Application application, IJwtTools jwtTools, string token);
+        ApplicationCheckResult Check(Application application, IDictionary<string, object> attributes);
     }
 }
