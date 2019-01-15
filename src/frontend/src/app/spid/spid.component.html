@@ -3,6 +3,7 @@
     <div id="content-spid">
       <div class="row">       
         <div class="col-sm-12 col-md-6">
+            <!-- Descrizione Autenticazione Spid -->
             <div *ngIf="isLoggedOut()">
               <p>SPID, il Sistema Pubblico di Identità Digitale, è la soluzione che ti permette di accedere a tutti i servizi online della Pubblica Amministrazione con un'unica Identità Digitale utilizzabile da computer, tablet e smartphone. <br>
                 Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. <br> Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.
@@ -13,6 +14,8 @@
                 <li><a href="https://www.spid.gov.it/serve-aiuto" target="_blank">Serve aiuto?</a></li>
               </ul>
             </div>
+
+            <!-- Solo per esempio, stampo a video la lista degli Attributi Spid -->
             <div *ngIf="isLoggedIn()">
               <h4>ATTRIBUTI SPID: </h4>
                 <ul id="attribute-spid" *ngIf="spidAttributeResult.success">                
@@ -25,12 +28,14 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-6">
+            <!-- Bottone Login Spid -->
             <div *ngIf="isLoggedOut()">
               <a (click)="linkLogin()" href="" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-medium-get" aria-haspopup="true" aria-expanded="false">
                   <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;" alt="" /></span>
                   <span class="italia-it-button-text">Entra con SPID</span>
               </a>
             </div>
+            <!-- Bottone Logout Spid -->
             <div *ngIf="isLoggedIn()">
               <a (click)="linkLogout()" href="" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-medium-get" aria-haspopup="true" aria-expanded="false">
                   <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;" alt="" /></span>
@@ -39,6 +44,7 @@
             </div>
         </div>   
       </div>
+      <!-- Logo Spid/Agid -->
       <div *ngIf="isLoggedOut()">
         <div class="row">
             <div class="col-sm-12 text-center">
@@ -46,5 +52,6 @@
             </div>
         </div>
       </div>
+
     </div>
 </div>
