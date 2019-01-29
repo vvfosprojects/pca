@@ -18,4 +18,13 @@ L'istanza si occupa di replicare le classiche operazioni di get, patch e put.
 ### IMPLEMENTAZIONE FLEX
 
 L'applicativo attualmente è in fase di testing, ed ha parzialmente implementato flex nei suoi componenti. Esso verrà 
-piano piano in futuro per avere una coesione maggiore, visto che angular material è basato su flex.
+implementato gradualmente per avere una coesione maggiore, visto che angular material è basato su flex.
+
+
+### INFO STORICO COMMIT
+
+I commit futuri su questa repository andranno in mirror con i commit di 
+
+- https://github.com/RabbitHols/Frontend-Bando-Vigili
+
+fin quando non verrà fatto un merge totale, senza la perdita dei commit. 
