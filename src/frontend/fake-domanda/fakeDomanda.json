@@ -1,0 +1,65 @@
+{
+  "domanda": {
+    "Istruzione": {
+      "istitutoFrequentato": "Federico Caffè",
+      "tipoDiploma": "Tecnico Commerciale",
+      "annoDiploma": "2012",
+      "provinciaIstituto": "ROMA",
+      "comuneIstituto": "POLI",
+      "sedeIstituto": "Via dei cosi"
+    },
+    "LinguaStraniera": {
+      "lingua": "Inglese",
+      "id": 1
+    },
+    "TitoliPreferenziali": [
+      {
+        "id": 2,
+        "titolo": "Orfano di guerra",
+        "isSelected": true
+      },
+      {
+        "id": 17,
+        "titolo": "Coniugato e non coniugato con riguardo al numero di figli a carico",
+        "isSelected": true
+      },
+      {
+        "id": 20,
+        "titolo": "Mutilato ed invalido per servizio nel settore pubblico e privato",
+        "isSelected": true
+      }
+    ],
+    "FigliACarico": {
+      "haveSon": true,
+      "numSons": "2"
+    },
+    "Riserve": [
+      {
+        "id": 1,
+        "riserva": "10% dei posti al personale volontario del Corpo nazionale dei vigili del fuoco che, alla data di scadenza del termine stabilito nel presente bando per la presentazione della domanda di ammissione, sia iscritto negli appositi elenchi da almeno 7 anni ed abbia effettuato non meno di 200 giorni di servizio, fermi restando gli altri requisiti previsti per l'accesso alla qualifica di Ispettore amministrativo-contabile.",
+        "isSelected": true
+      }
+    ],
+    "CategorieProtette": {
+      "isCategegorieProtette": false,
+      "percentualeInvalidita": null,
+      "dataCertificazione": null,
+      "enteRilascioCertificato": null,
+      "ausilioProva": null,
+      "tempiaggiuntivi": null,
+      "esenzioneProvaSelettiva": null
+    }
+  },
+  "spid": {
+    "codiceFiscale": "PPPPLT80R10M082K",
+    "nome": "Mario",
+    "cognome": "Rossi",
+    "dataNascita": "5 Gennaio 1985",
+    "luogoDiNascita": "Roma",
+    "residenza": "Roma",
+    "via": "Via dei cosimi 12",
+    "telefono": "3313313312",
+    "email": "mariorossi@gmail.com",
+    "domDigitale": "mariorossi.pec@mail.it"
+  }
+}
