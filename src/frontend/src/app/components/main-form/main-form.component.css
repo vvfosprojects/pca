@@ -1,0 +1,129 @@
+#content {
+  position: relative;
+}
+#content img {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 100%;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+/deep/ .mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+.interlinea {
+  margin-bottom:10px;
+}
+
+.interlinea {
+  margin-bottom:10px;
+}
+
+.mat-form-field {
+  padding-top:5px;
+}
+
+
+
+/deep/ .mat-select-panel mat-option.mat-option {
+  height: unset;
+}
+
+/deep/ .mat-option-text.mat-option-text {
+  white-space: normal;
+}
+
+hideSelect {
+  color:white !important;
+}
+
+
+
+
+/* Flex Layout: */
+
+.col-main {
+  flex: 2;
+}
+
+.col-complementary {
+  flex: 1;
+}
+
+/* Responsive: */
+
+@media only screen and (min-width: 640px) {
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* etc */
+
+body {
+  margin: 1.5em;
+}
+
+.container {
+  max-width: 60em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col {
+  padding-right:1em;
+  margin: 0 2px 2px 0;
+}
+
+
+
+/* Flex Layout: */
+
+.col-main {
+  flex: 2;
+}
+
+.col-complementary {
+  flex: 1;
+}
+
+/* Responsive: */
+
+@media only screen and (min-width: 640px) {
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* etc */
+
+body {
+  margin: 1.5em;
+}
+
+.container {
+  max-width: 60em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col {
+  padding-right:1em;
+  margin: 0 2px 2px 0;
+}
+
+::ng-deep .ng-tns-c11-12{ color: transparent; }
+::ng-deep .ng-tns-c11-14{ color: transparent; }
+

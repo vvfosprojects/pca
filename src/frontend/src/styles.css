@@ -1,10 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "./assets/spid/css/spid-sp-access-button.min.css";
 
+html,
 body {
-    margin: 0px;
-    font-family: Titillium Web,HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+  height: 100%;
+}
+
+body {
+    margin: 0;
 }
 
 .content {
@@ -80,4 +82,22 @@ mat-form-field {
 
 .field-val {
     font-weight: bold;
+}
+
+.right-aligned-header > .mat-content {
+  justify-content: space-between;
+}
+
+.mat-content > mat-panel-title, .mat-content > mat-panel-description {
+  flex: 0 0 auto;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+.mat-form-field-prefix .mat-icon-button, .mat-form-field-suffix .mat-icon-button {
+  background-color: red;
 }

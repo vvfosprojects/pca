@@ -1,0 +1,63 @@
+#spid-logo {
+  position: relative;
+  text-align: right;
+}
+
+
+p {
+  color: #B0B0B0;
+}
+
+
+/deep/ .mat-checkbox-layout {
+  white-space: normal !important;
+}
+
+.button-row {
+  text-align: center;
+  padding-top: 1em;
+}
+
+
+.demo-full-width {
+  width: 100%;
+}
+
+
+
+
+/* Layout: */
+
+.col-main {
+  flex: 2;
+}
+
+.col-complementary {
+  flex: 1;
+}
+
+/* Responsive: */
+
+@media only screen and (min-width: 640px) {
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* etc */
+
+body {
+  margin: 1.5em;
+}
+
+.container {
+  max-width: 60em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col {
+  padding-right:1em;
+  margin: 0 2px 2px 0;
+}

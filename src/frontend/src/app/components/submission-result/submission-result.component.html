@@ -1,0 +1,300 @@
+<section>
+  <h1>Complimenti! La tua domanda è stata acquisita!</h1>
+
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <b>Ecco il riepilogo della tua domanda</b>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+
+      <form [formGroup]="applicationForm">
+        <div formGroupName="personalData">
+
+
+          <mat-panel-title>
+          </mat-panel-title>
+          <div id="spid-logo">
+            <img src="../../../assets/spid/img/spid-logo.png" height="30px" width="50px" class="ribbon"/>
+          </div>
+
+          <form class="example-form">
+            <div class="layout">
+              <mat-form-field class="col-main">
+                <input matInput
+                       placeholder="Codice Fiscale"
+                       [formControl]="codiceFiscale"
+                       readonly>
+              </mat-form-field>
+            </div>
+
+            <div class="layout">
+              <mat-form-field class="col col-main">
+                <input matInput
+                       placeholder="Cognome"
+                       [formControl]="cognome"
+                       readonly>
+              </mat-form-field>
+
+              <mat-form-field class="col col-main">
+                <input matInput
+                       placeholder="Nome"
+                       [formControl]="nome"
+                       readonly>
+              </mat-form-field>
+
+              <mat-form-field class="col col-complementary" style="flex: 2; !important;">
+                <input matInput
+                       placeholder="Data di nascita"
+                       [formControl]="dataDiNascita"
+                       readonly>
+              </mat-form-field>
+
+            </div>
+
+
+            <div class="layout">
+              <mat-form-field class="col col-complementary">
+                <input matInput
+                       placeholder="Nato a"
+                       [formControl]="luogoNascita"
+                       readonly>
+              </mat-form-field>
+
+              <mat-form-field class="col col-main">
+                <input matInput
+                       placeholder="Residenza"
+                       [formControl]="residenza"
+                       readonly>
+              </mat-form-field>
+
+              <mat-form-field class="col col-complementary" style="flex: 2; !important;">
+                <input matInput
+                       placeholder="Via"
+                       [formControl]="via"
+                       readonly>
+              </mat-form-field>
+
+            </div>
+
+
+            <div class="layout">
+              <mat-form-field class="col col-complementary">
+                <span matPrefix></span>
+                <input type="tel"
+                       matInput
+                       placeholder="Telefono"
+                       [formControl]="telefono"
+                       readonly>
+              </mat-form-field>
+
+              <mat-form-field class="col col-main">
+                <input matInput
+                       placeholder="Email"
+                       [formControl]="email"
+                       readonly>
+              </mat-form-field>
+
+              <mat-form-field class="col col-complementary" style="flex: 2; !important;">
+                <input matInput
+                       placeholder="Domicilio Digitale"
+                       [formControl]="domicilioDigitale"
+                       readonly>
+              </mat-form-field>
+            </div>
+
+          </form>
+        </div>
+      </form>
+
+
+      <br>
+      <form [formGroup]="applicationForm">
+        <div formGroupName="personalData">
+          <div class="layout">
+            <mat-form-field class="col col-main">
+              <input matInput
+                     [formControl]="istitutoFrequentato"
+                     placeholder="Istituto Frequentato"
+                     maxLength="255">
+            </mat-form-field>
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     placeholder="Tipo di diploma conseguito"
+                     maxLength="255"
+                     [formControl]="tipoDiploma"
+              >
+            </mat-form-field>
+          </div>
+
+          <div class="layout">
+            <mat-form-field class="col col-complementary">
+              <input matInput
+                     placeholder="Anno Diploma"
+                     [formControl]="annoDiploma"
+                     maxlength="4"
+                     minlength="4">
+
+            </mat-form-field>
+
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     placeholder="Provincia Selezionata"
+                     [formControl]="provinciaIstituto"
+              >
+
+            </mat-form-field>
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     [formControl]="comuneIstituto"
+                     placeholder="Comune Selezionato"
+              >
+            </mat-form-field>
+
+          </div>
+
+          <mat-form-field style="width: 100%;">
+            <input matInput
+                   [formControl]="viaIstituto"
+                   placeholder="Sede Istituto">
+          </mat-form-field>
+
+        </div>
+      </form>
+
+      <!--Fine Dati Istruzione-->
+
+      <br>
+
+      <!--Altri Dati-->
+      <form [formGroup]="applicationForm">
+        <div formGroupName="personalData">
+
+          <mat-form-field style="width: 100%;">
+            <input matInput
+                   [formControl]="linguaSelezionata"
+                   placeholder="Lingua Selezionata">
+          </mat-form-field>
+
+          <mat-form-field style="width: 100%;">
+            <mat-select
+              [formControl]="titoloPref"
+              placeholder="Titoli Selezionati">
+            </mat-select>
+
+          </mat-form-field>
+
+          <div *ngFor="let i of titoloPref.value">
+            <p>{{i.titolo}}</p>
+            <div *ngIf="i.titolo === 'Coniugato e non coniugato con riguardo al numero di figli a carico'">
+              <mat-form-field style="width: 100%;">
+                <input matInput
+                       [formControl]="numeroFigli"
+                       placeholder="Figli a carico">
+              </mat-form-field>
+            </div>
+            </div>
+
+        </div>
+
+       <!-- <div *ngIf="titoloPref.value.indexOf('Coniugato e non coniugato con riguardo al numero di figli a carico')">
+
+          <mat-form-field style="width: 100%;">
+            <input matInput
+                   [formControl]="numeroFigli"
+                   placeholder="Figli a carico">
+          </mat-form-field>
+        </div>-->
+
+
+        <div>
+
+          <mat-form-field style="width: 100%;">
+            <mat-select placeholder="Riseve selezionate"
+                        [formControl]="riserve"
+            >
+            </mat-select>
+          </mat-form-field>
+
+          <div *ngFor="let i of riserve.value">
+            <p>{{i.riserva}}</p>
+          </div>
+          <br>
+
+        </div>
+
+        <div class="layout">
+          <mat-form-field class="col col-complementary">
+            <input matInput
+                   [formControl]="catProtette"
+                   placeholder="Appartenente alle cat. Protette ?">
+          </mat-form-field>
+
+        </div>
+
+        <div class="layout" *ngIf="catProtette.value.includes('SI')">
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Percentuale invalidità"
+                   [formControl]="percInvalidita">
+          </mat-form-field>
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Data certificazione"
+                   [formControl]="dataCertificazione">
+          </mat-form-field>
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   [formControl]="invaliditaEnte"
+                   placeholder="Rilasciato Da"
+                   name="invdaliditaEnte">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="catProtette.value.includes('SI')">
+          <br>
+          <mat-checkbox *ngIf="drto_ausili.value" name="drto_ausili"
+                        [formControl]="drto_ausili">Dichiaro di avere diritto ad usufruire di ausili per lo
+            svolgimento delle prove d'esame
+          </mat-checkbox>
+          <br>
+
+
+          <mat-checkbox *ngIf="drto_tempiAggiuntivi.value" name="drto_tempiAggiuntivi"
+                        [formControl]="drto_tempiAggiuntivi"> Dichiaro di avere diritto ad usufruire di eventuali
+            tempi aggiuntivi
+          </mat-checkbox>
+          <br>
+
+          <mat-checkbox *ngIf="drto_esenzioneProvaPresel.value" name="drto_esenzioneProvaPresel"
+                        [formControl]="drto_esenzioneProvaPresel">Dichiaro di avere diritto, in quanto affetto da
+            invalità uguale o superiore all'80%, a non effettuare l'eventuale prova preselettiva
+          </mat-checkbox>
+        </div>
+
+      </form>
+      <!--Fine altri Dati-->
+
+
+    </mat-card-content>
+  </mat-card>
+
+
+  <div class="button-row">
+    <a href="javascript:window.print()" >
+      <button mat-raised-button color="primary">Stampa la pagina</button>
+    </a>
+    <a href="">
+      <button mat-raised-button color="primary"(click)="modificaDomanda()">Modifica la domanda</button>
+    </a>
+  </div>
+</section>

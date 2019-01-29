@@ -1,0 +1,81 @@
+<div [class.loader-hidden]="!show">
+  <div class="loader-overlay">
+    <div>
+      <mat-progress-bar mode="indeterminate" *ngIf="show"></mat-progress-bar>
+    </div>
+  </div>
+</div>
+
+<mat-accordion>
+
+  <mat-panel-title>
+    <div>
+      Dati Anagrafici SPID
+    </div>
+  </mat-panel-title>
+  <div id="content">
+    <img src="../../../assets/spid/img/spid-logo.png" height="30px" width="50px" class="ribbon"/>
+  </div>
+
+  <form class="example-form">
+    <div class="layout">
+      <mat-form-field class="col-main">
+        <input matInput
+               placeholder="Codice Fiscale"
+               [value]="spidData.codiceFiscale"
+               readonly>
+      </mat-form-field>
+    </div>
+
+    <div class="layout">
+      <mat-form-field class="col col-main">
+        <input matInput
+               placeholder="Cognome"
+               [value]="spidData.cognome"
+               readonly>
+      </mat-form-field>
+
+      <mat-form-field class="col col-main">
+        <input matInput
+               placeholder="Nome"
+               [value]="spidData.nome"
+               readonly>
+      </mat-form-field>
+
+      <mat-form-field class="col col-complementary" style="flex: 2; !important;">
+        <input matInput
+               placeholder="Data di nascita"
+               [value]="spidData.dataNascita"
+               readonly>
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="layout">
+      <mat-form-field class="col col-complementary">
+        <input matInput
+               placeholder="Nato a"
+               [value]="spidData.luogoDiNascita"
+               readonly>
+      </mat-form-field>
+
+      <mat-form-field class="col col-main">
+        <input matInput
+               placeholder="Residenza"
+               [value]="spidData.residenza"
+               readonly>
+      </mat-form-field>
+
+      <mat-form-field class="col col-complementary" style="flex: 2; !important;">
+        <input matInput
+               placeholder="Via"
+               [value]="spidData.via"
+               readonly>
+      </mat-form-field>
+
+    </div>
+
+
+  </form>
+</mat-accordion>

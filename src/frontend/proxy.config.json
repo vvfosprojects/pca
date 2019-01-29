@@ -1,0 +1,22 @@
+{
+  "api/domanda/*": {
+    "target": "http://webpc.dipvvf.it:5002/api",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
+  "api/data/*": {
+    "target": "http://webpc.dipvvf.it:5001/api",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+
+  "fake/*": {
+    "target": "",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

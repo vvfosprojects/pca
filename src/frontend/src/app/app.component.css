@@ -1,3 +1,9 @@
 [hidden] {
   display: none;
 }
+
+
+.bd {
+  width:60%;
+  margin:0 auto;
+}

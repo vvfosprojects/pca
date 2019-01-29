@@ -1,5 +1,4 @@
-import { Component, NgModule, ViewChild, Input } from '@angular/core';
-import { DomandaOutcome } from './model/domanda-outcome.model';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
