@@ -18,7 +18,8 @@ import {
   MatRadioModule,
   MatSelectModule,
   MatTabsModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -41,7 +42,8 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   exports: [
     MatFormFieldModule,
@@ -62,7 +64,8 @@ import {
     MatMenuModule,
     MatToolbarModule,
     MatListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule,
   ],
 })
 

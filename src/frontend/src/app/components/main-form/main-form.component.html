@@ -4,128 +4,22 @@
 
 <!-- DATI ISTRUZIONE -->
 
-  <form [formGroup]="applicationForm">
-    <div formGroupName="personalData">
-      <div class="layout">
-        <mat-form-field class="col col-main">
-          <input matInput
-                 [errorStateMatcher]="matcher"
-                 [formControl]="istitutoFrequentato"
-                 placeholder="Istituto Frequentato"
-                 maxLength="255">
-          <mat-hint align="end">{{istitutoFrequentato.value?.length || 0}}/255</mat-hint>
-          <mat-hint>Es: Ceccherelli</mat-hint>
-
-          <mat-error *ngIf="istitutoFrequentato.hasError('required')">
-            Campo Obbligatorio
-          </mat-error>
-          <mat-error *ngIf="istitutoFrequentato.hasError('mialength')">
-            I caratteri massimi sono 255
-          </mat-error>
-          <mat-error *ngIf="istitutoFrequentato.hasError('minlength')">
-            I caratteri minimi sono 2
-          </mat-error>
-          <mat-error *ngIf="istitutoFrequentato.hasError('noWhitespaces')">
-            I campi non possono iniziare o finire con gli spazi
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="col col-main">
-          <input matInput
-                 placeholder="Tipo di diploma conseguito"
-                 [errorStateMatcher]="matcher"
-                 maxLength="255"
-                 [formControl]="tipoDiploma">
-
-          <mat-hint align="end">{{tipoDiploma.value?.length || 0}}/255</mat-hint>
-          <mat-hint>Es: Commerciale</mat-hint>
-
-          <mat-error *ngIf="tipoDiploma.hasError('required')">Campo Obbligatorio</mat-error>
-          <mat-error *ngIf="tipoDiploma.hasError('maxlength')">Hai superato il limite dei caratteri</mat-error>
-          <mat-error *ngIf="tipoDiploma.hasError('noWhitespaces')">I campi non possono iniziare o finire con gli spazi
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="col col-complementary">
-          <input matInput
-                 placeholder="Anno Diploma"
-                 [errorStateMatcher]="matcher"
-                 [formControl]="annoDiploma"
-                 maxlength="4"
-                 minlength="4">
-
-          <mat-hint>Es: 1885</mat-hint>
-
-          <mat-error *ngIf="annoDiploma.hasError('onlyNumber')">Inserire nel campo solo numberi</mat-error>
-          <mat-error *ngIf="annoDiploma.hasError('max')">L'anno è superiore all'anno corrente</mat-error>
-          <mat-error *ngIf="annoDiploma.hasError('noWhitespaces')">I campi non possono iniziare o finire con gli spazi</mat-error>
-          <mat-error *ngIf="annoDiploma.hasError('minlength')">L'anno deve avere solo 4 numeri</mat-error>
-          <mat-error *ngIf="annoDiploma.hasError('maxlength')">L'anno deve avere solo 4 numeri</mat-error>
-        </mat-form-field>
-
-      </div>
-
-      <div class="layout">
-        <mat-form-field class="col col-main">
-          <mat-select [formControl]="provinciaIstituto"
-                      placeholder="Seleziona Provincia"
-                      (selectionChange)="onSelectProvince()"
-                      #singleSelect>
-            <ngx-mat-select-search [noEntriesFoundLabel]="'Nessun risultato'"
-                                   [placeholderLabel]="'Cerca provincia . . '"
-                                   [formControl]="provinceDropdown"></ngx-mat-select-search>
-            <mat-option *ngFor="let prov of (filteredBanks | async)" [value]="prov">
-              {{prov}}
-            </mat-option>
-          </mat-select>
-          <mat-hint>Es: Roma</mat-hint>
-        </mat-form-field>
-
-        <mat-form-field class="col col-main">
-          <mat-select [formControl]="comuneIstituto"
-                      placeholder="Seleziona Comune"
-                      #singleSelect>
-            <ngx-mat-select-search [noEntriesFoundLabel]="'Nessun risultato'"
-                                   [placeholderLabel]="'Cerca comune . . '"
-                                   [formControl]="comuniDropdown"></ngx-mat-select-search>
-            <mat-option *ngFor="let prov of (filteredComuni | async)" [value]="prov">
-              {{prov}}
-            </mat-option>
-          </mat-select>
-          <mat-hint>Es: Roma</mat-hint>
-        </mat-form-field>
-
-        <mat-form-field class="col-main">
-          <input matInput
-                 [errorStateMatcher]="matcher"
-                 [formControl]="viaIstituto"
-                 maxlength="255"
-                 placeholder="Sede Istituto">
-
-          <mat-hint align="end">{{viaIstituto.value?.length || 0}}/255</mat-hint>
-          <mat-hint>Es: Via Capiri</mat-hint>
-
-          <mat-error *ngIf="viaIstituto.hasError('maxlength')">Hai superato il limite dei caratteri</mat-error>
-          <mat-error *ngIf="viaIstituto.hasError('noWhitespaces')">I campi non possono iniziare o finire con gli spazi
-          </mat-error>
-
-        </mat-form-field>
-      </div>
-    </div>
-  </form>
+<span class="empty-space"></span>
 
 <!-- FINE DATI ISTRUZIONE -->
-
 
 
 <!-- ALTRI DATI-->
   <form [formGroup]="applicationForm">
     <div formGroupName="personalData">
 
-      <p>Scegliere una delle seguenti lingue straniere per il colloquio</p>
+
       <mat-form-field class="example-full-width" >
         <mat-select
+          (mouseenter)="tooltip.show()"
           placeholder="Seleziona Lingua"
+          #tooltip="matTooltip"
+          matTooltip="Seleziona la lingua, la lingua straniera selezionata verrà usata per l'interrogazione"
           name="linguaColloquio"
           [errorStateMatcher]="matcher"
           [formControl]="linguaSelezionata"
@@ -138,7 +32,6 @@
       </mat-form-field>
 
       <mat-form-field class="example-full-width hide-list">
-        <p>Scegliere i titoli preferenziali appartententi</p>
         <mat-select placeholder="Seleziona Titoli"
                     [errorStateMatcher]="matcher"
                     [formControl]="titoloPref"
@@ -208,7 +101,7 @@
 
         </mat-form-field>
 
-        <mat-list *ngFor="let x of riserve.value;">
+        <mat-list *ngFor="let x of riserve.value;" style="padding: 1em;">
             <div>
               {{returnRiserveSelectedValue(x)}}
             </div>
@@ -223,7 +116,7 @@
           <mat-select placeholder="SI / NO"
                       [errorStateMatcher]="matcher"
                       [formControl]="catProtette"
-                      (selectionChange)="checkCatProt()"
+                      (selectionChange)="controlloRequiredCategorieProtette()"
                       name="catProtette">
 
             <mat-option value="3">NO</mat-option>
@@ -312,6 +205,8 @@
   </form>
 <!--Fine altri Dati-->
 
+  <span class="empty-space"></span>
+
 
 <!--Inizio consenso Dati-->
   <form class="example-form">
@@ -348,6 +243,8 @@
   </form>
 </mat-card>
 <!--Fine consenso Dati-->
+<span class="empty-space"></span>
+
 
 <div class="interlinea">
 

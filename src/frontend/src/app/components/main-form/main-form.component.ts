@@ -16,7 +16,6 @@ import {TitoliPreferenziali, TitoliPreferenzialiOut} from '../../model/titoliPre
 import {Riserve, RiserveOut} from '../../model/riserve';
 import {Istruzione} from '../../model/istruzione';
 import {LingueStraniere} from '../../model/lingueStraniere';
-import {Domanda} from "../../model/domanda";
 
 // Controllo dell'input in tempo reale
 
@@ -142,53 +141,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     this.service.getDomanda().subscribe((domanda: any) => {
-
-        console.log(domanda);
-
-        // ISTRUZIONE
-
-        this.istitutoFrequentato.patchValue(domanda.Istruzione.istitutoFrequentato);
-        this.annoDiploma.patchValue(domanda.Istruzione.annoDiploma);
-        this.tipoDiploma.patchValue(domanda.Istruzione.tipoDiploma);
-        this.provinciaIstituto.patchValue(domanda.Istruzione.provinciaIstituto.toUpperCase());
-        this.onSelectProvince();
-        this.comuneIstituto.patchValue(domanda.Istruzione.comuneIstituto.toUpperCase());
-        this.viaIstituto.patchValue(domanda.Istruzione.sedeIstituto);
-
-        // LINGUA
-        this.linguaSelezionata.patchValue(domanda.LinguaStraniera.id - 1);
-
-        let arrTit = [];
-        for (let i of domanda.TitoliPreferenziali) {
-          console.log(i.id);
-          arrTit.push(Number(i.id - 1));
-        }
-
-        this.titoloPref.patchValue((arrTit));
-        this.checkFigli();
-        this.numeroFigli.patchValue(domanda.FigliACarico.numSons);
-
-        console.log('Riserve');
-
-        let arrRis = [];
-        for (let i of domanda.Riserve) {
-          console.log(i.id - 1);
-          arrRis.push(Number(i.id - 1));
-        }
-        this.riserve.patchValue(arrRis);
-
-        if(domanda.CategorieProtette.isCategegorieProtette) {
-          this.catProtette.patchValue('4');
-          this.percInvalidita.patchValue(domanda.CategorieProtette.percentualeInvalidita.toString());
-          this.dataCertificazione.patchValue(domanda.CategorieProtette.dataCertificazione);
-          this.invaliditaEnte.patchValue(domanda.CategorieProtette.enteRilascioCertificato);
-          this.drto_ausili.patchValue(domanda.CategorieProtette.ausilioProva);
-          this.drto_tempiAggiuntivi.patchValue(domanda.CategorieProtette.tempiaggiuntivi);
-          this.drto_esenzioneProvaPresel.patchValue(domanda.CategorieProtette.esenzioneProvaSelettiva);
-        } else {
-          this.catProtette.patchValue('3');
-        }
-
+      this.popolaForm(domanda);
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -197,8 +150,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log(error);
         }
       });
-
-
   }
 
   ngOnDestroy() {
@@ -402,7 +353,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   *  di cancellare i dati da lui immessi e togliere il 'required' dal form
   */
 
-  checkCatProt() {
+  controlloRequiredCategorieProtette() {
 
     if (this.catProtette.value.includes(4)) {
       this.percInvalidita.setValidators([Validators.required]);
@@ -671,6 +622,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     this.post.putDomanda(objDomanda).subscribe(() => {
+      console.log(objDomanda);
       this.router.navigate(['submission-result']);
     });
 
@@ -681,6 +633,52 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       return true;
     }
     return false;
+  }
+
+
+
+  popolaForm(domanda: any) {
+
+    // ISTRUZIONE
+
+    this.istitutoFrequentato.patchValue(domanda.Istruzione.istitutoFrequentato);
+    this.annoDiploma.patchValue(domanda.Istruzione.annoDiploma);
+    this.tipoDiploma.patchValue(domanda.Istruzione.tipoDiploma);
+    this.provinciaIstituto.patchValue(domanda.Istruzione.provinciaIstituto.toUpperCase());
+    this.onSelectProvince();
+    this.comuneIstituto.patchValue(domanda.Istruzione.comuneIstituto.toUpperCase());
+    this.viaIstituto.patchValue(domanda.Istruzione.sedeIstituto);
+
+    this.linguaSelezionata.patchValue(domanda.LinguaStraniera.id - 1);
+
+    const arrTit = [];
+    for (const i of domanda.TitoliPreferenziali) {
+      console.log(i.id);
+      arrTit.push(Number(i.id - 1));
+    }
+
+    this.titoloPref.patchValue((arrTit));
+    this.checkFigli();
+    this.numeroFigli.patchValue(domanda.FigliACarico.numSons);
+
+    const arrRis = [];
+    for (const i of domanda.Riserve) {
+      console.log(i.id - 1);
+      arrRis.push(Number(i.id - 1));
+    }
+    this.riserve.patchValue(arrRis);
+
+    if (domanda.CategorieProtette.isCategegorieProtette) {
+      this.catProtette.patchValue('4');
+      this.percInvalidita.patchValue(domanda.CategorieProtette.percentualeInvalidita.toString());
+      this.dataCertificazione.patchValue(domanda.CategorieProtette.dataCertificazione);
+      this.invaliditaEnte.patchValue(domanda.CategorieProtette.enteRilascioCertificato);
+      this.drto_ausili.patchValue(domanda.CategorieProtette.ausilioProva);
+      this.drto_tempiAggiuntivi.patchValue(domanda.CategorieProtette.tempiaggiuntivi);
+      this.drto_esenzioneProvaPresel.patchValue(domanda.CategorieProtette.esenzioneProvaSelettiva);
+    } else {
+      this.catProtette.patchValue('3');
+    }
   }
 
 }

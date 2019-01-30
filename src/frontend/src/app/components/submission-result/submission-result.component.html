@@ -23,15 +23,8 @@
 
           <form class="example-form">
             <div class="layout">
-              <mat-form-field class="col-main">
-                <input matInput
-                       placeholder="Codice Fiscale"
-                       [formControl]="codiceFiscale"
-                       readonly>
-              </mat-form-field>
-            </div>
 
-            <div class="layout">
+
               <mat-form-field class="col col-main">
                 <input matInput
                        placeholder="Cognome"
@@ -45,6 +38,17 @@
                        [formControl]="nome"
                        readonly>
               </mat-form-field>
+
+              <mat-form-field class="col col-complementary">
+                <input matInput
+                       placeholder="Codice Fiscale"
+                       [formControl]="codiceFiscale"
+                       readonly>
+              </mat-form-field>
+            </div>
+
+            <div class="layout">
+
 
               <mat-form-field class="col col-complementary" style="flex: 2; !important;">
                 <input matInput
@@ -144,19 +148,19 @@
 
             <mat-form-field class="col col-main">
               <input matInput
-                     placeholder="Provincia Selezionata"
+                     [formControl]="comuneIstituto"
+                     placeholder="Comune istituto"
+              >
+            </mat-form-field>
+
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     placeholder="Provincia istituto"
                      [formControl]="provinciaIstituto"
               >
 
             </mat-form-field>
-
-            <mat-form-field class="col col-main">
-              <input matInput
-                     [formControl]="comuneIstituto"
-                     placeholder="Comune Selezionato"
-              >
-            </mat-form-field>
-
           </div>
 
           <mat-form-field style="width: 100%;">

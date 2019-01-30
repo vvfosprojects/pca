@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {of as observableOf, Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 
 
 const BACKENDURL = environment.backendUrl;

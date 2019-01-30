@@ -127,3 +127,6 @@ body {
 ::ng-deep .ng-tns-c11-12{ color: transparent; }
 ::ng-deep .ng-tns-c11-14{ color: transparent; }
 
+.empty-space {
+  padding: 2em;
+}

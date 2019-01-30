@@ -18,7 +18,8 @@ const routes: Routes = [
     redirectTo: '/main-form',
     pathMatch: 'full',
   },
-  {path: '**', component: PageNotFoundComponent}
+
+  {path: '**', component: MainFormComponent}
 ];
 
 @NgModule({

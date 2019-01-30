@@ -1,10 +1,3 @@
-<div [class.loader-hidden]="!show">
-  <div class="loader-overlay">
-    <div>
-      <mat-progress-bar mode="indeterminate" *ngIf="show"></mat-progress-bar>
-    </div>
-  </div>
-</div>
 
 <mat-accordion>
 
@@ -18,15 +11,6 @@
   </div>
 
   <form class="example-form">
-    <div class="layout">
-      <mat-form-field class="col">
-        <input matInput
-               placeholder="Codice Fiscale"
-               [value]="spidData.codiceFiscale"
-               readonly>
-      </mat-form-field>
-    </div>
-
     <div class="layout">
       <mat-form-field class="col col-main">
         <input matInput
@@ -42,10 +26,28 @@
                readonly>
       </mat-form-field>
 
-      <mat-form-field class="col col-complementary" style="flex: 2; !important;">
+      <mat-form-field class="col col-complementary">
+        <input matInput
+               placeholder="Codice Fiscale"
+               [value]="spidData.codiceFiscale"
+               readonly>
+      </mat-form-field>
+    </div>
+
+    <div class="layout">
+
+
+      <mat-form-field class="col col-complementary">
         <input matInput
                placeholder="Data di nascita"
                [value]="spidData.dataNascita"
+               readonly>
+      </mat-form-field>
+
+      <mat-form-field class="col col-main">
+        <input matInput
+               placeholder="Nato a"
+               [value]="spidData.luogoDiNascita"
                readonly>
       </mat-form-field>
 
@@ -53,12 +55,7 @@
 
 
     <div class="layout">
-      <mat-form-field class="col col-complementary">
-        <input matInput
-               placeholder="Nato a"
-               [value]="spidData.luogoDiNascita"
-               readonly>
-      </mat-form-field>
+
 
       <mat-form-field class="col col-main">
         <input matInput

@@ -98,6 +98,11 @@ mat-form-field {
   flex: 1 1 auto;
 }
 
+
 .mat-form-field-prefix .mat-icon-button, .mat-form-field-suffix .mat-icon-button {
-  background-color: red;
+  background-color: #AB201D;
+}
+
+.mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  background-color: #e91e63;
 }
