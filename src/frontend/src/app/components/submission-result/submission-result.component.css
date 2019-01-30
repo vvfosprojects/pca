@@ -4,11 +4,6 @@
 }
 
 
-p {
-  color: #B0B0B0;
-}
-
-
 /deep/ .mat-checkbox-layout {
   white-space: normal !important;
 }

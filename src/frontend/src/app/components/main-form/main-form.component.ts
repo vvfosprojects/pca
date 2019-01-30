@@ -16,6 +16,7 @@ import {TitoliPreferenziali, TitoliPreferenzialiOut} from '../../model/titoliPre
 import {Riserve, RiserveOut} from '../../model/riserve';
 import {Istruzione} from '../../model/istruzione';
 import {LingueStraniere} from '../../model/lingueStraniere';
+import {Domanda} from "../../model/domanda";
 
 // Controllo dell'input in tempo reale
 
@@ -76,6 +77,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
           this.province.push(i.provincia);
         }
         this.setInitialValue(this.filteredBanks);
+
         this.filteredBanks.next(this.province.slice());
 
       },
@@ -86,22 +88,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log(error);
         }
       });
-
-
-    this.service.getDomanda().subscribe((value) => {
-         const dom = value;
-         this.post.putDomanda(dom).subscribe(sd => {
-           console.log('ng');
-         });
-       },
-       (error: AppError) => {
-         if (error instanceof NotFoundError) {
-           console.log('Error richiesta http');
-         } else {
-           console.log(error);
-         }
-       });
-
 
 
     this.service.getLingueStraniere().subscribe((value: LingueStraniere[]) => {
@@ -153,6 +139,65 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.testoDomanda = 'Modifica Domanda';
     }
+
+
+    this.service.getDomanda().subscribe((domanda: any) => {
+
+        console.log(domanda);
+
+        // ISTRUZIONE
+
+        this.istitutoFrequentato.patchValue(domanda.Istruzione.istitutoFrequentato);
+        this.annoDiploma.patchValue(domanda.Istruzione.annoDiploma);
+        this.tipoDiploma.patchValue(domanda.Istruzione.tipoDiploma);
+        this.provinciaIstituto.patchValue(domanda.Istruzione.provinciaIstituto.toUpperCase());
+        this.onSelectProvince();
+        this.comuneIstituto.patchValue(domanda.Istruzione.comuneIstituto.toUpperCase());
+        this.viaIstituto.patchValue(domanda.Istruzione.sedeIstituto);
+
+        // LINGUA
+        this.linguaSelezionata.patchValue(domanda.LinguaStraniera.id - 1);
+
+        let arrTit = [];
+        for (let i of domanda.TitoliPreferenziali) {
+          console.log(i.id);
+          arrTit.push(Number(i.id - 1));
+        }
+
+        this.titoloPref.patchValue((arrTit));
+        this.checkFigli();
+        this.numeroFigli.patchValue(domanda.FigliACarico.numSons);
+
+        console.log('Riserve');
+
+        let arrRis = [];
+        for (let i of domanda.Riserve) {
+          console.log(i.id - 1);
+          arrRis.push(Number(i.id - 1));
+        }
+        this.riserve.patchValue(arrRis);
+
+        if(domanda.CategorieProtette.isCategegorieProtette) {
+          this.catProtette.patchValue('4');
+          this.percInvalidita.patchValue(domanda.CategorieProtette.percentualeInvalidita.toString());
+          this.dataCertificazione.patchValue(domanda.CategorieProtette.dataCertificazione);
+          this.invaliditaEnte.patchValue(domanda.CategorieProtette.enteRilascioCertificato);
+          this.drto_ausili.patchValue(domanda.CategorieProtette.ausilioProva);
+          this.drto_tempiAggiuntivi.patchValue(domanda.CategorieProtette.tempiaggiuntivi);
+          this.drto_esenzioneProvaPresel.patchValue(domanda.CategorieProtette.esenzioneProvaSelettiva);
+        } else {
+          this.catProtette.patchValue('3');
+        }
+
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('Error richiesta http');
+        } else {
+          console.log(error);
+        }
+      });
+
 
   }
 
@@ -625,10 +670,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     };
 
 
-    this.post.putDomanda(objDomanda).subscribe( () => {
-      console.log('---');
-      console.log(objDomanda);
-      console.log('---');
+    this.post.putDomanda(objDomanda).subscribe(() => {
       this.router.navigate(['submission-result']);
     });
 

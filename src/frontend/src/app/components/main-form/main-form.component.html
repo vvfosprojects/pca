@@ -7,7 +7,7 @@
   <form [formGroup]="applicationForm">
     <div formGroupName="personalData">
       <div class="layout">
-        <mat-form-field class="col-main">
+        <mat-form-field class="col col-main">
           <input matInput
                  [errorStateMatcher]="matcher"
                  [formControl]="istitutoFrequentato"
@@ -30,7 +30,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="col-main">
+        <mat-form-field class="col col-main">
           <input matInput
                  placeholder="Tipo di diploma conseguito"
                  [errorStateMatcher]="matcher"
@@ -46,7 +46,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="col-complementary">
+        <mat-form-field class="col col-complementary">
           <input matInput
                  placeholder="Anno Diploma"
                  [errorStateMatcher]="matcher"
@@ -66,7 +66,7 @@
       </div>
 
       <div class="layout">
-        <mat-form-field class="col-main">
+        <mat-form-field class="col col-main">
           <mat-select [formControl]="provinciaIstituto"
                       placeholder="Seleziona Provincia"
                       (selectionChange)="onSelectProvince()"
@@ -81,7 +81,7 @@
           <mat-hint>Es: Roma</mat-hint>
         </mat-form-field>
 
-        <mat-form-field class="col-main">
+        <mat-form-field class="col col-main">
           <mat-select [formControl]="comuneIstituto"
                       placeholder="Seleziona Comune"
                       #singleSelect>
@@ -137,8 +137,8 @@
 
       </mat-form-field>
 
-      <p>Scegliere i titoli preferenziali appartententi</p>
-      <mat-form-field class="example-full-width">
+      <mat-form-field class="example-full-width hide-list">
+        <p>Scegliere i titoli preferenziali appartententi</p>
         <mat-select placeholder="Seleziona Titoli"
                     [errorStateMatcher]="matcher"
                     [formControl]="titoloPref"
@@ -146,6 +146,11 @@
                     (selectionChange)="checkFigli()"
                     class="mat-list-item-word-wrap"
                     multiple>
+
+
+          <mat-select-trigger>
+            TITOLI SELEZIONATI
+          </mat-select-trigger>
 
           <mat-option *ngFor="let tit of titoliPreferenziali; let i = index" [value]="i">
             {{i}}: {{tit.titolo}}
@@ -169,6 +174,7 @@
                       [formControl]="numeroFigli"
                       name="numeroFigliCarico">
 
+
             <mat-option value="1">1</mat-option>
             <mat-option value="2">2</mat-option>
             <mat-option value="3">3</mat-option>
@@ -183,13 +189,17 @@
       </div>
 
       <div>
-        <p>Scegliere le riserve appartententi</p>
         <mat-form-field class="example-full-width">
           <mat-select placeholder="Seleziona la riserva"
                       [errorStateMatcher]="matcher"
                       [formControl]="riserve"
                       name="riserve"
                       multiple>
+
+            <mat-select-trigger>
+              RISERVE SELEZIONATE
+            </mat-select-trigger>
+
             <mat-option *ngFor="let value of riserveElenco; let i = index" [value]="i">
               {{value.riserva}}
             </mat-option>

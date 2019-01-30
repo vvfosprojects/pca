@@ -16,8 +16,10 @@
       <mat-toolbar style="background-color: #AB201D; color: white">Menu</mat-toolbar>
       </div>
       <mat-nav-list>
-       <a mat-list-item style="font-size: 14px" [routerLink]="['/main-form']"> <mat-icon style="padding-right: 1em;">edit</mat-icon> MODIFICA DOMANDA</a>
-       <a mat-list-item style="font-size: 14px" [routerLink]="['/submission-result']"> <mat-icon style="padding-right: 1em;">notes</mat-icon> MIA DOMANDA</a>
+        <a mat-list-item style="font-size: 14px" [routerLink]="['/submission-result']"> <mat-icon style="padding-right: 1em;">notes</mat-icon> MIA DOMANDA</a>
+        <a mat-list-item style="font-size: 14px" [routerLink]="['/main-form']"> <mat-icon style="padding-right: 1em;">edit</mat-icon> MODIFICA DOMANDA</a>
+        <a href="javascript:window.print()" mat-list-item style="font-size: 14px" *ngIf="showPrint()" > <mat-icon style="padding-right: 1em;">print</mat-icon> STAMPA DOMANDA</a>
+
         <div style="padding-top: 2em;">
           <mat-toolbar style="background-color: #AB201D; color: white">Altro</mat-toolbar>
           <a mat-list-item style="font-size: 14px" [routerLink]="['/submission-result']"> <mat-icon style="padding-right: 1em;">help</mat-icon> FAQ </a>
@@ -28,7 +30,7 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar style="background-color: #AB201D; color: white">
+    <mat-toolbar style="background-color: #AB201D; color: white;">
       <button
         type="button"
         aria-label="Toggle sidenav"

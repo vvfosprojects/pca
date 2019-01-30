@@ -42,8 +42,6 @@ export class SubmissionResultComponent implements OnInit {
   lingueStraniere: LingueStraniere[];
 
   ngOnInit() {
-    this.applicationForm.disable();
-
     this.service.getSpid().subscribe( (spid: any) => {
       // SPID
 
