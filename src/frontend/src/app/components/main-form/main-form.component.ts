@@ -2,8 +2,8 @@ import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher, MatSelect} from '@angular/material';
 import {CustomValidators} from '../../validators/customValidators';
-import {ReplaySubject, Subject} from 'rxjs';
-import {take, takeUntil} from 'rxjs/operators';
+import {forkJoin, ReplaySubject, Subject} from 'rxjs';
+import {switchMap, take, takeUntil} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {GetDataService} from '../../services/get-data.service';
 import {AppError} from '../../common/app-error';
@@ -63,20 +63,21 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit() {
+    this.apiCall();
+  }
+
+  apiCall() {
     this.service.getProvince().subscribe((value: Province) => {
 
-        /*
-              Fin quando non trovo un modo per passare al filtro l'oggetto mi creo un array di solo stringhe
-        */
-
-        console.log(value);
+        console.log('Province Call Done');
+        // Fin quando non trovo un modo per passare al filtro l'oggetto mi creo un array di solo stringhe
 
         for (const i of value.table) {
           this.provinceObj.push(i);
           this.province.push(i.provincia);
         }
-        this.setInitialValue(this.filteredBanks);
 
+        this.setInitialValue(this.filteredBanks);
         this.filteredBanks.next(this.province.slice());
 
       },
@@ -87,7 +88,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log(error);
         }
       });
-
 
     this.service.getLingueStraniere().subscribe((value: LingueStraniere[]) => {
         this.lingueStraniere = value;
@@ -122,6 +122,27 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
+    // Uso Forkjoin per aspettare che le chiamate vadano a buon fine e che non falliscano, infine carico i dati della domanda
+
+    forkJoin([this.service.getProvince(), this.service.getLingueStraniere(), this.service.getTitoliPreferenziali(), this.service.getRiserve()])
+      .pipe(switchMap(result => {
+        console.log('Province', result[0]);
+        console.log('LingueStraniere', result[1]);
+        console.log('TitoliPreferenziali', result[2]);
+        console.log('Riserve', result[3]);
+        return this.service.getDomanda();
+      }))
+      .subscribe((domanda: any) => {
+          this.popolaForm(domanda);
+        },
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
+            console.log('Error richiesta http');
+          } else {
+            console.log(error);
+          }
+        });
+
 
     // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
     this.provinceDropdown.valueChanges
@@ -139,17 +160,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.testoDomanda = 'Modifica Domanda';
     }
 
-
-    this.service.getDomanda().subscribe((domanda: any) => {
-      this.popolaForm(domanda);
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          console.log('Error richiesta http');
-        } else {
-          console.log(error);
-        }
-      });
   }
 
   ngOnDestroy() {
