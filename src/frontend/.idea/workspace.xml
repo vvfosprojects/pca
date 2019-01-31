@@ -4,7 +4,6 @@
     <list default="true" id="1256504b-d318-4ba5-afab-f2a62378bd99" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -30,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="236" column="25" selection-start-line="236" selection-start-column="25" selection-end-line="236" selection-end-column="25" />
+            <state relative-caret-position="136">
+              <caret line="198" column="12" selection-start-line="198" selection-start-column="12" selection-end-line="198" selection-end-column="12" />
               <folding>
                 <element signature="e#0#85#0" expanded="true" />
               </folding>
@@ -80,7 +79,6 @@
       <find>create</find>
       <find>filterlist</find>
       <find>provinceDrop</find>
-      <find>filter</find>
       <find>filtered</find>
       <find>filterList</find>
       <find>this.filterList</find>
@@ -89,6 +87,7 @@
       <find>setini</find>
       <find>onDestr</find>
       <find>onDes</find>
+      <find>filter</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -269,7 +268,7 @@
       <workItem from="1548848934246" duration="2685000" />
       <workItem from="1548855003185" duration="1153000" />
       <workItem from="1548856230659" duration="6416000" />
-      <workItem from="1548918047251" duration="4639000" />
+      <workItem from="1548918047251" duration="4931000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto component mancante, creato tema personalizzato per ii vvf">
       <created>1548791943067</created>
@@ -320,23 +319,30 @@
       <option name="project" value="LOCAL" />
       <updated>1548861589047</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Fixed bug province comuni, dropdown. Dove i comuni entravano nel form delle province">
+      <created>1548923931526</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1548923931526</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22968000" />
+    <option name="totallyTimeSpent" value="23260000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25512227" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25512227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32996207" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49960598" visible="true" weight="0.39385474" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49960598" visible="true" weight="0.39385474" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -386,7 +392,8 @@
     <MESSAGE value="Cambiato colore ai checkbox" />
     <MESSAGE value="Creato tema interno vvf2" />
     <MESSAGE value="Fixed cancelled form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed cancelled form" />
+    <MESSAGE value="Fixed bug province comuni, dropdown. Dove i comuni entravano nel form delle province" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug province comuni, dropdown. Dove i comuni entravano nel form delle province" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/@angular/material/typings/sidenav/sidenav.d.ts">
@@ -599,8 +606,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="236" column="25" selection-start-line="236" selection-start-column="25" selection-end-line="236" selection-end-column="25" />
+        <state relative-caret-position="136">
+          <caret line="198" column="12" selection-start-line="198" selection-start-column="12" selection-end-line="198" selection-end-column="12" />
           <folding>
             <element signature="e#0#85#0" expanded="true" />
           </folding>
