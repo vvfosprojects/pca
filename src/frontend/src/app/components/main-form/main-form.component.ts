@@ -69,7 +69,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   apiCall() {
     this.service.getProvince().subscribe((value: Province) => {
 
-        console.log('Province Call Done');
         // Fin quando non trovo un modo per passare al filtro l'oggetto mi creo un array di solo stringhe
 
         for (const i of value.table) {
@@ -663,7 +662,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const arrTit = [];
     for (const i of domanda.TitoliPreferenziali) {
-      console.log(i.id);
       arrTit.push(Number(i.id - 1));
     }
 
@@ -673,7 +671,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const arrRis = [];
     for (const i of domanda.Riserve) {
-      console.log(i.id - 1);
       arrRis.push(Number(i.id - 1));
     }
     this.riserve.patchValue(arrRis);
