@@ -5,6 +5,10 @@ body {
   height: 100%;
 }
 
+mat-icon{
+  font-family: 'Material Icons' !important;
+}
+
 body {
     margin: 0;
 }

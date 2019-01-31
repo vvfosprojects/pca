@@ -4,10 +4,12 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json --port 4201 & ",
+    "start": "ng serve --proxy-config proxy.config.json --port 4201",
     "server": "json-server --port 3000 --watch ./server/domanda.json",
-    "simulate" : "npm run start | npm run server",
-    "build": "ng build --prod",
+    "simulate": "npm run start | npm run server",
+    "build": "ng build --prod --aot",
+    "npx": "npx http-server dist/",
+    "watch": "npm run npx",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -32,6 +34,7 @@
     "hammerjs": "^2.0.8",
     "json-server": "^0.14.2",
     "moment": "^2.24.0",
+    "ng-http-loader": "^5.0.0",
     "ngx-mat-select-search": "^1.5.2",
     "rxjs": "^6.3.3",
     "tslib": "^1.9.0",
