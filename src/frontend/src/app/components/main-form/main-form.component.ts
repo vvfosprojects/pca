@@ -36,6 +36,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('singleSelect') singleSelect: MatSelect;
   private _onDestroy = new Subject<void>();
+  private _onDestroyComuni = new Subject<void>();
 
   testoDomanda: string;
   matcher = new MyErrorStateMatcher();
@@ -75,7 +76,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
           this.provinceObj.push(i);
           this.province.push(i.provincia);
         }
-        this.setInitialValue(this.filteredBanks);
+        this.setInitialValueProvince();
 
         this.filteredBanks.next(this.province.slice());
 
@@ -127,7 +128,8 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.provinceDropdown.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
-        this.filterList(this.province, this.provinceDropdown, this.filteredBanks);
+        this.filterProvinceList();
+        // this.filterList(this.province, this.provinceDropdown, this.filteredBanks);
       });
 
   }
@@ -154,7 +156,10 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this._onDestroy.next();
+    this._onDestroyComuni.next();
+
     this._onDestroy.complete();
+    this._onDestroyComuni.complete();
   }
 
   constructor(
@@ -174,6 +179,20 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private setInitialValue(value) {
     value
+      .pipe(take(1), takeUntil(this._onDestroyComuni))
+      .subscribe(() => {
+        // setting the compareWith property to a comparison function
+        // triggers initializing the selection according to the initial value of
+        // the form control (i.e. _initializeSelection())
+        // this needs to be done after the filteredBanks are loaded initially
+        // and after the mat-option elements are available
+        this.singleSelect.compareWith = (a: String, b: String) => a && b && a === b;
+      });
+  }
+
+
+  private setInitialValueProvince() {
+    this.filteredBanks
       .pipe(take(1), takeUntil(this._onDestroy))
       .subscribe(() => {
         // setting the compareWith property to a comparison function
@@ -187,7 +206,26 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   /**
    * Filtra la lista durante l'input
+
    */
+
+  private filterProvinceList() {
+    if (!this.province) {
+      return;
+    }
+    // ottiene la keyword di ricerca
+    let search = this.provinceDropdown.value;
+    if (!search) {
+      this.filteredBanks.next(this.province.slice());
+      return;
+    } else {
+      search = search.toLowerCase();
+    }
+    // Filtra le province
+    this.filteredBanks.next(
+      this.province.filter(prov => prov.toLocaleLowerCase().indexOf(search) > -1)
+    );
+  }
 
   private filterList(value, form, filter) {
     if (!value) {
@@ -196,14 +234,14 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     // ottiene la keyword di ricerca
     let search = form.value;
     if (!search) {
-      this.filteredBanks.next(value.slice());
+      this.filteredComuni.next(value.slice());
       return;
     } else {
       search = search.toLowerCase();
     }
     // Filtra le province
-    filter.next(
-      value.filter(prov => prov.toLocaleLowerCase().indexOf(search) > -1)
+    this.filteredComuni.next(
+      value.filter(cos => cos.toLocaleLowerCase().indexOf(search) > -1)
     );
   }
 
@@ -313,7 +351,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
         this.comuniDropdown.valueChanges
-          .pipe(takeUntil(this._onDestroy))
+          .pipe(takeUntil(this._onDestroyComuni))
           .subscribe(() => {
             this.filterList(this.comuni, this.comuniDropdown, this.filteredComuni);
           });
