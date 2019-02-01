@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1256504b-d318-4ba5-afab-f2a62378bd99" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/components/main-form/titoliPreferenziali.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domanda.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/domanda.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/main-form/domanda.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/model/riserve.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/model/riserve.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/services/get-data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/get-data.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -20,14 +22,50 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="591" column="40" selection-start-line="591" selection-start-column="40" selection-end-line="591" selection-end-column="40" />
+            <state relative-caret-position="242">
+              <caret line="70" column="28" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="28" />
               <folding>
                 <element signature="e#0#85#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="632">
+              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/model/domanda.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/components/main-form/titoliPreferenziali.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/domanda.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
             </state>
           </provider>
         </entry>
@@ -40,20 +78,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="466">
-              <caret line="167" column="27" lean-forward="true" selection-start-line="167" selection-start-column="27" selection-end-line="167" selection-end-column="27" />
+            <state relative-caret-position="211">
+              <caret line="237" column="43" selection-start-line="237" selection-start-column="38" selection-end-line="237" selection-end-column="43" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/components/main-form/domanda.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -69,16 +98,10 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lingua</find>
-      <find>ngon</find>
-      <find>annodi</find>
-      <find>codiceFis</find>
-      <find>disa</find>
       <find>disable</find>
       <find>Province</find>
       <find>slice</find>
       <find>onsel</find>
-      <find>province</find>
       <find>this.comuni</find>
       <find>comuni</find>
       <find>testoDom</find>
@@ -94,11 +117,17 @@
       <find>titoli</find>
       <find>map</find>
       <find>find</find>
-      <find>titoliSe</find>
       <find>domanda</find>
-      <find>parseR</find>
-      <find>riserve</find>
       <find>riserveOut</find>
+      <find>parseR</find>
+      <find>titoliSe</find>
+      <find>riserveSele</find>
+      <find>16</find>
+      <find>riserve</find>
+      <find>parse</find>
+      <find>: Tioli</find>
+      <find>inclu</find>
+      <find>province</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/assets/style/vvf-theme.scss" />
         <option value="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.css" />
         <option value="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html" />
-        <option value="$PROJECT_DIR$/src/app/services/get-data.service.ts" />
         <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/styles.css" />
@@ -141,10 +169,12 @@
         <option value="$PROJECT_DIR$/src/app/model/domanda.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/domanda.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/main-form.component.html" />
-        <option value="$PROJECT_DIR$/server/domanda.json" />
         <option value="$PROJECT_DIR$/src/app/model/titoliPreferenziali.ts" />
         <option value="$PROJECT_DIR$/src/app/model/riserve.ts" />
+        <option value="$PROJECT_DIR$/server/domanda.json" />
+        <option value="$PROJECT_DIR$/src/app/components/main-form/titoliPreferenziali.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/services/get-data.service.ts" />
       </list>
     </option>
   </component>
@@ -195,7 +225,22 @@
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="main-form" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -300,7 +345,7 @@
       <workItem from="1548947414347" duration="259000" />
       <workItem from="1549005560390" duration="278000" />
       <workItem from="1549006296691" duration="2588000" />
-      <workItem from="1549009442607" duration="9567000" />
+      <workItem from="1549009442607" duration="10977000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto component mancante, creato tema personalizzato per ii vvf">
       <created>1548791943067</created>
@@ -428,11 +473,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549018961720</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Rifattorizzato il check delle riserve selezionate">
+      <created>1549019232095</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1549019232095</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50446000" />
+    <option name="totallyTimeSpent" value="51856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -443,7 +495,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32913166" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49960598" weight="0.39355743" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -465,7 +517,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32996207" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32913166" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49960598" weight="0.39355743" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -506,18 +558,12 @@
     <MESSAGE value="rifattorizzato il select dei comuni" />
     <MESSAGE value="Rimosso dichiarazione variabile comuni, bloccata nello scope del metodo" />
     <MESSAGE value="Rifattorizzato il check dei titoli preferenziali selezionati" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rifattorizzato il check dei titoli preferenziali selezionati" />
+    <MESSAGE value="Rifattorizzato il check delle riserve selezionate" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rifattorizzato il check delle riserve selezionate" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/@angular/material/typings/sidenav/sidenav.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -663,13 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="95" column="2" selection-start-line="95" selection-start-column="2" selection-end-line="95" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/hammerjs/.jscsrc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -802,37 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/model/domanda.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/domanda.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="167" column="27" lean-forward="true" selection-start-line="167" selection-start-column="27" selection-end-line="167" selection-end-column="27" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/domanda.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/model/titoliPreferenziali.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -850,13 +858,76 @@
     <entry file="file://$PROJECT_DIR$/src/app/model/province.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/domanda.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/domanda.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/titoliPreferenziali.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="237" column="43" selection-start-line="237" selection-start-column="38" selection-end-line="237" selection-end-column="43" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/model/domanda.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="591" column="40" selection-start-line="591" selection-start-column="40" selection-end-line="591" selection-end-column="40" />
+        <state relative-caret-position="242">
+          <caret line="70" column="28" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="28" />
           <folding>
             <element signature="e#0#85#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/loader.service.spec.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/put-data.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="632">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
         </state>
       </provider>
     </entry>

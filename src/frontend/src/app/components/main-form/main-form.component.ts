@@ -8,11 +8,12 @@ import {HttpClient} from '@angular/common/http';
 import {GetDataService} from '../../services/get-data.service';
 import {AppError} from '../../common/app-error';
 import {NotFoundError} from '../../common/not-found-error';
-import {Province, TableEntity} from '../../model/province';
-import {Comuni} from '../../model/comuni';
 import {PutDataService} from '../../services/put-data.service';
 import {Router} from '@angular/router';
 import {TitoliPreferenziali} from '../../model/titoliPreferenziali';
+
+import {Province, TableEntity} from '../../model/province';
+import {Comuni} from '../../model/comuni';
 import {Riserve} from '../../model/riserve';
 import {Istruzione} from '../../model/istruzione';
 import {LingueStraniere} from '../../model/lingueStraniere';
@@ -519,14 +520,11 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.lingueStraniere[this.linguaSelezionata.value];
   }
 
-  parseFigliCarico() {
+  controllaNumeroFigli() {
     const figliObj = {
-      haveSon: false,
       numSons: 0,
     };
-
     if (this.titoloPref.value.includes(16)) {
-      figliObj.haveSon = true;
       figliObj.numSons = this.numeroFigli.value;
     }
 
@@ -588,7 +586,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       Istruzione: this.parseIstruzione(),
       LinguaStraniera: this.parseLingueStraniere(),
       TitoliPreferenziali: this.titoliSelezionati(),
-      FigliACarico: this.parseFigliCarico(),
+      FigliACarico: this.controllaNumeroFigli(),
       Riserve: this.riserveSelezionate(),
       CategorieProtette: this.parseCategorieProtette()
     };

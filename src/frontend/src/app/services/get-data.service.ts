@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {catchError} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {NotFoundError} from '../common/not-found-error';
 import {AppError} from '../common/app-error';
@@ -23,6 +23,7 @@ export class GetDataService {
 
   getTitoliPreferenziali() {
     return this.http.get(this.apiDatav2 + '/TitoliPreferenziali/Tutti')
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -35,6 +36,7 @@ export class GetDataService {
 
   getLingueStraniere() {
     return this.http.get(this.apiDatav2 + '/lingue')
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -47,6 +49,7 @@ export class GetDataService {
 
   getRiserve() {
     return this.http.get(this.apiDatav2 + '/riserve/iac')
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -59,6 +62,7 @@ export class GetDataService {
 
   getSpid() {
     return this.http.get('http://localhost:3000/spid')
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -71,6 +75,7 @@ export class GetDataService {
 
   getProvince() {
     return this.http.get(this.apiDatav1 + '/province')
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -83,6 +88,7 @@ export class GetDataService {
 
   getComuni(provincia: string) {
     return this.http.get(this.apiDatav1 + '/comuni/prov/' + provincia)
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -95,6 +101,7 @@ export class GetDataService {
 
   getDomanda() {
     return this.http.get('http://localhost:3000/domanda')
+      .pipe(map(value => value))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {

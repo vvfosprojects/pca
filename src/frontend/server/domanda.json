@@ -28,11 +28,14 @@
       {
         "titolo": "Genitore vedovo non risposato, coniuge non risposato e le sorelle ed i fratelli vedovi o non sposati dei caduti per servizio nel settore pubblico o privato",
         "id": 12
+      },
+      {
+        "titolo": "Coniugato e non coniugato con riguardo al numero di figli a carico",
+        "id": 17
       }
     ],
     "FigliACarico": {
-      "haveSon": false,
-      "numSons": 0
+      "numSons": "2"
     },
     "Riserve": [
       {
