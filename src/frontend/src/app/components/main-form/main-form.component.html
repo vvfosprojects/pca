@@ -71,7 +71,6 @@
         <mat-form-field class="col col-main">
           <mat-select [formControl]="provinciaIstituto"
                       placeholder="Seleziona Provincia istituto"
-                      (selectionChange)="onSelectProvince()"
                       #singleSelect>
             <ngx-mat-select-search [noEntriesFoundLabel]="'Nessun risultato'"
                                    [placeholderLabel]="'Cerca provincia . . '"
@@ -147,7 +146,6 @@
                     [errorStateMatcher]="matcher"
                     [formControl]="titoloPref"
                     name="titoloPref"
-                    (selectionChange)="checkFigli()"
                     class="mat-list-item-word-wrap"
                     multiple>
 

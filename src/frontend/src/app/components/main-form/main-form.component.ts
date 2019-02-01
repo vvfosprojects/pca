@@ -62,10 +62,23 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Lista dei comuni filtrate dalle parole chiavi nel campo **/
   public filteredComuni: ReplaySubject<String[]> = new ReplaySubject<String[]>(1);
 
+  onChanges(): void {
+      this.provinciaIstituto.valueChanges.subscribe(val => {
+        this.onSelectProvince();
+      });
+
+    this.titoloPref.valueChanges.subscribe(val => {
+      this.checkFigli();
+    });
+  }
 
   ngOnInit() {
     this.apiCall();
+
+    this.onChanges();
   }
+
+
 
   apiCall() {
     this.service.getProvince().subscribe((value: Province) => {
@@ -278,14 +291,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  /*
-  * OPTIMIZE: Da migliorare, attualmente non ha priorità urgente
-  *  Fin quando non trovo una soluzione per far il parsing dell'oggetto nel filtro uso una lista clonata di sole stringhe
-  *  per confrontarmi con i dati presi dal server. Devo serializzarmi i dati perchè il backend chiama i comuni dal codice provincia
-  *  non dal nome provincia.
-  *  TODO: Serializzare i dati per prendere il codice provincia dal backend non dal locale
-  */
-
+// In base alla provincia selezionata richiedo i rispettivi comuni
 
   onSelectProvince() {
 
@@ -296,17 +302,14 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
     let comuni: string[];
 
-      this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
-
-          // Devo fare il sort altrimenti i comuni con i caratteri minori non appaiono per primi
-
-          comuni = value.table
+    this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
+        comuni = value.table
           .map(nome => nome.comune)
           .sort((a, b) => {
             return a.length - b.length;
           });
 
-
+//  Popolo la select box
         this.setInitialValue(this.filteredComuni);
         this.filteredComuni.next(comuni.slice());
 
@@ -319,7 +322,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-    // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
+// Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
     this.comuniDropdown.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
@@ -533,19 +536,19 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   titoliSelezionati() {
     return this.elencoTitoliPreferenziali.filter((x) => {
-      return (x.id - 1) === this.titoloPref.value.find( (d) => {
+      return (x.id - 1) === this.titoloPref.value.find((d) => {
         console.log(d, '', x.id);
         return (d) === (x.id - 1);
-      } );
+      });
     });
   }
 
   riserveSelezionate() {
     return this.elencoRiserve.filter((x) => {
-      return (x.id - 1) === this.titoloPref.value.find( (d) => {
+      return (x.id - 1) === this.titoloPref.value.find((d) => {
         console.log(d, '', x.id);
         return (d) === (x.id - 1);
-      } );
+      });
     });
   }
 
@@ -605,7 +608,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     return false;
   }
-
 
 
   popolaForm(domanda: any) {
