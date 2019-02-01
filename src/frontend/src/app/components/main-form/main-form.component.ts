@@ -287,44 +287,46 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   *  TODO: Serializzare i dati per prendere il codice provincia dal backend non dal locale
   */
 
+
   onSelectProvince() {
-    for (const i of this.province) {
-      if (i.provincia.toLowerCase() === this.provinciaIstituto.value.toLowerCase()) {
-        const codiceProvincia = i.codProvincia;
-        this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
-            this.comuni.length = 0;
-            for (const k of value.table) {
-              this.comuni.push(k.comune);
-            }
-
-            // Devo fare il sort altrimenti roma non appare come primo elemento
-
-            this.comuni.sort((a, b) => {
-              return a.length - b.length; // ASC, For Descending order use: b - a
-            });
 
 
-            this.setInitialValue(this.filteredComuni);
-            this.filteredComuni.next(this.comuni.slice());
+    const codiceProvincia = this.province
+      .filter(selected => selected.provincia === this.provinciaIstituto.value)
+      .map(selected => selected.codProvincia)
+      .reduce(selected => selected);
 
-          },
-          (error: AppError) => {
-            if (error instanceof NotFoundError) {
-              console.log('Error richiesta http');
-            } else {
-              console.log(error);
-            }
+
+      this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
+
+          // Devo fare il sort altrimenti i comuni con i caratteri minori non appaiono per primi
+
+          this.comuni = value.table
+          .map(nome => nome.comune)
+          .sort((a, b) => {
+            return a.length - b.length;
           });
 
-        // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
-        this.comuniDropdown.valueChanges
-          .pipe(takeUntil(this._onDestroy))
-          .subscribe(() => {
-            this.filterList(this.comuni, this.comuniDropdown, this.filteredComuni);
-          });
-        break;
-      }
-    }
+
+        this.setInitialValue(this.filteredComuni);
+        this.filteredComuni.next(this.comuni.slice());
+
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('Error richiesta http');
+        } else {
+          console.log(error);
+        }
+      });
+
+    // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
+    this.comuniDropdown.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterList(this.comuni, this.comuniDropdown, this.filteredComuni);
+      });
+
   }
 
   /*
