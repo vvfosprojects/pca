@@ -1,30 +1,32 @@
-export class Domanda {
+import {TitoliPreferenzialiOut} from '../../model/titoliPreferenziali';
 
-  private istituoFrequentato: string;
-  private annoDiploma: number;
-  private tipoDiploma: string;
-  private provinciaIstituto: string;
-  private comuneIstituto: string;
-  private viaIsituto: string;
-
-  private linguaStraniera: string;
-
-  private titoliPreferenziali: string[];
-  private numeroFigli?: number;
-
-  private riserve: string[];
-
-  private categorieProtette: boolean;
-  private percentualeInvalidita?: number;
-  private dataCertificazione?: string;
-  private enteCertificazioneInvalidita?: string;
-  private dirittoAusili?: boolean;
-  private dirittoTempiAggiuntivi?: boolean;
-  private dirittoEsenzioneProvaSelettiva?: boolean;
+export class Parser {
 
 
-  constructor() {
 
+
+  TitoliPreferenziali_PO(lista, selezionati) {
+    const titoliPreferenzialiObj: TitoliPreferenzialiOut[] = [];
+    const titoliSelected: TitoliPreferenzialiOut[] = [];
+
+    for (const i of lista) {
+      const obj: TitoliPreferenzialiOut = {
+        id: i.id,
+        titolo: i.titolo,
+        isSelected: false,
+      };
+      titoliPreferenzialiObj.push(obj);
+    }
+
+    for (const x of titoliPreferenzialiObj) {
+      for (const i of selezionati) {
+        if ((i + 1) === x.id) {
+          x.isSelected = true;
+          titoliSelected.push(x);
+        }
+      }
+    }
+
+    return titoliSelected;
   }
-
 }

@@ -54,3 +54,4 @@ export interface CatProtetteForm {
   dichiarazione_2?: null;
   dichiarazione_3?: null;
 }
+

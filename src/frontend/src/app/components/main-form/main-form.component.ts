@@ -12,7 +12,7 @@ import {Province, TableEntity} from '../../model/province';
 import {Comuni} from '../../model/comuni';
 import {PutDataService} from '../../services/put-data.service';
 import {Router} from '@angular/router';
-import {TitoliPreferenziali, TitoliPreferenzialiOut} from '../../model/titoliPreferenziali';
+import {TitoliPreferenziali} from '../../model/titoliPreferenziali';
 import {Riserve, RiserveOut} from '../../model/riserve';
 import {Istruzione} from '../../model/istruzione';
 import {LingueStraniere} from '../../model/lingueStraniere';
@@ -35,12 +35,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('singleSelect') singleSelect: MatSelect;
+
   private _onDestroy = new Subject<void>();
 
-
-  testoDomanda: string;
   matcher = new MyErrorStateMatcher();
   applicationForm: FormGroup;
+
+  testoDomanda: string;
 
 
   province: TableEntity[] = [];
@@ -152,7 +153,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.testoDomanda = 'Modifica Domanda';
     }
-
   }
 
   ngOnDestroy() {
@@ -271,7 +271,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
         drto_tempiAggiuntivi: ['', []],
         drto_esenzioneProvaPresel: ['', []],
         idoneita: ['', [Validators.required]],
-        gdprCompliancy: ['', [Validators.required]]
+        gdprCompliancy: ['', [Validators.required]],
       })
     });
   }
@@ -287,7 +287,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   onSelectProvince() {
-
 
     const codiceProvincia = this.province
       .filter(selected => selected.provincia === this.provinciaIstituto.value)
@@ -336,6 +335,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     */
 
   checkFigli() {
+
     /*
     * Il multiple select crea un array di elementi selezionati ma non specifica quelli non selezionati, la creazione non è ordinata ma
     * crescente dunque per ora mi itero per vedere se è presente il valore selezionato
@@ -494,6 +494,8 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   // Visualizza le scelte dell'utente nella view, serve perchè mat-select usa un array di numeri
 
   returnTitoliSelectedValue(value: number) {
+
+
     return this.titoliPreferenziali[value].titolo;
   }
 
@@ -533,30 +535,13 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return figliObj;
   }
 
-  parseTitoliPreferenziali() {
-
-    const titoliPreferenzialiObj: TitoliPreferenzialiOut[] = [];
-    const titoliSelected: TitoliPreferenzialiOut[] = [];
-
-    for (const i of this.titoliPreferenziali) {
-      const obj: TitoliPreferenzialiOut = {
-        id: i.id,
-        titolo: i.titolo,
-        isSelected: false,
-      };
-      titoliPreferenzialiObj.push(obj);
-    }
-
-    for (const x of titoliPreferenzialiObj) {
-      for (const i of this.titoloPref.value) {
-        if ((i + 1) === x.id) {
-          x.isSelected = true;
-          titoliSelected.push(x);
-        }
-      }
-    }
-
-    return titoliSelected;
+  titoliSelezionati() {
+    return this.titoliPreferenziali.filter((x) => {
+      return (x.id - 1) === this.titoloPref.value.find( (d) => {
+        console.log(d, '', x.id);
+        return (d) === (x.id - 1);
+      } );
+    });
   }
 
   parseRiserve() {
@@ -620,7 +605,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     const objDomanda = {
       Istruzione: this.parseIstruzione(),
       LinguaStraniera: this.parseLingueStraniere(),
-      TitoliPreferenziali: this.parseTitoliPreferenziali(),
+      TitoliPreferenziali: this.titoliSelezionati(),
       FigliACarico: this.parseFigliCarico(),
       Riserve: this.parseRiserve(),
       CategorieProtette: this.parseCategorieProtette()
@@ -684,6 +669,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       this.catProtette.patchValue('3');
     }
   }
+
 
 }
 

@@ -4,10 +4,3 @@ export interface TitoliPreferenziali {
   id: number;
 }
 
-// OUT
-
-export interface TitoliPreferenzialiOut {
-  titolo: string;
-  id: number;
-  isSelected: boolean;
-}

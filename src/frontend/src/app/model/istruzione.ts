@@ -5,5 +5,6 @@ export interface Istruzione {
   provinciaIstituto: string;
   comuneIstituto: string;
   sedeIstituto?: string;
-  
+
 }
+

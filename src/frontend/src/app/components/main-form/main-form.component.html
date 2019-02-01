@@ -1,9 +1,9 @@
 <mat-card>
   <app-spid-data></app-spid-data>
 
-<span class="empty-space"></span>
+  <span class="empty-space"></span>
 
-<!-- DATI ISTRUZIONE -->
+  <!-- DATI ISTRUZIONE -->
 
   <form [formGroup]="applicationForm">
     <div formGroupName="personalData">
@@ -59,7 +59,8 @@
 
           <mat-error *ngIf="annoDiploma.hasError('onlyNumber')">Inserire nel campo solo numberi</mat-error>
           <mat-error *ngIf="annoDiploma.hasError('max')">L'anno è superiore all'anno corrente</mat-error>
-          <mat-error *ngIf="annoDiploma.hasError('noWhitespaces')">I campi non possono iniziare o finire con gli spazi</mat-error>
+          <mat-error *ngIf="annoDiploma.hasError('noWhitespaces')">I campi non possono iniziare o finire con gli spazi
+          </mat-error>
           <mat-error *ngIf="annoDiploma.hasError('minlength')">L'anno deve avere solo 4 numeri</mat-error>
           <mat-error *ngIf="annoDiploma.hasError('maxlength')">L'anno deve avere solo 4 numeri</mat-error>
         </mat-form-field>
@@ -115,16 +116,16 @@
     </div>
   </form>
 
-<!-- FINE DATI ISTRUZIONE -->
+  <!-- FINE DATI ISTRUZIONE -->
 
   <span class="empty-space"></span>
 
-<!-- ALTRI DATI-->
+  <!-- ALTRI DATI-->
   <form [formGroup]="applicationForm">
     <div formGroupName="personalData">
 
 
-      <mat-form-field class="example-full-width" >
+      <mat-form-field class="example-full-width">
         <mat-select
           (mouseenter)="tooltip.show()"
           placeholder="Seleziona Lingua"
@@ -212,9 +213,9 @@
         </mat-form-field>
 
         <mat-list *ngFor="let x of riserve.value;" style="padding: 1em;">
-            <div>
-              {{returnRiserveSelectedValue(x)}}
-            </div>
+          <div>
+            {{returnRiserveSelectedValue(x)}}
+          </div>
         </mat-list>
 
 
@@ -313,11 +314,11 @@
       </div>
     </div>
   </form>
-<!--Fine altri Dati-->
+  <!--Fine altri Dati-->
   <span class="empty-space"></span>
 
 
-<!--Inizio consenso Dati-->
+  <!--Inizio consenso Dati-->
   <form class="example-form">
     <div>
       <p>
@@ -373,4 +374,7 @@
   <button mat-raised-button (click)='sendForm()' type="submit" [disabled]="!isDone()">
     {{testoDomanda}}
   </button>
+
+
+
 </section>

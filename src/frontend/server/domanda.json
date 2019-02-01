@@ -14,22 +14,27 @@
     },
     "TitoliPreferenziali": [
       {
-        "id": 2,
         "titolo": "Orfano di guerra",
-        "isSelected": true
+        "id": 2
+      },
+      {
+        "titolo": "Orfano di caduti per fatto di guerra",
+        "id": 3
+      },
+      {
+        "titolo": "Orfano di caduti per servizio nel settore pubblico e privato",
+        "id": 4
+      },
+      {
+        "titolo": "Genitore vedovo non risposato, coniuge non risposato e le sorelle ed i fratelli vedovi o non sposati dei caduti per servizio nel settore pubblico o privato",
+        "id": 12
       }
     ],
     "FigliACarico": {
       "haveSon": false,
       "numSons": 0
     },
-    "Riserve": [
-      {
-        "id": 1,
-        "riserva": "10% dei posti al personale volontario del Corpo nazionale dei vigili del fuoco che, alla data di scadenza del termine stabilito nel presente bando per la presentazione della domanda di ammissione, sia iscritto negli appositi elenchi da almeno 7 anni ed abbia effettuato non meno di 200 giorni di servizio, fermi restando gli altri requisiti previsti per l'accesso alla qualifica di Ispettore amministrativo-contabile.",
-        "isSelected": true
-      }
-    ],
+    "Riserve": [],
     "CategorieProtette": {
       "isCategegorieProtette": true,
       "percentualeInvalidita": "22",
