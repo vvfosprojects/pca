@@ -225,7 +225,6 @@
           <mat-select placeholder="SI / NO"
                       [errorStateMatcher]="matcher"
                       [formControl]="catProtette"
-                      (selectionChange)="controlloRequiredCategorieProtette()"
                       name="catProtette">
 
             <mat-option value="3">NO</mat-option>
@@ -241,7 +240,8 @@
                    [errorStateMatcher]="matcher"
                    [formControl]="percInvalidita"
                    maxlength="3"
-                   minlength="1">
+                   minlength="1"
+            >
             <span matPrefix>%&nbsp;</span>
             <mat-hint>Es 44</mat-hint>
 

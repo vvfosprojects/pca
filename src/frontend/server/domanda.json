@@ -28,14 +28,10 @@
       {
         "titolo": "Genitore vedovo non risposato, coniuge non risposato e le sorelle ed i fratelli vedovi o non sposati dei caduti per servizio nel settore pubblico o privato",
         "id": 12
-      },
-      {
-        "titolo": "Coniugato e non coniugato con riguardo al numero di figli a carico",
-        "id": 17
       }
     ],
     "FigliACarico": {
-      "numSons": "2"
+      "numSons": 0
     },
     "Riserve": [
       {
@@ -44,13 +40,13 @@
       }
     ],
     "CategorieProtette": {
-      "isCategegorieProtette": true,
-      "percentualeInvalidita": "22",
-      "dataCertificazione": "2018-12-05T23:00:00.000Z",
-      "enteRilascioCertificato": "21",
-      "ausilioProva": true,
-      "tempiaggiuntivi": "",
-      "esenzioneProvaSelettiva": false
+      "isCategegorieProtette": false,
+      "percentualeInvalidita": null,
+      "dataCertificazione": null,
+      "enteRilascioCertificato": null,
+      "ausilioProva": null,
+      "tempiaggiuntivi": null,
+      "esenzioneProvaSelettiva": null
     }
   },
   "spid": {

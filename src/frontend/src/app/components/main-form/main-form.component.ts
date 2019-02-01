@@ -62,22 +62,14 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   /** Lista dei comuni filtrate dalle parole chiavi nel campo **/
   public filteredComuni: ReplaySubject<String[]> = new ReplaySubject<String[]>(1);
 
-  onChanges(): void {
-      this.provinciaIstituto.valueChanges.subscribe(val => {
-        this.onSelectProvince();
-      });
-
-    this.titoloPref.valueChanges.subscribe(val => {
-      this.checkFigli();
-    });
-  }
-
   ngOnInit() {
     this.apiCall();
-
     this.onChanges();
   }
 
+  get percInvalidita() {
+    return this.applicationForm.get('gruppoCatPot.percInvalidita');
+  }
 
 
   apiCall() {
@@ -229,180 +221,12 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
    * TODO: Suddividere il gruppo in ulteriori sottogruppi in modo da rendere l'applicazione più modulare. ! NON URGERNTE
    */
 
-  createForm() {
-    this.applicationForm = this.fb.group({
-      personalData: this.fb.group({
-        istitutoFrequentato: ['', [
-          Validators.required,
-          Validators.maxLength(255),
-          CustomValidators.noWhitespaces,
-        ]],
-        annoDiploma: ['', [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(4),
-          Validators.max(new Date().getFullYear()),
-          CustomValidators.onlyNumber,
-          CustomValidators.noWhitespaces,
-        ]],
-        tipoDiploma: ['', [
-          Validators.required,
-          Validators.maxLength(255),
-          CustomValidators.noWhitespaces,
-        ]],
-        provinciaIstituto: ['', [
-          Validators.required
-        ]],
-        provinceDropdown: new FormControl(),
-        comuniDropdown: new FormControl(),
-        comuneIstituto: ['', []],
-        viaIstituto: ['', [
-          Validators.maxLength(255),
-          CustomValidators.noWhitespaces,
-        ]],
-        linguaSelezionata: ['', [
-          Validators.required
-        ]],
-        titoloPref: ['', []],
-        numeroFigli: ['', [
-          CustomValidators.noWhitespaces,
-        ]],
-        riserve: ['', []],
-        catProtette: ['', [
-          Validators.required,
-        ]],
-        percInvalidita: ['', [
-          Validators.maxLength(3),
-          Validators.max(100),
-          Validators.min(1),
-          CustomValidators.onlyNumber,
-          CustomValidators.noWhitespaces,
-        ]],
-        dataCertificazione: ['', []]
-        ,
-        invaliditaEnte: ['', []],
-        drto_ausili: ['', []],
-        drto_tempiAggiuntivi: ['', []],
-        drto_esenzioneProvaPresel: ['', []],
-        idoneita: ['', [Validators.required]],
-        gdprCompliancy: ['', [Validators.required]],
-      })
-    });
+  get dataCertificazione() {
+    return this.applicationForm.get('gruppoCatPot.dataCertificazione');
   }
 
 
-// In base alla provincia selezionata richiedo i rispettivi comuni
 
-  onSelectProvince() {
-
-    const codiceProvincia = this.province
-      .filter(selected => selected.provincia === this.provinciaIstituto.value)
-      .map(selected => selected.codProvincia)
-      .reduce(selected => selected);
-
-    let comuni: string[];
-
-    this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
-        comuni = value.table
-          .map(nome => nome.comune)
-          .sort((a, b) => {
-            return a.length - b.length;
-          });
-
-//  Popolo la select box
-        this.setInitialValue(this.filteredComuni);
-        this.filteredComuni.next(comuni.slice());
-
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          console.log('Error richiesta http');
-        } else {
-          console.log(error);
-        }
-      });
-
-// Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
-    this.comuniDropdown.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterList(comuni, this.comuniDropdown, this.filteredComuni);
-      });
-
-  }
-
-  /*
-    *  OPTIMIZE: Rifattorizzare il codice
-    *  Essendo che il campo numero figli è dipendente devo controllare se l'utente ha figli o meno,
-    *  in caso lo selezioni rendo obbligatorio il numero dei figli, se l'utente imposta i dati e poi deseleziona il fatto di avere figli
-    *  mi devo assicurare di cancellare i dati da lui immessi e togliere il 'required' dal form
-    */
-
-  checkFigli() {
-
-    /*
-    * Il multiple select crea un array di elementi selezionati ma non specifica quelli non selezionati, la creazione non è ordinata ma
-    * crescente dunque per ora mi itero per vedere se è presente il valore selezionato
-    * TODO: Rendere la complessità della ricerca minore.
-    * */
-
-    if (this.titoloPref.value.includes(16)) {
-      this.numeroFigli.setValidators([Validators.required]);
-      this.numeroFigli.updateValueAndValidity();
-    } else {
-      this.numeroFigli.setValidators([]);
-      this.numeroFigli.updateValueAndValidity();
-      this.numeroFigli.patchValue(null);
-    }
-  }
-
-  /*
-  *  OPTIMIZE: Rifattorizzare il codice
-  *  Essendo che i campi di invalidità sono dipendenti devo controllare se l'utente ha selezionato le categorie protette,
-  *  in caso le selezioni le rendo obbligatorie, se l'utente imposta i dati e poi deseleziona l'invalidità mi devo assicurare
-  *  di cancellare i dati da lui immessi e togliere il 'required' dal form
-  */
-
-  controlloRequiredCategorieProtette() {
-
-    if (this.catProtette.value.includes(4)) {
-      this.percInvalidita.setValidators([Validators.required]);
-      this.percInvalidita.updateValueAndValidity();
-
-      this.dataCertificazione.setValidators([Validators.required]);
-      this.dataCertificazione.updateValueAndValidity();
-
-      this.invaliditaEnte.setValidators([Validators.required]);
-      this.invaliditaEnte.updateValueAndValidity();
-    } else {
-      this.percInvalidita.setValidators([]);
-      this.percInvalidita.updateValueAndValidity();
-
-      this.dataCertificazione.setValidators([]);
-      this.dataCertificazione.updateValueAndValidity();
-
-      this.invaliditaEnte.setValidators([]);
-      this.invaliditaEnte.updateValueAndValidity();
-
-      this.drto_ausili.setValidators([]);
-      this.drto_ausili.updateValueAndValidity();
-
-      this.drto_esenzioneProvaPresel.setValidators([]);
-      this.drto_esenzioneProvaPresel.updateValueAndValidity();
-
-      this.drto_tempiAggiuntivi.setValidators([]);
-      this.drto_tempiAggiuntivi.updateValueAndValidity();
-
-      this.percInvalidita.patchValue(null);
-      this.dataCertificazione.patchValue(null);
-      this.invaliditaEnte.patchValue(null);
-
-      this.drto_ausili.patchValue(false);
-      this.drto_tempiAggiuntivi.patchValue(false);
-      this.drto_esenzioneProvaPresel.patchValue(false);
-
-    }
-  }
 
   /*
   * Boilert template code: Codice creato solo per evitare di scrivere codice verboso nella view HTML.
@@ -454,30 +278,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.applicationForm.get('personalData.catProtette');
   }
 
-  get percInvalidita() {
-    return this.applicationForm.get('personalData.percInvalidita');
-  }
-
-  get dataCertificazione() {
-    return this.applicationForm.get('personalData.dataCertificazione');
-  }
-
-  get invaliditaEnte() {
-    return this.applicationForm.get('personalData.invaliditaEnte');
-  }
-
-  get drto_ausili() {
-    return this.applicationForm.get('personalData.drto_ausili');
-  }
-
-  get drto_tempiAggiuntivi() {
-    return this.applicationForm.get('personalData.drto_tempiAggiuntivi');
-  }
-
-  get drto_esenzioneProvaPresel() {
-    return this.applicationForm.get('personalData.drto_esenzioneProvaPresel');
-  }
-
   get idoneita() {
     return this.applicationForm.get('personalData.idoneita');
   }
@@ -494,6 +294,158 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.applicationForm.get('personalData.comuniDropdown');
   }
 
+
+  // Form group categorie protette
+
+  get invaliditaEnte() {
+    return this.applicationForm.get('gruppoCatPot.invaliditaEnte');
+  }
+
+  get drto_ausili() {
+    return this.applicationForm.get('gruppoCatPot.drto_ausili');
+  }
+
+  get drto_tempiAggiuntivi() {
+    return this.applicationForm.get('gruppoCatPot.drto_tempiAggiuntivi');
+  }
+
+  get drto_esenzioneProvaPresel() {
+    return this.applicationForm.get('gruppoCatPot.drto_esenzioneProvaPresel');
+  }
+
+  onChanges(): void {
+
+// Popolo la select box dei comuni
+
+    this.provinciaIstituto.valueChanges.subscribe(val => {
+      const codiceProvincia = this.province
+        .filter(selected => selected.provincia === this.provinciaIstituto.value)
+        .map(selected => selected.codProvincia)
+        .reduce(selected => selected);
+
+      let comuni: string[];
+
+      this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
+          comuni = value.table
+            .map(nome => nome.comune)
+            .sort((a, b) => {
+              return a.length - b.length;
+            });
+
+//  Popolo la select box dei comuni
+          this.setInitialValue(this.filteredComuni);
+          this.filteredComuni.next(comuni.slice());
+
+        },
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
+            console.log('Error richiesta http');
+          } else {
+            console.log(error);
+          }
+        });
+
+// Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
+      this.comuniDropdown.valueChanges
+        .pipe(takeUntil(this._onDestroy))
+        .subscribe(() => {
+          this.filterList(comuni, this.comuniDropdown, this.filteredComuni);
+        });
+    });
+
+// Abilita/Disabilita il campo numero figli
+    this.titoloPref.valueChanges.subscribe(val => {
+      if (this.titoloPref.value.includes(16)) {
+        this.numeroFigli.setValidators([Validators.required]);
+        this.numeroFigli.updateValueAndValidity();
+      } else {
+        this.numeroFigli.setValidators([]);
+        this.numeroFigli.updateValueAndValidity();
+        this.numeroFigli.patchValue(null);
+      }
+    });
+
+// Abilita/Disabilita i campi cateogire protette
+    this.catProtette.valueChanges.subscribe( () => {
+      if (this.catProtette.value.includes(3)) {
+       /* Object.keys(this.applicationForm.get('gruppoCatPot').controls).forEach(key => {
+          this.applicationForm.get('gruppoCatPot').get(key).disable();
+        }); */
+        this.applicationForm.get('gruppoCatPot').disable();
+      } else {
+        this.applicationForm.get('gruppoCatPot').enable();
+      }
+    });
+
+
+
+  }
+
+  createForm() {
+    this.applicationForm = this.fb.group({
+      personalData: this.fb.group({
+        istitutoFrequentato: ['', [
+          Validators.required,
+          Validators.maxLength(255),
+          CustomValidators.noWhitespaces,
+        ]],
+        annoDiploma: ['', [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(4),
+          Validators.max(new Date().getFullYear()),
+          CustomValidators.onlyNumber,
+          CustomValidators.noWhitespaces,
+        ]],
+        tipoDiploma: ['', [
+          Validators.required,
+          Validators.maxLength(255),
+          CustomValidators.noWhitespaces,
+        ]],
+        provinciaIstituto: ['', [
+          Validators.required
+        ]],
+        provinceDropdown: new FormControl(),
+        comuniDropdown: new FormControl(),
+        comuneIstituto: ['', []],
+        viaIstituto: ['', [
+          Validators.maxLength(255),
+          CustomValidators.noWhitespaces,
+        ]],
+        linguaSelezionata: ['', [
+          Validators.required
+        ]],
+        titoloPref: ['', []],
+        numeroFigli: ['', [
+          CustomValidators.noWhitespaces,
+        ]],
+        riserve: ['', []],
+        catProtette: ['', [
+          Validators.required,
+        ]],
+        idoneita: ['', [Validators.required]],
+        gdprCompliancy: ['', [Validators.required]],
+      }),
+      gruppoCatPot: this.fb.group({
+        percInvalidita: ['', [
+          Validators.required,
+          Validators.max(100),
+          Validators.min(1),
+          CustomValidators.onlyNumber,
+        ]],
+        dataCertificazione: ['', [
+          Validators.required,
+        ]]
+        ,
+        invaliditaEnte: ['', [
+          Validators.required,
+        ]],
+        drto_ausili: ['', []],
+        drto_tempiAggiuntivi: ['', []],
+        drto_esenzioneProvaPresel: ['', []],
+      })
+    });
+  }
 
   // Visualizza le scelte dell'utente nella view, serve perchè mat-select usa un array di numeri
 
@@ -618,7 +570,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.annoDiploma.patchValue(domanda.Istruzione.annoDiploma);
     this.tipoDiploma.patchValue(domanda.Istruzione.tipoDiploma);
     this.provinciaIstituto.patchValue(domanda.Istruzione.provinciaIstituto.toUpperCase());
-    this.onSelectProvince();
     this.comuneIstituto.patchValue(domanda.Istruzione.comuneIstituto.toUpperCase());
     this.viaIstituto.patchValue(domanda.Istruzione.sedeIstituto);
 
@@ -630,7 +581,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.titoloPref.patchValue((arrTit));
-    this.checkFigli();
     this.numeroFigli.patchValue(domanda.FigliACarico.numSons);
 
     const arrRis = [];

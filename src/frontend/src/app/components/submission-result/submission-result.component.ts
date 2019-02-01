@@ -76,7 +76,7 @@ export class SubmissionResultComponent implements OnInit {
 
         // CATEGORIE PROTETTE
         this.catProtette.patchValue((domanda.CategorieProtette.isCategegorieProtette === true) ? 'SI' : 'NO');
-        this.percInvalidita.patchValue(domanda.CategorieProtette.percentualeInvalidita.toString());
+        this.percInvalidita.patchValue(domanda.CategorieProtette.percentualeInvalidita);
         this.dataCertificazione.patchValue(domanda.CategorieProtette.dataCertificazione);
         this.invaliditaEnte.patchValue(domanda.CategorieProtette.enteRilascioCertificato);
         this.drto_ausili.patchValue(domanda.CategorieProtette.ausilioProva);
