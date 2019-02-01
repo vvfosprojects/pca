@@ -34,7 +34,12 @@
       "haveSon": false,
       "numSons": 0
     },
-    "Riserve": [],
+    "Riserve": [
+      {
+        "riserva": "2% dei posti agli ufficiali delle forze armate che abbiano terminato senza demerito, alla data di scadenza del termine utile stabilito per la presentazione della domanda di partecipazione, la ferma biennale.",
+        "id": 2
+      }
+    ],
     "CategorieProtette": {
       "isCategegorieProtette": true,
       "percentualeInvalidita": "22",

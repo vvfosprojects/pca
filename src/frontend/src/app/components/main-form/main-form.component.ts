@@ -13,7 +13,7 @@ import {Comuni} from '../../model/comuni';
 import {PutDataService} from '../../services/put-data.service';
 import {Router} from '@angular/router';
 import {TitoliPreferenziali} from '../../model/titoliPreferenziali';
-import {Riserve, RiserveOut} from '../../model/riserve';
+import {Riserve} from '../../model/riserve';
 import {Istruzione} from '../../model/istruzione';
 import {LingueStraniere} from '../../model/lingueStraniere';
 
@@ -46,8 +46,8 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   province: TableEntity[] = [];
 
-  titoliPreferenziali: TitoliPreferenziali[];
-  riserveElenco: Riserve[];
+  elencoTitoliPreferenziali: TitoliPreferenziali[];
+  elencoRiserve: Riserve[];
   lingueStraniere: LingueStraniere[];
 
   maxDate = new Date(Date.now());
@@ -95,7 +95,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.service.getTitoliPreferenziali().subscribe((value: TitoliPreferenziali[]) => {
-        this.titoliPreferenziali = value;
+        this.elencoTitoliPreferenziali = value;
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -106,7 +106,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.service.getRiserve().subscribe((value: Riserve[]) => {
-        this.riserveElenco = value;
+        this.elencoRiserve = value;
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -494,15 +494,13 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   // Visualizza le scelte dell'utente nella view, serve perchè mat-select usa un array di numeri
 
   returnTitoliSelectedValue(value: number) {
-
-
-    return this.titoliPreferenziali[value].titolo;
+    return this.elencoTitoliPreferenziali[value].titolo;
   }
 
   // Visualizza le scelte dell'utente nella view, serve perchè mat-select usa un array di numeri
 
   returnRiserveSelectedValue(value: number) {
-    return this.riserveElenco[value].riserva;
+    return this.elencoRiserve[value].riserva;
   }
 
   parseIstruzione() {
@@ -536,7 +534,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   titoliSelezionati() {
-    return this.titoliPreferenziali.filter((x) => {
+    return this.elencoTitoliPreferenziali.filter((x) => {
       return (x.id - 1) === this.titoloPref.value.find( (d) => {
         console.log(d, '', x.id);
         return (d) === (x.id - 1);
@@ -544,29 +542,13 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  parseRiserve() {
-    const riserveObj: RiserveOut[] = [];
-    const riserveSelected: RiserveOut[] = [];
-
-    for (const i of this.riserveElenco) {
-      const obj: RiserveOut = {
-        id: i.id,
-        riserva: i.riserva,
-        isSelected: false,
-      };
-      riserveObj.push(obj);
-    }
-
-    for (const x of riserveObj) {
-      for (const i of this.riserve.value) {
-        if ((i + 1) === x.id) {
-          x.isSelected = true;
-          riserveSelected.push(x);
-        }
-      }
-    }
-
-    return riserveSelected;
+  riserveSelezionate() {
+    return this.elencoRiserve.filter((x) => {
+      return (x.id - 1) === this.titoloPref.value.find( (d) => {
+        console.log(d, '', x.id);
+        return (d) === (x.id - 1);
+      } );
+    });
   }
 
   parseCategorieProtette() {
@@ -607,7 +589,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       LinguaStraniera: this.parseLingueStraniere(),
       TitoliPreferenziali: this.titoliSelezionati(),
       FigliACarico: this.parseFigliCarico(),
-      Riserve: this.parseRiserve(),
+      Riserve: this.riserveSelezionate(),
       CategorieProtette: this.parseCategorieProtette()
     };
 

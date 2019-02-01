@@ -156,7 +156,7 @@
             TITOLI SELEZIONATI
           </mat-select-trigger>
 
-          <mat-option *ngFor="let tit of titoliPreferenziali; let i = index" [value]="i">
+          <mat-option *ngFor="let tit of elencoTitoliPreferenziali; let i = index" [value]="i">
             {{i}}: {{tit.titolo}}
           </mat-option>
 
@@ -204,7 +204,7 @@
               RISERVE SELEZIONATE
             </mat-select-trigger>
 
-            <mat-option *ngFor="let value of riserveElenco; let i = index" [value]="i">
+            <mat-option *ngFor="let value of elencoRiserve; let i = index" [value]="i">
               {{value.riserva}}
             </mat-option>
 
