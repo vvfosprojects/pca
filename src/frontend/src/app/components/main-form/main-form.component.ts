@@ -37,8 +37,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('singleSelect') singleSelect: MatSelect;
   private _onDestroy = new Subject<void>();
 
-  comuni: string[] = [];
-
 
   testoDomanda: string;
   matcher = new MyErrorStateMatcher();
@@ -296,12 +294,13 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
       .map(selected => selected.codProvincia)
       .reduce(selected => selected);
 
+    let comuni: string[];
 
       this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
 
           // Devo fare il sort altrimenti i comuni con i caratteri minori non appaiono per primi
 
-          this.comuni = value.table
+          comuni = value.table
           .map(nome => nome.comune)
           .sort((a, b) => {
             return a.length - b.length;
@@ -309,7 +308,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
         this.setInitialValue(this.filteredComuni);
-        this.filteredComuni.next(this.comuni.slice());
+        this.filteredComuni.next(comuni.slice());
 
       },
       (error: AppError) => {
@@ -324,7 +323,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.comuniDropdown.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
-        this.filterList(this.comuni, this.comuniDropdown, this.filteredComuni);
+        this.filterList(comuni, this.comuniDropdown, this.filteredComuni);
       });
 
   }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1256504b-d318-4ba5-afab-f2a62378bd99" name="Default Changelist" comment="Fiformattato il loop delle province con map">
+    <list default="true" id="1256504b-d318-4ba5-afab-f2a62378bd99" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" afterDir="false" />
     </list>
@@ -21,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
-              <caret line="309" column="10" selection-start-line="309" selection-start-column="10" selection-end-line="309" selection-end-column="10" />
+            <state relative-caret-position="391">
+              <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
               <folding>
                 <element signature="e#0#85#0" expanded="true" />
               </folding>
@@ -41,7 +41,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>this.filterList</find>
       <find>private</find>
       <find>_onDe</find>
       <find>onDestr</find>
@@ -70,6 +69,7 @@
       <find>this.province</find>
       <find>onsel</find>
       <find>province</find>
+      <find>this.comuni</find>
       <find>comuni</find>
     </findStrings>
   </component>
@@ -223,7 +223,7 @@
       <workItem from="1548947414347" duration="259000" />
       <workItem from="1549005560390" duration="278000" />
       <workItem from="1549006296691" duration="2588000" />
-      <workItem from="1549009442607" duration="3293000" />
+      <workItem from="1549009442607" duration="4126000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto component mancante, creato tema personalizzato per ii vvf">
       <created>1548791943067</created>
@@ -330,11 +330,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549010126670</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="rifattorizzato il select dei comuni">
+      <created>1549012876955</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1549012876955</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44172000" />
+    <option name="totallyTimeSpent" value="45005000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -405,7 +412,8 @@
     <MESSAGE value="Aggiunto comando npm personalizzato per avviare la simulazione" />
     <MESSAGE value="Aggiunto http spinner loader" />
     <MESSAGE value="Fiformattato il loop delle province con map" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fiformattato il loop delle province con map" />
+    <MESSAGE value="rifattorizzato il select dei comuni" />
+    <option name="LAST_COMMIT_MESSAGE" value="rifattorizzato il select dei comuni" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -707,8 +715,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="309" column="10" selection-start-line="309" selection-start-column="10" selection-end-line="309" selection-end-column="10" />
+        <state relative-caret-position="391">
+          <caret line="38" column="2" selection-start-line="38" selection-start-column="2" selection-end-line="38" selection-end-column="2" />
           <folding>
             <element signature="e#0#85#0" expanded="true" />
           </folding>
