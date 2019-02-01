@@ -27,11 +27,4 @@ export class Domanda {
 
   }
 
-  controlloFigliACarico() {
-
-  }
-
-
-
-
 }

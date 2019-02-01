@@ -17,46 +17,16 @@
         "id": 2,
         "titolo": "Orfano di guerra",
         "isSelected": true
-      },
-      {
-        "id": 3,
-        "titolo": "Orfano di caduti per fatto di guerra",
-        "isSelected": true
-      },
-      {
-        "id": 4,
-        "titolo": "Orfano di caduti per servizio nel settore pubblico e privato",
-        "isSelected": true
-      },
-      {
-        "id": 17,
-        "titolo": "Coniugato e non coniugato con riguardo al numero di figli a carico",
-        "isSelected": true
-      },
-      {
-        "id": 18,
-        "titolo": "Mutilato ed invalido di guerra ex combattente",
-        "isSelected": true
-      },
-      {
-        "id": 19,
-        "titolo": "Mutilato ed invalido per fatto di guerra",
-        "isSelected": true
-      },
-      {
-        "id": 22,
-        "titolo": "Appartenente al Corpo Nazionale dei vigili del fuoco",
-        "isSelected": true
       }
     ],
     "FigliACarico": {
-      "haveSon": true,
-      "numSons": "5"
+      "haveSon": false,
+      "numSons": 0
     },
     "Riserve": [
       {
-        "id": 2,
-        "riserva": "2% dei posti agli ufficiali delle forze armate che abbiano terminato senza demerito, alla data di scadenza del termine utile stabilito per la presentazione della domanda di partecipazione, la ferma biennale.",
+        "id": 1,
+        "riserva": "10% dei posti al personale volontario del Corpo nazionale dei vigili del fuoco che, alla data di scadenza del termine stabilito nel presente bando per la presentazione della domanda di ammissione, sia iscritto negli appositi elenchi da almeno 7 anni ed abbia effettuato non meno di 200 giorni di servizio, fermi restando gli altri requisiti previsti per l'accesso alla qualifica di Ispettore amministrativo-contabile.",
         "isSelected": true
       }
     ],

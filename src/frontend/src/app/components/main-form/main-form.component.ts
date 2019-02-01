@@ -37,14 +37,15 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('singleSelect') singleSelect: MatSelect;
   private _onDestroy = new Subject<void>();
 
+  comuni: string[] = [];
+
+
   testoDomanda: string;
   matcher = new MyErrorStateMatcher();
   applicationForm: FormGroup;
 
-  province: string[] = [];
-  comuni: string[] = [];
 
-  provinceObj: TableEntity[] = [];
+  province: TableEntity[] = [];
 
   titoliPreferenziali: TitoliPreferenziali[];
   riserveElenco: Riserve[];
@@ -69,16 +70,11 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   apiCall() {
     this.service.getProvince().subscribe((value: Province) => {
 
+        this.province = value.table.map(ogg => ogg);
         // Fin quando non trovo un modo per passare al filtro l'oggetto mi creo un array di solo stringhe
-
-        for (const i of value.table) {
-          this.provinceObj.push(i);
-          this.province.push(i.provincia);
-        }
-
         this.setInitialValue(this.filteredBanks);
-        this.filteredBanks.next(this.province.slice());
-
+        // this.filteredBanks.next(this.province.slice());
+        this.filteredBanks.next(this.province.map(nome => nome.provincia).slice());
       },
       (error: AppError) => {
         if (error instanceof NotFoundError) {
@@ -147,7 +143,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.provinceDropdown.valueChanges
       .pipe(takeUntil(this._onDestroy))
       .subscribe(() => {
-        this.filterList(this.province, this.provinceDropdown, this.filteredBanks);
+        this.filterList(this.province.map(nome => nome.provincia).slice(), this.provinceDropdown, this.filteredBanks);
       });
 
   }
@@ -292,7 +288,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   */
 
   onSelectProvince() {
-    for (const i of this.provinceObj) {
+    for (const i of this.province) {
       if (i.provincia.toLowerCase() === this.provinciaIstituto.value.toLowerCase()) {
         const codiceProvincia = i.codProvincia;
         this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {

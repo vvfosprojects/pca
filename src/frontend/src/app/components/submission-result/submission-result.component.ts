@@ -1,22 +1,16 @@
-import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {GetDataService} from '../../services/get-data.service';
 import {AppError} from '../../common/app-error';
 import {NotFoundError} from '../../common/not-found-error';
 import {Router} from '@angular/router';
-import {Domanda} from '../../model/domanda';
-import {MatSelect} from '@angular/material';
-import {ReplaySubject, Subject} from 'rxjs';
+import {Subject} from 'rxjs';
 import {MyErrorStateMatcher} from '../main-form/main-form.component';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Province, TableEntity} from '../../model/province';
-import {TitoliPreferenziali, TitoliPreferenzialiOut} from '../../model/titoliPreferenziali';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {TableEntity} from '../../model/province';
+import {TitoliPreferenziali} from '../../model/titoliPreferenziali';
 import {LingueStraniere} from '../../model/lingueStraniere';
-import {Riserve, RiserveOut} from '../../model/riserve';
-import {CustomValidators} from '../../validators/customValidators';
-import {Istruzione} from '../../model/istruzione';
-import {take, takeUntil} from 'rxjs/operators';
-import {Comuni} from '../../model/comuni';
+import {Riserve} from '../../model/riserve';
 import {PutDataService} from '../../services/put-data.service';
 
 @Component({
@@ -42,6 +36,8 @@ export class SubmissionResultComponent implements OnInit {
   lingueStraniere: LingueStraniere[];
 
   ngOnInit() {
+
+
     this.service.getSpid().subscribe( (spid: any) => {
       // SPID
 
@@ -57,7 +53,7 @@ export class SubmissionResultComponent implements OnInit {
       this.domicilioDigitale.patchValue(spid.domDigitale);
 
 
-    })
+    });
     this.service.getDomanda().subscribe((domanda: any) => {
 
       console.log(domanda);
@@ -130,59 +126,25 @@ export class SubmissionResultComponent implements OnInit {
         telefono: [''],
         email: [''],
         domicilioDigitale: [''],
-        istitutoFrequentato: ['', [
-          Validators.required,
-          Validators.maxLength(255),
-          CustomValidators.noWhitespaces,
-        ]],
-        annoDiploma: ['', [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(4),
-          CustomValidators.onlyNumber,
-          CustomValidators.noWhitespaces,
-        ]],
-        tipoDiploma: ['', [
-          Validators.required,
-          Validators.maxLength(255),
-          CustomValidators.noWhitespaces,
-        ]],
-        provinciaIstituto: ['', [
-          Validators.required
-        ]],
-        provinceDropdown: new FormControl(),
-        comuniDropdown: new FormControl(),
-        comuneIstituto: ['', []],
-        viaIstituto: ['', [
-          Validators.maxLength(255),
-          CustomValidators.noWhitespaces,
-        ]],
-        linguaSelezionata: ['', [
-          Validators.required
-        ]],
-        titoloPref: ['', []],
-        numeroFigli: ['', [
-          CustomValidators.noWhitespaces,
-        ]],
+        istitutoFrequentato: [''],
+        annoDiploma: ['',  ],
+        tipoDiploma: ['', ],
+        provinciaIstituto: [''],
+        comuneIstituto: [''],
+        viaIstituto: [''],
+        linguaSelezionata: [],
+        titoloPref: [''],
+        numeroFigli: [''],
         riserve: ['', []],
-        catProtette: ['', [
-          Validators.required,
-        ]],
-        percInvalidita: ['', [
-          Validators.maxLength(3),
-          Validators.max(100),
-          Validators.min(1),
-          CustomValidators.onlyNumber,
-          CustomValidators.noWhitespaces,
-        ]],
-        dataCertificazione: ['', []]
-        ,
-        invaliditaEnte: ['', []],
-        drto_ausili: ['', []],
-        drto_tempiAggiuntivi: ['', []],
-        drto_esenzioneProvaPresel: ['', []],
-        idoneita: ['', [Validators.required]],
-        gdprCompliancy: ['', [Validators.required]]
+        catProtette: [''],
+        percInvalidita: [''],
+        dataCertificazione: [''],
+        invaliditaEnte: [''],
+        drto_ausili: [''],
+        drto_tempiAggiuntivi: [''],
+        drto_esenzioneProvaPresel: [''],
+        idoneita: [''],
+        gdprCompliancy: ['']
       })
     });
   }
