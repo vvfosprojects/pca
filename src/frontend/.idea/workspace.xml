@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1256504b-d318-4ba5-afab-f2a62378bd99" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/domanda.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/domanda.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/services/get-data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/get-data.service.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,23 +22,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="68" column="79" selection-start-line="68" selection-start-column="79" selection-end-line="68" selection-end-column="79" />
+            <state relative-caret-position="431">
+              <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
               <folding>
-                <element signature="e#0#85#0" expanded="true" />
+                <element signature="e#0#41#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
+            <state relative-caret-position="6">
+              <caret line="547" column="28" selection-start-line="547" selection-start-column="28" selection-end-line="547" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#85#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -51,22 +57,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>riserveSele</find>
-      <find>16</find>
-      <find>riserve</find>
-      <find>parse</find>
-      <find>: Tioli</find>
-      <find>inclu</find>
-      <find>onselect</find>
-      <find>(click)</find>
-      <find>titoli</find>
-      <find>onch</find>
-      <find>formgr</find>
-      <find>fb</find>
-      <find>gruppoca</find>
-      <find>ngon</find>
-      <find>ngo</find>
-      <find>invali</find>
       <find>invalidità</find>
       <find>number</find>
       <find>personal</find>
@@ -81,6 +71,22 @@
       <find>onsele</find>
       <find>comuni</find>
       <find>province</find>
+      <find>invia doman</find>
+      <find>dom</find>
+      <find>Invia Doman</find>
+      <find>restap</find>
+      <find>m</find>
+      <find>testo</find>
+      <find>popp</find>
+      <find>isDone</find>
+      <find>popolaForm</find>
+      <find>linguaSele</find>
+      <find>map</find>
+      <find>linguaSelòe</find>
+      <find>getDomanda</find>
+      <find>popolaF</find>
+      <find>popola</find>
+      <find>lingua</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -114,7 +120,6 @@
         <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/layout/main-nav/parser.ts" />
         <option value="$PROJECT_DIR$/src/app/components/submission-result/parse.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" />
         <option value="$APPLICATION_CONFIG_DIR$/webstorm64.exe.vmoptions" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/parse.ts" />
         <option value="$PROJECT_DIR$/src/app/model/istruzione.ts" />
@@ -124,17 +129,19 @@
         <option value="$PROJECT_DIR$/src/app/model/riserve.ts" />
         <option value="$PROJECT_DIR$/server/domanda.json" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/titoliPreferenziali.ts" />
-        <option value="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/main-form.component.html" />
+        <option value="$PROJECT_DIR$/src/app/services/put-data.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" />
+        <option value="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" />
         <option value="$PROJECT_DIR$/src/app/services/get-data.service.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
+    <option name="x" value="26" />
+    <option name="y" value="-12" />
+    <option name="width" value="1940" />
     <option name="height" value="1060" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -142,7 +149,46 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="main-form" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -243,7 +289,9 @@
       <workItem from="1549009442607" duration="20505000" />
       <workItem from="1549107638186" duration="94000" />
       <workItem from="1549107787828" duration="1873000" />
-      <workItem from="1549264304956" duration="1057000" />
+      <workItem from="1549264304956" duration="3270000" />
+      <workItem from="1549267736579" duration="807000" />
+      <workItem from="1549270075810" duration="1753000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto component mancante, creato tema personalizzato per ii vvf">
       <created>1548791943067</created>
@@ -399,11 +447,18 @@
       <option name="project" value="LOCAL" />
       <updated>1549031603773</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Spostato operazioni sull'array di comuni e province in map">
+      <created>1549265465051</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1549265465051</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64408000" />
+    <option name="totallyTimeSpent" value="69181000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -481,7 +536,8 @@
     <MESSAGE value="Implementato map, rimosso interfacce obsolete" />
     <MESSAGE value="Implementazione iniziale di onChanges" />
     <MESSAGE value="rifattorizzato i reactive form, rifattorizzato i metodi" />
-    <option name="LAST_COMMIT_MESSAGE" value="rifattorizzato i reactive form, rifattorizzato i metodi" />
+    <MESSAGE value="Spostato operazioni sull'array di comuni e province in map" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spostato operazioni sull'array di comuni e province in map" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -700,13 +756,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="281" column="96" selection-start-line="281" selection-start-column="96" selection-end-line="281" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -789,7 +838,8 @@
     <entry file="file://$PROJECT_DIR$/src/app/services/loader.service.spec.ts" />
     <entry file="file://$PROJECT_DIR$/src/app/services/put-data.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="156">
+          <caret line="30" column="66" lean-forward="true" selection-start-line="30" selection-start-column="66" selection-end-line="30" selection-end-column="66" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -798,15 +848,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="57" lean-forward="true" selection-start-line="57" selection-end-line="57" />
+        <state relative-caret-position="1462">
+          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3485">
+          <caret line="205" column="14" selection-start-line="205" selection-start-column="14" selection-end-line="205" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="227" selection-start-line="227" selection-end-line="227" />
+        <state relative-caret-position="414">
+          <caret line="371" column="82" selection-start-line="371" selection-start-column="76" selection-end-line="371" selection-end-column="82" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -815,15 +875,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="79" column="32" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="32" />
+        <state relative-caret-position="431">
+          <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="68" column="79" selection-start-line="68" selection-start-column="79" selection-end-line="68" selection-end-column="79" />
+        <state relative-caret-position="6">
+          <caret line="547" column="28" selection-start-line="547" selection-start-column="28" selection-end-line="547" selection-end-column="28" />
           <folding>
             <element signature="e#0#85#0" expanded="true" />
           </folding>

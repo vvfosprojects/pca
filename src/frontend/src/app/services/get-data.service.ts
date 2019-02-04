@@ -8,6 +8,44 @@ import {AppError} from '../common/app-error';
 import {Comuni} from '../model/comuni';
 import {Province} from '../model/province';
 
+
+interface FormDomanda {
+
+  // ISTRUZIONE
+  istitutoFrequentato: string;
+  annoDiploma: string;
+  tipoDiploma: string;
+  provinciaIstituto: string;
+  comuneIstituto: string;
+  viaIstituto: string;
+
+  //  LINGUA
+  linguaSelezionata: number;
+
+  // TITOLI PREFERENZIALI
+
+  titoliPreferenziali: string[];
+  numeroFigli: string;
+
+  // RISERVE
+
+  riserve: string[];
+
+  // CATEGORIE PROTETTE
+
+  isCategorieProtette: string;
+
+  cateorieProtette: string;
+  percentualeInvalidita: string;
+  dataCertificazione: string;
+  invaliditaEnte: string;
+  drtAusili: boolean;
+  drtTempiAgiguntivi: boolean;
+  drtEsenzione: boolean;
+
+
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -113,7 +151,10 @@ export class GetDataService {
 
   getDomanda() {
     return this.http.get('http://localhost:3000/domanda')
-      .pipe(map(value => value))
+      .pipe(
+        map((domanda: any) => {
+          return domanda;
+        }))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {

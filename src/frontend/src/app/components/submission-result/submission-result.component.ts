@@ -4,13 +4,7 @@ import {GetDataService} from '../../services/get-data.service';
 import {AppError} from '../../common/app-error';
 import {NotFoundError} from '../../common/not-found-error';
 import {Router} from '@angular/router';
-import {Subject} from 'rxjs';
-import {MyErrorStateMatcher} from '../main-form/main-form.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {TableEntity} from '../../model/province';
-import {TitoliPreferenziali} from '../../model/titoliPreferenziali';
-import {LingueStraniere} from '../../model/lingueStraniere';
-import {Riserve} from '../../model/riserve';
 import {PutDataService} from '../../services/put-data.service';
 
 @Component({
@@ -20,20 +14,8 @@ import {PutDataService} from '../../services/put-data.service';
 })
 export class SubmissionResultComponent implements OnInit {
 
-  private _onDestroy = new Subject<void>();
 
-  testoDomanda: string;
-  matcher = new MyErrorStateMatcher();
   applicationForm: FormGroup;
-
-  province: string[] = [];
-  comuni: string[] = [];
-
-  provinceObj: TableEntity[] = [];
-
-  titoliPreferenziali: TitoliPreferenziali[];
-  riserveElenco: Riserve[];
-  lingueStraniere: LingueStraniere[];
 
   ngOnInit() {
 
@@ -102,12 +84,6 @@ export class SubmissionResultComponent implements OnInit {
   ) {
     this.createForm();
   }
-
-
-  /**
-   * Sets the initial value after the filter are loaded initially
-   */
-
 
   /*
    * TODO: Suddividere il gruppo in ulteriori sottogruppi in modo da rendere l'applicazione più modulare. ! NON URGERNTE

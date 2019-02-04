@@ -56,7 +56,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   public filteredComuni: ReplaySubject<String[]> = new ReplaySubject<String[]>(1);
 
   ngOnInit() {
-    this.apiCall();
+    this.RestApiCall();
     this.onChanges();
   }
 
@@ -138,8 +138,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-
-
   /*
   * Boilert template code: Codice creato solo per evitare di scrivere codice verboso nella view HTML.
   *
@@ -213,7 +211,9 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.applicationForm.get('gruppoCatPot.invaliditaEnte');
   }
 
-  apiCall() {
+  // Chiama i servizi REST da webpc
+
+  RestApiCall() {
     this.service.getProvince().subscribe((value) => {
 
         this.province = value;
@@ -354,11 +354,11 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     });
 
 // Abilita/Disabilita i campi cateogire protette
-    this.catProtette.valueChanges.subscribe( () => {
+    this.catProtette.valueChanges.subscribe(() => {
       if (this.catProtette.value.includes(3)) {
-       /* Object.keys(this.applicationForm.get('gruppoCatPot').controls).forEach(key => {
-          this.applicationForm.get('gruppoCatPot').get(key).disable();
-        }); */
+        /* Object.keys(this.applicationForm.get('gruppoCatPot').controls).forEach(key => {
+           this.applicationForm.get('gruppoCatPot').get(key).disable();
+         }); */
         this.applicationForm.get('gruppoCatPot').disable();
       } else {
         this.applicationForm.get('gruppoCatPot').enable();
@@ -541,16 +541,11 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   isDone() {
-    if (this.applicationForm.valid && this.gdprCompliancy.value && this.idoneita.value) {
-      return true;
-    }
-    return false;
+    return !!(this.applicationForm.valid && this.gdprCompliancy.value && this.idoneita.value);
   }
 
 
   popolaForm(domanda: any) {
-
-    // ISTRUZIONE
 
     this.istitutoFrequentato.patchValue(domanda.Istruzione.istitutoFrequentato);
     this.annoDiploma.patchValue(domanda.Istruzione.annoDiploma);
@@ -558,22 +553,11 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.provinciaIstituto.patchValue(domanda.Istruzione.provinciaIstituto.toUpperCase());
     this.comuneIstituto.patchValue(domanda.Istruzione.comuneIstituto.toUpperCase());
     this.viaIstituto.patchValue(domanda.Istruzione.sedeIstituto);
-
     this.linguaSelezionata.patchValue(domanda.LinguaStraniera.id - 1);
-
-    const arrTit = [];
-    for (const i of domanda.TitoliPreferenziali) {
-      arrTit.push(Number(i.id - 1));
-    }
-
-    this.titoloPref.patchValue((arrTit));
+    this.linguaSelezionata.patchValue(domanda.LinguaStraniera.id - 1);
+    this.titoloPref.patchValue(domanda.TitoliPreferenziali.map((x) => Number(x.id - 1)));
     this.numeroFigli.patchValue(domanda.FigliACarico.numSons);
-
-    const arrRis = [];
-    for (const i of domanda.Riserve) {
-      arrRis.push(Number(i.id - 1));
-    }
-    this.riserve.patchValue(arrRis);
+    this.riserve.patchValue(domanda.Riserve.map((x) => Number(x.id - 1)));
 
     if (domanda.CategorieProtette.isCategegorieProtette) {
       this.catProtette.patchValue('4');
