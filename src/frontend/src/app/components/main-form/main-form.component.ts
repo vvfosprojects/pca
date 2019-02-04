@@ -13,13 +13,11 @@ import {Router} from '@angular/router';
 import {TitoliPreferenziali} from '../../model/titoliPreferenziali';
 
 import {Province, TableEntity} from '../../model/province';
-import {Comuni} from '../../model/comuni';
 import {Riserve} from '../../model/riserve';
 import {Istruzione} from '../../model/istruzione';
 import {LingueStraniere} from '../../model/lingueStraniere';
 
 // Controllo dell'input in tempo reale
-
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -44,17 +42,12 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   testoDomanda: string;
 
-
   province: TableEntity[] = [];
-
   elencoTitoliPreferenziali: TitoliPreferenziali[];
   elencoRiserve: Riserve[];
   lingueStraniere: LingueStraniere[];
 
   maxDate = new Date(Date.now());
-
-  /* TODO: Trovare un metodo per inserire il seguente formControl nel gruppo ApplicationForm */
-  // public provinceDropdown: FormControl = new FormControl();
 
   /** Lista delle province filtrate dalle parole chiavi nel campo **/
   public filteredBanks: ReplaySubject<String[]> = new ReplaySubject<String[]>(1);
@@ -67,90 +60,9 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     this.onChanges();
   }
 
+
   get percInvalidita() {
     return this.applicationForm.get('gruppoCatPot.percInvalidita');
-  }
-
-
-  apiCall() {
-    this.service.getProvince().subscribe((value: Province) => {
-
-        this.province = value.table.map(ogg => ogg);
-        // Fin quando non trovo un modo per passare al filtro l'oggetto mi creo un array di solo stringhe
-        this.setInitialValue(this.filteredBanks);
-        // this.filteredBanks.next(this.province.slice());
-        this.filteredBanks.next(this.province.map(nome => nome.provincia).slice());
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          console.log('Error richiesta http');
-        } else {
-          console.log(error);
-        }
-      });
-
-    this.service.getLingueStraniere().subscribe((value: LingueStraniere[]) => {
-        this.lingueStraniere = value;
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          console.log('Error richiesta http');
-        } else {
-          console.log(error);
-        }
-      });
-
-    this.service.getTitoliPreferenziali().subscribe((value: TitoliPreferenziali[]) => {
-        this.elencoTitoliPreferenziali = value;
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          console.log('Error richiesta http');
-        } else {
-          console.log(error);
-        }
-      });
-
-    this.service.getRiserve().subscribe((value: Riserve[]) => {
-        this.elencoRiserve = value;
-      },
-      (error: AppError) => {
-        if (error instanceof NotFoundError) {
-          console.log('Error richiesta http');
-        } else {
-          console.log(error);
-        }
-      });
-
-    // Uso Forkjoin per aspettare che le chiamate vadano a buon fine e che non falliscano, infine carico i dati della domanda
-
-    forkJoin([this.service.getProvince(), this.service.getLingueStraniere(), this.service.getTitoliPreferenziali(), this.service.getRiserve()])
-      .pipe(switchMap(result => {
-        console.log('Province', result[0]);
-        console.log('LingueStraniere', result[1]);
-        console.log('TitoliPreferenziali', result[2]);
-        console.log('Riserve', result[3]);
-        return this.service.getDomanda();
-      }))
-      .subscribe((domanda: any) => {
-          this.popolaForm(domanda);
-        },
-        (error: AppError) => {
-          if (error instanceof NotFoundError) {
-            console.log('Error richiesta http');
-          } else {
-            console.log(error);
-          }
-        });
-
-
-    // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
-    this.provinceDropdown.valueChanges
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(() => {
-        this.filterList(this.province.map(nome => nome.provincia).slice(), this.provinceDropdown, this.filteredBanks);
-      });
-
   }
 
   ngAfterViewInit() {
@@ -301,6 +213,86 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.applicationForm.get('gruppoCatPot.invaliditaEnte');
   }
 
+  apiCall() {
+    this.service.getProvince().subscribe((value) => {
+
+        this.province = value;
+        this.setInitialValue(this.filteredBanks);
+        // Gli passo un array di stringhe contenente solo i nomi delle province
+        this.filteredBanks.next(this.province.map(nome => nome.provincia).slice());
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('Error richiesta http');
+        } else {
+          console.log(error);
+        }
+      });
+
+    this.service.getLingueStraniere().subscribe((value: LingueStraniere[]) => {
+        this.lingueStraniere = value;
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('Error richiesta http');
+        } else {
+          console.log(error);
+        }
+      });
+
+    this.service.getTitoliPreferenziali().subscribe((value: TitoliPreferenziali[]) => {
+        this.elencoTitoliPreferenziali = value;
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('Error richiesta http');
+        } else {
+          console.log(error);
+        }
+      });
+
+    this.service.getRiserve().subscribe((value: Riserve[]) => {
+        this.elencoRiserve = value;
+      },
+      (error: AppError) => {
+        if (error instanceof NotFoundError) {
+          console.log('Error richiesta http');
+        } else {
+          console.log(error);
+        }
+      });
+
+    // Uso Forkjoin per aspettare che le chiamate vadano a buon fine e che non falliscano, infine carico i dati della domanda
+
+    forkJoin([this.service.getProvince(), this.service.getLingueStraniere(), this.service.getTitoliPreferenziali(), this.service.getRiserve()])
+      .pipe(switchMap(result => {
+        console.log('Province', result[0]);
+        console.log('LingueStraniere', result[1]);
+        console.log('TitoliPreferenziali', result[2]);
+        console.log('Riserve', result[3]);
+        return this.service.getDomanda();
+      }))
+      .subscribe((domanda: any) => {
+          this.popolaForm(domanda);
+        },
+        (error: AppError) => {
+          if (error instanceof NotFoundError) {
+            console.log('Error richiesta http');
+          } else {
+            console.log(error);
+          }
+        });
+
+
+    // Analizza i cambiamenti del testo nel campo di ricerca del dropdown search
+    this.provinceDropdown.valueChanges
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(() => {
+        this.filterList(this.province.map(nome => nome.provincia).slice(), this.provinceDropdown, this.filteredBanks);
+      });
+
+  }
+
   get drto_ausili() {
     return this.applicationForm.get('gruppoCatPot.drto_ausili');
   }
@@ -325,12 +317,8 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
       let comuni: string[];
 
-      this.service.getComuni(codiceProvincia).subscribe((value: Comuni) => {
-          comuni = value.table
-            .map(nome => nome.comune)
-            .sort((a, b) => {
-              return a.length - b.length;
-            });
+      this.service.getComuni(codiceProvincia).subscribe((value) => {
+          comuni = value;
 
 //  Popolo la select box dei comuni
           this.setInitialValue(this.filteredComuni);
@@ -376,8 +364,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
         this.applicationForm.get('gruppoCatPot').enable();
       }
     });
-
-
 
   }
 

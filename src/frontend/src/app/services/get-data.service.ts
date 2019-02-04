@@ -5,6 +5,8 @@ import {catchError, map} from 'rxjs/operators';
 import {throwError} from 'rxjs';
 import {NotFoundError} from '../common/not-found-error';
 import {AppError} from '../common/app-error';
+import {Comuni} from '../model/comuni';
+import {Province} from '../model/province';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +77,9 @@ export class GetDataService {
 
   getProvince() {
     return this.http.get(this.apiDatav1 + '/province')
-      .pipe(map(value => value))
+      .pipe(map((value: Province) => {
+        return value.table.map(ogg => ogg);
+      }))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
@@ -86,9 +90,17 @@ export class GetDataService {
       );
   }
 
+  // Mappo i comuni e li riordino, in modo che durante la ricerca i comuni minori appaiano per primi
+
   getComuni(provincia: string) {
     return this.http.get(this.apiDatav1 + '/comuni/prov/' + provincia)
-      .pipe(map(value => value))
+      .pipe(map((value: Comuni) => {
+        return value.table
+          .map(nome => nome.comune)
+          .sort((a, b) => {
+            return a.length - b.length;
+          });
+      }))
       .pipe(
         catchError((error) => {
           if (error.status === 404) {
