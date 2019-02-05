@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1256504b-d318-4ba5-afab-f2a62378bd99" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/domanda.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/domanda.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/services/get-data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/services/get-data.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/module/routes.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/module/routes.module.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -23,24 +23,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/module/routes.module.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6">
-              <caret line="547" column="28" selection-start-line="547" selection-start-column="28" selection-end-line="547" selection-end-column="28" />
+            <state relative-caret-position="156">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
               <folding>
-                <element signature="e#0#85#0" expanded="true" />
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#mat-icon#0;n#a#0;n#div#0;n#div#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#mat-icon#0;n#a#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#mat-icon#0;n#a#1;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#mat-icon#0;n#a#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#1;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#mat-icon#0;n#a#1;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#mat-toolbar#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -57,9 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>invalidità</find>
-      <find>number</find>
-      <find>personal</find>
       <find>oncha</find>
       <find>invalid</find>
       <find>controllo</find>
@@ -86,7 +114,10 @@
       <find>getDomanda</find>
       <find>popolaF</find>
       <find>popola</find>
+      <find>IstitutoFre</find>
       <find>lingua</find>
+      <find>maxDate</find>
+      <find>testoDomanda</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -103,21 +134,17 @@
         <option value="$PROJECT_DIR$/src/environments/environment.prod.ts" />
         <option value="$PROJECT_DIR$/src/app/components/spid-login/spid.component.html" />
         <option value="$PROJECT_DIR$/src/app/components/spid-login/spid.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/module/routes.module.ts" />
         <option value="$PROJECT_DIR$/src/app/components/spid-data/spid-data.component.html" />
         <option value="$PROJECT_DIR$/src/app/module/material.module.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/main-form.component.css" />
         <option value="$PROJECT_DIR$/node_modules/@angular/material/_theming.scss" />
         <option value="$PROJECT_DIR$/src/assets/style/vvf-theme.scss" />
         <option value="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.css" />
-        <option value="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html" />
         <option value="$PROJECT_DIR$/src/main.ts" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/styles.css" />
         <option value="$PROJECT_DIR$/src/app/services/loader.service.ts" />
-        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/src/app/layout/main-nav/parser.ts" />
         <option value="$PROJECT_DIR$/src/app/components/submission-result/parse.ts" />
         <option value="$APPLICATION_CONFIG_DIR$/webstorm64.exe.vmoptions" />
@@ -135,14 +162,19 @@
         <option value="$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.ts" />
         <option value="$PROJECT_DIR$/src/app/services/get-data.service.ts" />
         <option value="$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html" />
+        <option value="$PROJECT_DIR$/src/app/layout/layout.component.html" />
+        <option value="$PROJECT_DIR$/src/app/app.component.html" />
+        <option value="$PROJECT_DIR$/src/app/module/routes.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/app.module.ts" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="26" />
-    <option name="y" value="-12" />
+    <option name="x" value="17" />
+    <option name="y" value="-18" />
     <option name="width" value="1940" />
-    <option name="height" value="1060" />
+    <option name="height" value="1068" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -150,6 +182,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -181,13 +214,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-              <item name="main-form" type="462c0819:PsiDirectoryNode" />
+              <item name="spid-login" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="frontend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -206,14 +245,14 @@
     <property name="ts.external.directory.path" value="C:\Users\RobertTurturica\WebstormProjects\mirror commit\pca\src\frontend\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Robert\WebstormProjects\Angular\Frontend-Bando-Vigili\src\app\components\spid-login" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\RobertTurturica\WebstormProjects\mirror commit\pca\src\frontend\src\app\components\main-form" />
       <recent name="C:\Users\RobertTurturica\WebstormProjects\mirror commit\pca\src\frontend\src" />
       <recent name="C:\Users\Robert\WebstormProjects\Angular\Frontend-Bando-Vigili\src\app\layout" />
       <recent name="C:\Users\Robert\WebstormProjects\Angular\Frontend-Bando-Vigili\src\app\components" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Robert\WebstormProjects\Angular\Frontend-Bando-Vigili\src\app\components\spid-login" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -291,7 +330,8 @@
       <workItem from="1549107787828" duration="1873000" />
       <workItem from="1549264304956" duration="3270000" />
       <workItem from="1549267736579" duration="807000" />
-      <workItem from="1549270075810" duration="1753000" />
+      <workItem from="1549270075810" duration="7349000" />
+      <workItem from="1549350569719" duration="3313000" />
     </task>
     <task id="LOCAL-00001" summary="Aggiunto component mancante, creato tema personalizzato per ii vvf">
       <created>1548791943067</created>
@@ -454,17 +494,24 @@
       <option name="project" value="LOCAL" />
       <updated>1549265465051</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Rimosso Dichiarazione variaibili inutili">
+      <created>1549271918874</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1549271918874</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69181000" />
+    <option name="totallyTimeSpent" value="78090000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.3467902" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25678357" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -537,18 +584,12 @@
     <MESSAGE value="Implementazione iniziale di onChanges" />
     <MESSAGE value="rifattorizzato i reactive form, rifattorizzato i metodi" />
     <MESSAGE value="Spostato operazioni sull'array di comuni e province in map" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spostato operazioni sull'array di comuni e province in map" />
+    <MESSAGE value="Rimosso Dichiarazione variaibili inutili" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rimosso Dichiarazione variaibili inutili" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/components/submission-result/submission-result.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/angular.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -578,36 +619,6 @@
         <state>
           <folding>
             <element signature="e#0#73#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/spid-login/spid.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="71" selection-start-line="7" selection-start-column="71" selection-end-line="7" selection-end-column="71" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/module/routes.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/spid-login/spid.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -660,26 +671,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#mat-icon#0;n#a#0;n#div#0;n#div#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#mat-icon#0;n#a#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#mat-icon#0;n#a#1;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#mat-icon#0;n#a#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#mat-icon#0;n#a#1;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#mat-toolbar#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -720,32 +711,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/loader-service.service.ts" />
     <entry file="file://$PROJECT_DIR$/src/app/services/loader.service.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/parser.ts" />
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -865,30 +830,109 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="371" column="82" selection-start-line="371" selection-start-column="76" selection-end-line="371" selection-end-column="82" />
+        <state relative-caret-position="648">
+          <caret line="372" column="4" lean-forward="true" selection-start-line="372" selection-start-column="4" selection-end-line="372" selection-end-column="24" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="96" column="34" lean-forward="true" selection-start-line="96" selection-start-column="34" selection-end-line="96" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/services/get-data.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="155" column="21" selection-start-line="155" selection-start-column="21" selection-end-line="155" selection-end-column="21" />
+        <state relative-caret-position="2278">
+          <caret line="134" column="20" lean-forward="true" selection-start-line="134" selection-start-column="20" selection-end-line="134" selection-end-column="20" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/components/main-form/main-form.component.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6">
-          <caret line="547" column="28" selection-start-line="547" selection-start-column="28" selection-end-line="547" selection-end-column="28" />
+        <state>
           <folding>
-            <element signature="e#0#85#0" expanded="true" />
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/spid-login/spid.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/components/spid-login/spid.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/layout/layout.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/layout/main-nav/main-nav.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#mat-icon#0;n#a#0;n#div#0;n#div#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#mat-icon#0;n#a#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#mat-icon#0;n#a#1;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#mat-icon#0;n#a#0;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#mat-icon#0;n#a#1;n#div#0;n#mat-nav-list#0;n#div#0;n#mat-sidenav#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#mat-toolbar#0;n#mat-sidenav-content#0;n#mat-sidenav-container#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/module/routes.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>

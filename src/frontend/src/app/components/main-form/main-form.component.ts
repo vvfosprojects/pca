@@ -25,12 +25,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-
 @Component({
   selector: 'app-main-form',
   templateUrl: './main-form.component.html',
   styleUrls: ['./main-form.component.css']
 })
+
 export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('singleSelect') singleSelect: MatSelect;
@@ -40,13 +40,14 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   matcher = new MyErrorStateMatcher();
   applicationForm: FormGroup;
 
-  testoDomanda: string;
+  textOnSendButton: string;
 
   province: TableEntity[] = [];
   elencoTitoliPreferenziali: TitoliPreferenziali[];
   elencoRiserve: Riserve[];
   lingueStraniere: LingueStraniere[];
 
+  // Usato per settare la data massima del date picker
   maxDate = new Date(Date.now());
 
   /** Lista delle province filtrate dalle parole chiavi nel campo **/
@@ -65,12 +66,8 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.applicationForm.get('gruppoCatPot.percInvalidita');
   }
 
-  ngAfterViewInit() {
-    if (this.istitutoFrequentato.value === '' || this.istitutoFrequentato.value == null) {
-      this.testoDomanda = 'Invia Domanda';
-    } else {
-      this.testoDomanda = 'Modifica Domanda';
-    }
+  get dataCertificazione() {
+    return this.applicationForm.get('gruppoCatPot.dataCertificazione');
   }
 
   ngOnDestroy() {
@@ -126,15 +123,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     filter.next(
       value.filter(prov => prov.toLocaleLowerCase().indexOf(search) > -1)
     );
-  }
-
-
-  /*
-   * TODO: Suddividere il gruppo in ulteriori sottogruppi in modo da rendere l'applicazione più modulare. ! NON URGERNTE
-   */
-
-  get dataCertificazione() {
-    return this.applicationForm.get('gruppoCatPot.dataCertificazione');
   }
 
 
@@ -210,6 +198,27 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
   get invaliditaEnte() {
     return this.applicationForm.get('gruppoCatPot.invaliditaEnte');
   }
+
+  get drto_ausili() {
+    return this.applicationForm.get('gruppoCatPot.drto_ausili');
+  }
+
+  get drto_tempiAggiuntivi() {
+    return this.applicationForm.get('gruppoCatPot.drto_tempiAggiuntivi');
+  }
+
+  get drto_esenzioneProvaPresel() {
+    return this.applicationForm.get('gruppoCatPot.drto_esenzioneProvaPresel');
+  }
+
+  ngAfterViewInit() {
+    if (this.istitutoFrequentato.value === '' || this.istitutoFrequentato.value == null) {
+      this.textOnSendButton = 'Invia Domanda';
+    } else {
+      this.textOnSendButton = 'Modifica Domanda';
+    }
+  }
+
 
   // Chiama i servizi REST da webpc
 
@@ -293,17 +302,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   }
 
-  get drto_ausili() {
-    return this.applicationForm.get('gruppoCatPot.drto_ausili');
-  }
-
-  get drto_tempiAggiuntivi() {
-    return this.applicationForm.get('gruppoCatPot.drto_tempiAggiuntivi');
-  }
-
-  get drto_esenzioneProvaPresel() {
-    return this.applicationForm.get('gruppoCatPot.drto_esenzioneProvaPresel');
-  }
 
   onChanges(): void {
 
@@ -356,9 +354,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
 // Abilita/Disabilita i campi cateogire protette
     this.catProtette.valueChanges.subscribe(() => {
       if (this.catProtette.value.includes(3)) {
-        /* Object.keys(this.applicationForm.get('gruppoCatPot').controls).forEach(key => {
-           this.applicationForm.get('gruppoCatPot').get(key).disable();
-         }); */
         this.applicationForm.get('gruppoCatPot').disable();
       } else {
         this.applicationForm.get('gruppoCatPot').enable();
@@ -514,7 +509,6 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return objCatProtette;
   }
 
-
   /*
 * Il compito va assegnato ad un service visto che dovrà essere passato tramite protoccolo HTTP
 * TODO: Rifattorizzare il codice, da renderlo modulare è troppo corposo
@@ -544,7 +538,7 @@ export class MainFormComponent implements OnInit, AfterViewInit, OnDestroy {
     return !!(this.applicationForm.valid && this.gdprCompliancy.value && this.idoneita.value);
   }
 
-
+// Riempe i campi con i dati REST inviati da web pc
   popolaForm(domanda: any) {
 
     this.istitutoFrequentato.patchValue(domanda.Istruzione.istitutoFrequentato);
