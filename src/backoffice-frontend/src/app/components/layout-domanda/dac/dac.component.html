@@ -1,0 +1,271 @@
+
+<div class="container">
+
+  <mat-divider class="interlinea"></mat-divider>
+
+  <mat-card>
+    <form [formGroup]="applicationForm">
+      <div formGroupName="personalData">
+        <div class="layout">
+          <mat-form-field class="col col-complementary mat-form-field-disabled">
+            <input matInput
+                   placeholder="Cognome"
+                   [formControl]="cognome"
+            >
+          </mat-form-field>
+
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Nome"
+                   [formControl]="nome"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Codice Fiscale"
+                   [formControl]="codiceFiscale"
+            >
+          </mat-form-field>
+
+        </div>
+
+        <div>
+          <div class="layout">
+            <mat-form-field class="col col-complementary">
+              <input matInput
+                     placeholder="Data di nascita"
+                     [formControl]="dataDiNascita"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     placeholder="Nato a"
+                     [formControl]="luogoNascita"
+              >
+            </mat-form-field>
+          </div>
+
+          <div class="layout">
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     placeholder="Residenza"
+                     [formControl]="residenza"
+              >
+            </mat-form-field>
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     placeholder="Via"
+                     [formControl]="via"
+              >
+            </mat-form-field>
+          </div>
+        </div>
+
+
+        <div class="layout">
+          <mat-form-field class="col col-complementary">
+            <span matPrefix></span>
+            <input type="tel"
+                   matInput
+                   placeholder="Telefono"
+                   [formControl]="telefono"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Email"
+                   [formControl]="email"
+            >
+          </mat-form-field>
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Domicilio Digitale"
+                   [formControl]="domicilioDigitale"
+            >
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+  </mat-card>
+
+  <mat-divider class="interlinea"></mat-divider>
+
+  <!--Dati Istruzione-->
+
+  <mat-card>
+    <form [formGroup]="applicationForm">
+      <div formGroupName="personalData">
+        <div class="layout">
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   [formControl]="istitutoFrequentato"
+                   placeholder="Istituto Frequentato">
+          </mat-form-field>
+
+          <mat-form-field class="col col-complementary">
+            <input matInput
+                   [formControl]="tipoDiploma"
+                   placeholder="Tipo Diploma">
+          </mat-form-field>
+
+
+          <mat-form-field class="col col-complementary">
+            <input matInput
+                   placeholder="Anno Diploma"
+                   [formControl]="annoDiploma">
+          </mat-form-field>
+        </div>
+
+
+        <div class="layout">
+
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Provincia Selezionata"
+                   [formControl]="provinciaIstituto">
+          </mat-form-field>
+
+          <mat-form-field class="col col-main">
+            <input matInput
+                   placeholder="Comune Selezionato"
+                   [formControl]="comuneIstituto">
+          </mat-form-field>
+        </div>
+
+        <div class="layout">
+          <mat-form-field class="col col-main">
+            <input matInput
+                   [formControl]="viaIstituto"
+                   placeholder="Sede Istituto">
+          </mat-form-field>
+        </div>
+
+      </div>
+    </form>
+  </mat-card>
+
+  <!--Fine Dati Istruzione-->
+
+  <mat-divider class="interlinea"></mat-divider>
+
+  <!--Altri Dati-->
+  <mat-card>
+    <form [formGroup]="applicationForm">
+      <div formGroupName="personalData">
+
+        <div class="layout">
+          <mat-form-field class="col col-main">
+            <input matInput
+                   [formControl]="linguaSelezionata"
+                   placeholder="Lingua selezionata per il colloquio">
+          </mat-form-field>
+        </div>
+
+        <div class="layout">
+          <mat-form-field class="col col-main">
+            <input matInput
+                   [formControl]="titoloPref"
+                   placeholder="Titoli Selezionati">
+          </mat-form-field>
+        </div>
+
+
+        <div *ngIf="titoloPref.value.includes(16)" class="layout">
+          <mat-form-field class="col col-main">
+
+            <mat-select placeholder="Seleziona numero dei figli a carico"
+                        [formControl]="numeroFigli">
+
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+              <mat-option value="5">5+</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="layout">
+          <mat-form-field class="col col-main">
+            <input matInput
+                   [formControl]="riserve"
+                   placeholder="Riserve selezionate">
+          </mat-form-field>
+        </div>
+
+        <div>
+
+          <div class="layout">
+            <mat-form-field class="col col-main">
+              <mat-select placeholder="Appartenente alle categorie protette"
+                          [formControl]="catProtette">
+
+                <mat-option value="3">NO</mat-option>
+                <mat-option value="4">SI</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="catProtette.value.includes('4')" class="layout">
+            <mat-form-field class="col-complementary">
+              <input matInput
+                     placeholder="Percentuale invalidità"
+                     [formControl]="percInvalidita"
+                     [value]='percInvalidita.value + "%"'
+                     maxlength="3"
+                     minlength="1">
+            </mat-form-field>
+
+            <mat-form-field class="col col-complementary">
+              <input matInput
+                     [formControl]="dataCertificazione"
+                     placeholder="Data certificazione">
+            </mat-form-field>
+
+            <mat-form-field class="col col-main">
+              <input matInput
+                     [formControl]="invaliditaEnte"
+                     placeholder="Rilasciato Da"
+                     maxlength="255"
+                     name="invdaliditaEnte">
+            </mat-form-field>
+
+            <div>
+              <br>
+              <mat-checkbox name="drto_ausili"
+                            [formControl]="drto_ausili">Dichiaro di avere diritto ad usufruire di ausili per lo
+                svolgimento delle prove d'esame
+              </mat-checkbox>
+              <br>
+              <div class="interlinea">
+              </div>
+              <mat-checkbox name="drto_tempiAggiuntivi"
+                            [formControl]="drto_tempiAggiuntivi"> Dichiaro di avere diritto ad usufruire di eventuali
+                tempi aggiuntivi
+              </mat-checkbox>
+              <br>
+              <div class="interlinea">
+              </div>
+              <mat-checkbox name="drto_esenzioneProvaPresel"
+                            [formControl]="drto_esenzioneProvaPresel">Dichiaro di avere diritto, in quanto affetto da
+                invalità uguale o superiore all'80%, a non effettuare l'eventuale prova preselettiva
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+  <!--Fine altri Dati-->
+
+</div>

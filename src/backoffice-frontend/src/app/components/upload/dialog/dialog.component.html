@@ -1,0 +1,47 @@
+<input type="file" #file style="display: none" (change)="onFilesAdded()" multiple/>
+<div class="container" fxLayout="column" fxLayoutAlign="space-evenly stretch">
+  <h1 mat-dialog-title style="text-align: center">CARICA CSV</h1>
+
+  <div class="layout">
+    <button  [disabled]="uploading || uploadSuccessful" mat-raised-button color="primary" class="add-files-btn"
+            (click)="addFiles()">
+      AGGIUNGI FILE
+      <mat-icon>cloud_upload</mat-icon>
+    </button>
+  </div>
+
+
+  <!-- This is the content of the dialog, containing a list of the files to upload -->
+  <mat-dialog-content class="layout">
+
+    <mat-list class="col col-complementary">
+      <mat-list-item *ngFor="let file of files">
+
+        <h4 mat-line>{{file.name}}</h4>
+
+        <mat-progress-bar *ngIf="progress" mode="determinate"
+                          [value]="progress[file.name].progress | async"></mat-progress-bar>
+
+      </mat-list-item>
+    </mat-list>
+
+  </mat-dialog-content>
+
+  <div *ngIf="extensionState" class="layout" >
+    <mat-error class="col col-complementary">IL FILE DEVE ESSERE UN CSV</mat-error>
+  </div>
+
+  <br><br><br>
+
+  <!-- This are the actions of the dialog, containing the primary and the cancel button-->
+<div>
+  <mat-dialog-actions class="actions" class="layout">
+
+    <button *ngIf="showCancelButton" mat-button mat-dialog-close>Cancel</button>
+
+    <button mat-raised-button color="primary" [disabled]="!canBeClosed"
+            (click)="closeDialog()">{{primaryButtonText}}</button>
+
+  </mat-dialog-actions>
+</div>
+</div>

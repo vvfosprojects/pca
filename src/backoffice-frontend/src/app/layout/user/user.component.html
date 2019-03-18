@@ -1,0 +1,37 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar style="background-color: #AB201D; color: white">MENU</mat-toolbar>
+    <mat-nav-list>
+      <mat-toolbar style="background-color: #f5f5f5" *ngIf="showMenuContestuale()">MENU CONTESTUALE</mat-toolbar>
+      <a *ngIf="isInEsito()"  mat-list-item style="font-size: 14px" (click)="goToDomanda()"> <mat-icon style="padding-right: 1em;">receipt</mat-icon>VISUALIZZA DOMANDA</a>
+      <a *ngIf="isInDomanda()"  mat-list-item style="font-size: 14px" (click)="goToEsito()"> <mat-icon style="padding-right: 1em;">receipt</mat-icon>VISUALIZZA ESITO</a>
+      <a href="javascript:window.print()" mat-list-item style="font-size: 14px" *ngIf="isInEsito()" > <mat-icon style="padding-right: 1em;">print</mat-icon> STAMPA DOMANDA</a>
+      <mat-toolbar style="background-color: #f5f5f5">MENU NAVIGAZIONE</mat-toolbar>
+      <a [routerLink]="['/concorsi']" mat-list-item style="font-size: 14px"> <mat-icon style="padding-right: 1em;">notes</mat-icon>CONCORSI</a>
+      <a [routerLink]="['/upload']" mat-list-item style="font-size: 14px"> <mat-icon style="padding-right: 1em;">cloud_upload</mat-icon>INVIA CSV</a>
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: #AB201D; color: white;">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{title}}</span>
+      <span class="spacer"></span>
+      <button mat-button [routerLink]="['/']" (click)="logout()">ESCI
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

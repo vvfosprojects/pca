@@ -1,66 +1,62 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
-import { StatisticsServiceFake } from './services/statistics.service.fake';
-import { StatisticsService } from './services/statistics.service';
-import { GetApplicationRowsServiceFake } from './services/get-application-rows.service.fake';
-import { GetApplicationRowsService } from './services/get-application-rows.service';
-import { ApplicationDetailService } from './services/application-detail.service';
-import { ApplicationDetailServiceFake } from './services/application-detail.service.fake';
 import { AppComponent } from './app.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { ApplicationTableComponent } from './application-table/application-table.component';
-import { FriendlyHourPipe } from './shared/pipes/friendly-hour.pipe';
-import { ApplicationDetailComponent } from './application-detail/application-detail.component';
-import { ControlPanelComponent } from './control-panel/control-panel.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { routes } from './routes';
-import { LoginComponent } from './login/login.component';
-import { AuthService } from './services/auth.service';
-import { AuthServiceFake } from './services/auth.service.fake';
-import { AuthInterceptor } from './services/auth.interceptor';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SearchBoxComponent } from './search-box/search-box.component';
+import {DemoMaterialModule} from './module/material-module';
+import { LoginComponent } from './components/login/login.component';
+import { ListaConcorsiComponent } from './components/lista-concorsi/lista-concorsi.component';
+import { DacComponent } from './components/layout-domanda/dac/dac.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { DacDomandeComponent } from './components/lista-domande/dac-domande/dac-domande.component';
 
+
+import {CoursesService} from './services/dac/courses.service';
+import {CourseResolver} from './services/dac/course.resolver';
+import {AuthService} from './services/auth.service';
+import {AuthGuardService} from './auth/auth-guard.service';
+import {UploadModule} from './module/upload/upload.module';
+import {GuestModule} from './module/route/guest.module';
+import {UserModule} from './module/route/user.module';
+import { UserComponent } from './layout/user/user.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { DialogAnnullaDomandaComponent } from './components/lista-domande/dac-domande/dialog-annulla-domanda/dialog-annulla-domanda.component';
+import { EsitoProveComponent } from './components/esito-prove/esito-prove.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StatisticsComponent,
-    ApplicationTableComponent,
-    FriendlyHourPipe,
-    ApplicationDetailComponent,
-    ControlPanelComponent,
-    PageNotFoundComponent,
     LoginComponent,
-    NavbarComponent,
-    SearchBoxComponent
-   ],
+    ListaConcorsiComponent,
+    DacComponent,
+    PageNotFoundComponent,
+    DacDomandeComponent,
+    UserComponent,
+    DialogAnnullaDomandaComponent,
+    EsitoProveComponent,
+  ],
   imports: [
-    NgbModule.forRoot(),
     BrowserModule,
+    DemoMaterialModule,
+    UploadModule,
     FormsModule,
+    BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
-   ],
-  providers: [
-    { provide: ApplicationDetailService, useClass: ApplicationDetailServiceFake },
-    { provide: StatisticsService, useClass: StatisticsServiceFake },
-    { provide: GetApplicationRowsService, useClass: GetApplicationRowsServiceFake },
-    { provide: AuthService, useClass: AuthServiceFake },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    }
+    GuestModule,
+    UserModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
-  bootstrap: [AppComponent]
+  entryComponents: [DialogAnnullaDomandaComponent],
+  providers: [CoursesService, CourseResolver, AuthService, AuthGuardService],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

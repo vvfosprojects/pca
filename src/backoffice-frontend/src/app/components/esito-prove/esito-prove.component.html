@@ -1,0 +1,84 @@
+<br>
+<div class="layout poso">
+  <div class="col">
+<mat-card>
+        <table   mat-table [dataSource]="dataCandidato" >
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="testo">
+            <th mat-header-cell *matHeaderCellDef> DATI ANAGRAFICI CANDIDATO</th>
+            <td mat-cell *matCellDef="let element; let i = index"> {{element[0]}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="dati">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">  {{element[1]}} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="colonne"></tr>
+          <tr mat-row *matRowDef="let row; columns: colonne;"></tr>
+        </table>
+  </mat-card>
+  </div>
+  <div style="padding: 1em"></div>
+  <div class="col col-main">
+
+    <mat-card>
+       <table id="dataTable" mat-table [dataSource]="dataSource">
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="data">
+            <th class="header-th" mat-header-cell *matHeaderCellDef> DATA PROVA</th>
+            <td mat-cell *matCellDef="let element"> {{element.dataProva}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="tipo">
+            <th class="header-th"mat-header-cell *matHeaderCellDef> TIPO PROVA</th>
+            <td mat-cell *matCellDef="let element"> {{element.nomeProva}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="sessione">
+            <th class="header-th" mat-header-cell *matHeaderCellDef>SESSIONE </th>
+            <td mat-cell *matCellDef="let element"> {{element.sessione}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="esito">
+            <th class="header-th" mat-header-cell *matHeaderCellDef> ESITO PROVA</th>
+            <td mat-cell *matCellDef="let element"> {{element.esito}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="punteggio">
+            <th class="header-th" mat-header-cell *matHeaderCellDef> PUNTEGGIO</th>
+            <td mat-cell *matCellDef="let element"> {{element.punteggio}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="allegati">
+            <th class="header-th" mat-header-cell *matHeaderCellDef> ALLEGATI</th>
+            <td mat-cell *matCellDef="let element"> {{element.allegati}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </mat-card>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,18 +1,29 @@
-# BackofficeFrontend
+# Backoffice Rimodulato
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Il server gira su express js, per avviarlo usate il comando:
+-npm run server 
 
-## Code scaffolding
+Il server gira su localhost, porta: 9000
+Per cambiare la porta e l'indirizzo ip editare i seguenti file:
+- server.ts
+- proxy.js
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Development application
+
+Per avviare l'applicazione usate il comando:
+- npm start
+
+non usate ng server, altrimenti non si avvierà il proxy, per modificare il comando, modificate:
+- package.json
+
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
 
@@ -24,4 +35,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Per maggiori informazioni, contattatemi.

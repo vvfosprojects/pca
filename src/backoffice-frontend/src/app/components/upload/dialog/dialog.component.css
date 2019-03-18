@@ -1,0 +1,56 @@
+.add-files-btn {
+  float: right;
+}
+
+:host {
+  height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.container {
+  height: 100%;
+}
+
+
+/* Flex Layout: */
+
+.col-main {
+  flex: 2;
+}
+
+.col-complementary {
+  flex: 1;
+}
+
+
+@media only screen and (min-width: 640px) {
+  .layout {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* etc */
+
+body {
+  margin: 1.5em;
+}
+
+.container {
+  max-width: 90em;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.col {
+  padding-right:1em;
+  margin: 0 2px 2px 0;
+}
+
+

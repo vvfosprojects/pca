@@ -1,0 +1,201 @@
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
+    <mat-toolbar>FILTRA PER STATO</mat-toolbar>
+    <ul>
+      <li> <mat-checkbox>SOSPESA</mat-checkbox></li>
+      <li><mat-checkbox>INVIATA</mat-checkbox></li>
+    </ul>
+
+    <mat-toolbar>FILTRA PER DATA</mat-toolbar>
+    <ul>
+      <li>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="INIZIO RANGE">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </li>
+      <li>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker1" placeholder="FINE RANGE">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </li>
+    </ul>
+
+
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+
+    <mat-card>
+
+      <mat-form-field appearance="outline">
+        <mat-label></mat-label>
+        <input matInput placeholder="Cerca candidato per il suo identificativo" #input>
+        <mat-icon matPrefix>search</mat-icon>
+        <mat-icon matSuffix style="cursor: pointer;" (click)="drawer.toggle()">tune</mat-icon>
+        <mat-hint>Cerca il canditato in base al suo nome e cognome </mat-hint>
+      </mat-form-field>
+
+
+      <ng-container *ngIf="filter">
+        <p>MENU VISIBILE</p>
+      </ng-container>
+
+      <div class="example-loading-shade" *ngIf="dataSource.loading$ | async">
+        <mat-spinner></mat-spinner>
+      </div>
+
+      <div class="layout" style="padding-left: 1.5em;">
+        <div class="col col-complementary">
+
+          <mat-checkbox (change)="$event ? masterToggle() : null" style="margin-left:auto; margin-right:0"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()">
+          </mat-checkbox >
+
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+
+            <mat-icon>arrow_drop_down</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu" >
+
+            <button mat-menu-item (click)="masterToggle()">
+              <span>TUTTI</span>
+            </button>
+
+            <button mat-menu-item>
+              <span>INVIATI</span>
+            </button>
+
+            <button mat-menu-item>
+              <span>ANNULLATI</span>
+            </button>
+
+          </mat-menu>
+
+          <button mat-icon-button *ngIf="startTogglie()" (click)="openDialog()" matTooltip="Elimina selezionati">
+            <mat-icon style="color: #333333; font-size: 1.5em">delete</mat-icon>
+          </button>
+        </div>
+
+      </div>
+      <br>
+      <mat-table class="lessons-table mat-elevation-z8" [dataSource]="dataSource"
+                 matSort matSortActive="seqNo" matSortDirection="asc" matSortDisableClear>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <mat-header-cell *matHeaderCellDef>
+          </mat-header-cell>
+          <mat-cell mat-cell *matCellDef="let row">
+
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+
+          <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+
+          <mat-cell *matCellDef="let lesson">
+            {{lesson.id}}
+          </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="spid.nome">
+
+          <mat-header-cell *matHeaderCellDef>Nominativo</mat-header-cell>
+
+          <mat-cell
+            *matCellDef="let lesson">
+            {{lesson.spid.cognome}} {{lesson.spid.nome}}
+          </mat-cell>
+
+        </ng-container>
+
+
+        <ng-container matColumnDef="spid.codiceFiscale">
+
+          <mat-header-cell *matHeaderCellDef>Codice Fiscale</mat-header-cell>
+
+          <mat-cell class="description-cell"
+                    *matCellDef="let lesson">
+            {{lesson.spid.codiceFiscale}}
+          </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="stato">
+          <mat-header-cell *matHeaderCellDef>STATO</mat-header-cell>
+          <mat-cell class="description-cell"
+                    *matCellDef="let lesson">
+            lesson.statoDomanda
+          </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="data-domanda">
+          <mat-header-cell *matHeaderCellDef>DATA DOMANDA</mat-header-cell>
+          <mat-cell class="description-cell"
+                    *matCellDef="let lesson">
+            {{lesson.dataDomanda}}
+          </mat-cell>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="edit">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell class="description-cell"
+                    *matCellDef="let lesson">
+            <button mat-button  [routerLink]="['/domanda-dac/', lesson.id]">
+              <mat-icon>open_in_new</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="infoEdit">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell class="description-cell"
+                    *matCellDef="let lesson">
+            <div style="padding-left: 85%;">
+              <mat-icon (click)="openDialog()" style="cursor: pointer;">delete</mat-icon>
+            </div>
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+      </mat-table>
+
+      <mat-paginator [length]="course?.lessonsCount" [pageSize]="10"
+                     [pageSizeOptions]="[3, 5, 10]"></mat-paginator>
+
+
+
+    </mat-card>
+
+  </div>
+
+</mat-drawer-container>
+
+
+<br>
+
+
+
+
+
+
+
