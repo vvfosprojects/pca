@@ -1,11 +1,10 @@
-publiccode-yaml-version: "http://w3id.org/publiccode/version/0.1"
+publiccodeYmlVersion: "0.2"
 
-name: pca 
+name: pca
 applicationSuite: Public Competition Application (PCA) Collector
 url: "https://github.com/vvfosprojects/pca.git"        # URL of this repository
 landingURL: "https://github.com/vvfosprojects/pca"
 
-# isBasedOn: ""
 softwareVersion: "0.1"
 releaseDate: "2018-07-02"
 # logo:
@@ -20,8 +19,9 @@ platforms: # or Windows, Mac, Linux, etc.
   - web browser (client)
   - asp.net WebApi written in C# .net 4.6 (server)
 
-tags:
-  - archiving
+categories:
+  - procurement
+  - applicant-tracking
 
 usedBy:
   - Corpo Nazionale dei Vigili del Fuoco
@@ -33,30 +33,18 @@ developmentStatus: development
 softwareType: "standalone"
 
 intendedAudience:
-  onlyFor:
-    - cities
-    - health-services
-    - police-forces
-    - it-ag-sanita
-    - it-altrilocali
-    - it-aci
-    - hospital
-    - it-az-servizi
-    - it-metro
-    - city
-    - it-regione
   countries:
     - IT
 
 description:
-  eng:
+  en:
     localisedName: PCA
     genericName: Public Competition Application
     shortDescription: >
         Application aimed at gathering applications
         for public competitions. It is web based and can be
         used both by applicants and by backoffice users.
-        
+
     longDescription: >
         PCA is a software aimed at gathering applications
         for public competitions. The software is designed not
@@ -94,9 +82,6 @@ description:
     documentation: "https://github.com/vvfosprojects/pca"
     apiDocumentation: "https://github.com/vvfosprojects/pca"
 
-    freeTags:
-       - public competitions
-
     featureList:
        - Web based frontend for public applicants.
        - Web based backoffice frontend to check, navigate submitted
@@ -111,7 +96,7 @@ legal:
   authorsFile: AUTHORS
 
 maintenance:
-  type: "up to internal employees"
+  type: "internal"
 
   contacts:
     - name: Marcello Esposito
@@ -121,7 +106,7 @@ maintenance:
 localisation:
   localisationReady: no
   availableLanguages:
-    - ita
+    - it
 
 dependsOn:
   open:
@@ -133,36 +118,17 @@ dependsOn:
     - name: MS Internet Information Services
 
 it:
-
   conforme:
-    accessibile: no
-    interoperabile: no
-    sicuro: yes
-    privacy: yes
+    lineeGuidaDesign: no
+    modelloInteroperabilita: no
+    misureMinimeSicurezza: yes
+    gdpr: yes
 
   riuso:
-    codiceIPA: 5EDW58
+    codiceIPA: "m_it"
 
-  spid: no
-  pagopa: no
-  cie: no
-  anpr: no
-  ecosistemi:
-    - sanita
-    - welfare
-    - finanza-pubblica
-    - scuola
-    - istruzione-superiore-ricerca
-    - difesa-sicurezza-soccorso-legalita
-    - giustizia
-    - infrastruttura-logistica
-    - sviluppo-sostenibilita
-    - beni-culturali-turismo
-    - agricoltura
-    - italia-europa-mondo
-
-  designKit:
-    seo: no
-    ui: no
-    web: no
-    content: no
+  piattaforme:
+    spid: no
+    pagopa: no
+    cie: no
+    anpr: no
