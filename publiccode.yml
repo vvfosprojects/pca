@@ -88,6 +88,9 @@ description:
          applications.
        - RESTful backend
        - Publishes real-time statistics on the system usage.
+    screenshots:
+       - doc/images/frontend.png
+       - doc/images/backoffice-frontend.png
 
 legal:
   license: AGPL-3.0-or-later        # SPDX expression of license
