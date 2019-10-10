@@ -29,6 +29,7 @@ import { CfCheckService_Fake } from '../service/cf-check-fake.service';
 import { ApplicationService_Fake } from '../service/application-fake.service';
 import { ApplicationService } from '../service/application.service';
 import { SpidService } from '../service/spid.service';
+import { SpidJwtService } from '../service/spid-jwt.service';
 import { JwtInterceptor } from '../service/jwt.interceptor';
 
 import { ApplicationFormComponent } from './application-form/application-form.component';
@@ -45,7 +46,7 @@ import { MatTabsModule} from '@angular/material/tabs';
 import { HelpComponent } from './help/help.component';
 import { SpidComponent } from './spid/spid.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { SpidJwtComponent } from './spid-jwt/spid-jwt.component';
 
 
 const ENABLETRACING = environment.enableTracing;
@@ -59,7 +60,8 @@ const APPROUTES = appRoutes;
     PageNotFoundComponent,
     HelpComponent,
     SpidComponent,
-    MenuComponent
+    MenuComponent,
+    SpidJwtComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -95,6 +97,7 @@ const APPROUTES = appRoutes;
     //{ provide: ApplicationService, useClass: ApplicationServiceSuccess_Fake },
     { provide: ApplicationService, useClass: ApplicationService },
     { provide: SpidService, useClass: SpidService },
+    { provide: SpidJwtService, useClass: SpidJwtService },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]

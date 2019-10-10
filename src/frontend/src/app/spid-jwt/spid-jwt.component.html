@@ -1,0 +1,57 @@
+<div style="text-align:center; padding-bottom:30px;">
+  
+  <div id="content-spid">
+    <div class="row">       
+      <div class="col-sm-12 col-md-6">
+          <!-- Descrizione Autenticazione Spid -->
+          <div *ngIf="isLogout()">
+            <p>SPID, il Sistema Pubblico di Identità Digitale, è la soluzione che ti permette di accedere a tutti i servizi online della Pubblica Amministrazione con un'unica Identità Digitale utilizzabile da computer, tablet e smartphone. <br>
+              Se sei già in possesso di un'identità digitale, accedi con le credenziali del tuo gestore. <br> Se non hai ancora un'identità digitale, richiedila ad uno dei gestori.
+            </p>
+            <ul class="list-unstyled">
+              <li><a href="http://www.spid.gov.it" target="_blank">Maggiori info</a></li>
+              <li><a href="http://www.spid.gov.it/richiedi-spid" target="_blank">Non hai SPID?</a></li>
+              <li><a href="https://www.spid.gov.it/serve-aiuto" target="_blank">Serve aiuto?</a></li>
+            </ul>
+          </div>
+
+          <!-- Solo per esempio, stampo a video la lista degli Attributi Spid -->
+          <div *ngIf="isLogin()">
+            <h4>ATTRIBUTI SPID: </h4>
+              <ul id="attribute-spid" *ngIf="spidAttributes">                
+                  <div *ngFor="let keyspid of key(spidAttributes)">
+                      <li *ngIf="spidAttributes[keyspid]">
+                        <p>{{keyspid}}: {{spidAttributes[keyspid]}}</p>
+                    </li>
+                  </div>
+              </ul>
+          </div>
+      </div>
+      <div class="col-sm-12 col-md-6">
+          <!-- Bottone Login Spid -->
+          <div *ngIf="isLogout()">
+            <a (click)="login()" href="" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-medium-get" aria-haspopup="true" aria-expanded="false">
+                <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;" alt="" /></span>
+                <span class="italia-it-button-text">Entra con SPID</span>
+            </a>
+          </div>
+          <!-- Bottone Logout Spid -->
+          <div *ngIf="isLogin()">
+            <a (click)="logout()" href="" class="italia-it-button italia-it-button-size-m button-spid" spid-idp-button="#spid-idp-button-medium-get" aria-haspopup="true" aria-expanded="false">
+                <span class="italia-it-button-icon"><img src="assets/spid/img/spid-ico-circle-bb.svg" onerror="this.src='img/spid-ico-circle-bb.png'; this.onerror=null;" alt="" /></span>
+                <span class="italia-it-button-text">Logout</span>
+            </a>
+          </div>
+      </div>   
+    </div>
+    <!-- Logo Spid/Agid -->
+    <div *ngIf="isLogout()">
+      <div class="row">
+          <div class="col-sm-12 text-center">
+            <img width="250"  src="assets/spid/img/spid-agid-logo-lb.png" />
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
