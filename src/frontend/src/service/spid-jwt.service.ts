@@ -70,9 +70,8 @@ export class SpidJwtService {
     let isExpirationDate: boolean = true;
     if (jwtToken){
       const jwtTokenJson = JSON.parse(jwtToken);
-      let ext = jwtTokenJson["ext"];
-      if(ext)
-        isExpirationDate = moment().isAfter(moment.unix(ext));
+      let exp = jwtTokenJson["exp"];
+      isExpirationDate = exp ? (moment().isAfter(moment.unix(exp))) : isExpirationDate;
     }
     return isExpirationDate;
   }
