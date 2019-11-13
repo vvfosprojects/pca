@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { SpidAttribute } from "../app/model/spid-attribute.model";
 import { Base64 } from 'js-base64';
 import { environment } from '../environments/environment';
+import { HttpParameterCodec } from "@angular/common/http";
 import * as jwt from 'jsonwebtoken';
+import * as jwt_decode from 'jwt-decode';
 import * as moment from "moment";
 
 const CASBASEURL = environment.casUrl;
@@ -34,15 +36,15 @@ export class SpidJwtService {
   }
 
   public isLoggedIn(): boolean {
-    const jwtToken = this.getJwtToken();
-    if(jwtToken)
-      return !this.isTokenExpired(jwtToken);
+    let jwtToken = this.getJwtToken();
+    let isLoggedIn = jwtToken ? (!this.isTokenExpired(jwtToken)) : false;
+    return isLoggedIn;
   }
 
   public getJwtToken(): string {
-    const jwtToken = localStorage.getItem("jwtToken");
-    if(jwtToken)  
-      return this.decodeToken(jwtToken);  
+    const jwtTokenStored = localStorage.getItem("jwtToken");
+    let jwtToken = jwtTokenStored ? this.decodeToken(jwtTokenStored) : null; 
+    return jwtToken;
   }
 
   public getSpidAttributes(): SpidAttribute {
@@ -67,24 +69,37 @@ export class SpidJwtService {
   }
 
   private isTokenExpired(jwtToken: string): boolean {
-    let isExpirationDate: boolean = true;
     if (jwtToken){
-      const jwtTokenJson = JSON.parse(jwtToken);
+      let jwtTokenJson = JSON.parse(jwtToken);
       let exp = jwtTokenJson["exp"];
-      isExpirationDate = exp ? (moment().isAfter(moment.unix(exp))) : isExpirationDate;
+      return moment().isAfter(moment.unix(exp));
     }
-    return isExpirationDate;
+    return true;
   }
 
+  
   private decodeToken(ticket: string): string {
     try {
-      let jwtTokenBase64Encoded = jwt.verify(ticket, SECRET);
-      return Base64.decode(JSON.stringify(jwtTokenBase64Encoded));
+      let jwtTokenDecoded = decodeURIComponent(ticket);
+      let jwtToken = jwt_decode(jwtTokenDecoded); 
+      return JSON.stringify(jwtToken);
     } catch(err) {
       console.error("Failed to authenticate token: "+ err);      
     }
     return;
   }
+  
+  /*
+  private decodeToken(ticket: string): string {
+    try {
+      var jwtTokenUrlDecoded = decodeURIComponent(ticket);
+      var jwtToken = jwt.verify(jwtTokenUrlDecoded, SECRET);
+      return JSON.stringify(jwtToken);
+    } catch(err) {
+      console.error("Failed to authenticate token: "+ err);      
+    }
+  }
+  */
 
   private setSession() {
     const matches = window.location.href.match(/(.*)[&?]ticket=([^&?]*)$/);
