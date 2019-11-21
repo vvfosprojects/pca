@@ -7,7 +7,7 @@ export const environment = {
   production: false,
   backendUrl: "http://localhost:57156/api",
   backendBaseUrl: "http://localhost:57156",
-  casUrl: "https://sso.vigilfuoco.it/cas-test",
+  casUrl: "https://sso.vigilfuoco.it/cas-test/login",
   secretJwt: "T6ryd8igyUydnjsgGgehwy24Fhapovbnde8ty6tyr78xxmzkitIjjgkKkajddye65i09F",
   enableTracing: false
 };

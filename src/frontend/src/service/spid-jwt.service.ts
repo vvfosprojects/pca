@@ -77,29 +77,26 @@ export class SpidJwtService {
     return true;
   }
 
-  
+  /*
   private decodeToken(ticket: string): string {
     try {
-      let jwtTokenDecoded = decodeURIComponent(ticket);
-      let jwtToken = jwt_decode(jwtTokenDecoded); 
+      let jwtToken = jwt_decode(ticket); 
       return JSON.stringify(jwtToken);
     } catch(err) {
       console.error("Failed to authenticate token: "+ err);      
     }
     return;
   }
+  */
   
-  /*
   private decodeToken(ticket: string): string {
     try {
-      var jwtTokenUrlDecoded = decodeURIComponent(ticket);
-      var jwtToken = jwt.verify(jwtTokenUrlDecoded, SECRET);
+      var jwtToken = jwt.verify(ticket, SECRET);
       return JSON.stringify(jwtToken);
     } catch(err) {
       console.error("Failed to authenticate token: "+ err);      
     }
   }
-  */
 
   private setSession() {
     const matches = window.location.href.match(/(.*)[&?]ticket=([^&?]*)$/);
